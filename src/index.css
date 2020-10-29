@@ -7,8 +7,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+body::-webkit-scrollbar {
+  display: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.MuiFilledInput-input {
+  padding: 9px 12px 10px !important;
+}
+.MuiAutocomplete-inputRoot {
+  padding: 0px !important;
 }
