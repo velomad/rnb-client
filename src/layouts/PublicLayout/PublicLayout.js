@@ -5,7 +5,9 @@ function PublicLayout(props) {
   return (
     <div>
       <Navbar />
+      <div className="p-3">
       {children}
+      </div>
       {withFooter && <Footer />}
     </div>
   );
