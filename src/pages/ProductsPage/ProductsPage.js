@@ -17,8 +17,6 @@ const ProductsPage = () => {
 		);
 		setProducts(res.data.data.result);
 	};
-
-	console.log(products)
 	return (
 		<div>
 			<div className="my-3">
@@ -34,17 +32,21 @@ const ProductsPage = () => {
 				</Grid>
 				<Grid item md={9}>
 					<Grid container justify="space-between">
-						{products.map((e) => (
-							<Grid item>
-								<ProductCard 
-								image = {e.imageUrl} 
-								website = {e.website} 
-								price = {e.productPrice} 
-								priceStrike = {e.productPriceStrike} 
-								name = {e.prodctName}
-								brand = {e.brandName}
-								discount = {e.discountPercent}
-								rating = {e.productRating}
+						{products.map((e, index) => (
+							<Grid item 
+							key={index}
+							>
+								<ProductCard
+									products={products}
+									obj={index}								
+									image={e.imageUrl}
+									website={e.website}
+									price={e.productPrice}
+									priceStrike={e.productPriceStrike}
+									name={e.productName}
+									brand={e.brandName}
+									discount={e.discountPercent}
+									rating={e.productRating}
 								/>
 							</Grid>
 						))}

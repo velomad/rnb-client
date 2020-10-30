@@ -4,7 +4,6 @@ import { Text } from "../../../../components";
 import { history } from "../../../../utils";
 import Wishlist from "@material-ui/icons/FavoriteBorderOutlined";
 
-
 const ProductCard = ({
 	image,
 	website,
@@ -14,15 +13,26 @@ const ProductCard = ({
 	brand,
 	discount,
 	rating,
+	obj,
+	products,
 }) => {
 	const [wishList, setWishList] = useState(false);
+
 	const handleWishList = () => {
-		setWishList(true);
+		// setWishList(true);
+		console.log("clicked");
 	};
+
+	const handleProductClick = () => {
+		history.push("/product/"+obj)
+		console.log(products[obj]);
+	};
+
 	return (
 		<div className="my-3">
 			<Grid container>
 				<div
+					onClick={handleProductClick}
 					className="shadow-lg cursor-pointer"
 					style={{
 						width: "210px",
@@ -37,7 +47,7 @@ const ProductCard = ({
 							</Text>
 						</div>
 					)}
-					<div className="absolute right-0 p-1" onClick={handleWishList}>
+					<div onClick={handleWishList} className="absolute right-0 p-1">
 						<Wishlist className="text-red-600" />
 					</div>
 					<div className="flex justify-center transition duration-700 ease-in-out transform hover:-translate-y-2">

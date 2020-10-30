@@ -8,6 +8,7 @@ import Loading from "./components/Loading";
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const ProductPage = lazy(() => import("./pages/ProductPage"));
 
 const Routes = () => {
 	return (
@@ -30,7 +31,7 @@ const Routes = () => {
 						exact
 						path="/product/:id"
 						layout={PublicLayout}
-						component={ProductsPage}
+						component={ProductPage}
 					/>
 					<Route path="*" component={() => "404 NOT FOUND"} />
 				</Switch>

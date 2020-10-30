@@ -3,9 +3,11 @@ import { textVariant, textSize, textWeight } from "../../theme/textTheme";
 
 const Text = ({ size, variant, weight, children }) => {
 	return (
-		<text className={`${textVariant[variant]} ${textSize[size]} ${textWeight[weight]}`}>
+		<span
+			className={`${textVariant[variant]} ${textSize[size]} ${textWeight[weight]}`}
+		>
 			{children}
-		</text>
+		</span>
 	);
 };
 
