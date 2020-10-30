@@ -3,7 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import { WithLayoutRoute } from "./routers";
 
-import { PublicLayout} from "./layouts";
+import { PublicLayout } from "./layouts";
 import Loading from "./components/Loading";
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
@@ -23,6 +23,12 @@ const Routes = () => {
 					<WithLayoutRoute
 						exact
 						path="/products"
+						layout={PublicLayout}
+						component={ProductsPage}
+					/>
+					<WithLayoutRoute
+						exact
+						path="/product/:id"
 						layout={PublicLayout}
 						component={ProductsPage}
 					/>

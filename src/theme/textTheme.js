@@ -1,8 +1,9 @@
 // theme.js (you can call it whatever you want)
 
 export const textVariant = {
-	primary: `text-gray-700`,
+	primary: `text-gray-600`,
 	secondary: `text-gray-900`,
+	white: `text-white`,
 	info: `text-indigo-500`,
 	danger: `text-red-500	`,
 };

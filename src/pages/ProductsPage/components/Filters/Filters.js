@@ -4,7 +4,7 @@ import { Text } from "../../../../components";
 const Filters = () => {
 	return (
 		<div>
-			<div>
+			<Grid container>
 				<Grid container className="my-3">
 					<Text weight={600} size="base" variant="secondary">
 						PRICE
@@ -70,7 +70,8 @@ const Filters = () => {
 						</Text>
 					</Grid>
 				</Grid>
-			</div>
+			</Grid>
+
 			<div className="my-5">
 				<Divider variant="fullWidth" />
 			</div>

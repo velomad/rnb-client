@@ -8,6 +8,7 @@ import Autocomplete, {
 import { FormControl, MenuItem, InputLabel } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
+import { history } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
 	formControl: {
@@ -46,6 +47,14 @@ export default function Filter() {
 		setUnit(event.target.value);
 	};
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		history.push("/products");
+		const result = await axios.get(
+			"/api/v1/items/search?term=jacketsmens&api_key=123&page=1&limit=50",
+		);
+		console.log(result.data);
+	};
 
 	const getInfo = () => {
 		axios
@@ -79,7 +88,9 @@ export default function Filter() {
 							value={unit}
 							onChange={handleChange}
 						>
-							<MenuItem value="http://localhost:8080/api/v1/search">clothing</MenuItem>
+							<MenuItem value="http://localhost:8080/api/v1/search">
+								clothing
+							</MenuItem>
 							<MenuItem value="eeeee">
 								<em>electronics</em>
 							</MenuItem>
@@ -100,12 +111,14 @@ export default function Filter() {
 								<TextField {...params} label="" variant="outlined" />
 							)}
 						/> */}
-					<input
-                    className={classes.searchControl}
-						type="text"
-						onChange={handleInputChange}
-						style={{ width: 380, height: 47, textIndent: "10px" }}
-					/>
+					<form onSubmit={handleSubmit}>
+						<input
+							className={classes.searchControl}
+							type="text"
+							onChange={handleInputChange}
+							style={{ width: 380, height: 47, textIndent: "10px" }}
+						/>
+					</form>
 					<ul style={{ backgroundColor: "#fff", zIndex: 100 }}>
 						{results.map((e) => (
 							<li
@@ -156,4 +169,3 @@ export default function Filter() {
 		</React.Fragment>
 	);
 }
-
