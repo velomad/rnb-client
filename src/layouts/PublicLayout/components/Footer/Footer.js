@@ -159,14 +159,13 @@ const Footer = () => {
 				<div class="bg-gray-800">
 					<div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
 						<p class="text-gray-500 text-sm text-center sm:text-left">
-							© 2020 Reach<span className="text-red-600">N</span>Buy —
+							© 2020 Reach<span className="text-red-600">N</span>Buy 
 							<a
 								href="https://twitter.com/knyttneve"
 								rel="noopener noreferrer"
 								class="text-gray-600 ml-1"
 								target="_blank"
 							>
-								Your Personalized Shopping Assistant
 							</a>
 						</p>
 						<span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">

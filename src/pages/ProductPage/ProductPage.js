@@ -15,7 +15,7 @@ const ProductPage = (props) => {
 
 	const getInfo = async () => {
 		const result = await Axios.get(
-			`/api/v1/product?id=${productId}&api_key=123`,
+			`https://reachnbuy.herokuapp.com/api/v1/product?id=${productId}&api_key=123`,
 		);
 		setproduct(result.data.result);
 	};

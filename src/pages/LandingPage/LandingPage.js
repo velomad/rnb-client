@@ -6,7 +6,7 @@ const LandingPage = () => {
 
     return (
         <div>
-         test    sda s
+         Landing page content goes here
         </div>
     )
 }

@@ -34,7 +34,7 @@ const ProductCard = ({
 					className=""
 					style={{
 						width: "210px",
-						height: "310px",
+						height: "320px",
 						position: "relative",
 					}}
 				>
@@ -69,7 +69,7 @@ const ProductCard = ({
 							</Text>
 						</div>
 						<div style={{ bottom: 0, position: "absolute" }}>
-							<Grid container spacing={1}>
+							<Grid container spacing={1} className="mt-4">
 								<Grid item>
 									<Text size="sm" weight="600">
 										{price}
