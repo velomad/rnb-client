@@ -1,10 +1,11 @@
 import { Grid } from "@material-ui/core";
 import { Text } from "../../../../components";
+import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 
 const Heading = () => {
-	return (    
+	return (
 		<div>
-            {/* <Grid container className="mb-5">
+			{/* <Grid container className="mb-5">
             <Text weight={600}
                         variant="primary"
                         size="lg"
@@ -17,9 +18,12 @@ const Heading = () => {
 							<Text weight={600}>Filters</Text>
 						</Grid>
 						<Grid item>
+							<div className="flex items-center">
+							<DeleteOutlineOutlinedIcon fontSize="small" className="text-red-900"/>
 							<Text weight={600} variant="danger">
 								Clear All
-							</Text>
+							</Text>	
+							</div>
 						</Grid>
 					</Grid>
 				</Grid>

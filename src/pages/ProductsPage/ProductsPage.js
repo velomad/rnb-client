@@ -21,8 +21,11 @@ const ProductsPage = () => {
 		<React.Fragment>
 			<div class="h-screen w-full flex antialiased bg-white overflow-hidden">
 				<div class="flex-1 flex flex-col">
-					<Heading />
-					<main class="flex-grow flex flex-row min-h-0 border-t border-gray-400">
+					<div className="py-4">
+						<Heading />
+					</div>
+					<hr className="bg-gray-100" />
+					<main class="flex-grow flex flex-row min-h-0 ">
 						<section class="flex flex-col flex-none overflow-auto w-24 hover:w-64 group lg:max-w-sm md:w-1/6 transition-all duration-300 ease-in-out">
 							<div class="contacts p-2 flex-1 overflow-y-scroll">
 								<Filters />
@@ -31,17 +34,20 @@ const ProductsPage = () => {
 						<section class="flex flex-col flex-auto border-l border-gray-400">
 							<div class="chat-body p-4 flex-1 overflow-y-scroll">
 								<div class="flex flex-row">
-									<div class="w-8 h-8 relative flex flex-shrink-0 mr-4">
-
-									</div>
+									<div class="w-8 h-8 relative flex flex-shrink-0 mr-4"></div>
 									<div>
 										<main class="my-0">
 											<div class="container mx-auto px-6">
-												<h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
-												<span class="mt-3 text-sm text-gray-500">200+ Products</span>
+												<h3 class="text-gray-700 text-2xl font-medium">
+													Casual T-shirt
+												</h3>
+												<span class="mt-3 text-sm text-gray-500">
+													200+ Products
+												</span>
 												<div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
 													{products.map((e, index) => (
-														<div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
+														<div
+															class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
 															key={index}
 														>
 															<ProductCard
@@ -59,27 +65,54 @@ const ProductsPage = () => {
 														</div>
 													))}
 												</div>
-												<div class="flex justify-center">
+												{/* <div class="flex justify-center">
 													<div class="flex rounded-md mt-8">
-														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 ml-0 rounded-l hover:bg-blue-500 hover:text-white"><span>Previous</span></a>
-														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"><span>1</span></a>
-														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"><span>2</span></a>
-														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"><span>3</span></a>
-														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 rounded-r hover:bg-blue-500 hover:text-white"><span>Next</span></a>
-													</div>
-												</div>
+														<a
+															href="#"
+															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 ml-0 rounded-l hover:bg-blue-500 hover:text-white"
+														>
+															<span>Previous</span>
+														</a>
+														<a
+															href="#"
+															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"
+														>
+															<span>1</span>
+														</a>
+														<a
+															href="#"
+															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"
+														>
+															<span>2</span>
+														</a>
+														<a
+															href="#"
+															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"
+														>
+															<span>3</span>
+														</a>
+														<a
+															href="#"
+															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 rounded-r hover:bg-blue-500 hover:text-white"
+														>
+															<span>Next</span>
+														</a>
+													</div> */}
+												{/* </div> */}
 											</div>
 										</main>
 									</div>
 								</div>
 							</div>
-							<div class="chat-footer flex-none">
-								<div class="flex flex-row items-center p-4">
-
-								</div>
-							</div>
+							{/* <div class="chat-footer flex-none">
+								<div class="flex flex-row items-center p-4"></div>
+							</div> */}
 						</section>
 					</main>
+					<hr className="bg-gray-900" />
+					<div className="flex justify-center py-8">
+						<Pagination />
+					</div>
 				</div>
 			</div>
 		</React.Fragment>

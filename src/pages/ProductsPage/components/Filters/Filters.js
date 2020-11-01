@@ -12,7 +12,7 @@ const Filters = () => {
 				</Grid>
 				<Grid container spacing={2}>
 					<Grid item>
-						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" className="text-red-600"/>
 					</Grid>
 					<Grid item>
 						<Text size="sm" variant="primary">
