@@ -120,7 +120,7 @@ const Primary = () => {
                 </div>
                 {
                     openDrawer ? <div
-                        className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl z-10"
+                        className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl z-20"
                         style={{ backgroundColor: "white" }}
                     >
                         <div className="container mt-0 lg:mt-0 md:mt-0 mx-auto w-full flex flex-wrap justify-between mx-2">

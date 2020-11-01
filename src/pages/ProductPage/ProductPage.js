@@ -52,7 +52,7 @@ const ProductPage = (props) => {
 							))}
 
 						<hr className="my-5" />
-						<Grid container justify="space-between">
+						<Grid container justify="space-between" spacing={2}>
 							<Grid item>
 								<Grid container spacing={3}>
 									<Grid item>
@@ -68,12 +68,12 @@ const ProductPage = (props) => {
 								</Grid>
 							</Grid>
 							<Grid item>
-								<Button size="small" variant="primary" animate={true}>
+								<Button size="base" variant="primary" animate={true}>
 									Buy Now
 								</Button>
 							</Grid>
 						</Grid>
-						<div className="mt-2">
+						<div className="mt-4">
 							<Text size="base" variant="danger" weight="600">
 								{product.discountPercent}
 							</Text>

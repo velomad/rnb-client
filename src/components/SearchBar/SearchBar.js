@@ -65,7 +65,7 @@ export default function Filter() {
                                 id: 'filled-age-native-simple',
                             }}
                         >
-                            <option aria-label="None" value="">All</option>
+                            {/* <option aria-label="None" value="">All</option> */}
                             <option selected value={10}>Clothing</option>
                             <option value={20}>Electronics</option>
                         </Select>

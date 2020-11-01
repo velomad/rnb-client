@@ -9,5 +9,6 @@ export const ButtonType = {
 
 export const ButtonSize = {
 	small: "py-2 px-4 text-xs",
-	large: "py-3 px-6 text-lg",
+	base: "py-2 px-4 text-md",
+	large: "py-3 px-5 text-lg",
 };
