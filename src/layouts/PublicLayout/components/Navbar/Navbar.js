@@ -7,8 +7,7 @@ const Navbar = () => {
 
 	return (
 		<header
-			className="bg-white shadow"
-			style={{ backgroundColor: "#474747"}}
+			className="bg-gray-900 shadow"
 		>
 			<Secondary />
 			<Primary />
