@@ -5,7 +5,7 @@ const Button = ({ size, variant, children, animate }) => {
 	return (
 		<button
 			className={`${ButtonType[variant]} ${ButtonSize[size]}  ${
-				animate && `animate duration-500 ease-in-out`
+				animate && `animate duration-500 ease-in-out rounded-lg`
 			}  `}
 		>
 			{children}

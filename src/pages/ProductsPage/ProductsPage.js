@@ -13,7 +13,7 @@ const ProductsPage = () => {
 
 	const getData = async () => {
 		const res = await Axios.get(
-			"/api/v1/products/ajio?category=jackets-coats&api_key=123&page=1&limit=20",
+			"/api/v1/products/bewakoof?category=polo-t-shirts-men&api_key=123&page=1&limit=20",
 		);
 		setProducts(res.data.data.result);
 	};
@@ -38,7 +38,7 @@ const ProductsPage = () => {
 							>
 								<ProductCard
 									products={products}
-									obj={index}								
+									id={e._id}								
 									image={e.imageUrl}
 									website={e.website}
 									price={e.productPrice}

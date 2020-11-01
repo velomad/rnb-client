@@ -13,8 +13,7 @@ const ProductCard = ({
 	brand,
 	discount,
 	rating,
-	obj,
-	products,
+	id,
 }) => {
 	const [wishList, setWishList] = useState(false);
 
@@ -24,8 +23,7 @@ const ProductCard = ({
 	};
 
 	const handleProductClick = () => {
-		history.push("/product/"+obj)
-		console.log(products[obj]);
+		history.push("/product/"+id)
 	};
 
 	return (
@@ -33,7 +31,7 @@ const ProductCard = ({
 			<Grid container>
 				<div
 					onClick={handleProductClick}
-					className="shadow-lg cursor-pointer"
+					className="shadow-lg cursor-pointer rounded-lg"
 					style={{
 						width: "210px",
 						height: "310px",
@@ -47,9 +45,9 @@ const ProductCard = ({
 							</Text>
 						</div>
 					)}
-					<div onClick={handleWishList} className="absolute right-0 p-1">
+					{/* <div onClick={handleWishList} className="absolute right-0 p-1">
 						<Wishlist className="text-red-600" />
-					</div>
+					</div> */}
 					<div className="flex justify-center transition duration-700 ease-in-out transform hover:-translate-y-2">
 						<img src={image} class="object-contain h-48 w-full" />
 					</div>

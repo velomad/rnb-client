@@ -3,9 +3,9 @@
 export const textVariant = {
 	primary: `text-gray-600`,
 	secondary: `text-gray-900`,
-	white: `text-white`,
+	white: `text-gray-100`,
 	info: `text-indigo-500`,
-	danger: `text-red-500	`,
+	danger: `text-red-600	`,
 };
 
 export const textSize = {
@@ -14,6 +14,11 @@ export const textSize = {
 	base: "text-base",
 	lg: "text-lg",
 	xl: "text-xl",
+	xl2: "text-2xl",
+	xl3: "text-3xl",
+	xl4: "text-4xl",
+	xl5: "text-5xl",
+	xl6: "text-6xl",
 };
 
 export const textWeight = {
