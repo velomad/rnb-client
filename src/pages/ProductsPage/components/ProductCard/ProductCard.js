@@ -31,7 +31,7 @@ const ProductCard = ({
 			<Grid container>
 				<div
 					onClick={handleProductClick}
-					className="shadow-lg cursor-pointer rounded-lg"
+					className=""
 					style={{
 						width: "210px",
 						height: "310px",

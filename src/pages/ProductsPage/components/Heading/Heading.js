@@ -4,12 +4,12 @@ import { Text } from "../../../../components";
 const Heading = () => {
 	return (    
 		<div>
-            <Grid container className="mb-5">
+            {/* <Grid container className="mb-5">
             <Text weight={600}
                         variant="primary"
                         size="lg"
                         >Casual T-Shirt - 254 Products</Text>
-            </Grid>
+            </Grid> */}
 			<Grid container>
 				<Grid item xs={12} md={2}>
 					<Grid container justify="space-between">

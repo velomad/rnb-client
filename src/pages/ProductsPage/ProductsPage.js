@@ -18,46 +18,71 @@ const ProductsPage = () => {
 		setProducts(res.data.data.result);
 	};
 	return (
-		<div>
-			<div className="my-3">
-				<Heading />
+		<React.Fragment>
+			<div class="h-screen w-full flex antialiased bg-white overflow-hidden">
+				<div class="flex-1 flex flex-col">
+					<Heading />
+					<main class="flex-grow flex flex-row min-h-0 border-t border-gray-400">
+						<section class="flex flex-col flex-none overflow-auto w-24 hover:w-64 group lg:max-w-sm md:w-1/6 transition-all duration-300 ease-in-out">
+							<div class="contacts p-2 flex-1 overflow-y-scroll">
+								<Filters />
+							</div>
+						</section>
+						<section class="flex flex-col flex-auto border-l border-gray-400">
+							<div class="chat-body p-4 flex-1 overflow-y-scroll">
+								<div class="flex flex-row">
+									<div class="w-8 h-8 relative flex flex-shrink-0 mr-4">
+
+									</div>
+									<div>
+										<main class="my-0">
+											<div class="container mx-auto px-6">
+												<h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
+												<span class="mt-3 text-sm text-gray-500">200+ Products</span>
+												<div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+													{products.map((e, index) => (
+														<div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
+															key={index}
+														>
+															<ProductCard
+																products={products}
+																id={e._id}
+																image={e.imageUrl}
+																website={e.website}
+																price={e.productPrice}
+																priceStrike={e.productPriceStrike}
+																name={e.productName}
+																brand={e.brandName}
+																discount={e.discountPercent}
+																rating={e.productRating}
+															/>
+														</div>
+													))}
+												</div>
+												<div class="flex justify-center">
+													<div class="flex rounded-md mt-8">
+														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 ml-0 rounded-l hover:bg-blue-500 hover:text-white"><span>Previous</span></a>
+														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"><span>1</span></a>
+														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"><span>2</span></a>
+														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"><span>3</span></a>
+														<a href="#" class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 rounded-r hover:bg-blue-500 hover:text-white"><span>Next</span></a>
+													</div>
+												</div>
+											</div>
+										</main>
+									</div>
+								</div>
+							</div>
+							<div class="chat-footer flex-none">
+								<div class="flex flex-row items-center p-4">
+
+								</div>
+							</div>
+						</section>
+					</main>
+				</div>
 			</div>
-			<hr style={{ color: "solid black 1px" }} />
-			<Grid container>
-				<Grid item xs={12} md={2}>
-					<Filters />
-				</Grid>
-				<Grid item>
-					<Divider orientation="vertical" variant="middle" />
-				</Grid>
-				<Grid item md={9}>
-					<Grid container justify="space-between">
-						{products.map((e, index) => (
-							<Grid item 
-							key={index}
-							>
-								<ProductCard
-									products={products}
-									id={e._id}								
-									image={e.imageUrl}
-									website={e.website}
-									price={e.productPrice}
-									priceStrike={e.productPriceStrike}
-									name={e.productName}
-									brand={e.brandName}
-									discount={e.discountPercent}
-									rating={e.productRating}
-								/>
-							</Grid>
-						))}
-					</Grid>
-				</Grid>
-			</Grid>
-			<hr style={{ color: "solid black 1px", marginTop: 15 }} />
-			<div className="flex py-2 justify-center">
-				<Pagination />
-			</div>
-		</div>
+		</React.Fragment>
 	);
 };
 
