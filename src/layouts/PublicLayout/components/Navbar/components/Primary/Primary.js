@@ -1,15 +1,37 @@
 import React from 'react';
 import { SearchBar } from '../../../../../../components';
-
+import './primary.css';
 const Primary = () => {
     const [open, setOpen] = React.useState(false);
+    const [openDrawer, setOpenDrawer] = React.useState(false);
+    const [currentBrand, setCurrentBrand] = React.useState("");
+    const [activeCat, setactiveCat] = React.useState("men");
+    const [activePanel, setactivePanel] = React.useState("men");
+    const [activatesmallPanel, activateSmallDrawer] = React.useState("");
 
-	const showMenu = () => {
-		open ? setOpen(false) : setOpen(true);
-	};
+    const loadDropDown = (brand) => {
+        if (currentBrand === '') {
+            setCurrentBrand(brand);
+        }
+        !!brand ? setOpenDrawer(true) : setOpenDrawer(false);
+    }
+    const activeCategory = (active) => {
+        setactiveCat(active)
+        setactivePanel(active);
+    }
+    const hideDropDown = () => {
+        setCurrentBrand('');
+        setOpenDrawer(false);
+    }
+    const showMenu = () => {
+        open ? setOpen(false) : setOpen(true);
+    };
+    const smalldevicedrawer = (activate) => {
+        activateSmallDrawer(activate)
+    }
     return (
         <React.Fragment>
-            <nav className="container mx-auto px-6 py-3">
+            <nav className="container mx-auto px-6 py-3 md:py-0 lg:py-0">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center">
@@ -23,33 +45,9 @@ const Primary = () => {
                                 />
                             </a>
 
-                            <div className="mx-12 hidden md:block">
+                            <div className="mx-64 hidden md:block">
                                 <div className="relative text-gray-600">
                                     <SearchBar />
-                                    {/* <input
-                                        type="search"
-                                        name="serch"
-                                        placeholder="Search"
-                                        className="bg-white h-10 w-full px-5 pr-64 rounded-full text-sm focus:outline-none"
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="absolute right-0 top-0 mt-3 mr-4"
-                                    >
-                                        <svg
-                                            className="h-4 w-4 fill-current"
-                                            version="1.1"
-                                            id="Capa_1"
-                                            x="0px"
-                                            y="0px"
-                                            viewBox="0 0 56.966 56.966"
-                                            style={{ enableBackground: "new 0 0 56.966 56.966" }}
-                                            width="512px"
-                                            height="512px"
-                                        >
-                                            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                                        </svg>
-                                    </button> */}
                                 </div>
                             </div>
                         </div>
@@ -69,474 +67,700 @@ const Primary = () => {
                             </button>
                         </div>
                     </div>
-
-                    <div
-                        className={
-                            open
-                                ? "md:flex items-center block"
-                                : "md:flex items-center hidden"
-                        }
-                        style={{ zIndex: "9999" }}
-                    >
-                        <ul className="flex flex-col mt-2 md:flex-row md:mt-0 md:mx-1">
-                            <li className="hover:text-white">
-                                <a
-                                    href="#"
-                                    className="relative block text-sm text-white leading-5 py-2 mx-6 md:my-0 duration-2000 ease-out hover:font-bold"
-                                >
-                                    Home
-								</a>
-                            </li>
-                            <li className="hoverable  hover:text-white">
-                                <a
-                                    href="#"
-                                    className="relative block text-sm text-white py-2 leading-5 mx-6 md:my-0"
-                                >
-                                    Men
-								</a>
-                                <div
-                                    className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl"
-                                    style={{ backgroundColor: "white" }}
-                                >
-                                    <div className="container mt-40 lg:mt-20 md:mt-20 mx-auto w-full flex flex-wrap justify-between mx-2">
-                                        <div className="w-full text-gray-900 mb-8">
-                                            <h2 className="font-bold text-2xl">
-                                                Main Hero Message for the menu section
-											</h2>
-                                            <p>
-                                                Sub-hero message, not too long and not too short. Make
-                                                it just right!
-											</p>
-                                        </div>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-white"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M3 6c0-1.1.9-2 2-2h8l4-4h2v16h-2l-4-4H5a2 2 0 0 1-2-2H1V6h2zm8 9v5H8l-1.67-5H5v-2h8v2h-2z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 1
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                Quarterly sales are at an all-time low create spaces to
-                                                explore the accountable talk and blind vampires.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r-0 lg:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-gray-600"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M4.13 12H4a2 2 0 1 0 1.8 1.11L7.86 10a2.03 2.03 0 0 0 .65-.07l1.55 1.55a2 2 0 1 0 3.72-.37L15.87 8H16a2 2 0 1 0-1.8-1.11L12.14 10a2.03 2.03 0 0 0-.65.07L9.93 8.52a2 2 0 1 0-3.72.37L4.13 12zM0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 2
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                Prioritize these line items game-plan draw a line in the
-                                                sand come up with something buzzworthy UX upstream
-                                                selling.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-b-0 sm:border-r md:border-b-0 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-gray-600"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M2 4v14h14v-6l2-2v10H0V2h10L8 4H2zm10.3-.3l4 4L8 16H4v-4l8.3-8.3zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 3
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                This proposal is a win-win situation which will cause a
-                                                stellar paradigm shift, let's touch base off-line before
-                                                we fire the new ux experience.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-gray-600"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 4
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                This is a no-brainer to wash your face, or we need to
-                                                future-proof this high performance keywords granularity.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
+                    {
+                        open ?
+                            <div class="md:flex items-center">
+                                <div class="mt-3 md:hidden">
+                                    <div class="pt-2 relative mx-auto text-gray-600">
+                                        <SearchBar />
                                     </div>
                                 </div>
-                            </li>
-                            <li className="hoverable  hover:text-white">
-                                <a
-                                    href="#"
-                                    className="relative block text-sm text-white py-2 leading-5 mx-6 md:my-0"
-                                >
-                                    Women
-								</a>
-                                <div
-                                    className="p-6 mega-menu  mb-16 sm:mb-0 shadow-xl"
-                                    style={{ backgroundColor: "transparent" }}
-                                >
-                                    <div className="container mt-40 lg:mt-20 md:mt-20  mx-auto w-full flex flex-wrap justify-between mx-2">
-                                        <div className="w-full text-gray-900 mb-8">
-                                            <h2 className="font-bold text-2xl">
-                                                Main Hero Message for the menu section
-											</h2>
-                                            <p>
-                                                Sub-hero message, not too long and not too short. Make
-                                                it just right!
-											</p>
-                                        </div>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-white"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M3 6c0-1.1.9-2 2-2h8l4-4h2v16h-2l-4-4H5a2 2 0 0 1-2-2H1V6h2zm8 9v5H8l-1.67-5H5v-2h8v2h-2z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 1
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                Quarterly sales are at an all-time low create spaces to
-                                                explore the accountable talk and blind vampires.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r-0 lg:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-gray-600"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M4.13 12H4a2 2 0 1 0 1.8 1.11L7.86 10a2.03 2.03 0 0 0 .65-.07l1.55 1.55a2 2 0 1 0 3.72-.37L15.87 8H16a2 2 0 1 0-1.8-1.11L12.14 10a2.03 2.03 0 0 0-.65.07L9.93 8.52a2 2 0 1 0-3.72.37L4.13 12zM0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 2
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                Prioritize these line items game-plan draw a line in the
-                                                sand come up with something buzzworthy UX upstream
-                                                selling.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-b-0 sm:border-r md:border-b-0 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-gray-600"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M2 4v14h14v-6l2-2v10H0V2h10L8 4H2zm10.3-.3l4 4L8 16H4v-4l8.3-8.3zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 3
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                This proposal is a win-win situation which will cause a
-                                                stellar paradigm shift, let's touch base off-line before
-                                                we fire the new ux experience.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
-                                        <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 pb-6 pt-6 lg:pt-3">
-                                            <div className="flex items-center">
-                                                <svg
-                                                    className="h-8 mb-3 mr-3 fill-current text-gray-600"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" />
-                                                </svg>
-                                                <h3 className="font-bold text-xl text-gray-600 text-bold mb-2">
-                                                    Heading 4
-												</h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm">
-                                                This is a no-brainer to wash your face, or we need to
-                                                future-proof this high performance keywords granularity.
-											</p>
-                                            <div className="flex items-center py-3">
-                                                <svg
-                                                    className="h-6 pr-3 fill-current text-blue-300"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                                                </svg>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-600 bold border-b-2 border-blue-300 hover:text-blue-300"
-                                                >
-                                                    Find out more...
-												</a>
-                                            </div>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-
-                        <div className="flex items-center py-2 -mx-1 md:mx-0"></div>
-
-                        <div className="mt-3 md:hidden">
-                            <div className="pt-2 relative mx-auto text-gray-600">
-                                <input
-                                    type="search"
-                                    name="serch"
-                                    placeholder="Search"
-                                    className="bg-white h-10 w-full px-5 pr-40 rounded-full text-sm focus:outline-none"
-                                />
-                                <button
-                                    type="submit"
-                                    className="absolute right-0 top-0 mt-5 mr-4"
-                                >
-                                    <svg
-                                        className="h-4 w-4 fill-current"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        version="1.1"
-                                        id="Capa_1"
-                                        x="0px"
-                                        y="0px"
-                                        viewBox="0 0 56.966 56.966"
-                                        style={{ enableBackground: "new 0 0 56.966 56.966" }}
-                                        width="512px"
-                                        height="512px"
-                                    >
-                                        <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                                    </svg>
-                                </button>
                             </div>
+                            : ""
+                    }
+
+                </div>
+                <div class="active-users flex flex-row p-0 pb-2 overflow-auto w-0 min-w-full">
+                    <div onClick={() => loadDropDown('flipkart')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="hoverable w-10 h-10 relative flex flex-shrink-0">
+                        <img class="shadow-md rounded-full w-full h-full object-cover"
+                            src='/static/images/flipkart.png'
+                            alt=""
+                        />
+                    </div></div><p className='text-black font-bold'></p></div>
+                    <div onClick={() => loadDropDown('flipkart')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="w-10 h-10 relative flex flex-shrink-0">
+                        <img class="shadow-md rounded-full w-full h-full object-cover"
+                            src='/static/images/amazon.png'
+                            alt=""
+                        />
+                    </div></div><p className='text-black font-bold'></p></div>
+                    <div onClick={() => loadDropDown('myntra')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="w-10 h-10 relative flex flex-shrink-0">
+                        <img class="shadow-md rounded-full w-full h-full object-cover"
+                            src='/static/images/myntra.png'
+                            alt=""
+                        />
+                    </div></div><p className='text-black font-bold'></p></div>
+                    <div onClick={() => loadDropDown('ajio')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="w-10 h-10 relative flex flex-shrink-0">
+                        <img class="shadow-md rounded-full w-full h-full object-cover"
+                            src='/static/images/ajio.png'
+                            alt=""
+                        />
+                    </div></div><p className='text-black font-bold'></p></div>
+                    <div onClick={() => loadDropDown('tataqcliq')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="w-10 h-10 relative flex flex-shrink-0">
+                        <img class="shadow-md rounded-full w-full h-full object-cover"
+                            src='/static/images/tataqcliq.png'
+                            alt=""
+                        />
+                    </div></div><p className='text-black font-bold'></p></div>
+                    <div onClick={() => loadDropDown('bewakoof')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="w-10 h-10 relative flex flex-shrink-0">
+                        <img class="shadow-md rounded-full w-full h-full object-cover"
+                            src='/static/images/bewakoof.jpg'
+                            alt=""
+                        />
+                    </div></div><p className='text-black font-bold'></p></div>
+                </div>
+                {
+                    openDrawer ? <div
+                        className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl"
+                        style={{ backgroundColor: "white" }}
+                    >
+                        <div className="container mt-0 lg:mt-0 md:mt-0 mx-auto w-full flex flex-wrap justify-between mx-2">
+                            <div className="w-full text-gray-900 mb-2">
+                                <svg onClick={() => hideDropDown()} class="cursor-pointer w-6 h-6 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                {/* <h2 className="font-bold text-2xl">
+                                    {currentBrand}
+                                    Main Hero Message for the menu section
+											</h2>
+                                <p>
+                                    Sub-hero message, not too long and not too short. Make
+                                    it just right!
+											</p> */}
+                            </div>
+                            <section class="mt-0">
+                                <div className="flex">
+                                    <div className="cursor-pointer"  onMouseEnter={() => activeCategory('men')}>
+                                        <p className='text-1xl text-gray-900 font-bold mr-6'>Men</p>
+                                        {
+                                            activeCat === 'men' ? <span class="inline-block h-1 w-12 rounded bg-pink-700 mt-1 mb-4"></span> : ""
+                                        }
+                                    </div>
+                                    <div className="cursor-pointer"  onMouseEnter={() => activeCategory('women')}>
+                                        <p className='text-1xl text-gray-900 font-bold mr-4'>Women</p>
+                                        {
+                                            activeCat === 'women' ? <span class="inline-block h-1 w-20 rounded bg-pink-700 mt-1 mb-4"></span> : ""
+                                        }
+                                    </div>
+                                </div>
+                                <div class="border-t md:px-4 md:pt-0 md:pb-5">
+                                    {
+                                        activePanel == 'men' ? <div class="flex flex-wrap  mx-auto">
+                                            <section
+                                                class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                            >
+                                                <div class="md:hidden" onClick={() =>{ smalldevicedrawer('topwear')}}>
+                                                    <div class="grid grid-cols-2 gap-56">
+                                                        
+                                                        <div className='flex items-center'>
+                                                            <img src='/static/images/topwear.png' width='50px' className='mr-1' />
+                                                            <button
+                                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                                type="button"
+                                                            >
+                                                                Topwear
+                                                            </button>
+                                                        </div>
+                                                        <div className="pt-3">
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a
+                                                    class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                    href="#"
+                                                >
+                                                    <div className='flex items-center'>
+                                                    <img src='/static/images/topwear.png' width='50px' className='mr-1' /><p >Topwear</p>
+                                                    </div>
+                                                </a>
+                                                <article  className={activatesmallPanel === 'topwear'? "md:h-auto -mt-4 md:mt-0 overflow-hidden transition duration-700" : "h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden"}>
+                                                    <ul class="my-5 text-sm tracking-wide">
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Fusce vel sem</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Ut venenatis tellus</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Vestibulum</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Nunc at ipsum</a>
+                                                        </li>
+                                                    </ul>
+                                                </article>
+                                            </section>
+                                            <section
+                                                class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                            >
+                                                <div class="md:hidden" onClick={() =>{ smalldevicedrawer('footwear')}}>
+                                                    <div class="grid grid-cols-2 gap-56">
+                                                        <div>
+                                                            <button
+                                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                                type="button"
+                                                            >
+                                                                Jeans
+                                                        </button>
+                                                        </div>
+                                                        <div className="pt-3">
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a
+                                                    class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                    href="#"
+                                                >
+                                                    <div className='flex items-center'>
+                                                    <img src='/static/images/topwear.png' width='50px' className='mr-1' /><p >Topwear</p>
+                                                    </div>
+            </a>
+                                                <article class={activatesmallPanel === 'footwear'?"":"h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden"}>
+                                                    <ul class="my-5 text-sm tracking-wide">
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Pellentesque rhoncus</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Aenean</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Curabitur bibendum</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Phasellus non mi</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Duis accumsa</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Curabitur nec enim</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Fusce ut augue</a>
+                                                        </li>
+                                                    </ul>
+                                                </article>
+                                            </section>
+                                            <section
+                                                class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                            >
+                                                <div class="md:hidden">
+                                                    <div class="grid grid-cols-2 gap-56">
+                                                        <div>
+                                                            <button
+                                                                onclick="toggleFooterSection(event)"
+                                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                                type="button"
+                                                            >
+                                                                Kurtas
+                                                        </button>
+                                                        </div>
+                                                        <div className="pt-3">
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a
+                                                    class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                    href="#"
+                                                >
+                                                    <div className='flex items-center'>
+                                                    <img src='/static/images/topwear.png' width='50px' className='mr-1' /><p >Topwear</p>
+                                                    </div>
+            </a>
+                                                <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                    <ul class="my-5 text-sm tracking-wide">
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Mauris mattis nunc</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Nunc viverra risus</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Etiam a libero</a>
+                                                        </li>
+                                                    </ul>
+                                                </article>
+                                            </section>
+                                            <section
+                                                class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                            >
+                                                <div class="md:hidden">
+                                                    <div class="grid grid-cols-2 gap-56">
+                                                        <div>
+                                                            <button
+                                                                onclick="toggleFooterSection(event)"
+                                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                                type="button"
+                                                            >
+                                                                Pyjamas
+                                                        </button>
+                                                        </div>
+                                                        <div className="pt-3">
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a
+                                                    class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                    href="#"
+                                                >
+                                                    <div className='flex items-center'>
+                                                    <img src='/static/images/topwear.png' width='50px' className='mr-1' /><p >Topwear</p>
+                                                    </div>
+            </a>
+                                                <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                    <ul class="my-5 text-sm tracking-wide">
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Cras id ipsum</a>
+                                                        </li>
+                                                    </ul>
+                                                </article>
+                                            </section>
+                                            <section
+                                                class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                            >
+                                                <div class="md:hidden">
+                                                    <div class="grid grid-cols-2 gap-56">
+                                                        <div>
+                                                            <button
+                                                                onclick="toggleFooterSection(event)"
+                                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                                type="button"
+                                                            >
+                                                                Footware
+                                                        </button>
+                                                        </div>
+                                                        <div className="pt-3">
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a
+                                                    class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                    href="#"
+                                                >
+                                                    <div className='flex items-center'>
+                                                    <img src='/static/images/topwear.png' width='50px' className='mr-1' /><p >Topwear</p>
+                                                    </div>
+            </a>
+                                                <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                    <ul class="my-5 text-sm tracking-wide">
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Sed a diam</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Nullam luctus felis</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Sed euismod</a>
+                                                        </li>
+                                                    </ul>
+                                                </article>
+                                            </section>
+                                            <section
+                                                class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                            >
+                                                <div class="md:hidden">
+                                                    <div class="grid grid-cols-2 gap-56">
+                                                        <div>
+                                                            <button
+                                                                onclick="toggleFooterSection(event)"
+                                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                                type="button"
+                                                            >
+                                                                Lingerie
+                                                        </button>
+                                                        </div>
+                                                        <div className="pt-3">
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a
+                                                    class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                    href="#"
+                                                >
+                                                    Integer interdum
+            </a>
+                                                <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                    <ul class="my-5 text-sm tracking-wide">
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Dignissim gravida</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Eu mollis elit</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Hendrerit purus id</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Ut luctus dui tincidunt</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Pellentesque at ligula</a>
+                                                        </li>
+                                                    </ul>
+                                                </article>
+                                            </section>
+                                            <section
+                                                class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                            >
+                                                <div class="md:hidden">
+                                                    <div class="grid grid-cols-2 gap-56">
+                                                        <div>
+                                                            <button
+                                                                onclick="toggleFooterSection(event)"
+                                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                                type="button"
+                                                            >
+                                                                Pyjamas
+                                                        </button>
+                                                        </div>
+                                                        <div className="pt-3">
+                                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a
+                                                    class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                    href="#"
+                                                >
+                                                    Quisque
+            </a>
+                                                <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                    <ul class="my-5 text-sm tracking-wide">
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Finibus nulla eget</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Pellentesque</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Duis efficitur</a>
+                                                        </li>
+                                                        <li class="my-3 tracking-wide">
+                                                            <a href="#">Cras at lacus</a>
+                                                        </li>
+                                                    </ul>
+                                                </article>
+                                            </section>
+                                        </div>
+                                            : ""
+                                    }
+
+                                    {
+                                        activePanel === 'women' ?<div class="flex flex-wrap  mx-auto">
+                                        <section
+                                            class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                        >
+                                            <div class="md:hidden">
+                                                <div class="grid grid-cols-2 gap-56">
+                                                    <div>
+                                                        <button
+                                                            onclick="toggleFooterSection(event)"
+                                                            class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                            type="button"
+                                                        >
+                                                            Topwear
+                                                </button>
+                                                    </div>
+                                                    <div className="pt-3">
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                href="#"
+                                            >
+                                                Topwear-women
+    </a>
+                                            <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                <ul class="my-5 text-sm tracking-wide">
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Fusce vel sem</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Ut venenatis tellus</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Vestibulum</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Nunc at ipsum</a>
+                                                    </li>
+                                                </ul>
+                                            </article>
+                                        </section>
+                                        <section
+                                            class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                        >
+                                            <div class="md:hidden">
+                                                <div class="grid grid-cols-2 gap-56">
+                                                    <div>
+                                                        <button
+                                                            onclick="toggleFooterSection(event)"
+                                                            class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                            type="button"
+                                                        >
+                                                            Jeans
+                                                </button>
+                                                    </div>
+                                                    <div className="pt-3">
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                href="#"
+                                            >
+                                                Ut porta
+    </a>
+                                            <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                <ul class="my-5 text-sm tracking-wide">
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Pellentesque rhoncus</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Aenean</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Curabitur bibendum</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Phasellus non mi</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Duis accumsa</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Curabitur nec enim</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Fusce ut augue</a>
+                                                    </li>
+                                                </ul>
+                                            </article>
+                                        </section>
+                                        <section
+                                            class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                        >
+                                            <div class="md:hidden">
+                                                <div class="grid grid-cols-2 gap-56">
+                                                    <div>
+                                                        <button
+                                                            onclick="toggleFooterSection(event)"
+                                                            class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                            type="button"
+                                                        >
+                                                            Kurtas
+                                                </button>
+                                                    </div>
+                                                    <div className="pt-3">
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                href="#"
+                                            >
+                                                Praesent elementum
+    </a>
+                                            <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                <ul class="my-5 text-sm tracking-wide">
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Mauris mattis nunc</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Nunc viverra risus</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Etiam a libero</a>
+                                                    </li>
+                                                </ul>
+                                            </article>
+                                        </section>
+                                        <section
+                                            class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                        >
+                                            <div class="md:hidden">
+                                                <div class="grid grid-cols-2 gap-56">
+                                                    <div>
+                                                        <button
+                                                            onclick="toggleFooterSection(event)"
+                                                            class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                            type="button"
+                                                        >
+                                                            Pyjamas
+                                                </button>
+                                                    </div>
+                                                    <div className="pt-3">
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                href="#"
+                                            >
+                                                Bottomwear
+    </a>
+                                            <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                <ul class="my-5 text-sm tracking-wide">
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Cras id ipsum</a>
+                                                    </li>
+                                                </ul>
+                                            </article>
+                                        </section>
+                                        <section
+                                            class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                        >
+                                            <div class="md:hidden">
+                                                <div class="grid grid-cols-2 gap-56">
+                                                    <div>
+                                                        <button
+                                                            onclick="toggleFooterSection(event)"
+                                                            class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                            type="button"
+                                                        >
+                                                            Footware
+                                                </button>
+                                                    </div>
+                                                    <div className="pt-3">
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                href="#"
+                                            >
+                                                Donec a lorem
+    </a>
+                                            <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                <ul class="my-5 text-sm tracking-wide">
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Sed a diam</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Nullam luctus felis</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Sed euismod</a>
+                                                    </li>
+                                                </ul>
+                                            </article>
+                                        </section>
+                                        <section
+                                            class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                        >
+                                            <div class="md:hidden">
+                                                <div class="grid grid-cols-2 gap-56">
+                                                    <div>
+                                                        <button
+                                                            onclick="toggleFooterSection(event)"
+                                                            class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                            type="button"
+                                                        >
+                                                            Lingerie
+                                                </button>
+                                                    </div>
+                                                    <div className="pt-3">
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                href="#"
+                                            >
+                                                Integer interdum
+    </a>
+                                            <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                <ul class="my-5 text-sm tracking-wide">
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Dignissim gravida</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Eu mollis elit</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Hendrerit purus id</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Ut luctus dui tincidunt</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Pellentesque at ligula</a>
+                                                    </li>
+                                                </ul>
+                                            </article>
+                                        </section>
+                                        <section
+                                            class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+                                        >
+                                            <div class="md:hidden">
+                                                <div class="grid grid-cols-2 gap-56">
+                                                    <div>
+                                                        <button
+                                                            onclick="toggleFooterSection(event)"
+                                                            class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+                                                            type="button"
+                                                        >
+                                                            Pyjamas
+                                                </button>
+                                                    </div>
+                                                    <div className="pt-3">
+                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a
+                                                class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+                                                href="#"
+                                            >
+                                                Quisque
+    </a>
+                                            <article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
+                                                <ul class="my-5 text-sm tracking-wide">
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Finibus nulla eget</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Pellentesque</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Duis efficitur</a>
+                                                    </li>
+                                                    <li class="my-3 tracking-wide">
+                                                        <a href="#">Cras at lacus</a>
+                                                    </li>
+                                                </ul>
+                                            </article>
+                                        </section>
+                                    </div> : ""
+                                    }
+
+                                </div>
+                            </section>
                         </div>
                     </div>
-                </div>
+                        : ""
+                }
 
-                <div className="mt-3 py-0 -mx-3 overflow-y-auto whitespace-no-wrap scroll-hidden">
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Myntra
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Flipkart
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Snapdeal
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        fynd
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Ajio
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Bewakoof
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Vue
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Tatacliq
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Myntra
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Flipkart
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Snapdeal
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        fynd
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Ajio
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Bewakoof
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Vue
-					</a>
-                    <a
-                        className="text-sm text-white leading-5 hover:text-blue-600 hover:underline mx-6 md:my-0"
-                        href="#"
-                    >
-                        Tatacliq
-					</a>
-                </div>
             </nav>
         </React.Fragment>
     );

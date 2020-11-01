@@ -1,0 +1,139 @@
+.scroll-hidden::-webkit-scrollbar {
+    height: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
+  }
+  .block{
+    display: block;
+  }
+  .none{
+    display: none;
+  }
+  .mega-menu {
+    display: block;
+    left: 0;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    -webkit-animation: fadein 1s;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s;
+    /* Firefox < 16 */
+    -ms-animation: fadein 1s;
+    /* Internet Explorer */
+    -o-animation: fadein 1s;
+    /* Opera < 12.1 */
+    animation: fadein 1s;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Firefox < 16 */
+  @-moz-keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Safari, Chrome and Opera > 12.1 */
+  @-webkit-keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Internet Explorer */
+  @-ms-keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Opera < 12.1 */
+  @-o-keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+
+
+  /* #hoverable Class Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .hoverable {
+    position: static;
+  }
+
+  .hoverable>a:after {
+    content: "\25BC";
+    font-size: 10px;
+    padding-left: 6px;
+    position: relative;
+    top: -1px;
+  }
+
+  .hoverable:hover .mega-menu {
+    display: block;
+  }
+
+
+  /* #toggle Class Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+  .toggleable>label:after {
+    content: "\25BC";
+    font-size: 10px;
+    padding-left: 6px;
+    position: relative;
+    top: -1px;
+  }
+
+  .toggle-input {
+    display: none;
+  }
+
+  .toggle-input:not(checked)~.mega-menu {
+    display: none;
+  }
+
+  .toggle-input:checked~.mega-menu {
+    display: block;
+  }
+
+  .toggle-input:checked+label {
+    color: white;
+    background: #2c5282;
+    /*@apply bg-blue-800 */
+  }
+
+  .toggle-input:checked~label:after {
+    content: "\25B2";
+    font-size: 10px;
+    padding-left: 6px;
+    position: relative;
+    top: -1px;
+  }
