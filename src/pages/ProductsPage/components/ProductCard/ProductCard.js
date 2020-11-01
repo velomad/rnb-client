@@ -31,7 +31,6 @@ const ProductCard = ({
 			<Grid container>
 				<div
 					onClick={handleProductClick}
-					className=""
 					style={{
 						width: "210px",
 						height: "320px",
