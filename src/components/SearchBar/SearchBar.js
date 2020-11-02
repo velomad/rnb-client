@@ -51,12 +51,9 @@ const filterOptions = createFilterOptions({
 
 export default function Filter() {
     const classes = useStyles();
-    const [inputValue, setInputValue] = React.useState("shirts");
+    const [inputValue, setInputValue] = React.useState("");
     const [inputSearch, setInputSearch] = React.useState("");
     const [options, setOptions] = React.useState([]);
-    React.useEffect(() => {
-        //   top100Films.push({ title: 'The Shawshank Redemption', year: 1994 })
-    });
 
     const [unit, setUnit] = React.useState('http://localhost:8080/api/v1/search');
 
@@ -79,17 +76,19 @@ export default function Filter() {
         let active = true;
 
         (async () => {
-            const response = await axios.get(
-                `${unit}?term=${inputValue}&api_key=dfr4d57ft84sdq47f8ew`
-            );
+            if (!!inputValue) {
+                const response = await axios.get(
+                    `${unit}?term=${inputValue}&api_key=dfr4d57ft84sdq47f8ew`
+                );
 
-            if (active) {
-                let searchData = [];
-                console.log(response.data.suggestions);
-                response.data.suggestions.map((item) =>{
-                    searchData.push({'display_name':item})
-                })
-                setOptions(searchData);
+                if (active) {
+                    let searchData = [];
+                    console.log(response.data.suggestions);
+                    response.data.suggestions.map((item) => {
+                        searchData.push({ 'display_name': item })
+                    })
+                    setOptions(searchData);
+                }
             }
         })();
     }, [inputSearch]);
