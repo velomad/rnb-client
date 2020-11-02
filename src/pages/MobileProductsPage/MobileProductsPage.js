@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import MProductCard from "./components/MobileProductCard";
-import { BottomNav, FiltersPopUp, SortingPopUp } from "./components";
+import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
 
 const MobileProductsPage = () => {
 	const [products, setProducts] = useState([]);
@@ -39,8 +39,14 @@ const MobileProductsPage = () => {
 					/>
 				</div>
 			))}
-			<BottomNav />
-			{/* <FiltersPopUp /> */}
+
+			{/* filter navigator */}
+			<FilterNav />
+
+			{/* popup for filter */}
+			<FiltersPopUp />
+
+			{/* popup for sorting */}
 			<SortingPopUp />
 		</div>
 	);

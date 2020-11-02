@@ -1,10 +1,12 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import { BottomNavigation, Grid } from "@material-ui/core";
+import { BottomNavigation } from "@material-ui/core";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import TuneIcon from '@material-ui/icons/Tune';
+import {connect} from 'react-redux';
+import { setFilterPopUpAction, setSortPopUpAction } from "../../../../store/actions";
 
 const useStyles = makeStyles({
 	root: {
@@ -22,14 +24,14 @@ const useStyles = makeStyles({
 	},
 });
 
-const BottomNav = () => {
+const BottomNav = (props) => {
 
     const handleFiltersPopUp = () => {
-        console.log("filters")
+        props.setFilterPopUpAction(true)
     }
 
     const handleSortPopUp = () => {
-        console.log("sort")
+        props.setSortPopUpAction(true)
     }
 
 	const classes = useStyles();
@@ -51,4 +53,6 @@ const BottomNav = () => {
 	);
 };
 
-export default BottomNav;
+const mapDispatchToProps = {setFilterPopUpAction, setSortPopUpAction} 
+
+export default connect(null, mapDispatchToProps)(BottomNav);
