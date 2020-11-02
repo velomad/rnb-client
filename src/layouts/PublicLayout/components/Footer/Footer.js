@@ -86,16 +86,16 @@ const Footer = () => {
 					</div>
 				</div>
 				<div className="w-68 h-1 mx-auto container bg-gray-500 rounded mt-1"></div>
-				<div class="container px-5 py-20 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col">
+				<div class="container px-2 py-20 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col">
 					<div class="flex-grow text-center flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
 						<div className="lg:w-1/3 md:w-1/2 w-full px-4">
 							<h1 class=" text-gray-100 tracking-widest text-xl mb-3">
-								Men's Clothing
+								Men's Clothing 
 							</h1>
-							<nav class="list-none mb-10">
+							{/* <nav class="list-none mb-10">
 								<li>
 									<a class="text-gray-600 hover:text-gray-300 cursor-pointer">
-										About Us
+										
 									</a>
 								</li>
 								<li>
@@ -108,29 +108,52 @@ const Footer = () => {
 										Privacy Policy
 									</a>
 								</li>
-							</nav>
+							</nav> */}
+							<div className="grid grid-cols-2 gap-1 mb-10 text-left">
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									T-shirts
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Casual Shirts
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Formal Shirts
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Jackets
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Blazers
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Suits
+								</div>
+							</div>
 						</div>
 						<div className="lg:w-1/3 md:w-1/2 w-full px-4">
 							<h1 class=" text-gray-100 tracking-widest text-xl mb-3">
 								Women's Clothing
 							</h1>
-							<nav class="list-none mb-10">
-								<li>
-									<a class="text-gray-600 hover:text-gray-300 cursor-pointer">
-										About Us
-									</a>
-								</li>
-								<li>
-									<a class="text-gray-600 hover:text-gray-300 cursor-pointer">
-										Terms & Conditions
-									</a>
-								</li>
-								<li>
-									<a class="text-gray-600 hover:text-gray-300 cursor-pointer">
-										Privacy Policy
-									</a>
-								</li>
-							</nav>
+							<div className="grid grid-cols-2 gap-1 mb-10 text-left">
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Jeans Jeggings
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Jackets Coats
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Shrugs
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Casual Shoes
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Shoulder Bags
+								</div>
+								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
+									Skin Care
+								</div>
+							</div>
 						</div>
 						<div className="lg:w-1/3 md:w-1/2 w-full px-4">
 							<h1 class=" text-gray-100 tracking-widest text-xl mb-3">
@@ -159,14 +182,13 @@ const Footer = () => {
 				<div class="bg-gray-800">
 					<div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
 						<p class="text-gray-500 text-sm text-center sm:text-left">
-							© 2020 Reach<span className="text-red-600">N</span>Buy 
+							© 2020 Reach<span className="text-red-600">N</span>Buy
 							<a
 								href="https://twitter.com/knyttneve"
 								rel="noopener noreferrer"
 								class="text-gray-600 ml-1"
 								target="_blank"
-							>
-							</a>
+							></a>
 						</p>
 						<span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
 							<a class="text-gray-500 cursor-pointer">
@@ -181,7 +203,7 @@ const Footer = () => {
 									<path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
 								</svg>
 							</a>
-							
+
 							<a class="ml-3 text-gray-500 cursor-pointer">
 								<svg
 									fill="none"
@@ -196,7 +218,6 @@ const Footer = () => {
 									<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
 								</svg>
 							</a>
-							
 						</span>
 					</div>
 				</div>

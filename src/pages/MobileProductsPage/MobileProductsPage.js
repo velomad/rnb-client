@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Grid } from "@material-ui/core";
-import { Text } from "../../components";
-import ProductCard from "../ProductsPage/components/ProductCard/ProductCard";
 import Axios from "axios";
 import MProductCard from "./components/MobileProductCard";
+import { BottomNav, FiltersPopUp, SortingPopUp } from "./components";
 
 const MobileProductsPage = () => {
 	const [products, setProducts] = useState([]);
@@ -23,8 +21,8 @@ const MobileProductsPage = () => {
 		<div className="grid grid-cols-2">
 			{products.map((e, index) => (
 				<div
-					className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
-					style={{ borderRight: "solid #ccc 1px" }}
+					className="shadow-lg overflow-hidden"
+					style={{ borderRight: "solid #ccc 0px" }}
 					key={index}
 				>
 					<MProductCard
@@ -41,6 +39,9 @@ const MobileProductsPage = () => {
 					/>
 				</div>
 			))}
+			<BottomNav />
+			{/* <FiltersPopUp /> */}
+			<SortingPopUp />
 		</div>
 	);
 };

@@ -1,2 +1,6 @@
 export {default as MobileFilters} from "./MobileFilters"
 export {default as MobileProductCard} from "./MobileProductCard"
+export {default as BottomNav} from "./BottomNav"
+export {default as MobileSorting} from "./MobileSorting"
+export {default as SortingPopUp} from "./SortingPopUp"
+export {default as FiltersPopUp} from "./FiltersPopUp"
