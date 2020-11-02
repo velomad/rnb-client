@@ -53,7 +53,7 @@ export default function Filter() {
     return (
         <React.Fragment>
             <div class="flex">
-                <div class="flex-initial text-gray-700 text-center  px-0 py-0 m-2 mr-0">
+                <div class="flex-initial text-gray-700 text-center px-0 py-0 m-2 mr-0">
                     <FormControl variant="filled" className={classes.formControl}>
                         {/* <InputLabel htmlFor="filled-age-native-simple">Filter</InputLabel> */}
                         <Select

@@ -78,7 +78,6 @@ const Primary = () => {
                             </div>
                             : ""
                     }
-
                 </div>
                 <div class="active-users flex flex-row p-0 pb-2 overflow-auto w-0 min-w-full">
                     <div onClick={() => loadDropDown('flipkart')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="hoverable w-10 h-10 relative flex flex-shrink-0">
@@ -87,7 +86,7 @@ const Primary = () => {
                             alt=""
                         />
                     </div></div><p className='text-black font-bold'></p></div>
-                    <div onClick={() => loadDropDown('flipkart')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="w-10 h-10 relative flex flex-shrink-0">
+                    <div onClick={() => loadDropDown('amazon')} class="text-sm text-center mr-8 cursor-pointer"><div class="p-1 border-2 border-white rounded-full"><div class="w-10 h-10 relative flex flex-shrink-0">
                         <img class="shadow-md rounded-full w-full h-full object-cover"
                             src='/static/images/amazon.png'
                             alt=""

@@ -92,23 +92,7 @@ const Footer = () => {
 							<h1 class=" text-gray-100 tracking-widest text-xl mb-3">
 								Men's Clothing 
 							</h1>
-							{/* <nav class="list-none mb-10">
-								<li>
-									<a class="text-gray-600 hover:text-gray-300 cursor-pointer">
-										
-									</a>
-								</li>
-								<li>
-									<a class="text-gray-600 hover:text-gray-300 cursor-pointer">
-										Terms & Conditions
-									</a>
-								</li>
-								<li>
-									<a class="text-gray-600 hover:text-gray-300 cursor-pointer">
-										Privacy Policy
-									</a>
-								</li>
-							</nav> */}
+						
 							<div className="grid grid-cols-2 gap-1 mb-10 text-left">
 								<div className="text-gray-600 hover:text-gray-300 cursor-pointer">
 									T-shirts
@@ -130,7 +114,7 @@ const Footer = () => {
 								</div>
 							</div>
 						</div>
-						<div className="lg:w-1/3 md:w-1/2 w-full px-4">
+						<div className="lg:w-1/3 md:w-1/2 w-full px-4 ">
 							<h1 class=" text-gray-100 tracking-widest text-xl mb-3">
 								Women's Clothing
 							</h1>

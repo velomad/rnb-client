@@ -43,12 +43,11 @@ const SortingPopUp = (props) => {
 	return (
 		<div>
 			<Dialog
-				
 				fullScreen
 				open={props.isActive}
 				// onClose={handleClose}
 				TransitionComponent={Transition}
-				style={{ height: "50vh", marginTop: "50vh" }}
+				style={{ height: "40vh", marginTop: "60vh" }}
 			>
 				<AppBar className={classes.appBar}>
 					<Toolbar>
