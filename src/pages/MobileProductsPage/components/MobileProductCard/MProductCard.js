@@ -35,7 +35,7 @@ const MProductCard = ({
 				) : null}
 
 				<div className="flex justify-center ">
-					<img src={image} class="object-contain h-50 w-full" />
+					<img src={image} className="object-contain h-48 w-full" />
 				</div>
 				<div className="p-1">
 					<div

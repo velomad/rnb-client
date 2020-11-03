@@ -12,7 +12,7 @@ const MobileProductsPage = () => {
 
 	const getData = async () => {
 		const res = await Axios.get(
-			"https://reachnbuy.herokuapp.com/api/v1/products/ajio?category=shirts&api_key=123&page=1&limit=20",
+			`https://reachnbuy.herokuapp.com/api/v1/products/ajio?category=shirts&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}&page=1&limit=50`,
 		);
 		setProducts(res.data.data.result);
 	};

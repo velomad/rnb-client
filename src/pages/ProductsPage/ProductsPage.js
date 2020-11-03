@@ -13,7 +13,7 @@ const ProductsPage = () => {
 
 	const getData = async () => {
 		const res = await Axios.get(
-			"https://reachnbuy.herokuapp.com/api/v1/products/ajio?category=shirts&api_key=123&page=1&limit=20",
+			"https://reachnbuy.herokuapp.com/api/v1/products/flipkart?category=topwear&api_key=123&page=1&limit=20",
 		);
 		setProducts(res.data.data.result);
 	};
