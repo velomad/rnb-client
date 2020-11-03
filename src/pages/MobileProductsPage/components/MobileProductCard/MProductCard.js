@@ -13,11 +13,9 @@ const MProductCard = ({
 	id,
 }) => {
 
-	
 	const handleProductClick = () => {
 		history.push("/product/"+id)
 	};
-
 
 	return (
 		<div>

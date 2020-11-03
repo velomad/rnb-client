@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Divider, Grid } from "@material-ui/core";
-import { Button, Text } from "../../components";
 import { Filters, Heading, Pagination, ProductCard } from "./components";
-import Axios from "axios";
+import { connect } from "react-redux";
+import { getProducts } from "../../store/actions";
 
-const ProductsPage = () => {
-	const [products, setProducts] = useState([]);
-
+const ProductsPage = (props) => {
 	useEffect(() => {
-		getData();
+		props.getProducts("flipkart", "topwear", 1);
 	}, []);
 
-	const getData = async () => {
-		const res = await Axios.get(
-			"https://reachnbuy.herokuapp.com/api/v1/products/flipkart?category=topwear&api_key=123&page=1&limit=20",
-		);
-		setProducts(res.data.data.result);
-	};
 	return (
 		<React.Fragment>
 			<div class="h-screen w-full flex antialiased bg-white overflow-hidden">
@@ -39,19 +30,18 @@ const ProductsPage = () => {
 										<main class="my-0">
 											<div class="container mx-auto px-6">
 												<h3 class="text-gray-700 text-2xl font-medium">
-													Casual T-shirt
+													{props.category}
 												</h3>
 												<span class="mt-3 text-sm text-gray-500">
-													200+ Products
+													{props.totalProducts - 5}+ Products
 												</span>
 												<div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-													{products.map((e, index) => (
+													{props.products.map((e, index) => (
 														<div
 															class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
 															key={index}
 														>
 															<ProductCard
-																products={products}
 																id={e._id}
 																image={e.imageUrl}
 																website={e.website}
@@ -65,48 +55,11 @@ const ProductsPage = () => {
 														</div>
 													))}
 												</div>
-												{/* <div class="flex justify-center">
-													<div class="flex rounded-md mt-8">
-														<a
-															href="#"
-															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 ml-0 rounded-l hover:bg-blue-500 hover:text-white"
-														>
-															<span>Previous</span>
-														</a>
-														<a
-															href="#"
-															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"
-														>
-															<span>1</span>
-														</a>
-														<a
-															href="#"
-															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"
-														>
-															<span>2</span>
-														</a>
-														<a
-															href="#"
-															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 border-r-0 hover:bg-blue-500 hover:text-white"
-														>
-															<span>3</span>
-														</a>
-														<a
-															href="#"
-															class="py-2 px-4 leading-tight bg-white border border-gray-200 text-blue-700 rounded-r hover:bg-blue-500 hover:text-white"
-														>
-															<span>Next</span>
-														</a>
-													</div> */}
-												{/* </div> */}
 											</div>
 										</main>
 									</div>
 								</div>
 							</div>
-							{/* <div class="chat-footer flex-none">
-								<div class="flex flex-row items-center p-4"></div>
-							</div> */}
 						</section>
 					</main>
 					<hr className="bg-gray-900" />
@@ -119,4 +72,10 @@ const ProductsPage = () => {
 	);
 };
 
-export default ProductsPage;
+const mapStateToProps = ({ dataSkoreProductsState }) => ({
+	products: dataSkoreProductsState.products,
+	totalProducts: dataSkoreProductsState.totalProducts,
+	category: dataSkoreProductsState.category,
+});
+
+export default connect(mapStateToProps, { getProducts })(ProductsPage);

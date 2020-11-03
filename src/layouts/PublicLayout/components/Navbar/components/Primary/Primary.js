@@ -227,6 +227,7 @@ const Primary = () => {
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
 									{activePanel == "men" ? (
 										<div class="flex flex-wrap  mx-auto">
+										
 											<Flipkart
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}

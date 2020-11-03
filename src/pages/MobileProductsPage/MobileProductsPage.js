@@ -2,31 +2,25 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import MProductCard from "./components/MobileProductCard";
 import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
+import { connect } from "react-redux";
+import { getProducts } from "../../store/actions";
 
-const MobileProductsPage = () => {
-	const [products, setProducts] = useState([]);
+const MobileProductsPage = (props) => {
 
 	useEffect(() => {
-		getData();
+		props.getProducts("flipkart", "topwear", 1);
 	}, []);
-
-	const getData = async () => {
-		const res = await Axios.get(
-			`https://reachnbuy.herokuapp.com/api/v1/products/ajio?category=shirts&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}&page=1&limit=50`,
-		);
-		setProducts(res.data.data.result);
-	};
 
 	return (
 		<div className="grid grid-cols-2">
-			{products.map((e, index) => (
+			{props.products.map((e, index) => (
 				<div
 					className="shadow-lg overflow-hidden"
 					style={{ borderRight: "solid #ccc 0px" }}
 					key={index}
 				>
 					<MProductCard
-						products={products}
+						products={props.products}
 						id={e._id}
 						image={e.imageUrl}
 						website={e.website}
@@ -52,4 +46,12 @@ const MobileProductsPage = () => {
 	);
 };
 
-export default MobileProductsPage;
+
+const mapStateToProps = ({ dataSkoreProductsState }) => ({
+	products: dataSkoreProductsState.products,
+	totalProducts: dataSkoreProductsState.totalProducts,
+	category: dataSkoreProductsState.category,
+});
+
+
+export default connect(mapStateToProps, { getProducts })(MobileProductsPage);
