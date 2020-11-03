@@ -47,9 +47,9 @@ const SortingPopUp = (props) => {
 				open={props.isActive}
 				// onClose={handleClose}
 				TransitionComponent={Transition}
-				style={{ height: "40vh", marginTop: "60vh" }}
+				style={{ height: "45vh", marginTop: "55vh" }}
 			>
-				<AppBar className={classes.appBar}>
+				{/* <AppBar className={classes.appBar}>
 					<Toolbar>
 						<Typography variant="h6" className={classes.title}>
 							SORT BY
@@ -63,36 +63,51 @@ const SortingPopUp = (props) => {
 							<CloseIcon />
 						</IconButton>
 					</Toolbar>
-				</AppBar>
-				<div className="p-2 h-full flex content-center flex-wrap bg-gray-100">
-					<ul className="py-4">
-						<li className="py-4">
+				</AppBar> */}
+				<div className="flex justify-between p-3">
+					<div>
+						<Text 
+						variant="secondary"
+						weight="500"
+						size="lg"
+						>
+							Sort By
+						</Text>
+					</div>
+					<div onClick={handleClose}>
+						<CloseIcon />
+					</div>
+				</div>
+				<hr style={{color:"solid black 1px"}}/>
+				<div className="p-2 h-full flex content-center flex-wrap ">
+					<ul className="py-2">
+						<li className="py-3">
 							<LocalOfferOutlinedIcon className="text-yellow-600 rounded-full mr-2"/> 
 							<Text 
 							variant="primary"
 							size="lg"
-							weight="600"
+							weight="500"
 							>
 								Discount
 							</Text>
 						</li>
-						<li className="py-4">
-							<TrendingDownOutlinedIcon className="text-green-500 rounded-full mr-2"/>
+						<li className="py-3">
+							<TrendingDownOutlinedIcon className="text-red-500 rounded-full mr-2"/>
 							<Text 
 							variant="primary"
 							size="lg"
-							weight="600"
+							weight="500"
 							>
 								Price : High To Low
 							</Text>
 							 
 						</li>
-						<li className="py-4">
-							<TrendingUpOutlinedIcon className="text-red-500 rounded-full mr-2"/>
+						<li className="py-3">
+							<TrendingUpOutlinedIcon className="text-green-500 rounded-full mr-2"/>
 							<Text 
 							variant="primary"
 							size="lg"
-							weight="600"
+							weight="500"
 							>
 								Price : Low To High
 							</Text>

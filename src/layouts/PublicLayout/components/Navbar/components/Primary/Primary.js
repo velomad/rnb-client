@@ -31,7 +31,7 @@ const Primary = () => {
     }
     return (
         <React.Fragment>
-            <nav className="container mx-auto px-6 py-3 md:py-0 lg:py-0">
+            <nav className="container mx-auto px-3 py-3 md:py-0 lg:py-0">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center">

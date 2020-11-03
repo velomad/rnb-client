@@ -7,9 +7,7 @@ import "./assets/scss/index.scss";
 const App = () => {
 	return (
 		<Provider store={store}>
-			<div>
-				<Routes />
-			</div>
+			<Routes />
 		</Provider>
 	);
 };

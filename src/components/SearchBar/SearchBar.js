@@ -55,7 +55,7 @@ export default function Filter() {
     const [inputSearch, setInputSearch] = React.useState("");
     const [options, setOptions] = React.useState([]);
 
-    const [unit, setUnit] = React.useState('http://localhost:8080/api/v1/search');
+    const [unit, setUnit] = React.useState('https://reachnbuy.herokuapp.com/api/v1/search');
 
     const debounceOnChange = React.useCallback(
         debounce(value => {
@@ -109,7 +109,7 @@ export default function Filter() {
                             }}
                         >
                             {/* <option aria-label="None" value="">All</option> */}
-                            <option selected value={'http://localhost:8080/api/v1/search'}>Clothing</option>
+                            <option selected value={'https://reachnbuy.herokuapp.com/api/v1/search'}>Clothing</option>
                             <option value={2}>Electronics</option>
                         </Select>
                     </FormControl>

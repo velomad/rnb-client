@@ -40,7 +40,7 @@ const FiltersPopUp = (props) => {
 	return (
 		<div>
 			<Dialog fullScreen open={props.isActive} TransitionComponent={Transition}>
-				<AppBar className={classes.appBar}>
+				{/* <AppBar className={classes.appBar}>
 					<Toolbar>
 						<Typography variant="h6" className={classes.title}>
 							Filter
@@ -54,7 +54,23 @@ const FiltersPopUp = (props) => {
 							<CloseIcon />
 						</IconButton>
 					</Toolbar>
-				</AppBar>
+				</AppBar> */}
+				<div className="flex justify-between p-3">
+					<div>
+						<Text 
+						variant="secondary"
+						weight="500"
+						size="lg"
+						>
+							Filters
+						</Text>
+					</div>
+					<div onClick={handleClose}>
+						<CloseIcon />
+					</div>
+				</div>
+				<hr style={{color:"solid black 1px"}}/>
+
 				<div className="p-4 h-full g-gray-100">
 					<div>
 						<Text variant="secondary" size="xl" weight="600">

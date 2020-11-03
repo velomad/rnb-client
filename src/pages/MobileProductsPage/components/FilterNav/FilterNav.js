@@ -11,7 +11,7 @@ import { setFilterPopUpAction, setSortPopUpAction } from "../../../../store/acti
 const useStyles = makeStyles({
 	root: {
 		width: "50%",
-		backgroundColor: "#1a202c",
+		backgroundColor: "#fff",
 		zIndex: 100,
 	},
 	stickToBottom: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 		bottom: 0,
 	},
 	iconStyle: {
-		color: "#dddcd7",
+		color: "#222",
 	},
 });
 

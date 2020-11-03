@@ -10,7 +10,7 @@ const ProductCard = ({
 	price,
 	priceStrike,
 	name,
-	brand,
+	brand,	
 	discount,
 	rating,
 	id,
