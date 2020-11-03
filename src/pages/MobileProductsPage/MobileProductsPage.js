@@ -4,18 +4,25 @@ import MProductCard from "./components/MobileProductCard";
 import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
 import { connect } from "react-redux";
 import { getProducts } from "../../store/actions";
+import {history} from '../../utils';
 
 const MobileProductsPage = (props) => {
 
+var test = history.location.pathname.split("/")
+var tes = history.location.search.split("=")
+
+const category = tes[tes.length-1]
+const website = test[test.length-1]
+
 	useEffect(() => {
-		props.getProducts("flipkart", "topwear", 1);
-	}, []);
+		props.getProducts(website, category, 1);
+	}, [category]);
 
 	return (
 		<div className="grid grid-cols-2">
 			{props.products.map((e, index) => (
 				<div
-					className="shadow-lg overflow-hidden"
+					className="overflow-hidden"
 					style={{ borderRight: "solid #ccc 0px" }}
 					key={index}
 				>

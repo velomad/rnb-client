@@ -26,7 +26,7 @@ const Routes = () => {
 						/>
 						<WithLayoutRoute
 							exact
-							path="/products"
+							path="/products/:website"
 							layout={PublicLayout}
 							component={
 								window.innerWidth < 768 ? MobileProductsPage : ProductsPage

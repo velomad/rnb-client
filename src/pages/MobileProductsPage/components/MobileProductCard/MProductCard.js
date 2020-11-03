@@ -12,16 +12,15 @@ const MProductCard = ({
 	rating,
 	id,
 }) => {
-
 	const handleProductClick = () => {
-		history.push("/product/"+id)
+		history.push("/product/" + id);
 	};
 
 	return (
 		<div>
 			<div
-					onClick={handleProductClick}
-				className="w-full p-1 bg-gray-200 relative"
+				onClick={handleProductClick}
+				className="w-full p-1 relative"
 				style={{ height: "100%" }}
 			>
 				{priceStrike !== price ? (
