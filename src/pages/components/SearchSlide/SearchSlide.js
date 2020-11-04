@@ -46,6 +46,7 @@ const SearchSlide = (props) => {
 
 	const handleSearchSubmit = (e) => {
 		e.preventDefault();
+		
 		props.setSearchTerm(searchTerm);
 	};
 
