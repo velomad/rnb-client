@@ -1,6 +1,5 @@
 import React from "react";
 import Chip from "@material-ui/core/Chip";
-import FaceIcon from "@material-ui/icons/Face";
 import { Text } from "../../../../../components";
 import { removeSearchTerm } from "../../../../../store/actions";
 import { connect } from "react-redux";
