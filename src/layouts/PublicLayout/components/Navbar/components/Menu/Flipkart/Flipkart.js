@@ -1,20 +1,38 @@
+import React from 'react';
 import { men, women } from "./flipkartMenuData";
+import { amazonmen, amazonwomen } from "./amazonMenuData";
 import { history } from "../../../../../../../utils";
 
 const Flipkart = (props) => {
+	const [webCategoriesMen, setWebCategoriesMen] = React.useState([]);
+	const [webCategoriesWomen, setWebCategoriesWomen] = React.useState([]);
+
 	const setMenuItems = (activate) => {
 		props.onGetMenu(activate);
 	};
 
 	const handleCategoryClick = (categoryName) => {
+		props.hideDropDown();
 		history.push("/products/flipkart?category=" + categoryName);
 	};
+	React.useEffect(() => {
+		if (props.currentBrand == 'amazon') {
+			console.log('amazonmen',amazonmen)
+			console.log('amazonwomen',amazonwomen)
+			setWebCategoriesMen(amazonmen);
+			setWebCategoriesWomen(amazonwomen);
+		}
+		if (props.currentBrand == 'flipkart') {
+			setWebCategoriesMen(men);
+			setWebCategoriesWomen(women);
+		}
+	}, [props])
 	return (
-		<div>
-			{["topwear","ethnicwear", "bottomwear","sportswear", "bags"].map((el) => (
+		<React.Fragment>
+			{props.categories.map((el) => (
 				<section
 					key={el}
-					class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5"
+					class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-64"
 				>
 					<div
 						class="md:hidden"
@@ -25,15 +43,16 @@ const Flipkart = (props) => {
 						<div class="grid grid-cols-2 gap-56">
 							<div className="flex items-center">
 								<img
-									src="/static/images/topwear.png"
+									src={`/static/images/${el.split('-')[1]}.png`}
 									width="50px"
 									className="mr-1"
+									alt='category'
 								/>
 								<button
 									class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
 									type="button"
 								>
-									{props.activePanel === "men" ? el : el}
+									{props.activePanel === "men" ? el.split('-')[1] : el.split('-')[1]}
 								</button>
 							</div>
 							<div className="pt-3">
@@ -60,45 +79,50 @@ const Flipkart = (props) => {
 					>
 						<div className="flex items-center">
 							<img
-								src="/static/images/topwear.png"
+								src={`/static/images/${el.split('-')[1]}.png`}
 								width="50px"
 								className="mr-1"
 							/>
-							<p>{el}</p>
+							<p>{el.split('-')[1]}</p>
 						</div>
 					</a>
 					<article
 						className={
-							props.activatesmallPanel === "topwear"
+							props.activatesmallPanel === el
 								? "md:h-auto -mt-4 md:mt-0 overflow-hidden transition duration-700"
 								: "h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden"
 						}
 					>
 						<ul class="my-5 text-sm tracking-wide">
-							{props.activePanel === "men" && !!men[el]  
-								? men[el].map((el, index) => (
-										<li
-											key={index + "men"}
-											onClick={() => handleCategoryClick(el)}
-											class="my-3 tracking-wide"
-										>
-											{el}
-										</li>
-								  ))
-								: !!women[el]  ? women[el].map((el, index) => (
-										<li
-											key={index + "women"}
-											onClick={() => handleCategoryClick(el)}
-											class="my-3 tracking-wide"
-										>
-											{el}
-										</li>
-								  )): null}
+							{props.activePanel === "men" && !!webCategoriesMen[el]
+								? webCategoriesMen[el].map((el, index) => (
+									<li
+										key={index + "men"}
+										onClick={() => handleCategoryClick(el)}
+										class="my-3 tracking-wide"
+									>
+										{el}
+									</li>
+								))
+								: null
+							}
+							{props.activePanel !== "men" && !!webCategoriesWomen[el]
+								? webCategoriesWomen[el].map((el, index) => (
+									<li
+										key={index + "women"}
+										onClick={() => handleCategoryClick(el)}
+										class="my-3 tracking-wide"
+									>
+										{el}
+									</li>
+								))
+								: null
+							}
 						</ul>
 					</article>
 				</section>
 			))}
-		</div>
+			</React.Fragment>
 	);
 };
 

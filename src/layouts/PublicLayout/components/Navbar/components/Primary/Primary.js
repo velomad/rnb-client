@@ -4,9 +4,9 @@ import { Flipkart } from "../Menu";
 import { connect } from "react-redux";
 import "./primary.css";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import {setSearchSlide} from "../../../../../../store/actions";
-
-
+import { setSearchSlide } from "../../../../../../store/actions";
+import { men, women } from "../Menu/Flipkart/flipkartMenuData";
+import { amazonmen, amazonwomen } from "../Menu/Flipkart/amazonMenuData";
 const Primary = (props) => {
 	const [open, setOpen] = React.useState(false);
 	const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -18,8 +18,13 @@ const Primary = (props) => {
 	const loadDropDown = (brand) => {
 		if (currentBrand === "") {
 			setCurrentBrand(brand);
+			!!brand ? setOpenDrawer(true) : setOpenDrawer(false);
+		} else {
+			hideDropDown();
+			setOpenDrawer(false);
+			setCurrentBrand(brand);
+			setOpenDrawer(true);
 		}
-		!!brand ? setOpenDrawer(true) : setOpenDrawer(false);
 	};
 	const activeCategory = (active) => {
 		setactiveCat(active);
@@ -89,22 +94,7 @@ const Primary = (props) => {
 						""
 					)} */}
 				</div>
-				<div class="active-users flex flex-row p-0 pb-2 overflow-auto w-0 min-w-full">
-					<div
-						onClick={() => loadDropDown("flipkart")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="hoverable w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/flipkart.png"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
+				<div class="flex flex-row p-0 pb-2 overflow-auto w-0 min-w-full">
 					<div
 						onClick={() => loadDropDown("amazon")}
 						class="text-sm text-center mr-8 cursor-pointer"
@@ -114,6 +104,21 @@ const Primary = (props) => {
 								<img
 									class="shadow-md rounded-full w-full h-full object-cover"
 									src="/static/images/amazon.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+					<div
+						onClick={() => loadDropDown("flipkart")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="hoverable w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/flipkart.png"
 									alt=""
 								/>
 							</div>
@@ -194,7 +199,7 @@ const Primary = (props) => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
-									// xmlns="http://www.w3.org/2000/svg"
+								// xmlns="http://www.w3.org/2000/svg"
 								>
 									<path
 										stroke-linecap="round"
@@ -214,8 +219,8 @@ const Primary = (props) => {
 										{activeCat === "men" ? (
 											<span class="inline-block h-1 w-12 rounded bg-pink-700 mt-1 mb-4"></span>
 										) : (
-											""
-										)}
+												""
+											)}
 									</div>
 									<div
 										className="cursor-pointer"
@@ -227,838 +232,50 @@ const Primary = (props) => {
 										{activeCat === "women" ? (
 											<span class="inline-block h-1 w-20 rounded bg-pink-700 mt-1 mb-4"></span>
 										) : (
-											""
-										)}
+												""
+											)}
 									</div>
 								</div>
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
 									{activePanel == "men" ? (
 										<div class="flex flex-wrap  mx-auto">
 											<Flipkart
+												currentBrand={currentBrand}
+												hideDropDown={hideDropDown}
+												categories={Object.keys(currentBrand =='amazon'? amazonmen:currentBrand =='flipkart'?men:"")}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
 												onGetMenu={getMenu}
 											/>
-
-											{/* {men.sections.map((element, index) => (
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div
-													class="md:hidden"
-													onClick={() => {
-														smalldevicedrawer(index);
-													}}
-												>
-													<div class="grid grid-cols-2 gap-56">
-														<div className="flex items-center">
-															<img
-																src="/static/images/topwear.png"
-																width="50px"
-																className="mr-1"
-															/>
-															<button
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																{element}
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													<div className="flex items-center">
-														<img
-															src="/static/images/topwear.png"
-															width="50px"
-															className="mr-1"
-														/>
-														<p>{element}</p>
-													</div>
-												</a>
-												<article
-													className={
-														activatesmallPanel === 0
-															? "md:h-auto -mt-4 md:mt-0 overflow-hidden transition duration-700"
-															: "h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden"
-													}
-												>
-													<ul class="my-5 text-sm tracking-wide">
-														{men.topwear.map(el => (
-														<li class="my-3 tracking-wide">
-															<a href="#">{el}</a>
-														</li>
-														))}
-													</ul>
-												</article>
-											</section>
-										))} */}
-
-											{/* <section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div
-													class="md:hidden"
-													onClick={() => {
-														smalldevicedrawer("footwear");
-													}}
-												>
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Footwear
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													<div className="flex items-center">
-														<img
-															src="/static/images/topwear.png"
-															width="50px"
-															className="mr-1"
-														/>
-														<p>Topwear</p>
-													</div>
-												</a>
-												<article
-													class={
-														activatesmallPanel === "footwear"
-															? ""
-															: "h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden"
-													}
-												>
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Pellentesque rhoncus</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Aenean</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Curabitur bibendum</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Phasellus non mi</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Duis accumsa</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Curabitur nec enim</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Fusce ut augue</a>
-														</li>
-													</ul>
-												</article>
-											</section> */}
-											{/* <section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Kurtas
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													<div className="flex items-center">
-														<img
-															src="/static/images/topwear.png"
-															width="50px"
-															className="mr-1"
-														/>
-														<p>Topwear</p>
-													</div>
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Mauris mattis nunc</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Nunc viverra risus</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Etiam a libero</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Pyjamas
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													<div className="flex items-center">
-														<img
-															src="/static/images/topwear.png"
-															width="50px"
-															className="mr-1"
-														/>
-														<p>Topwear</p>
-													</div>
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Cras id ipsum</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Footware
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													<div className="flex items-center">
-														<img
-															src="/static/images/topwear.png"
-															width="50px"
-															className="mr-1"
-														/>
-														<p>Topwear</p>
-													</div>
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Sed a diam</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Nullam luctus felis</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Sed euismod</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Lingerie
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Integer interdum
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Dignissim gravida</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Eu mollis elit</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Hendrerit purus id</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Ut luctus dui tincidunt</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Pellentesque at ligula</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Pyjamas
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Quisque
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Finibus nulla eget</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Pellentesque</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Duis efficitur</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Cras at lacus</a>
-														</li>
-													</ul>
-												</article>
-											</section> */}
 										</div>
 									) : (
-										""
-									)}
+											""
+										)}
 
 									{activePanel === "women" ? (
 										<div class="flex flex-wrap  mx-auto">
 											<Flipkart
+												currentBrand={currentBrand}
+												hideDropDown={hideDropDown}
+												categories={Object.keys(currentBrand =='amazon'? amazonwomen:currentBrand =='flipkart'?women:"")}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
 												onGetMenu={getMenu}
 											/>
-											{/* 
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Topwear
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Topwear
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Fusce vel sem</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Ut venenatis tellus</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Vestibulum</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Nunc at ipsum</a>
-														</li>
-													</ul>
-												</article>
-											</section> */}
-											{/* <section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Jeans
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Ut porta
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Pellentesque rhoncus</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Aenean</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Curabitur bibendum</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Phasellus non mi</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Duis accumsa</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Curabitur nec enim</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Fusce ut augue</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											{/* <section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Kurtas
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Praesent elementum
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Mauris mattis nunc</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Nunc viverra risus</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Etiam a libero</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Pyjamas
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Bottomwear
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Cras id ipsum</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Footware
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Donec a lorem
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Sed a diam</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Nullam luctus felis</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Sed euismod</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Lingerie
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Integer interdum
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Dignissim gravida</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Eu mollis elit</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Hendrerit purus id</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Ut luctus dui tincidunt</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Pellentesque at ligula</a>
-														</li>
-													</ul>
-												</article>
-											</section>
-											<section class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/5">
-												<div class="md:hidden">
-													<div class="grid grid-cols-2 gap-56">
-														<div>
-															<button
-																onclick="toggleFooterSection(event)"
-																class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
-																type="button"
-															>
-																Pyjamas
-															</button>
-														</div>
-														<div className="pt-3">
-															<svg
-																className="w-6 h-6"
-																fill="none"
-																stroke="currentColor"
-																viewBox="0 0 24 24"
-																xmlns="http://www.w3.org/2000/svg"
-															>
-																<path
-																	strokeLinecap="round"
-																	strokeLinejoin="round"
-																	strokeWidth={2}
-																	d="M19 9l-7 7-7-7"
-																/>
-															</svg>
-														</div>
-													</div>
-												</div>
-												<a
-													class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-													href="#"
-												>
-													Quisque
-												</a>
-												<article class="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
-													<ul class="my-5 text-sm tracking-wide">
-														<li class="my-3 tracking-wide">
-															<a href="#">Finibus nulla eget</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Pellentesque</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Duis efficitur</a>
-														</li>
-														<li class="my-3 tracking-wide">
-															<a href="#">Cras at lacus</a>
-														</li>
-													</ul>
-												</article>
-											</section> */}
 										</div>
 									) : (
-										""
-									)}
+											""
+										)}
 								</div>
 							</section>
 						</div>
 					</div>
 				) : (
-					""
-				)}
+						""
+					)}
 			</nav>
 		</React.Fragment>
 	);
 };
 
-export default connect(null, {setSearchSlide})(Primary);
+export default connect(null, { setSearchSlide })(Primary);

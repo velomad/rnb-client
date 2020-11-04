@@ -1,5 +1,5 @@
 export const men = {
-	topwear: [
+	'men-topwear': [
 		"top-wear",
 		"t-shirts",
 		"formal-shirts",
@@ -10,7 +10,7 @@ export const men = {
 		"sweater",
 		"raincoats-windcheaters",
 	],
-	bottomwear: [
+	'men-bottomwear': [
 		"bottom-wear",
 		"jeans",
 		"casual-trousers",
@@ -22,7 +22,7 @@ export const men = {
 		"suits-blazers-waistcoats",
 		"tracksuits",
 	],
-	footwear: [
+	'men-footwear': [
 		"mens-footwear",
 		"sports-shoes",
 		"casual-shoes",
@@ -34,15 +34,15 @@ export const men = {
 		"running-shoes",
 		"sneakers",
 	],
-	ethnicwear: ["kurta", "ethnic-sets", "ethnic-pyjama"],
-	innerwear: [
+	'men-ethnicwear': ["kurta", "ethnic-sets", "ethnic-pyjama"],
+	'men-innerwear': [
 		"innerwear-loungewear",
 		"briefs-trunks",
 		"boxers",
 		"pyjamas-and-lounge-pants",
 		"night-suits",
 	],
-	accessories: [
+	'men-accessories': [
 		"ties-socks-caps-more",
 		"fastrack",
 		"casio",
@@ -62,7 +62,7 @@ export const men = {
 };
 
 export const women = {
-	topwear: [
+	'women-topwear': [
 		"topwear",
 		"dresses",
 		"party-dresses",
@@ -76,7 +76,7 @@ export const women = {
 		"gowns",
 		"dupattas",
 	],
-	bottomwear: [
+	'women-bottomwear': [
 		"jeans",
 		"shorts",
 		"skirts",
@@ -89,7 +89,7 @@ export const women = {
 		"dhoti-pants",
 		"ethnic-trousers",
 	],
-	innerwear: [
+	'women-innerwear': [
 		"bras",
 		"panties",
 		"lingerie-sets",
@@ -99,8 +99,8 @@ export const women = {
 		"lingerie-sleepwear",
 		"saree-shapewear-petticoats",
 	],
-	sportswear: ["swim-beachwear", "sports-wear", "sports-shoes"],
-	accessories: [
+	'women-sportswear': ["swim-beachwear", "sports-wear", "sports-shoes"],
+	'women-accessories': [
 		"clutches",
 		"wallets-belts",
 		"luggage-travel",
@@ -111,8 +111,8 @@ export const women = {
 		"precious-jewellery",
 		"coins-and-bars",
 	],
-	bags: ["shoulder-bags", "totes", "sling-bags"],
-	footwear: [
+	'women-bags': ["shoulder-bags", "totes", "sling-bags"],
+	'women-footwear': [
 		"footwear",
 		"sandals",
 		"flats",
