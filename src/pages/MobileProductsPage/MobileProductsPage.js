@@ -14,6 +14,9 @@ var tes = history.location.search.split("=")
 const category = tes[tes.length-1]
 const website = test[test.length-1]
 
+console.log(category)
+console.log(website)
+
 	useEffect(() => {
 		props.getProducts(website, category, 1);
 	}, [category]);

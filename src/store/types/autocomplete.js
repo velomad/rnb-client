@@ -1,0 +1,14 @@
+export const GET_SUGGESTIONS_LOAD = "GET_SUGGESTIONS_LOAD" 
+export const GET_SUGGESTIONS_FETCH = "GET_SUGGESTIONS_FETCH" 
+
+
+
+
+
+
+
+
+
+
+
+

@@ -34,6 +34,14 @@ const Routes = () => {
 						/>
 						<WithLayoutRoute
 							exact
+							path="/search"
+							layout={PublicLayout}
+							component={
+								window.innerWidth < 768 ? MobileProductsPage : ProductsPage
+							}
+						/>
+						<WithLayoutRoute
+							exact
 							path="/product/:id"
 							layout={PublicLayout}
 							component={ProductPage}
