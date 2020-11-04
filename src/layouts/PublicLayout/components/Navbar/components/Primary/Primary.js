@@ -1,8 +1,13 @@
 import React from "react";
 import { SearchBar } from "../../../../../../components";
 import { Flipkart } from "../Menu";
+import { connect } from "react-redux";
 import "./primary.css";
-const Primary = () => {
+import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import {setSearchSlide} from "../../../../../../store/actions";
+
+
+const Primary = (props) => {
 	const [open, setOpen] = React.useState(false);
 	const [openDrawer, setOpenDrawer] = React.useState(false);
 	const [currentBrand, setCurrentBrand] = React.useState("");
@@ -56,6 +61,8 @@ const Primary = () => {
 						</div>
 
 						<div className="flex md:hidden" onClick={() => showMenu()}>
+							<SearchOutlinedIcon onClick={() => props.setSearchSlide(true)} className="text-white mx-2 px-1" fontSize="large" />
+
 							<button
 								type="button"
 								className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
@@ -70,7 +77,7 @@ const Primary = () => {
 							</button>
 						</div>
 					</div>
-					{open ? (
+					{/* {open ? (
 						<div class="md:flex items-center">
 							<div class="mt-3 md:hidden">
 								<div class="pt-2 relative mx-auto text-gray-600">
@@ -80,7 +87,7 @@ const Primary = () => {
 						</div>
 					) : (
 						""
-					)}
+					)} */}
 				</div>
 				<div class="active-users flex flex-row p-0 pb-2 overflow-auto w-0 min-w-full">
 					<div
@@ -227,7 +234,6 @@ const Primary = () => {
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
 									{activePanel == "men" ? (
 										<div class="flex flex-wrap  mx-auto">
-										
 											<Flipkart
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
@@ -1055,4 +1061,4 @@ const Primary = () => {
 	);
 };
 
-export default Primary;
+export default connect(null, {setSearchSlide})(Primary);
