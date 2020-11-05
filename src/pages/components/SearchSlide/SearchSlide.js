@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Dialog, Slide } from "@material-ui/core";
+import { history } from "../../../utils";
 import { connect } from "react-redux";
 import {
 	setSearchSlide,
@@ -10,7 +11,7 @@ import {
 import { Text } from "../../../components";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import { SearchChip, SearchSuggestions } from "./components";
+import { SearchChip, SearchChipSlider, SearchSuggestions } from "./components";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -46,8 +47,9 @@ const SearchSlide = (props) => {
 
 	const handleSearchSubmit = (e) => {
 		e.preventDefault();
-		
 		props.setSearchTerm(searchTerm);
+		history.push(`/search?term=${searchTerm}`);
+		handleClose();
 	};
 
 	const handleChange = (e) => {
@@ -58,11 +60,9 @@ const SearchSlide = (props) => {
 			: setSearchSuggestions(false);
 	};
 
-	const getSuggestedTerm = (suggestedTerm) => {
-		setSuggestedTerm(suggestedTerm);
-	};
-
-	console.log(suggestedTerm);
+	// const getSuggestedTerm = (suggestedTerm) => {
+	// 	setSuggestedTerm(suggestedTerm);
+	// };
 
 	const classes = useStyles();
 	return (
@@ -104,7 +104,7 @@ const SearchSlide = (props) => {
 									</Text>
 								</div>
 								<div>
-									<SearchChip />
+									<SearchChip handleClose={handleClose} />
 								</div>
 							</div>
 						)}
@@ -112,7 +112,7 @@ const SearchSlide = (props) => {
 				) : (
 					<SearchSuggestions
 						handleClose={handleClose}
-						suggestedTermCallback={getSuggestedTerm}
+						// suggestedTermCallback={getSuggestedTerm}
 						suggestions={props.suggestions}
 						isSuggestionsLoading={props.isSuggestionsLoading}
 					/>

@@ -1,1 +1,1 @@
-export {default} from "./MProductCard"
+export {default} from "./MobileProductCard"

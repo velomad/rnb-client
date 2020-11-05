@@ -1,7 +1,9 @@
 import React from "react";
 import { Text } from "../../../../../components";
 import { history } from "../../../../../utils";
+import { setSearchTerm } from "../../../../../store/actions";
 import SearchIcon from "@material-ui/icons/Search";
+import {connect} from "react-redux";
 
 const SuggestionsLoading = () => {
 	return (
@@ -17,16 +19,18 @@ const SearchSuggestions = ({
 	suggestions,
 	isSuggestionsLoading,
 	suggestedTermCallback,
-	handleClose
+	handleClose,
+	setSearchTerm
 }) => {
 	const getSearchResults = (term) => {
-		suggestedTermCallback(term);
+		// suggestedTermCallback(term);
+		setSearchTerm(term)
 		handleClose()
 		history.push(`/search?term=${term}`)
 	};
 
 	return (
-		<div className="p-4">
+		<div className="p-4 bg-gray-200 h-full">
 			{isSuggestionsLoading === true ? (
 				<SuggestionsLoading />
 			) : (
@@ -41,7 +45,7 @@ const SearchSuggestions = ({
 									<SearchIcon fontSize="small" className="text-gray-400" />
 								</div>
 								<div>
-									<Text variant="secondary" size="lg">
+									<Text variant="primaryDark" size="lg">
 										{element}
 									</Text>
 								</div>
@@ -54,4 +58,4 @@ const SearchSuggestions = ({
 	);
 };
 
-export default SearchSuggestions;
+export default connect(null, {setSearchTerm})(SearchSuggestions);

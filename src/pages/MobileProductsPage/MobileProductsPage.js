@@ -1,48 +1,66 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import MProductCard from "./components/MobileProductCard";
+import MobileProductCard from "./components/MobileProductCard";
 import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
 import { connect } from "react-redux";
 import { getProducts } from "../../store/actions";
-import {history} from '../../utils';
+import { history } from "../../utils";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const MobileProductsPage = (props) => {
+	const [page, setPage] = useState(1);
+	const [hasMore, setHasMore] = useState(true);
 
-var test = history.location.pathname.split("/")
-var tes = history.location.search.split("=")
+	var pathName = history.location.pathname.split("/");
+	var search = history.location.search.split("=");
 
-const category = tes[tes.length-1]
-const website = test[test.length-1]
+	const category = search[search.length - 1];
+	const website = pathName[pathName.length - 1];
 
-console.log(category)
-console.log(website)
+	const fetchMoreData = () => {
+		if (props.products >= props.totalProducts) {
+			setHasMore(false);
+			return;
+		}
+
+		setPage(page + 1);
+
+		props.getProducts(website, category, page);
+	};
 
 	useEffect(() => {
-		props.getProducts(website, category, 1);
+		props.getProducts(website, category, page);
 	}, [category]);
 
 	return (
-		<div className="grid grid-cols-2">
-			{props.products.map((e, index) => (
-				<div
-					className="overflow-hidden"
-					style={{ borderRight: "solid #ccc 0px" }}
-					key={index}
-				>
-					<MProductCard
-						products={props.products}
-						id={e._id}
-						image={e.imageUrl}
-						website={e.website}
-						price={e.productPrice}
-						priceStrike={e.productPriceStrike}
-						name={e.productName}
-						brand={e.brandName}
-						discount={e.discountPercent}
-						rating={e.productRating}
-					/>
-				</div>
-			))}
+		<div>
+			<InfiniteScroll
+				className="grid grid-cols-2"
+				dataLength={props.products.length}
+				next={fetchMoreData}
+				hasMore={hasMore}
+				loader={<h4>Loading...</h4>}
+			>
+				{props.products.map((e, index) => (
+					<div
+						className="overflow-hidden"
+						style={{ borderRight: "solid #ccc 0px" }}
+						key={index}
+					>
+						<MobileProductCard
+							id={e._id}
+							image={e.imageUrl}
+							website={e.website}
+							price={e.productPrice}
+							priceStrike={e.productPriceStrike}
+							name={e.productName}
+							brand={e.brandName}
+							discount={e.discountPercent}
+							rating={e.productRating}
+						/>
+					</div>
+				))}
+			</InfiniteScroll>
 
 			{/* filter navigator */}
 			<FilterNav />
@@ -56,12 +74,10 @@ console.log(website)
 	);
 };
 
-
 const mapStateToProps = ({ dataSkoreProductsState }) => ({
 	products: dataSkoreProductsState.products,
 	totalProducts: dataSkoreProductsState.totalProducts,
 	category: dataSkoreProductsState.category,
 });
-
 
 export default connect(mapStateToProps, { getProducts })(MobileProductsPage);

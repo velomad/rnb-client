@@ -2,8 +2,8 @@ import { GET_PRODUCTS_LOAD, GET_PRODUCTS_FETCH } from "../types";
 
 const initialState = {
 	products: [],
-	category : "",
-	totalProducts : "",
+	category: "",
+	totalProducts: "",
 	productsLoading: false,
 };
 
@@ -15,11 +15,13 @@ const isProductsLoading = (state) => {
 };
 
 const getProducts = (state, payload, totalProducts, category) => {
+	const newData = state.products.concat(payload);
+
 	return {
 		...state,
-		products: payload,
+		products: newData,
 		totalProducts,
-		category
+		category,
 	};
 };
 

@@ -9,6 +9,9 @@ const Flipkart = (props) => {
 
 	const setMenuItems = (activate) => {
 		props.onGetMenu(activate);
+
+
+
 	};
 
 	const handleCategoryClick = (categoryName) => {
@@ -22,7 +25,7 @@ const Flipkart = (props) => {
 			setWebCategoriesMen(amazonmen);
 			setWebCategoriesWomen(amazonwomen);
 		}
-		if (props.currentBrand == 'flipkart') {
+		else if (props.currentBrand == 'flipkart') {
 			setWebCategoriesMen(men);
 			setWebCategoriesWomen(women);
 		}

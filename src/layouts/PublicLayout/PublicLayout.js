@@ -6,9 +6,12 @@ function PublicLayout(props) {
 	return (
 		<div>
 			<Navbar />
+
+			{/* activated on searchicon click on mobile view */}
 			<SearchSlide />
 
 			<div className="p-0">{children}</div>
+
 			{withFooter && <Footer />}
 		</div>
 	);

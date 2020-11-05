@@ -1,16 +1,18 @@
 import React from "react";
 import Chip from "@material-ui/core/Chip";
 import { Text } from "../../../../../components";
+import { history } from "../../../../../utils";
 import { removeSearchTerm } from "../../../../../store/actions";
 import { connect } from "react-redux";
 
-const SearchChip = ({ removeSearchTerm, searchTerms }) => {
+const SearchChip = ({ removeSearchTerm, searchTerms, handleClose }) => {
 	const handleDelete = (removeTerm) => {
 		removeSearchTerm(removeTerm);
 	};
 
-	const handleClick = () => {
-		console.info("You clicked the Chip.");
+	const handleClick = (term) => {
+		handleClose();
+		history.push(`/search?term=${term}`);
 	};
 
 	const recentSearches = JSON.parse(localStorage.getItem("recentSearches"));
@@ -26,7 +28,7 @@ const SearchChip = ({ removeSearchTerm, searchTerms }) => {
 							{term}
 						</Text>
 					}
-					onClick={handleClick}
+					onClick={() => handleClick(term)}
 					onDelete={() => handleDelete(term)}
 					color="secondary"
 				/>

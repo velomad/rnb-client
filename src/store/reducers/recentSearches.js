@@ -5,6 +5,13 @@ const initialState = {
 };
 
 const setSearchTerm = (state, payload) => {
+
+	console.log(state.searchTerms.length)
+
+	if(state.searchTerms.length > 6) {
+		state.searchTerms.shift()
+	}
+
 	const newData = [...state.searchTerms, payload];
 
 	localStorage.setItem(

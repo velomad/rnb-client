@@ -2,6 +2,7 @@
 
 export const textVariant = {
 	primary: `text-gray-600`,
+	primaryDark: `text-gray-700`,
 	contrast: `text-gray-300`,
 	secondary: `text-gray-900`,
 	white: `text-gray-100`,

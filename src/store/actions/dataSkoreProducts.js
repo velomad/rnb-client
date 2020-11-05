@@ -8,8 +8,8 @@ export const getProducts = (website, category, page) => async (dispatch) => {
 		let URL;
 
 		website === "search"
-			? (URL = `${baseUrl}/api/v1/items/search?term=${category}&page=1&limit=50&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`)
-			: (URL = `${baseUrl}/api/v1/products/${website}?category=${category}&page=${page}&limit=20&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`);
+			? (URL = `${baseUrl}/api/v1/items/search?term=${category}&page=${page}&limit=30&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`)
+			: (URL = `${baseUrl}/api/v1/products/${website}?category=${category}&page=${page}&limit=30&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`);
 
 		const resp = await Axios.get(URL);
 		dispatch({
