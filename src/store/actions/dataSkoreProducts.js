@@ -1,5 +1,9 @@
 import Axios from "axios";
-import { GET_PRODUCTS_LOAD, GET_PRODUCTS_FETCH } from "../types";
+import {
+	GET_PRODUCTS_LOAD,
+	GET_PRODUCTS_FETCH,
+	SET_PRODUCT_CATEGORY_CHANGE,
+} from "../types";
 
 export const getProducts = (website, category, page) => async (dispatch) => {
 	dispatch({ type: GET_PRODUCTS_LOAD });
@@ -21,4 +25,8 @@ export const getProducts = (website, category, page) => async (dispatch) => {
 	} catch (err) {
 		console.log(err);
 	}
+};
+
+export const setProductCategoryChange = () => (dispatch) => {
+	dispatch({ type: SET_PRODUCT_CATEGORY_CHANGE });
 };

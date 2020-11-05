@@ -3,7 +3,7 @@ import Axios from "axios";
 import MobileProductCard from "./components/MobileProductCard";
 import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
 import { connect } from "react-redux";
-import { getProducts } from "../../store/actions";
+import { getProducts, setProductCategoryChange } from "../../store/actions";
 import { history } from "../../utils";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -80,4 +80,7 @@ const mapStateToProps = ({ dataSkoreProductsState }) => ({
 	category: dataSkoreProductsState.category,
 });
 
-export default connect(mapStateToProps, { getProducts })(MobileProductsPage);
+export default connect(mapStateToProps, {
+	getProducts,
+	setProductCategoryChange,
+})(MobileProductsPage);

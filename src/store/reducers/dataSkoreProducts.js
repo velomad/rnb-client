@@ -1,4 +1,9 @@
-import { GET_PRODUCTS_LOAD, GET_PRODUCTS_FETCH } from "../types";
+import { AssignmentReturnRounded } from "@material-ui/icons";
+import {
+	GET_PRODUCTS_LOAD,
+	GET_PRODUCTS_FETCH,
+	SET_PRODUCT_CATEGORY_CHANGE,
+} from "../types";
 
 const initialState = {
 	products: [],
@@ -25,6 +30,13 @@ const getProducts = (state, payload, totalProducts, category) => {
 	};
 };
 
+const categoryChange = (state) => {
+	return {
+		...state,
+		products: [],
+	};
+};
+
 const dataSkoreProducts = (state = initialState, actions) => {
 	const { type, payload, totalProducts, category } = actions;
 	switch (type) {
@@ -32,6 +44,8 @@ const dataSkoreProducts = (state = initialState, actions) => {
 			return isProductsLoading(state);
 		case GET_PRODUCTS_FETCH:
 			return getProducts(state, payload, totalProducts, category);
+		case SET_PRODUCT_CATEGORY_CHANGE:
+			return categoryChange(state);
 		default:
 			return state;
 	}
