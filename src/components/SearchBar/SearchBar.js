@@ -72,6 +72,8 @@ export default function Filter() {
     const [inputValue, setInputValue] = React.useState("");
     const [inputSearch, setInputSearch] = React.useState("");
     const [options, setOptions] = React.useState([]);
+    const [searchState, setsearchState] = React.useState(false);
+
 
     const [unit, setUnit] = React.useState('http://localhost:8080/api/v1/search');
 
@@ -86,12 +88,14 @@ export default function Filter() {
     const loading = open && options.length === 0;
 
     function handleChange(value) {
+        setsearchState(true);
         setInputValue(value);
         debounceOnChange(value);
     }
 
     React.useEffect(() => {
         let active = true;
+        setsearchState(true);
         (async () => {
             if (!!inputValue) {
                 const response = await axios.get(
@@ -106,6 +110,7 @@ export default function Filter() {
                     })
                     console.log('searchData', searchData)
                     setOptions(searchData);
+                    setsearchState(false)
                 }
             }else{
                 setOptions([]);
@@ -146,7 +151,7 @@ export default function Filter() {
                         options.length > 0 ?
                             <ul className={classes.searchsuggestions}>
                                 {
-                                    options.map((item, index) => {
+                                    searchState ? <li className={classes.suggestiontext}>Loading...</li> : options.map((item, index) => {
                                         return (
                                             <li key={index} className={classes.suggestiontext}>{item.display_name}</li>
                                         )
