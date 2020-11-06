@@ -1,17 +1,18 @@
 import React from 'react';
 import { men, women } from "./flipkartMenuData";
 import { amazonmen, amazonwomen } from "./amazonMenuData";
+import { myntramen, myntrawomen } from "./myntraMenuData";
+import { ajiomen, ajiowomen } from "./ajioMenuData";
+import { tatacliqmen, tatacliqwomen } from './tatacliqMenuData';
+import { bewakoofmen, bewakoofwomen } from './bewakoofMenuData';
 import { history } from "../../../../../../../utils";
 
-const Flipkart = (props) => {
+const DynamicContent = (props) => {
 	const [webCategoriesMen, setWebCategoriesMen] = React.useState([]);
 	const [webCategoriesWomen, setWebCategoriesWomen] = React.useState([]);
 
 	const setMenuItems = (activate) => {
 		props.onGetMenu(activate);
-
-
-
 	};
 
 	const handleCategoryClick = (categoryName) => {
@@ -28,6 +29,22 @@ const Flipkart = (props) => {
 		else if (props.currentBrand == 'flipkart') {
 			setWebCategoriesMen(men);
 			setWebCategoriesWomen(women);
+		}
+		else if (props.currentBrand == 'myntra') {
+			setWebCategoriesMen(myntramen);
+			setWebCategoriesWomen(myntrawomen);
+		}
+		else if (props.currentBrand == 'ajio') {
+			setWebCategoriesMen(ajiomen);
+			setWebCategoriesWomen(ajiowomen);
+		}
+		else if (props.currentBrand == 'tatacliq') {
+			setWebCategoriesMen(tatacliqmen);
+			setWebCategoriesWomen(tatacliqwomen);
+		}
+		else if (props.currentBrand == 'bewakoof') {
+			setWebCategoriesMen(bewakoofmen);
+			setWebCategoriesWomen(bewakoofwomen);
 		}
 	}, [props])
 	return (
@@ -104,7 +121,7 @@ const Flipkart = (props) => {
 										onClick={() => handleCategoryClick(el)}
 										class="my-3 tracking-wide"
 									>
-										{el}
+										{props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-men')[0].replace('-',' '):el}
 									</li>
 								))
 								: null
@@ -116,7 +133,8 @@ const Flipkart = (props) => {
 										onClick={() => handleCategoryClick(el)}
 										class="my-3 tracking-wide"
 									>
-										{el}
+										{props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-women')[0].replace('-',' '):el}
+
 									</li>
 								))
 								: null
@@ -129,4 +147,4 @@ const Flipkart = (props) => {
 	);
 };
 
-export default Flipkart;
+export default DynamicContent;

@@ -1,12 +1,17 @@
 import React from "react";
 import { SearchBar } from "../../../../../../components";
-import { Flipkart } from "../Menu";
+import { DynamicContent } from "../Menu";
 import { connect } from "react-redux";
 import "./primary.css";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import { setSearchSlide } from "../../../../../../store/actions";
-import { men, women } from "../Menu/Flipkart/flipkartMenuData";
-import { amazonmen, amazonwomen } from "../Menu/Flipkart/amazonMenuData";
+import { men, women } from "../Menu/DynamicContent/flipkartMenuData";
+import { amazonmen, amazonwomen } from "../Menu/DynamicContent/amazonMenuData";
+import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
+import { ajiomen, ajiowomen } from "../Menu/DynamicContent/ajioMenuData";
+import { tatacliqmen, tatacliqwomen } from "../Menu/DynamicContent/tatacliqMenuData";
+import { bewakoofmen, bewakoofwomen } from "../Menu/DynamicContent/bewakoofMenuData";
+
 const Primary = (props) => {
 	const [open, setOpen] = React.useState(false);
 	const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -156,7 +161,7 @@ const Primary = (props) => {
 						<p className="text-black font-bold"></p>
 					</div>
 					<div
-						onClick={() => loadDropDown("tataqcliq")}
+						onClick={() => loadDropDown("tatacliq")}
 						class="text-sm text-center mr-8 cursor-pointer"
 					>
 						<div class="p-1 border-2 border-white rounded-full">
@@ -239,10 +244,10 @@ const Primary = (props) => {
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
 									{activePanel == "men" ? (
 										<div class="flex flex-wrap  mx-auto">
-											<Flipkart
+											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
-												categories={Object.keys(currentBrand =='amazon'? amazonmen:currentBrand =='flipkart'?men:"")}
+												categories={Object.keys(currentBrand =='amazon'? amazonmen:currentBrand =='flipkart'?men:currentBrand =='myntra'?myntramen:currentBrand =='ajio'?ajiomen:currentBrand =='tatacliq'?tatacliqmen:currentBrand =='bewakoof'?bewakoofmen:"")}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
 												onGetMenu={getMenu}
@@ -254,10 +259,10 @@ const Primary = (props) => {
 
 									{activePanel === "women" ? (
 										<div class="flex flex-wrap  mx-auto">
-											<Flipkart
+											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
-												categories={Object.keys(currentBrand =='amazon'? amazonwomen:currentBrand =='flipkart'?women:"")}
+												categories={Object.keys(currentBrand =='amazon'? amazonwomen:currentBrand =='flipkart'?women:currentBrand =='myntra'?myntrawomen:currentBrand =='ajio'?ajiowomen:currentBrand =='tatacliq'?tatacliqwomen:currentBrand =='bewakoof'?bewakoofwomen:"")}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
 												onGetMenu={getMenu}

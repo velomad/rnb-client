@@ -1,2 +1,1 @@
-export {default as Ajio} from "./Ajio"
-export {default as Flipkart} from "./Flipkart"
+export {default as DynamicContent} from "./DynamicContent"
