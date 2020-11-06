@@ -41,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'capitalize',
         fontWeight: '600',
         paddingTop: '8px',
+        textAlign: 'left',
+        paddingLeft: '10px',
         '&:hover': {
             background: "#F2F2F2",
          },
