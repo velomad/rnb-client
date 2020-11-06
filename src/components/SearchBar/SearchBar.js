@@ -25,6 +25,26 @@ const useStyles = makeStyles((theme) => ({
             width: '170px',
         },
     },
+    searchsuggestions: {
+        borderTop: '1px solid #ccc',
+        position: 'absolute',
+        zIndex: '999',
+        width: '23rem',
+        marginLeft: '6rem',
+        background: 'white',
+        bordeRadius: '4px',
+        maxHeight: '200px',
+        overflowY: 'auto'
+    },
+    suggestiontext:{
+        cursor: 'pointer',
+        textTransform: 'capitalize',
+        fontWeight: '600',
+        paddingTop: '8px',
+        '&:hover': {
+            background: "#F2F2F2",
+         },
+    },
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
@@ -72,7 +92,6 @@ export default function Filter() {
 
     React.useEffect(() => {
         let active = true;
-
         (async () => {
             if (!!inputValue) {
                 const response = await axios.get(
@@ -85,8 +104,11 @@ export default function Filter() {
                     response.data.suggestions.map((item) => {
                         searchData.push({ 'display_name': item })
                     })
+                    console.log('searchData', searchData)
                     setOptions(searchData);
                 }
+            }else{
+                setOptions([]);
             }
         })();
     }, [inputSearch]);
@@ -98,17 +120,18 @@ export default function Filter() {
                 </div>
                 <div class="flex-initial text-gray-700 text-center px-0 py-0 m-4 ml-0">
                     <div class="relative text-gray-600">
-                        <input type="search" name="serch" placeholder="Search"
+                        <input type="text" name="serch" placeholder="Search"
+                            onChange={(event) => handleChange(event.target.value)}
                             class="bg-white h-10 w-full px-32 pr-48 rounded-full text-sm focus:outline-none" />
-                            <select
-                                className='absolute outline-none rounded-full p-2 mt-1 mr-1 left-0 top-0'
-                                value={unit}
-                                onChange={(event, value) => setUnit(value)}
-                            >
-                                <option selected value={'http://localhost:8080/api/v1/search'}>Clothing</option>
-                                <option value={2}>Electronics</option>
-                            </select>
-                        
+                        <select
+                            className='absolute outline-none rounded-full p-2 mt-1 mr-1 left-0 top-0'
+                            value={unit}
+                            onChange={(event, value) => setUnit(value)}
+                        >
+                            <option selected value={'http://localhost:8080/api/v1/search'}>Clothing</option>
+                            <option value={2}>Electronics</option>
+                        </select>
+
                         <button type="submit" class="bg-red-600 absolute rounded-full right-0 top-0 p-2 mt-1 mr-1">
                             <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                                 version="1.1" id="Capa_1" x="0px" y="0px"
@@ -119,6 +142,18 @@ export default function Filter() {
                             </svg>
                         </button>
                     </div>
+                    {
+                        options.length > 0 ?
+                            <ul className={classes.searchsuggestions}>
+                                {
+                                    options.map((item, index) => {
+                                        return (
+                                            <li key={index} className={classes.suggestiontext}>{item.display_name}</li>
+                                        )
+                                    })
+                                }
+                            </ul> : ""
+                    }
                 </div>
             </div>
         </React.Fragment>
