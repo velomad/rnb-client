@@ -40,6 +40,7 @@ const MobileProductsPage = (props) => {
 				next={fetchMoreData}
 				hasMore={hasMore}
 				loader={<h4>Loading...</h4>}
+				endMessage={<h4>No More Items</h4>}
 			>
 				{props.products.map((e, index) => (
 					<div
