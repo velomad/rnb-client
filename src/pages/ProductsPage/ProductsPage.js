@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Filters, Heading, Pagination, ProductCard } from "./components";
+import { Filters, Heading, Pagination, ProductCard, ProductSkeleton } from "./components";
 import { connect } from "react-redux";
 import { getProducts } from "../../store/actions";
 
@@ -36,24 +36,28 @@ const ProductsPage = (props) => {
 													{props.totalProducts - 5}+ Products
 												</span>
 												<div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-													{props.products.map((e, index) => (
-														<div
-															class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
-															key={index}
-														>
-															<ProductCard
-																id={e._id}
-																image={e.imageUrl}
-																website={e.website}
-																price={e.productPrice}
-																priceStrike={e.productPriceStrike}
-																name={e.productName}
-																brand={e.brandName}
-																discount={e.discountPercent}
-																rating={e.productRating}
-															/>
-														</div>
-													))}
+													{
+														props.products.length > 0?
+														props.products.map((e, index) => (
+															<div
+																class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
+																key={index}
+															>
+																<ProductCard
+																	id={e._id}
+																	image={e.imageUrl}
+																	website={e.website}
+																	price={e.productPrice}
+																	priceStrike={e.productPriceStrike}
+																	name={e.productName}
+																	brand={e.brandName}
+																	discount={e.discountPercent}
+																	rating={e.productRating}
+																/>
+															</div>
+														))
+														: <ProductSkeleton />
+													}
 												</div>
 											</div>
 										</main>
