@@ -200,7 +200,7 @@ const Primary = (props) => {
 							<div className="w-full text-gray-900 mb-2">
 								<svg
 									onClick={() => hideDropDown()}
-									class="cursor-pointer w-6 h-6 mb-2"
+									className="cursor-pointer w-6 h-6 mb-2 bg-pink-600  text-white rounded-full h-8 w-8 p-1"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"

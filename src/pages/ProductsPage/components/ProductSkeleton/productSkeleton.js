@@ -98,10 +98,6 @@ export default function Facebook() {
             <Media loading />
             <Media loading />
             <Media loading />
-            <Media loading />
-            <Media loading />
-            <Media loading />
-            <Media loading />
         </React.Fragment>
 
     );

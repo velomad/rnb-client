@@ -2,11 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Filters, Heading, Pagination, ProductCard, ProductSkeleton } from "./components";
 import { connect } from "react-redux";
 import { getProducts } from "../../store/actions";
+import { history } from "../../utils";
 
 const ProductsPage = (props) => {
+	const [page, setPage] = useState(1);
+	var pathName = history.location.pathname.split("/");
+	var search = history.location.search.split("=");
+
+	const category = search[search.length - 1];
+	const website = pathName[pathName.length - 1];
+
+
+
 	useEffect(() => {
-		props.getProducts("flipkart", "topwear", 1);
-	}, []);
+		props.getProducts(website, category, page);
+	}, [category, website]);
 
 	return (
 		<React.Fragment>
@@ -68,7 +78,7 @@ const ProductsPage = (props) => {
 					</main>
 					<hr className="bg-gray-900" />
 					<div className="flex justify-center py-8">
-						<Pagination />
+						<Pagination totalProducts = {props.totalProducts}/>
 					</div>
 				</div>
 			</div>

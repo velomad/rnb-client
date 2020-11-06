@@ -1,9 +1,9 @@
 import Page from "@material-ui/lab/Pagination";
 
-const Pagination = () => {
+const Pagination = (props) => {
 	return (
 		<div>
-			<Page count={20} boundaryCount={1} color="secondary" />
+			<Page count={props.totalProducts} boundaryCount={1} color="secondary" />
 		</div>
 	);
 };
