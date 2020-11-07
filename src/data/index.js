@@ -1,1 +1,1 @@
-export  {default as flipkartMenu} from "./flipkartMenu"
+export  {default as dataYuge} from "./datayuge"

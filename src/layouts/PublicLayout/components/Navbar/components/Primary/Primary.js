@@ -11,6 +11,7 @@ import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
 import { ajiomen, ajiowomen } from "../Menu/DynamicContent/ajioMenuData";
 import { tatacliqmen, tatacliqwomen } from "../Menu/DynamicContent/tatacliqMenuData";
 import { bewakoofmen, bewakoofwomen } from "../Menu/DynamicContent/bewakoofMenuData";
+import { dataYuge } from '../../../../../../data';
 
 const Primary = (props) => {
 	const [open, setOpen] = React.useState(false);
@@ -49,6 +50,7 @@ const Primary = (props) => {
 
 	return (
 		<React.Fragment>
+			<dataYuge />
 			<nav className="container mx-auto px-3 py-3 md:py-0 lg:py-0">
 				<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					<div className="flex justify-between items-center">
