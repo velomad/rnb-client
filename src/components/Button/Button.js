@@ -14,3 +14,4 @@ const Button = ({ size, variant, children, animate }) => {
 };
 
 export default Button;
+
