@@ -17,23 +17,21 @@ import { connect } from "react-redux";
 import { setSortPopUpAction } from "../../../../store/actions";
 import { Text } from "../../../../components";
 import { history } from "../../../../utils";
+import qs from "query-string";
 
 const useStyles = makeStyles((theme) => ({
-	// appBar: {
-	// 	position: "relative",
-	// 	height:40,
-	// 	backgroundColor: " #1a202c",
-	// 	borderRadius:20,
-	// 	margin:5,
-	// 	width:"80%",
-	// 	display:"flex",
-	// 	justifyContent:"center",
-		
-	// },
+	appBar: {
+		position: "relative",
+		height: 50,
+		backgroundColor: " #1a202c",
+		display: "flex",
+		justifyContent: "center",
+	},
 	title: {
 		marginLeft: theme.spacing(2),
 		flex: 1,
 		color: "#dddcd7",
+		fontSize: 16,
 	},
 }));
 
@@ -47,13 +45,15 @@ const SortingPopUp = (props) => {
 	};
 
 	const handleSort = (sortWith) => {
-		
-		history.replace({
-			pathname : history.location.pathname,
-			search : history.location.search+`&sort=${sortWith}`
-		})	
-		handleClose()
-	}
+		window.history.pushState(
+			{
+				path: history.location.search + `&sort=${sortWith}`,
+			},
+			"",
+			history.location.search + `&sort=${sortWith}`,
+		);
+		handleClose();
+	};
 
 	const classes = useStyles();
 
@@ -66,10 +66,10 @@ const SortingPopUp = (props) => {
 				TransitionComponent={Transition}
 				style={{ height: "45vh", marginTop: "55vh" }}
 			>
-				{/* <AppBar className={classes.appBar}>
+				<AppBar className={classes.appBar}>
 					<Toolbar>
 						<Typography variant="h6" className={classes.title}>
-							SORT BY
+							Sort By
 						</Typography>
 						<IconButton
 							edge="start"
@@ -80,8 +80,8 @@ const SortingPopUp = (props) => {
 							<CloseIcon />
 						</IconButton>
 					</Toolbar>
-				</AppBar> */}
-				<div className="flex justify-between p-3">
+				</AppBar>
+				{/* <div className="flex justify-between p-3">
 					<div>
 						<Text variant="secondary" weight="500" size="lg">
 							Sort By
@@ -90,7 +90,7 @@ const SortingPopUp = (props) => {
 					<div onClick={handleClose}>
 						<CloseIcon />
 					</div>
-				</div>
+				</div> */}
 				<hr style={{ color: "solid black 1px" }} />
 				<div className="p-2 h-full flex content-center flex-wrap ">
 					<ul className="py-2">
@@ -116,7 +116,7 @@ const SortingPopUp = (props) => {
 										</g>
 									</g>
 								</svg>
-								<Text variant="primary" size="lg" weight="500">
+								<Text variant="primary" size="md" weight="500">
 									Rating
 								</Text>
 							</div>
@@ -127,12 +127,12 @@ const SortingPopUp = (props) => {
 									src="https://constant.myntassets.com/pwa/assets/img/ed2090c9-27f0-4eb0-ad1b-7bb58b955d4e1571633941585-offers-2x.png"
 									width="25px"
 								/>
-								<Text variant="primary" size="lg" weight="500">
+								<Text variant="primary" size="md" weight="500">
 									Discount
 								</Text>
 							</div>
 						</li>
-						<li className="py-3" >
+						<li className="py-3">
 							<div className="flex space-x-4">
 								<svg
 									width="24"
@@ -148,7 +148,7 @@ const SortingPopUp = (props) => {
 										></path>
 									</g>
 								</svg>
-								<Text variant="primary" size="lg" weight="500">
+								<Text variant="primary" size="md" weight="500">
 									Price : High To Low
 								</Text>
 							</div>
@@ -169,7 +169,7 @@ const SortingPopUp = (props) => {
 										></path>
 									</g>
 								</svg>
-								<Text variant="primary" size="lg" weight="500">
+								<Text variant="primary" size="md" weight="500">
 									Price : Low To High
 								</Text>
 							</div>
