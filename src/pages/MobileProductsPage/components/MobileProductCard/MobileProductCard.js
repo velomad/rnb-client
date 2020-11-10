@@ -22,7 +22,7 @@ const MProductCard = ({
 				{priceStrike !== price ? (
 					<div className="absolute p-1 bg-gray-900 z-10">
 						<Text size="xs" variant="white">
-							{discount}
+							{discount}% Off
 						</Text>
 					</div>
 				) : null}
@@ -58,13 +58,13 @@ const MProductCard = ({
 					<div className="flex px-1 space-x-4">
 						<div>
 							<Text size="sm" weight="600">
-								{price}
+							&#8377; {price}
 							</Text>
 						</div>
 						{price !== priceStrike && (
 							<div>
 								<Text size="sm" weight="600" variant="primary">
-									<del>{priceStrike}</del>
+									<del>&#8377; {priceStrike}</del>
 								</Text>
 							</div>
 						)}

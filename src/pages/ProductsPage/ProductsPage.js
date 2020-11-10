@@ -6,12 +6,18 @@ import { history } from "../../utils";
 
 const ProductsPage = (props) => {
 	const [page, setPage] = useState(1);
-	var pathName = history.location.pathname.split("/");
+	// var pathName = history.location.pathname.split("/");
+	// var search = history.location.search.split("=");
+
+	// const category = search[search.length - 1];
+	// const website = pathName[pathName.length - 1];
+
+	// var pathName = history.location.pathname.split("/");
 	var search = history.location.search.split("=");
 
-	const category = search[search.length - 1];
-	const website = pathName[pathName.length - 1];
-
+	
+	const website = search[1].split("&")[0]
+	const category = search[search.length - 1]
 
 
 	useEffect(() => {

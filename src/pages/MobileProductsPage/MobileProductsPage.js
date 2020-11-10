@@ -4,18 +4,11 @@ import MobileProductCard from "./components/MobileProductCard";
 import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
 import { connect } from "react-redux";
 import { getProducts, setProductCategoryChange } from "../../store/actions";
-import { history } from "../../utils";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const MobileProductsPage = (props) => {
 	const [page, setPage] = useState(1);
 	const [hasMore, setHasMore] = useState(true);
-
-	var pathName = history.location.pathname.split("/");
-	var search = history.location.search.split("=");
-
-	const category = search[search.length - 1];
-	const website = pathName[pathName.length - 1];
 
 	const fetchMoreData = () => {
 		if (props.products >= props.totalProducts) {
@@ -24,13 +17,12 @@ const MobileProductsPage = (props) => {
 		}
 
 		setPage(page + 1);
-
-		props.getProducts(website, category, page);
+		props.getProducts(page);
 	};
 
 	useEffect(() => {
-		props.getProducts(website, category, page);
-	}, [category]);
+		props.getProducts(page);
+	}, []);
 
 	return (
 		<div>

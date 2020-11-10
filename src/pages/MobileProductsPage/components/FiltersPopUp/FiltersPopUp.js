@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
 	Dialog,
@@ -14,6 +14,10 @@ import { connect } from "react-redux";
 import { setFilterPopUpAction } from "../../../../store/actions";
 import { Text } from "../../../../components";
 import PriceSlider from "./PriceSlider";
+import PriceFilter from "./PriceFilter";
+import GenderFilter from "./GenderFilter";
+import DiscountFilter from "./DiscountFilter";
+import BrandFilter from "./BrandFilter";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -32,8 +36,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const FiltersPopUp = (props) => {
+	const [filterOption, setFilterOption] = useState("Gender");
+
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
+	};
+
+	const filters = ["Gender", "Brand", "Price", "Discount"];
+
+	const handleSelectFilter = (filter) => {
+		setFilterOption(filter);
 	};
 
 	const classes = useStyles();
@@ -57,11 +69,7 @@ const FiltersPopUp = (props) => {
 				</AppBar> */}
 				<div className="flex justify-between p-3">
 					<div>
-						<Text 
-						variant="secondary"
-						weight="500"
-						size="lg"
-						>
+						<Text variant="secondary" weight="500" size="lg">
 							Filters
 						</Text>
 					</div>
@@ -69,75 +77,33 @@ const FiltersPopUp = (props) => {
 						<CloseIcon />
 					</div>
 				</div>
-				<hr style={{color:"solid black 1px"}}/>
+				<hr style={{ color: "solid black 1px" }} />
 
-				<div className="p-4 h-full g-gray-100">
-					<div>
-						<Text variant="secondary" size="xl" weight="600">
-							Price
-						</Text>
+				<div className="grid grid-cols-3 h-full">
+					<div className="col-span-1 bg-gray-200 h-full">
+						<ul className="">
+							{filters.map((el,index) => (
+								<React.Fragment>
+									<li className={`p-3`} onClick={() => handleSelectFilter(el)}>
+										<Text size="md" variant="primary">
+											{el}
+										</Text>
+									</li>
+									<hr style={{ color: "solid black 1px" }} />
+								</React.Fragment>
+							))}
+						</ul>
 					</div>
-					<div>
-						<Text variant="primary" size="lg" weight="500">
-							Select the price range
-						</Text>
-					</div>
-					<div className="py-10 px-8 flex justify-center">
-						<PriceSlider />
-					</div>
-				</div>
-				<div className="p-4 h-full g-gray-100">
-					<div>
-						<Text variant="secondary" size="xl" weight="600">
-							Discount
-						</Text>
-					</div>
-					<div>
-						<Text variant="primary" size="lg" weight="500">
-							Select discount
-						</Text>
-					</div>
-					<div className="py-8 space-y-2">
-						<div className=" flex space-x-2">
-							<div>
-								<input type="radio" id="male" name="gender" value="male" />
-							</div>
-							<div>
-								<Text variant="primary" size="lg">
-									10% and Above
-								</Text>
-							</div>
-						</div>
-						<div className=" flex space-x-2">
-							<div>
-								<input type="radio" id="male" name="gender" value="male" />
-							</div>
-							<div>
-								<Text variant="primary" size="lg">
-									10% and Above
-								</Text>
-							</div>
-						</div>
-						<div className=" flex space-x-2">
-							<div>
-								<input type="radio" id="male" name="gender" value="male" />
-							</div>
-							<div>
-								<Text variant="primary" size="lg">
-									10% and Above
-								</Text>
-							</div>
-						</div>
-						<div className=" flex space-x-2">
-							<div>
-								<input type="radio" id="male" name="gender" value="male" />
-							</div>
-							<div>
-								<Text variant="primary" size="lg">
-									10% and Above
-								</Text>
-							</div>
-						</div>
+					<div className="col-span-2">
+						{filterOption === "Gender" ? (
+							<GenderFilter />
+						) : filterOption === "Price" ? (
+							<PriceFilter />
+						) : filterOption === "Discount" ? (
+							<DiscountFilter />
+						) : filterOption === "Brand" ? (
+							<BrandFilter />
+						) : null}
 					</div>
 				</div>
 			</Dialog>

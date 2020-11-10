@@ -9,9 +9,15 @@ import { men, women } from "../Menu/DynamicContent/flipkartMenuData";
 import { amazonmen, amazonwomen } from "../Menu/DynamicContent/amazonMenuData";
 import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
 import { ajiomen, ajiowomen } from "../Menu/DynamicContent/ajioMenuData";
-import { tatacliqmen, tatacliqwomen } from "../Menu/DynamicContent/tatacliqMenuData";
-import { bewakoofmen, bewakoofwomen } from "../Menu/DynamicContent/bewakoofMenuData";
-import { SideBar } from '../../components';
+import {
+	tatacliqmen,
+	tatacliqwomen,
+} from "../Menu/DynamicContent/tatacliqMenuData";
+import {
+	bewakoofmen,
+	bewakoofwomen,
+} from "../Menu/DynamicContent/bewakoofMenuData";
+import { SideBar } from "../../components";
 const Primary = (props) => {
 	const [open, setOpen] = React.useState(false);
 	const [toggleSideBar, settoggleSideBar] = React.useState(false);
@@ -47,13 +53,17 @@ const Primary = (props) => {
 	const getMenu = (menuName) => {
 		activateSmallDrawer(menuName);
 	};
-	const toggleSideDrawer = (anchor, open) =>{
-		settoggleSideBar(true)
-	}
+	const toggleSideDrawer = (anchor, open) => {
+		settoggleSideBar(true);
+	};
+
+	const toggler = (value) => {
+		settoggleSideBar(value);
+	};
 
 	return (
 		<React.Fragment>
-			<SideBar toggleSideBar={toggleSideBar}/>
+			<SideBar toggleSideBar={toggleSideBar} setToggleState={toggler} />
 			<nav className="container mx-auto px-3 py-3 md:py-0 lg:py-0">
 				<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					<div className="flex justify-between items-center">
@@ -73,13 +83,21 @@ const Primary = (props) => {
 									<SearchBar />
 								</div>
 							</div>
-							<a href="#"
-								onClick={() => toggleSideDrawer('right',true)}
-								class="relative block text-sm text-white leading-5 py-2 mx-6 md:my-0 duration-2000 ease-out hover:font-bold">Electronics</a>
+							<a
+								href="#"
+								onClick={() => toggleSideDrawer("right", true)}
+								class="relative block text-sm text-white leading-5 py-2 mx-6 md:my-0 duration-2000 ease-out hover:font-bold"
+							>
+								Electronics
+							</a>
 						</div>
 
 						<div className="flex md:hidden" onClick={() => showMenu()}>
-							<SearchOutlinedIcon onClick={() => props.setSearchSlide(true)} className="text-white mx-2 px-1" fontSize="large" />
+							<SearchOutlinedIcon
+								onClick={() => props.setSearchSlide(true)}
+								className="text-white mx-2 px-1"
+								fontSize="large"
+							/>
 
 							<button
 								type="button"
@@ -212,7 +230,7 @@ const Primary = (props) => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
-								// xmlns="http://www.w3.org/2000/svg"
+									// xmlns="http://www.w3.org/2000/svg"
 								>
 									<path
 										stroke-linecap="round"
@@ -232,8 +250,8 @@ const Primary = (props) => {
 										{activeCat === "men" ? (
 											<span class="inline-block h-1 w-12 rounded bg-pink-700 mt-1 mb-4"></span>
 										) : (
-												""
-											)}
+											""
+										)}
 									</div>
 									<div
 										className="cursor-pointer"
@@ -245,8 +263,8 @@ const Primary = (props) => {
 										{activeCat === "women" ? (
 											<span class="inline-block h-1 w-20 rounded bg-pink-700 mt-1 mb-4"></span>
 										) : (
-												""
-											)}
+											""
+										)}
 									</div>
 								</div>
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
@@ -255,37 +273,65 @@ const Primary = (props) => {
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
-												categories={Object.keys(currentBrand == 'amazon' ? amazonmen : currentBrand == 'flipkart' ? men : currentBrand == 'myntra' ? myntramen : currentBrand == 'ajio' ? ajiomen : currentBrand == 'tatacliq' ? tatacliqmen : currentBrand == 'bewakoof' ? bewakoofmen : "")}
+												categories={Object.keys(
+													currentBrand == "amazon"
+														? amazonmen
+														: currentBrand == "flipkart"
+														? men
+														: currentBrand == "myntra"
+														? myntramen
+														: currentBrand == "ajio"
+														? ajiomen
+														: currentBrand == "tatacliq"
+														? tatacliqmen
+														: currentBrand == "bewakoof"
+														? bewakoofmen
+														: "",
+												)}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
 												onGetMenu={getMenu}
 											/>
 										</div>
 									) : (
-											""
-										)}
+										""
+									)}
 
 									{activePanel === "women" ? (
 										<div class="flex flex-wrap  mx-auto">
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
-												categories={Object.keys(currentBrand == 'amazon' ? amazonwomen : currentBrand == 'flipkart' ? women : currentBrand == 'myntra' ? myntrawomen : currentBrand == 'ajio' ? ajiowomen : currentBrand == 'tatacliq' ? tatacliqwomen : currentBrand == 'bewakoof' ? bewakoofwomen : "")}
+												categories={Object.keys(
+													currentBrand == "amazon"
+														? amazonwomen
+														: currentBrand == "flipkart"
+														? women
+														: currentBrand == "myntra"
+														? myntrawomen
+														: currentBrand == "ajio"
+														? ajiowomen
+														: currentBrand == "tatacliq"
+														? tatacliqwomen
+														: currentBrand == "bewakoof"
+														? bewakoofwomen
+														: "",
+												)}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
 												onGetMenu={getMenu}
 											/>
 										</div>
 									) : (
-											""
-										)}
+										""
+									)}
 								</div>
 							</section>
 						</div>
 					</div>
 				) : (
-						""
-					)}
+					""
+				)}
 			</nav>
 		</React.Fragment>
 	);

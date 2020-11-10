@@ -17,7 +17,7 @@ const DynamicContent = (props) => {
 
 	const handleCategoryClick = (categoryName) => {
 		props.hideDropDown();
-		history.push("/products/flipkart?category=" + categoryName);
+		history.push("/products?website=flipkart&category=" + categoryName);
 	};
 	React.useEffect(() => {
 		if (props.currentBrand == 'amazon') {

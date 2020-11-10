@@ -1,0 +1,57 @@
+const axios = require('axios');
+const lodash = require('lodash');
+var fs = require("fs");
+
+
+let allRawData = [];
+let categoryHeading = [];
+let categories = [];
+let currentPage = 0;
+let lastPage = 0;
+let writeStream = null;
+
+axios.get("https://price-api.datayuge.com/api/v1/compare/list/categories?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS").then(res => {
+    lastPage = res.data.last_page;
+}).then(() => {
+    var refreshIntervalId = setInterval(() => {
+        if (currentPage !== lastPage) {
+            currentPage += 1;
+            axios.get(`https://price-api.datayuge.com/api/v1/compare/list/categories?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&page=${currentPage}`).then((response) => {
+                allRawData = [...response.data.data, ...allRawData];
+                console.log('currentPage ==================================================>', currentPage);
+            }).then(() => {
+
+                if (currentPage >= lastPage) {
+                    console.log('Calculation Started...');
+                    writeStream = fs.createWriteStream("DataYuge.json");
+
+                    let groupBy_CategoryName = lodash.groupBy(allRawData, 'category_name');
+                    // console.log('groupBy_CategoryName =======================>', groupBy_CategoryName);
+
+                    for (let item in groupBy_CategoryName) {
+                        if (!!item && item !== 'undefined') {
+                            categoryHeading.push({ 'heading': item });
+
+                            console.log('groupBy_CategoryName', item);
+                            // console.log('groupBy_CategoryName', groupBy_CategoryName[item].length);
+
+                            for (let i = 0; i < groupBy_CategoryName[item].length; i++) {
+                                categories.push({ 'heading': item, 'child_category': groupBy_CategoryName[item][i].child_category, 'sub_category': groupBy_CategoryName[item][i].child_category_name, 'child_category_name': groupBy_CategoryName[item][i].child_category_name })
+                            }
+                        }
+                    }
+                    let groupByHeading = lodash.groupBy(categories, 'heading');
+
+                    writeStream.write(JSON.stringify(groupByHeading));
+                    // writeStream.write(JSON.stringify(categoryHeading));
+                    console.log('Cal Data categoryHeading...', categoryHeading);
+                }
+            })
+        } else {
+            writeStream.end();
+            clearInterval(refreshIntervalId);
+            console.log('Stoping calculation...');
+        }
+    }, 10000)
+});
+
