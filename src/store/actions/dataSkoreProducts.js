@@ -5,6 +5,7 @@ import {
 	GET_PRODUCTS_LOAD,
 	GET_PRODUCTS_FETCH,
 	SET_PRODUCT_CATEGORY_CHANGE,
+	RESET_PRODUCTS
 } from "../types";
 
 export const getProducts = (page) => async (dispatch) => {
@@ -30,4 +31,8 @@ export const getProducts = (page) => async (dispatch) => {
 
 export const setProductCategoryChange = () => (dispatch) => {
 	dispatch({ type: SET_PRODUCT_CATEGORY_CHANGE });
+};
+
+export const setResetProducts = () => (dispatch) => {
+	dispatch({ type: RESET_PRODUCTS });
 };

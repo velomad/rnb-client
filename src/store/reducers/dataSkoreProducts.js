@@ -3,6 +3,7 @@ import {
 	GET_PRODUCTS_LOAD,
 	GET_PRODUCTS_FETCH,
 	SET_PRODUCT_CATEGORY_CHANGE,
+	RESET_PRODUCTS
 } from "../types";
 
 const initialState = {
@@ -37,6 +38,13 @@ const categoryChange = (state) => {
 	};
 };
 
+const resetProducts = (state) => {
+	return {
+		...state,
+		products: [],
+	};
+};
+
 const dataSkoreProducts = (state = initialState, actions) => {
 	const { type, payload, totalProducts, category } = actions;
 	switch (type) {
@@ -46,6 +54,8 @@ const dataSkoreProducts = (state = initialState, actions) => {
 			return getProducts(state, payload, totalProducts, category);
 		case SET_PRODUCT_CATEGORY_CHANGE:
 			return categoryChange(state);
+		case RESET_PRODUCTS:
+				return resetProducts(state);
 		default:
 			return state;
 	}

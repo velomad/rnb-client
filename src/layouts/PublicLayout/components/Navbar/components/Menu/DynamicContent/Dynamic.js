@@ -17,7 +17,7 @@ const DynamicContent = (props) => {
 
 	const handleCategoryClick = (categoryName) => {
 		props.hideDropDown();
-		history.push("/products?website=flipkart&category=" + categoryName);
+		history.push(`/products?website=${props.currentBrand}&category=` + categoryName);
 	};
 	React.useEffect(() => {
 		if (props.currentBrand == 'amazon') {
@@ -49,10 +49,10 @@ const DynamicContent = (props) => {
 	}, [props])
 	return (
 		<React.Fragment>
-			{props.categories.map((el) => (
+			{props.categories.map((el,index) => (
 				<section
 					key={el}
-					class="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-64"
+					className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-64 drawer_bg"
 				>
 					<div
 						class="md:hidden"
@@ -62,12 +62,12 @@ const DynamicContent = (props) => {
 					>
 						<div class="grid grid-cols-2 gap-56">
 							<div className="flex items-center">
-								<img
+								{/* <img
 									src={`/static/images/${el.split('-')[1]}.png`}
 									width="50px"
 									className="mr-1"
 									alt='category'
-								/>
+								/> */}
 								<button
 									class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
 									type="button"
@@ -98,12 +98,12 @@ const DynamicContent = (props) => {
 						href="#"
 					>
 						<div className="flex items-center">
-							<img
+							{/* <img
 								src={`/static/images/${el.split('-')[1]}.png`}
 								width="50px"
 								className="mr-1"
-							/>
-							<p>{el.split('-')[1]}</p>
+							/> */}
+							<p className='font-extrabold'>{el.split('-')[1]}</p>
 						</div>
 					</a>
 					<article
@@ -119,7 +119,7 @@ const DynamicContent = (props) => {
 									<li
 										key={index + "men"}
 										onClick={() => handleCategoryClick(el)}
-										class="my-3 tracking-wide"
+										class="my-3 tracking-wide capitalize font-semibold"
 									>
 										{props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-men')[0].replace('-',' '):el}
 									</li>
@@ -131,7 +131,7 @@ const DynamicContent = (props) => {
 									<li
 										key={index + "women"}
 										onClick={() => handleCategoryClick(el)}
-										class="my-3 tracking-wide"
+										class="my-3 tracking-wide capitalize font-semibold"
 									>
 										{props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-women')[0].replace('-',' '):el}
 

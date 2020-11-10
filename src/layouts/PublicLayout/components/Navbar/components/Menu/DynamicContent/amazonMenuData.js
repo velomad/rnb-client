@@ -1,88 +1,88 @@
 export const amazonmen = {
     "men-topwear": [
-        "jacket men",
-        "T-Shirts men",
-        "Shirts men",
-        "Sweatshirts men",
-        "Sweater men",
-        "Thermals men"
+        "jacket-men",
+        "t-shirts-men",
+        "shirts-men",
+        "sweatshirts-men",
+        "sweater-men",
+        "thermals-men"
     ],
     "men-footwear": [
-        "Sports Shoes men",
-        "Casual Shoes men",
-        "Slippers Flip Flops men",
-        "Sandals Floaters men",
-        "Formal Shoes men",
-        "Loafers men",
-        "Sneakers men",
-        "Ethnic Footwear men",
-        "Shoe Combos men",
-        "Shoe Accessories men"
+        "sports-shoes-men",
+        "casual-shoes-men",
+        "slippers-flip-flops-men",
+        "sandals-floaters-men",
+        "formal-shoes-men",
+        "loafers-men",
+        "sneakers-men",
+        "ethnic-footwear-men",
+        "shoe-combos-men",
+        "shoe-accessories-men"
     ],
     "men-bottomwear": [
-        "Jeans men",
-        "Trousers Chinos men",
-        "Innerwear Sleepwear men",
-        "Trackpants men",
-        "Tracksuits men"
+        "jeans-men",
+        "trousers-chinos-men",
+        "innerwear-sleepwear-men",
+        "trackpants-men",
+        "tracksuits-men"
     ],
     "men-accessories": [
-        "Sunglasses men",
-        "Wallets men",
-        "Belts men",
-        "Hats Caps men",
-        "Card Holders men",
-        "Keychains men",
-        "Backpacks men",
-        "Hiking Bags men",
-        "Luggage Suitcases men"
+        "sunglasses-men",
+        "wallets-men",
+        "belts-men",
+        "hats-caps-men",
+        "card-holders-men",
+        "keychains-men",
+        "backpacks-men",
+        "hiking-bags-men",
+        "luggage-suitcases-men"
     ]
 };
 
 export const amazonwomen = {
-        "women-indianwear": [
-            "Sarees women",
-            "Kurtas Kurtis women",
-            "Salwar Suits women",
-            "Lehengas women",
-            "Saree Combo women",
-            "Salwars Leggings women",
-            "Blouses Petticoats women",
-            "Dresses women"
-        ],
-        "women-westernwear": [
-            "Tops Tunics women",
-            "T-Shirts women",
-            "Shirts women",
-            "Denims Trousers women",
-            "Pants Palazzos women",
-            "Outerwear Jackets women",
-            "Sweatshirts women",
-            "Shrugs women"
-        ],
-        "women-innerwear": ["Innerwear women", "Nightwear women"],
-        "women-sportswear": ["Sportswear women"],
-        "women-accessories": [
-            "Sunglasses women",
-            "Spectacle Frames women",
-            "Contact Lenses women",
-            "Rings women",
-            "Earrings women",
-            "Silver Jewellery women",
-            "Handbags women",
-            "Wallets women",
-            "Utility bags women",
-            "Hair Accessories women",
-            "Socks Stockings women"
-        ],
-        "women-footwear": [
-            "Heels women",
-            "Flats Sandals women",
-            "Slippers Flip Flops women",
-            "Ballerinas women",
-            "Casual Shoes women",
-            "Sports Shoes women",
-            "Ethnic Footwear women",
-            "Floater Sandal women"
-        ]
+    "women-indianwear": [
+        "sarees-women",
+        "kurtas-kurtis-women",
+        "salwar-suits-women",
+        "lehengas-women",
+        "saree-combo-women",
+        "salwars-leggings-women",
+        "blouses-petticoats-women",
+        "dresses-women"
+    ],
+    "women-westernwear": [
+        "tops-tunics-women",
+        "t-shirts-women",
+        "shirts-women",
+        "denims-trousers-women",
+        "pants-palazzos-women",
+        "outerwear-jackets-women",
+        "sweatshirts-women",
+        "shrugs-women"
+    ],
+    "women-innerwear": ["innerwear-women", "nightwear-women"],
+    "women-sportswear": ["sportswear-women"],
+    "women-accessories": [
+        "sunglasses-women",
+        "spectacle-frames-women",
+        "contact-lenses-women",
+        "rings-women",
+        "earrings-women",
+        "silver-jewellery-women",
+        "handbags-women",
+        "wallets-women",
+        "utility-bags-women",
+        "hair-accessories-women",
+        "socks-stockings-women"
+    ],
+    "women-footwear": [
+        "heels-women",
+        "flats-sandals-women",
+        "slippers-flip-flops-women",
+        "ballerinas-women",
+        "casual-shoes-women",
+        "sports-shoes-women",
+        "ethnic-footwear-women",
+        "floater-sandal-women"
+    ]
 }

@@ -4,6 +4,8 @@ import { Text, Button } from "../../components";
 import { Grid } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {history} from '../../utils';
+import { connect } from 'react-redux';
+import { setBackFromSearch } from '../../store/actions';
 
 const ProductPage = (props) => {
 	const [product, setproduct] = useState({});
@@ -12,7 +14,10 @@ const ProductPage = (props) => {
 	useEffect(() => {
 		getInfo();
 	}, []);
-
+	const goto = () =>{
+		props.setBackFromSearch(true);
+		history.goBack();
+	}
 	const getInfo = async () => {
 		const result = await Axios.get(
 			`https://reachnbuy.herokuapp.com/api/v1/product?id=${productId}&api_key=123`,
@@ -23,7 +28,7 @@ const ProductPage = (props) => {
 	return (
 		<section class="text-gray-700 body-font overflow-hidden">
 			<div class="container px-5 py-20 mx-auto">
-				<ArrowBackIcon fontSize="large" onClick={()=>history.goBack()} className="cursor-pointer"/>
+				<ArrowBackIcon fontSize="large" onClick={()=> goto()} className="cursor-pointer"/>
 				<div class="lg:w-4/5 mx-auto flex flex-wrap items-center relative mt-6">
 					<img
 						alt="ecommerce"
@@ -85,4 +90,4 @@ const ProductPage = (props) => {
 	);
 };
 
-export default ProductPage;
+export default connect(null,{setBackFromSearch})(ProductPage);

@@ -3,33 +3,43 @@ import Axios from "axios";
 import MobileProductCard from "./components/MobileProductCard";
 import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
 import { connect } from "react-redux";
-import { getProducts, setProductCategoryChange } from "../../store/actions";
+import { getProducts, setProductCategoryChange, setBackFromSearch, setResetProducts } from "../../store/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { history } from '../../utils';
+
+let CurrentPage = 1;
 
 const MobileProductsPage = (props) => {
-	const [page, setPage] = useState(1);
 	const [hasMore, setHasMore] = useState(true);
 
 	const fetchMoreData = () => {
-		if (props.products >= props.totalProducts) {
+		if (props.products.length >= props.totalProducts) {
 			setHasMore(false);
 			return;
 		}
 
-		setPage(page + 1);
-		props.getProducts(page);
+		CurrentPage += 1;
+		props.getProducts(CurrentPage);
 	};
 
-	useEffect(() => {
-		props.getProducts(page);
-	}, []);
+	useEffect( async () => {
+		if(!props.isBack){
+			CurrentPage = 1;
+			props.setResetProducts();
+			await props.getProducts(1);
+			setHasMore(true);
+			props.setBackFromSearch(false);
+		}else{
+			props.setBackFromSearch(false);
+		}
+	}, [history.location.search]);
 
 	return (
 		<div>
 			<InfiniteScroll
 				className="grid grid-cols-2"
 				dataLength={props.products.length}
-				next={fetchMoreData}
+				next={() =>fetchMoreData()}
 				hasMore={hasMore}
 				loader={<h4>Loading...</h4>}
 				endMessage={<h4>No More Items</h4>}
@@ -67,8 +77,9 @@ const MobileProductsPage = (props) => {
 	);
 };
 
-const mapStateToProps = ({ dataSkoreProductsState }) => ({
+const mapStateToProps = ({ dataSkoreProductsState,uiState }) => ({
 	products: dataSkoreProductsState.products,
+	isBack: uiState.isBackFromProductDetail,
 	totalProducts: dataSkoreProductsState.totalProducts,
 	category: dataSkoreProductsState.category,
 });
@@ -76,4 +87,6 @@ const mapStateToProps = ({ dataSkoreProductsState }) => ({
 export default connect(mapStateToProps, {
 	getProducts,
 	setProductCategoryChange,
+	setBackFromSearch,
+	setResetProducts
 })(MobileProductsPage);
