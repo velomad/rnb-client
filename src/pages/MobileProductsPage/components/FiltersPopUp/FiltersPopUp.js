@@ -12,7 +12,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import { connect } from "react-redux";
 import { setFilterPopUpAction } from "../../../../store/actions";
-import { Text } from "../../../../components";
+import { Button, Text } from "../../../../components";
 import PriceSlider from "./PriceSlider";
 import PriceFilter from "./PriceFilter";
 import GenderFilter from "./GenderFilter";
@@ -82,7 +82,7 @@ const FiltersPopUp = (props) => {
 				<div className="grid grid-cols-3 h-full">
 					<div className="col-span-1 bg-gray-200 h-full">
 						<ul className="">
-							{filters.map((el,index) => (
+							{filters.map((el, index) => (
 								<React.Fragment>
 									<li className={`p-3`} onClick={() => handleSelectFilter(el)}>
 										<Text size="md" variant="primary">
@@ -104,6 +104,16 @@ const FiltersPopUp = (props) => {
 						) : filterOption === "Brand" ? (
 							<BrandFilter />
 						) : null}
+					</div>
+				</div>
+				<hr style={{ color: "solid black 1px" }} />
+
+				<div className="flex items-center justify-around p-4">
+					<div>
+						<Button>CLOSE</Button>
+					</div>
+					<div>
+						<Button variant="primary" size="small" animate={true}>APPLY</Button>
 					</div>
 				</div>
 			</Dialog>

@@ -2,10 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
+import "./priceslider.css";
 
 const useStyles = makeStyles({
 	root: {
-        width: 300,
+		width: 300,
 	},
 });
 
@@ -13,7 +14,7 @@ function valuetext(value) {
 	return `${value}°C`;
 }
 
-export default function PriceSlider() {
+export default function PriceSlider(props) {
     const classes = useStyles();
     const start = 0
     const end = 100
@@ -21,6 +22,7 @@ export default function PriceSlider() {
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
+		props.getSliderValue(newValue)
 	};
 
 	return (

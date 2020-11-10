@@ -1,0 +1,9 @@
+.MuiSlider-track{
+    color:deeppink
+}
+
+.MuiSlider-thumb{
+    color:#555;
+    size: 50px;
+    
+}
