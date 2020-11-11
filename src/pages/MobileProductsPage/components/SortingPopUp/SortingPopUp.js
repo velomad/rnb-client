@@ -45,13 +45,15 @@ const SortingPopUp = (props) => {
 	};
 
 	const handleSort = (sortWith) => {
-		window.history.pushState(
-			{
-				path: history.location.search + `&sort=${sortWith}`,
-			},
-			"",
-			history.location.search + `&sort=${sortWith}`,
-		);
+		// window.history.pushState(
+		// 	{
+		// 		path: "products"+history.location.search + `&sort=${sortWith}`,
+		// 	},
+		// 	"",
+		// 	"#/products"+history.location.search + `&sort=${sortWith}`,
+		// );
+
+
 		handleClose();
 	};
 

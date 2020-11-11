@@ -11,7 +11,7 @@ const Heading = () => {
                         size="lg"
                         >Casual T-Shirt - 254 Products</Text>
             </Grid> */}
-			<Grid container>
+			<Grid container className="p-2">
 				<Grid item xs={12} md={2}>
 					<Grid container justify="space-between">
 						<Grid item>

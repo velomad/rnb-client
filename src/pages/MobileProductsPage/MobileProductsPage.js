@@ -11,7 +11,7 @@ let CurrentPage = 1;
 
 const MobileProductsPage = (props) => {
 	const [hasMore, setHasMore] = useState(true);
-
+	
 	const fetchMoreData = () => {
 		if (props.products.length >= props.totalProducts) {
 			setHasMore(false);
@@ -21,6 +21,7 @@ const MobileProductsPage = (props) => {
 		CurrentPage += 1;
 		props.getProducts(CurrentPage);
 	};
+
 
 	useEffect( async () => {
 		if(!props.isBack){

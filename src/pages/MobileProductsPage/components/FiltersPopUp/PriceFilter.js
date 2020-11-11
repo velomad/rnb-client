@@ -14,7 +14,7 @@ const PriceFilter = () => {
 
 	return (
 		<div className="p-4 h-full g-gray-100 ">
-			<div>
+			<div className="md:hidden">
 				<Text variant="primary" size="lg" weight="500">
 					Select the price range
 				</Text>
