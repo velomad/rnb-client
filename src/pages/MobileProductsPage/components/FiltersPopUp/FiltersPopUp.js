@@ -44,6 +44,7 @@ const FiltersPopUp = (props) => {
 		currentObj = {'gender': Currentgender}
 		setGenderObj(currentObj);
 	};
+	const [discountFilterValue, setDiscountFilterValue] = React.useState("10");
 
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
@@ -54,6 +55,12 @@ const FiltersPopUp = (props) => {
 	const handleSelectFilter = (filter) => {
 		setFilterOption(filter);
 	};
+
+	const setDiscount = (value) => {
+		setDiscountFilterValue(value);
+	};
+
+	console.log(discountFilterValue);
 
 	const classes = useStyles();
 	return (
@@ -107,7 +114,7 @@ const FiltersPopUp = (props) => {
 						) : filterOption === "Price" ? (
 							<PriceFilter />
 						) : filterOption === "Discount" ? (
-							<DiscountFilter />
+							<DiscountFilter getDiscountFilterValue={setDiscount} discountFilterValue={discountFilterValue}/>
 						) : filterOption === "Brand" ? (
 							<BrandFilter />
 						) : null}
@@ -116,11 +123,13 @@ const FiltersPopUp = (props) => {
 				<hr style={{ color: "solid black 1px" }} />
 
 				<div className="flex items-center justify-around p-4">
-					<div onClick={() =>handleClose()}>
+					<div onClick={() => handleClose()}>
 						<Button>CLOSE</Button>
 					</div>
 					<div>
-						<Button variant="primary" size="small" animate={true}>APPLY</Button>
+						<Button variant="primary" size="small" animate={true}>
+							APPLY
+						</Button>
 					</div>
 				</div>
 			</Dialog>
