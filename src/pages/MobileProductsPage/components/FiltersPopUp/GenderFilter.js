@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 
-const GenderFilter = () => {
+const GenderFilter = (props) => {
+	const [selectedGender, setSelectedGender] = useState('');
 
-	const handleGenderSelection = (name) => {
+	const handleGenderSelection = (Currentgender) => {
+		setSelectedGender(Currentgender);
+		props.setParentGender(Currentgender);
 	};
 
 	return (
 		<div>
 			<ul className="p-4 py-4 space-y-6">
 				<li onClick={() => handleGenderSelection("men")}>
-					<div className=" flex items-center space-x-6">
+					<div className={selectedGender === 'men'?"flex items-center space-x-6 rounded text-white bg-pink-500 transition duration-500 ease-in-out" : "flex items-center space-x-6"} >
 						<div>
 							<img src="/static/images/male.png" width="50" />
 						</div>
@@ -17,7 +20,7 @@ const GenderFilter = () => {
 					</div>
 				</li>
 				<li onClick={() => handleGenderSelection("women")}>
-					<div className=" flex items-center space-x-6">
+					<div className={selectedGender === 'women'?"flex items-center space-x-6 rounded text-white bg-pink-500 transition duration-500 ease-in-out" : "flex items-center space-x-6"}>
 						<div>
 							<img src="/static/images/female.png" width="50" />
 						</div>

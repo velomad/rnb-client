@@ -37,6 +37,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const FiltersPopUp = (props) => {
 	const [filterOption, setFilterOption] = useState("Gender");
+	const [genderObj, setGenderObj] = useState({});
+
+	const handleCurrentGender = (Currentgender) =>{
+		let currentObj = {};
+		currentObj = {'gender': Currentgender}
+		setGenderObj(currentObj);
+	};
 
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
@@ -96,7 +103,7 @@ const FiltersPopUp = (props) => {
 					</div>
 					<div className="col-span-2">
 						{filterOption === "Gender" ? (
-							<GenderFilter />
+							<GenderFilter setParentGender={handleCurrentGender} />
 						) : filterOption === "Price" ? (
 							<PriceFilter />
 						) : filterOption === "Discount" ? (
