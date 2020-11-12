@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const GenderFilter = () => {
-
 	const handleGenderSelection = (name) => {
+		
 	};
 
 	return (
