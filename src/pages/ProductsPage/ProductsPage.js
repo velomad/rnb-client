@@ -17,6 +17,7 @@ const ProductsPage = (props) => {
 		setPage(value);
 	};
 
+
 	useEffect(async () => {
 		if(!props.isBack){
 			props.setResetProducts();
@@ -100,9 +101,10 @@ const ProductsPage = (props) => {
 	);
 };
 
-const mapStateToProps = ({ dataSkoreProductsState }) => ({
+const mapStateToProps = ({ dataSkoreProductsState, uiState }) => ({
 	products: dataSkoreProductsState.products,
 	totalProducts: dataSkoreProductsState.totalProducts,
+	isBack: uiState.isBackFromProductDetail,
 	category: dataSkoreProductsState.category,
 });
 

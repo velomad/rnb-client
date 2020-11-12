@@ -5,11 +5,11 @@ import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
 import { connect } from "react-redux";
 import { getProducts, setProductCategoryChange, setBackFromSearch, setResetProducts } from "../../store/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { history } from '../../utils';
+import { history, useQuery} from '../../utils';
 
 let CurrentPage = 1;
 
-const MobileProductsPage = (props) => {
+const MobileProductsPage = (props, location) => {
 	const [hasMore, setHasMore] = useState(true);
 	
 	const fetchMoreData = () => {
@@ -22,8 +22,13 @@ const MobileProductsPage = (props) => {
 		props.getProducts(CurrentPage);
 	};
 
-
 	useEffect( async () => {
+
+		// const params = new URLSearchParams(location.search)
+
+		// const q = params.get("q")
+
+
 		if(!props.isBack){
 			CurrentPage = 1;
 			props.setResetProducts();

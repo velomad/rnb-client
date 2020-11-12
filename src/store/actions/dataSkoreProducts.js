@@ -15,6 +15,9 @@ export const getProducts = (page) => async (dispatch) => {
 
 		var URL = history.location.pathname + history.location.search;
 
+		history.listen(() => {
+			return
+		})
 		const API_URL = `${baseUrl}/api/v1${URL}&page=${page}&limit=30&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`;
 
 		const resp = await Axios.get(API_URL);

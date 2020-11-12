@@ -10,7 +10,7 @@ const Pagination = (props) => {
   
 	return (
 		<div>
-			<Page count={Math.ceil(props.totalProducts/30)} defaultPage={1} color="secondary" page={page} onChange={handleChange}  />
+			<Page count={Math.ceil(props.totalProducts/30)} color="secondary" page={page} onChange={handleChange}  />
 		</div>
 	);
 };

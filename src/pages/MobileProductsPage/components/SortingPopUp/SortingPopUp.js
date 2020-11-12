@@ -45,16 +45,24 @@ const SortingPopUp = (props) => {
 	};
 
 	const handleSort = (sortWith) => {
-		// window.history.pushState(
-		// 	{
-		// 		path: "products"+history.location.search + `&sort=${sortWith}`,
-		// 	},
-		// 	"",
-		// 	"#/products"+history.location.search + `&sort=${sortWith}`,
-		// );
+		var parsedQueryParams = qs.parse(history.location.search);
+		const queryParamsArry = Object.keys(parsedQueryParams);
+		const queryParamsValueArry = Object.values(parsedQueryParams);
 
-
-		handleClose();
+		if (
+			queryParamsArry.includes("sort") === true &&
+			queryParamsValueArry.includes(sortWith)
+		) {
+			handleClose();
+		} else {
+			if ("sort" in parsedQueryParams) {
+				delete parsedQueryParams.sort;
+			}
+			history.push(
+				`/products?${qs.stringify(parsedQueryParams)}&sort=${sortWith}`,
+			);
+			handleClose();
+		}
 	};
 
 	const classes = useStyles();
@@ -134,7 +142,7 @@ const SortingPopUp = (props) => {
 								</Text>
 							</div>
 						</li>
-						<li className="py-3">
+						<li className="py-3" onClick={() => handleSort("high")}>
 							<div className="flex space-x-4">
 								<svg
 									width="24"
@@ -155,7 +163,7 @@ const SortingPopUp = (props) => {
 								</Text>
 							</div>
 						</li>
-						<li className="py-3">
+						<li className="py-3" onClick={() => handleSort("low")}>
 							<div className="flex space-x-4">
 								<svg
 									width="24"
