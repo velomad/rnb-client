@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import { Text } from "../../../../components";
 import PriceSlider from "./PriceSlider";
 
-const PriceFilter = () => {
-    const [startValue, setStartValue] = useState(0)
-    const [endValue, setEndValue] = useState(100)
+const PriceFilter = (props) => {
+	const [startValue, setStartValue] = useState(0);
+	const [endValue, setEndValue] = useState(20000);
 
-    const sliderValue = (value) => {
-        console.log(value)
-        setStartValue(value[0])
-        setEndValue(value[1])
-    } 
+	const sliderValue = (value) => {
+		props.getPriceFilterValue({
+			"productPrice[gte]": value[0],
+			"productPrice[lte]": value[1],
+		});
+		setStartValue(value[0]);
+		setEndValue(value[1]);
+	};
 
 	return (
 		<div className="p-4 h-full g-gray-100 ">
@@ -25,7 +28,7 @@ const PriceFilter = () => {
 				</Text>
 			</div>
 			<div className="mt-10 px-8 flex justify-center">
-				<PriceSlider getSliderValue={sliderValue}/>
+				<PriceSlider getSliderValue={sliderValue} />
 			</div>
 			<div className="px-8 flex justify-between">
 				<div>

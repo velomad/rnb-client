@@ -18,6 +18,8 @@ import PriceFilter from "./PriceFilter";
 import GenderFilter from "./GenderFilter";
 import DiscountFilter from "./DiscountFilter";
 import BrandFilter from "./BrandFilter";
+import qs from "query-string";
+import { history } from "../../../../utils";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -37,20 +39,42 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const FiltersPopUp = (props) => {
 	const [filterOption, setFilterOption] = useState("Gender");
-	const [genderObj, setGenderObj] = useState({});
+	const [genderFilterValue, setGenderFilterValue] = useState("");
+	const [discountFilterValue, setDiscountFilterValue] = React.useState("");
+	const [priceFilterValue, setPriceFilterValue] = React.useState("");
 
-	const handleCurrentGender = (Currentgender) =>{
-		let currentObj = {};
-		currentObj = {'gender': Currentgender}
-		setGenderObj(currentObj);
+	const handleCurrentGender = (currentGender) => {
+		setGenderFilterValue({ gender: currentGender });
 	};
-	const [discountFilterValue, setDiscountFilterValue] = React.useState("10");
+
+	const setPrice = (val) => {
+		setPriceFilterValue(val);
+	};
+
+	// const parsedQueryParams = qs.parse(history.location.search);
+	let filterParams = {};
+	console.log("beforeeee", filterParams);
+	Object.assign(
+		filterParams,
+		genderFilterValue,
+		discountFilterValue !== ""
+			? { discountPercent: discountFilterValue }
+			: null,priceFilterValue
+	);
+	console.log("afterrrr", filterParams);
+
+	const queryParams = qs.stringify(filterParams);
 
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
 	};
 
-	const filters = ["Gender", "Brand", "Price", "Discount"];
+	const handleApplyFilter = () => {
+		history.push(`/products${history.location.search}&${queryParams}`);
+		handleClose();
+	};
+
+	const filters = ["Gender", "Price", "Discount"];
 
 	const handleSelectFilter = (filter) => {
 		setFilterOption(filter);
@@ -59,8 +83,6 @@ const FiltersPopUp = (props) => {
 	const setDiscount = (value) => {
 		setDiscountFilterValue(value);
 	};
-
-	console.log(discountFilterValue);
 
 	const classes = useStyles();
 	return (
@@ -112,9 +134,12 @@ const FiltersPopUp = (props) => {
 						{filterOption === "Gender" ? (
 							<GenderFilter setParentGender={handleCurrentGender} />
 						) : filterOption === "Price" ? (
-							<PriceFilter />
+							<PriceFilter getPriceFilterValue={setPrice} />
 						) : filterOption === "Discount" ? (
-							<DiscountFilter getDiscountFilterValue={setDiscount} discountFilterValue={discountFilterValue}/>
+							<DiscountFilter
+								getDiscountFilterValue={setDiscount}
+								discountFilterValue={discountFilterValue}
+							/>
 						) : filterOption === "Brand" ? (
 							<BrandFilter />
 						) : null}
@@ -126,7 +151,7 @@ const FiltersPopUp = (props) => {
 					<div onClick={() => handleClose()}>
 						<Button>CLOSE</Button>
 					</div>
-					<div>
+					<div onClick={handleApplyFilter}>
 						<Button variant="primary" size="small" animate={true}>
 							APPLY
 						</Button>

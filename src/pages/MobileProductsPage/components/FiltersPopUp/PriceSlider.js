@@ -15,19 +15,21 @@ function valuetext(value) {
 }
 
 export default function PriceSlider(props) {
-    const classes = useStyles();
-    const start = 0
-    const end = 100
+	const classes = useStyles();
+	const start = 0;
+	const end = 20000;
 	const [value, setValue] = React.useState([start, end]);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
-		props.getSliderValue(newValue)
+		props.getSliderValue(newValue);
 	};
 
 	return (
 		<div className={classes.root}>
 			<Slider
+				min={0}
+				max={2000}
 				value={value}
 				onChange={handleChange}
 				valueLabelDisplay="auto"
