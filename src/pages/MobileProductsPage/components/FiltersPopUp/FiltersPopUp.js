@@ -91,7 +91,7 @@ const FiltersPopUp = (props) => {
 				delete parsedQueryParams.gender;
 			}
 			history.push(`/products${location}&${queryParams}`);
-			handleClose();
+			// handleClose();
 		}
 	};
 
