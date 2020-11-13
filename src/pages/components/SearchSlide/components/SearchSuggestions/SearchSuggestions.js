@@ -30,11 +30,11 @@ const SearchSuggestions = ({
 	};
 
 	return (
-		<div className="p-4 bg-gray-200 h-full">
+		<div className="p-4  bg-gray-100">
 			{isSuggestionsLoading === true ? (
 				<SuggestionsLoading />
 			) : (
-				<ul>
+				<ul className="">
 					{suggestions.map((element) => (
 						<React.Fragment>
 							<li

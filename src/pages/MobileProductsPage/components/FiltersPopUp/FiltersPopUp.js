@@ -47,9 +47,7 @@ const FiltersPopUp = (props) => {
 
 	const [filterOption, setFilterOption] = useState("Gender");
 	const [genderFilterValue, setGenderFilterValue] = useState("");
-	const [discountFilterValue, setDiscountFilterValue] = React.useState(
-		selectedDiscount,
-	);
+	const [discountFilterValue, setDiscountFilterValue] = React.useState("");
 	const [priceFilterValue, setPriceFilterValue] = React.useState("");
 
 	const handleCurrentGender = (currentGender) => {
@@ -72,30 +70,63 @@ const FiltersPopUp = (props) => {
 	);
 	console.log("afterrrr", filterParams);
 
-	const queryParams = qs.stringify(filterParams);
-
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
 	};
 
 	const handleApplyFilter = () => {
-		var location = history.location.search;
+		// query params comming form the filtered states object to pe passed in push method
+		const queryParams = qs.stringify(filterParams);
+
+		// parsed queryparams from the current URL
+		var parsedQueryParams = qs.parse(history.location.search);
+
+		// the object of selected filters
+		const queryParamsKeyArry = Object.keys(parsedQueryParams);
+		const queryParamsValueArry = Object.values(parsedQueryParams);
 
 		if (
-			Object.keys(filterParams).includes("gender") === true &&
-			Object.values(filterParams).includes(genderFilterValue)
+			queryParamsKeyArry.includes("gender") === true &&
+			queryParamsValueArry.includes(genderFilterValue.gender)
+		) {
+			handleClose();
+		} else if (
+			queryParamsKeyArry.includes("discountPercent") === true &&
+			queryParamsValueArry.includes(discountFilterValue.discountPercent)
 		) {
 			handleClose();
 		} else {
-			if ("gender" in filterParams) {
+			if (
+				"gender" in parsedQueryParams ||
+				"discountPercent" in parsedQueryParams
+			) {
 				delete parsedQueryParams.gender;
+				delete parsedQueryParams.discountPercent;
 			}
-			history.push(`/products${location}&${queryParams}`);
-			// handleClose();
+			history.push(
+				`/products?${qs.stringify(parsedQueryParams)}&${queryParams}`,
+			);
+			handleClose();
 		}
+
+		// var location = history.location.search;
+
+		// if (
+		// 	Object.keys(filterParams).includes("gender") === true &&
+		// 	Object.values(filterParams).includes(genderFilterValue)
+		// ) {
+		// 	handleClose();
+		// } else {
+		// 	if ("gender" in filterParams) {
+		// 		delete parsedQueryParams.gender;
+		// 	}
+		// 	history.push(`/products${location}&${queryParams}`);
+		// 	handleClose();
+		// }
 	};
 
-	const filters = ["Gender", "Price", "Discount"];
+	// const filters = ["Gender", "Price", "Discount"];
+	const filters = ["Gender"];
 
 	const handleSelectFilter = (filter) => {
 		setFilterOption(filter);
@@ -164,6 +195,7 @@ const FiltersPopUp = (props) => {
 							/>
 						) : filterOption === "Discount" ? (
 							<DiscountFilter
+								selectedDiscount={selectedDiscount}
 								getDiscountFilterValue={setDiscount}
 								discountFilterValue={discountFilterValue}
 								parsedQueryParams={parsedQueryParams}

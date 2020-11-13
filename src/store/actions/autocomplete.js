@@ -5,7 +5,7 @@ export const getSuggestions = (searchQuery) => async (dispatch) => {
 	dispatch({ type: GET_SUGGESTIONS_LOAD });
 	try {
 		
-		const baseUrl = "https://reachnbuy.herokuapp.com"
+		const baseUrl = "https://reachnbuy.com"
 		const URL = `${baseUrl}/api/v1/search?term=${searchQuery}&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`;
 		const resp = await Axios.get(URL);
 		dispatch({ type: GET_SUGGESTIONS_FETCH, payload: resp.data.suggestions });

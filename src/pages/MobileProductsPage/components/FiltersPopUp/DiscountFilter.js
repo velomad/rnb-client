@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text } from "../../../../components";
 import {
 	Radio,
@@ -33,6 +33,7 @@ const DiscountFilter = (props) => {
 					<RadioGroup
 						aria-label="discount"
 						name="discount"
+						defaultValue={props.selectedDiscount}
 						value={props.discountFilterValue}
 						onChange={getDiscount}
 					>
