@@ -20,6 +20,7 @@ const RadioLabel = (props) => {
 
 const DiscountFilter = (props) => {
 	const discounts = [10, 20, 30, 40, 50, 60, 70];
+	
 
 	const getDiscount = (e) => {
 		props.getDiscountFilterValue(e.target.value);

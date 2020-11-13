@@ -1,5 +1,6 @@
 import { Text } from "../../../../components";
 import { history } from "../../../../utils";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MProductCard = ({
 	image,
@@ -28,7 +29,13 @@ const MProductCard = ({
 				) : null}
 
 				<div className="flex justify-center">
-					<img src={image} className="object-contain h-48 w-full" />
+					<LazyLoadImage
+						effect="blur"
+						src={image}
+						key={id}
+						className="object-contain h-48 w-full"
+					/>
+					{/* <img src={image} className="" /> */}
 				</div>
 				<div>
 					<div className="p-1">
@@ -58,7 +65,7 @@ const MProductCard = ({
 					<div className="flex px-1 space-x-4">
 						<div>
 							<Text size="sm" weight="600">
-							&#8377; {price}
+								&#8377; {price}
 							</Text>
 						</div>
 						{price !== priceStrike && (

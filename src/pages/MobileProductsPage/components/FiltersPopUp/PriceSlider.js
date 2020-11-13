@@ -16,8 +16,8 @@ function valuetext(value) {
 
 export default function PriceSlider(props) {
 	const classes = useStyles();
-	const start = 0;
-	const end = 20000;
+	const start = props.start !== "" ? props.start : 0;
+	const end = props.end !== "" ? props.end : 20000 ;
 	const [value, setValue] = React.useState([start, end]);
 
 	const handleChange = (event, newValue) => {

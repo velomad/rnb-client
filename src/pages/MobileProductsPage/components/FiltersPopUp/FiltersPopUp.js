@@ -38,9 +38,18 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const FiltersPopUp = (props) => {
+	const parsedQueryParams = qs.parse(history.location.search);
+	let selectedDiscount;
+
+	if ("discountPercent" in parsedQueryParams) {
+		selectedDiscount = parsedQueryParams.discountPercent;
+	}
+
 	const [filterOption, setFilterOption] = useState("Gender");
 	const [genderFilterValue, setGenderFilterValue] = useState("");
-	const [discountFilterValue, setDiscountFilterValue] = React.useState("");
+	const [discountFilterValue, setDiscountFilterValue] = React.useState(
+		selectedDiscount,
+	);
 	const [priceFilterValue, setPriceFilterValue] = React.useState("");
 
 	const handleCurrentGender = (currentGender) => {
@@ -51,7 +60,6 @@ const FiltersPopUp = (props) => {
 		setPriceFilterValue(val);
 	};
 
-	// const parsedQueryParams = qs.parse(history.location.search);
 	let filterParams = {};
 	console.log("beforeeee", filterParams);
 	Object.assign(
@@ -59,7 +67,8 @@ const FiltersPopUp = (props) => {
 		genderFilterValue,
 		discountFilterValue !== ""
 			? { discountPercent: discountFilterValue }
-			: null,priceFilterValue
+			: null,
+		priceFilterValue,
 	);
 	console.log("afterrrr", filterParams);
 
@@ -70,8 +79,20 @@ const FiltersPopUp = (props) => {
 	};
 
 	const handleApplyFilter = () => {
-		history.push(`/products${history.location.search}&${queryParams}`);
-		handleClose();
+		var location = history.location.search;
+
+		if (
+			Object.keys(filterParams).includes("gender") === true &&
+			Object.values(filterParams).includes(genderFilterValue)
+		) {
+			handleClose();
+		} else {
+			if ("gender" in filterParams) {
+				delete parsedQueryParams.gender;
+			}
+			history.push(`/products${location}&${queryParams}`);
+			handleClose();
+		}
 	};
 
 	const filters = ["Gender", "Price", "Discount"];
@@ -119,7 +140,7 @@ const FiltersPopUp = (props) => {
 					<div className="col-span-1 bg-gray-200 h-full">
 						<ul className="">
 							{filters.map((el, index) => (
-								<React.Fragment>
+								<React.Fragment key={index}>
 									<li className={`p-3`} onClick={() => handleSelectFilter(el)}>
 										<Text size="md" variant="primary">
 											{el}
@@ -132,16 +153,24 @@ const FiltersPopUp = (props) => {
 					</div>
 					<div className="col-span-2">
 						{filterOption === "Gender" ? (
-							<GenderFilter setParentGender={handleCurrentGender} />
+							<GenderFilter
+								setParentGender={handleCurrentGender}
+								parsedQueryParams={parsedQueryParams}
+							/>
 						) : filterOption === "Price" ? (
-							<PriceFilter getPriceFilterValue={setPrice} />
+							<PriceFilter
+								getPriceFilterValue={setPrice}
+								parsedQueryParams={parsedQueryParams}
+							/>
 						) : filterOption === "Discount" ? (
 							<DiscountFilter
 								getDiscountFilterValue={setDiscount}
 								discountFilterValue={discountFilterValue}
+								parsedQueryParams={parsedQueryParams}
+								parsedQueryParams={parsedQueryParams}
 							/>
 						) : filterOption === "Brand" ? (
-							<BrandFilter />
+							<BrandFilter parsedQueryParams={parsedQueryParams} />
 						) : null}
 					</div>
 				</div>
