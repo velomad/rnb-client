@@ -9,9 +9,9 @@ const Filters = () => {
 				<Text weight={600} size="base" variant="secondary">
 					PRICE
 				</Text>
-				<div className="mt-5">
+				{/* <div className="mt-5">
 					<PriceFilter />
-				</div>
+				</div> */}
 			</div>
 			<div className="my-5">
 				<Divider variant="fullWidth" />

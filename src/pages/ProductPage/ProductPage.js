@@ -20,7 +20,7 @@ const ProductPage = (props) => {
 	}
 	const getInfo = async () => {
 		const result = await Axios.get(
-			`https://reachnbuy.herokuapp.com/api/v1/product?id=${productId}&api_key=123`,
+			`https://reachnbuy.com/api/v1/product?id=${productId}&api_key=123`,
 		);
 		setproduct(result.data.result);
 	};
@@ -80,7 +80,7 @@ const ProductPage = (props) => {
 						</Grid>
 						<div className="mt-4">
 							<Text size="base" variant="danger" weight="600">
-								{product.discountPercent}
+								{product.discountPercent}% OFF
 							</Text>
 						</div>
 					</div>
