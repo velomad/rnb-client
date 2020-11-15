@@ -26,7 +26,7 @@ const SearchSuggestions = ({
 		// suggestedTermCallback(term);
 		setSearchTerm(term)
 		handleClose()
-		history.push(`/search?term=${term}`)
+		history.push(`/items/search?term=${term}`)
 	};
 
 	return (

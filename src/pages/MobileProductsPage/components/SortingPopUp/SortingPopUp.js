@@ -45,6 +45,7 @@ const SortingPopUp = (props) => {
 	};
 
 	const handleSort = (sortWith) => {
+		var pathName = history.location.pathname
 		var parsedQueryParams = qs.parse(history.location.search);
 		const queryParamsArry = Object.keys(parsedQueryParams);
 		const queryParamsValueArry = Object.values(parsedQueryParams);
@@ -59,8 +60,9 @@ const SortingPopUp = (props) => {
 				delete parsedQueryParams.sort;
 			}
 			history.push(
-				`/products?${qs.stringify(parsedQueryParams)}&sort=${sortWith}`,
+				`${pathName}?${qs.stringify(parsedQueryParams)}&sort=${sortWith}`,
 			);
+			window.scrollTo(0,0)
 			handleClose();
 		}
 	};

@@ -22,12 +22,13 @@ const MobileProductsPage = (props, location) => {
 		props.getProducts(CurrentPage);
 	};
 
+
 	useEffect( async () => {
 
 		// const params = new URLSearchParams(location.search)
 
 		// const q = params.get("q")
-
+		console.log(history.location.pathname)
 
 		if(!props.isBack){
 			CurrentPage = 1;

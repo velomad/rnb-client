@@ -12,7 +12,7 @@ const SearchChip = ({ removeSearchTerm, searchTerms, handleClose }) => {
 
 	const handleClick = (term) => {
 		handleClose();
-		history.push(`/search?term=${term}`);
+		history.push(`/items/search?term=${term}`);
 	};
 
 	const recentSearches = JSON.parse(localStorage.getItem("recentSearches"));
