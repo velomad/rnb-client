@@ -1,9 +1,10 @@
+const { MainSlider } = require("./components")
 
 const LandingPage = () => {
 
     return (
         <div>
-         Landing page content goes here
+         <MainSlider />
         </div>
     )
 }
