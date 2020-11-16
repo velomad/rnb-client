@@ -48,7 +48,7 @@ const ProductCard = ({
 						<Wishlist className="text-red-600" />
 					</div> */}
 					<div className="flex justify-center transition duration-700 ease-in-out transform hover:-translate-y-2">
-						<img src={image} class="object-contain h-48 w-full" />
+						<img src={image} className="object-contain h-48 w-full" />
 					</div>
 					<div className="p-2">
 						<div>
