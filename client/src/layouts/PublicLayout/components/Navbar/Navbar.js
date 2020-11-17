@@ -1,38 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import React from "react";
 import "./header.css";
 import { Secondary } from "./components";
 import { Primary } from "./components";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 const Navbar = () => {
-	// const [show, setShow] = useState(true);
-	// const [scrollPos, setScrollPos] = useState(window.pageYOffset);
+	const [hideOnScroll, setHideOnScroll] = useState(true);
+	useScrollPosition(
+		({ prevPos, currPos }) => {
+			const isShow = currPos.y > prevPos.y;
+			if (isShow !== hideOnScroll) setHideOnScroll(isShow);
+		},
+		[hideOnScroll],
+		false,
+		false,
+		300,
+	);
 
-	// useEffect(() => {
-	// 	window.addEventListener("scroll", handleScroll);
+	console.log(hideOnScroll);
 
-	// 	return () => window.removeEventListener("scroll", handleScroll);
-	// }, []);
-
-	// const handleScroll = () => {
-	// 	// console.log(document.body.getBoundingClientRect());
-	// 	// setScrollPos(document.body.getBoundingClientRect().top);
-	// 	// setShow(document.body.getBoundingClientRect().top > scrollPos);
-
-	// 	const currentScrollPos = window.pageYOffset;
-	// 	const visible = scrollPos > currentScrollPos;
-	// 	setScrollPos(currentScrollPos);
-	// 	setShow(visible);
-	// };
-
-	return (
-		<header
-			// className={`fixed top-0 w-full z-30 ${show ? "visible" : "invisible"}`}
-			className="bg-gray-900 shadow "
-		>
-			<Secondary />
-			<Primary />
-		</header>
+	return useMemo(
+		() => (
+			<header
+				className={`bg-gray-900 shadow fixed w-full z-30 duration-75 shadow-2xl ${
+					hideOnScroll ? " ease-in" : "ease-out"
+				} ${hideOnScroll ? "visible" : "invisible"} ${
+					hideOnScroll
+						? "transition"
+						: "transform translate-y-0 -translate-y-full"
+				} `}
+			>
+				<div className="">
+					<Secondary />
+					<Primary />
+				</div>
+			</header>
+		),
+		[hideOnScroll],
 	);
 };
 
