@@ -1,11 +1,13 @@
 import { Navbar, Footer } from "./components";
 import { SearchSlide } from "../../pages/components";
+import { history } from "../../utils";
 
 function PublicLayout(props) {
+	console.log(history.location.pathname);
 	const { children, withFooter = true } = props;
 	return (
 		<div>
-			<div style={{ paddingBottom: "150px" }}>
+			<div style={{ paddingBottom: "160px" }}>
 				<Navbar />
 			</div>
 
@@ -14,9 +16,16 @@ function PublicLayout(props) {
 
 			<div className="p-0">{children}</div>
 
-			<div 
-			style={{paddingBottom:50}}
-			>{withFooter && <Footer />}</div>
+			<div
+				style={
+					history.location.pathname === "/products" ||
+					history.location.pathname === "/items/search"
+						? { paddingBottom: 50 }
+						: null
+				}
+			>
+				{withFooter && <Footer />}
+			</div>
 		</div>
 	);
 }

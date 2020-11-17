@@ -27,11 +27,11 @@ const ProductPage = (props) => {
 
 	return (
 		<section class="text-gray-700 body-font overflow-hidden">
-			<div class="container px-5 py-20 mx-auto">
+			<div class="container px-5 py-5 mx-auto">
 				<ArrowBackIcon
 					fontSize="large"
-					onClick={() => goto()}
-					className="cursor-pointer"
+					onClick={goto}
+					className="cursor-pointer mb-2"
 				/>
 				<div class="lg:w-4/5 mx-auto flex flex-wrap items-center relative mt-6">
 					<img
@@ -41,16 +41,17 @@ const ProductPage = (props) => {
 						src={product.imageUrl}
 					/>
 					<div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-						<Text size="xl" variant="danger" weight="700">
-							{product.website}
-						</Text>
-						<h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-							{product.brandName}
-						</h1>
-						<h2 class="text-lg title-font text-gray-500 tracking-widest">
-							{product.productName}
-						</h2>
-
+						<div className="space-y-4">
+							<Text size="xl" variant="danger" weight="700">
+								{product.website}
+							</Text>
+							<h1 class="text-gray-900 text-2xl title-font font-medium mb-1">
+								{product.brandName}
+							</h1>
+							<h2 class="text-lg title-font text-gray-500 tracking-widest">
+								{product.productName}
+							</h2>
+						</div>
 						{product.size &&
 							product.size.map((e) => (
 								<div className="inline-block mr-8 mt-5">
@@ -71,7 +72,7 @@ const ProductPage = (props) => {
 								<Grid container spacing={3}>
 									<Grid item>
 										<Text size="xl" variant="secondary">
-										&#8377; {product.productPrice}
+											&#8377; {product.productPrice}
 										</Text>
 									</Grid>
 									<Grid item>
