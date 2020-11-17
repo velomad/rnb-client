@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import { men, women } from "./flipkartMenuData";
 import { amazonmen, amazonwomen } from "./amazonMenuData";
 import { myntramen, myntrawomen } from "./myntraMenuData";
 import { ajiomen, ajiowomen } from "./ajioMenuData";
-import { tatacliqmen, tatacliqwomen } from './tatacliqMenuData';
-import { bewakoofmen, bewakoofwomen } from './bewakoofMenuData';
+import { tatacliqmen, tatacliqwomen } from "./tatacliqMenuData";
+import { bewakoofmen, bewakoofwomen } from "./bewakoofMenuData";
 import { history } from "../../../../../../../utils";
 
 const DynamicContent = (props) => {
@@ -17,42 +17,39 @@ const DynamicContent = (props) => {
 
 	const handleCategoryClick = (categoryName) => {
 		props.hideDropDown();
-		history.push(`/products?website=${props.currentBrand}&category=` + categoryName);
+		history.push(
+			`/products?website=${props.currentBrand}&category=` + categoryName,
+		);
 	};
 	React.useEffect(() => {
-		if (props.currentBrand == 'amazon') {
-			console.log('amazonmen',amazonmen)
-			console.log('amazonwomen',amazonwomen)
+		if (props.currentBrand == "amazon") {
+			console.log("amazonmen", amazonmen);
+			console.log("amazonwomen", amazonwomen);
 			setWebCategoriesMen(amazonmen);
 			setWebCategoriesWomen(amazonwomen);
-		}
-		else if (props.currentBrand == 'flipkart') {
+		} else if (props.currentBrand == "flipkart") {
 			setWebCategoriesMen(men);
 			setWebCategoriesWomen(women);
-		}
-		else if (props.currentBrand == 'myntra') {
+		} else if (props.currentBrand == "myntra") {
 			setWebCategoriesMen(myntramen);
 			setWebCategoriesWomen(myntrawomen);
-		}
-		else if (props.currentBrand == 'ajio') {
+		} else if (props.currentBrand == "ajio") {
 			setWebCategoriesMen(ajiomen);
 			setWebCategoriesWomen(ajiowomen);
-		}
-		else if (props.currentBrand == 'tatacliq') {
+		} else if (props.currentBrand == "tatacliq") {
 			setWebCategoriesMen(tatacliqmen);
 			setWebCategoriesWomen(tatacliqwomen);
-		}
-		else if (props.currentBrand == 'bewakoof') {
+		} else if (props.currentBrand == "bewakoof") {
 			setWebCategoriesMen(bewakoofmen);
 			setWebCategoriesWomen(bewakoofwomen);
 		}
-	}, [props])
+	}, [props]);
 	return (
 		<React.Fragment>
-			{props.categories.map((el,index) => (
+			{props.categories.map((el, index) => (
 				<section
 					key={el}
-					className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-64 drawer_bg"
+					className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-64"
 				>
 					<div
 						class="md:hidden"
@@ -60,7 +57,7 @@ const DynamicContent = (props) => {
 							setMenuItems(el);
 						}}
 					>
-						<div class="grid grid-cols-2 gap-56">
+						<div class="grid grid-cols-2 gap-56 ">
 							<div className="flex items-center">
 								{/* <img
 									src={`/static/images/${el.split('-')[1]}.png`}
@@ -69,10 +66,13 @@ const DynamicContent = (props) => {
 									alt='category'
 								/> */}
 								<button
-									class="uppercase text-xs font-bold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+									class="uppercase text-xs font-semibold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
 									type="button"
 								>
-									{props.activePanel === "men" ? el.split('-')[1] : el.split('-')[1]}
+									{/* {props.activePanel === "men" ? el.split('-')[1] : el.split('-')[1]} */}
+									{props.activePanel === "men"
+										? el.split("-")[1]
+										: el.split("-")[1]}
 								</button>
 							</div>
 							<div className="pt-3">
@@ -93,57 +93,70 @@ const DynamicContent = (props) => {
 							</div>
 						</div>
 					</div>
-					<a
-						class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
-						href="#"
-					>
-						<div className="flex items-center">
-							{/* <img
+					<div>
+						<a
+							class="uppercase text-xs font-bold tracking-wider text-pink-700 hidden md:block"
+							href="#"
+						>
+							<div className="flex items-center">
+								{/* <img
 								src={`/static/images/${el.split('-')[1]}.png`}
 								width="50px"
 								className="mr-1"
 							/> */}
-							<p className='font-extrabold'>{el.split('-')[1]}</p>
-						</div>
-					</a>
-					<article
-						className={
-							props.activatesmallPanel === el
-								? "md:h-auto -mt-4 md:mt-0 overflow-hidden transition duration-700"
-								: "h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden"
-						}
-					>
-						<ul class="my-5 text-sm tracking-wide">
-							{props.activePanel === "men" && !!webCategoriesMen[el]
-								? webCategoriesMen[el].map((el, index) => (
-									<li
-										key={index + "men"}
-										onClick={() => handleCategoryClick(el)}
-										class="my-3 tracking-wide capitalize font-semibold"
-									>
-										{props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-men')[0].replace('-',' '):el}
-									</li>
-								))
-								: null
+								<p className="font-semibold">{el.split("-")[1]}</p>
+							</div>
+						</a>
+						<article
+							className={
+								props.activatesmallPanel === el
+									? "md:h-auto -mt-4 md:mt-0 overflow-hidden transition duration-700"
+									: "h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden"
 							}
-							{props.activePanel !== "men" && !!webCategoriesWomen[el]
-								? webCategoriesWomen[el].map((el, index) => (
-									<li
-										key={index + "women"}
-										onClick={() => handleCategoryClick(el)}
-										class="my-3 tracking-wide capitalize font-semibold"
-									>
-										{props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-women')[0].replace('-',' '):el}
-
-									</li>
-								))
-								: null
-							}
-						</ul>
-					</article>
+						>
+							<ul class="my-5 text-sm tracking-wide">
+								{props.activePanel === "men" && !!webCategoriesMen[el]
+									? webCategoriesMen[el].map((el, index) => (
+											<li
+												key={index + "men"}
+												onClick={() => handleCategoryClick(el)}
+												class="my-3 tracking-wide capitalize"
+											>
+												{/* {props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-men')[0].replace('-',' '):el} */}
+												{props.currentBrand == "myntra"
+													? el.split("-").join(" ")
+													: props.currentBrand == "tatacliq" || "bewakoof"
+													? el.split("-").join(" ")
+													: el.split("-").join(" ")}
+											</li>
+									  ))
+									: null}
+								{props.activePanel !== "men" && !!webCategoriesWomen[el]
+									? webCategoriesWomen[el].map((el, index) => (
+											<li
+												key={index + "women"}
+												onClick={() => handleCategoryClick(el)}
+												class="my-3 tracking-wide capitalize"
+											>
+												{/* {props.currentBrand == "myntra"
+												? el.split("-")[1]
+												: props.currentBrand == "tatacliq" || "bewakoof"
+												? el.split("-women")[0].replace("-", " ")
+												: el} */}
+												{props.currentBrand == "myntra"
+													? el.split("-").join(" ")
+													: props.currentBrand == "tatacliq" || "bewakoof"
+													? el.split("-").join(" ")
+													: el.split("-").join(" ")}
+											</li>
+									  ))
+									: null}
+							</ul>
+						</article>
+					</div>
 				</section>
 			))}
-			</React.Fragment>
+		</React.Fragment>
 	);
 };
 

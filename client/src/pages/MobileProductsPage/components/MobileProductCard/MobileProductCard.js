@@ -20,7 +20,7 @@ const MProductCard = ({
 	return (
 		<div>
 			<div onClick={handleProductClick} className="w-full p-1 h-full">
-				{priceStrike !== price ? (
+				{discount !== null && discount !== "Ne" ? (
 					<div className="absolute p-1 bg-gray-900 z-10">
 						<Text size="xs" variant="white">
 							{discount}% Off
@@ -29,13 +29,22 @@ const MProductCard = ({
 				) : null}
 
 				<div className="flex justify-center">
-					<LazyLoadImage
-						effect="blur"
-						src={image}
-						key={id}
-						className="object-contain h-48 w-full"
-					/>
-					{/* <img src={image} className="" /> */}
+					{image !== null ? (
+						<LazyLoadImage
+							effect="blur"
+							src={image}
+							key={id}
+							className="object-contain h-48 w-full"
+						/>
+					) : (
+						<div className="object-contain h-48 w-full flex">
+							<div className="m-auto">
+								<Text size="base" variant="primary">
+									No Image
+								</Text>
+							</div>
+						</div>
+					)}
 				</div>
 				<div>
 					<div className="p-1">
@@ -63,18 +72,20 @@ const MProductCard = ({
 						</div>
 					</div>
 					<div className="flex px-1 space-x-4">
-						<div>
-							<Text size="sm" weight="600">
-								&#8377; {price}
-							</Text>
-						</div>
-						{price !== priceStrike && (
+						{price && (
+							<div>
+								<Text size="sm" weight="600">
+									&#8377; {price}
+								</Text>
+							</div>
+						)}
+						{price !== priceStrike && priceStrike !== null ? (
 							<div>
 								<Text size="sm" weight="600" variant="primary">
 									<del>&#8377; {priceStrike}</del>
 								</Text>
 							</div>
-						)}
+						) : null}
 					</div>
 					<div className="flex space-x-4 p-1">
 						<div>

@@ -2,10 +2,10 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Text, Button } from "../../components";
 import { Grid } from "@material-ui/core";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import {history} from '../../utils';
-import { connect } from 'react-redux';
-import { setBackFromSearch } from '../../store/actions';
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { history } from "../../utils";
+import { connect } from "react-redux";
+import { setBackFromSearch } from "../../store/actions";
 
 const ProductPage = (props) => {
 	const [product, setproduct] = useState({});
@@ -14,10 +14,10 @@ const ProductPage = (props) => {
 	useEffect(() => {
 		getInfo();
 	}, []);
-	const goto = () =>{
+	const goto = () => {
 		props.setBackFromSearch(true);
 		history.goBack();
-	}
+	};
 	const getInfo = async () => {
 		const result = await Axios.get(
 			`https://reachnbuy.com/api/v1/product?id=${productId}&api_key=123`,
@@ -28,7 +28,11 @@ const ProductPage = (props) => {
 	return (
 		<section class="text-gray-700 body-font overflow-hidden">
 			<div class="container px-5 py-20 mx-auto">
-				<ArrowBackIcon fontSize="large" onClick={()=> goto()} className="cursor-pointer"/>
+				<ArrowBackIcon
+					fontSize="large"
+					onClick={() => goto()}
+					className="cursor-pointer"
+				/>
 				<div class="lg:w-4/5 mx-auto flex flex-wrap items-center relative mt-6">
 					<img
 						alt="ecommerce"
@@ -57,32 +61,42 @@ const ProductPage = (props) => {
 							))}
 
 						<hr className="my-5" />
-						<Grid container justify="space-between" alignItems="center" spacing={2}>
+						<Grid
+							container
+							justify="space-between"
+							alignItems="center"
+							spacing={2}
+						>
 							<Grid item>
 								<Grid container spacing={3}>
 									<Grid item>
 										<Text size="xl" variant="secondary">
-											{product.productPrice}
+										&#8377; {product.productPrice}
 										</Text>
 									</Grid>
 									<Grid item>
 										<Text size="xl" variant="primary">
-											<del>{product.productPriceStrike}</del>
+											<del>&#8377; {product.productPriceStrike}</del>
 										</Text>
 									</Grid>
 								</Grid>
 							</Grid>
-							<Grid item>
+							<Grid
+								item
+								onClick={() => window.open(product.productLink, "_blank")}
+							>
 								<Button size="base" variant="primary" animate={true}>
 									Buy Now
 								</Button>
 							</Grid>
 						</Grid>
-						<div className="mt-4">
-							<Text size="base" variant="danger" weight="600">
-								{product.discountPercent}% OFF
-							</Text>
-						</div>
+						{product.discountPercent && (
+							<div className="mt-4">
+								<Text size="base" variant="danger" weight="600">
+									{product.discountPercent}% OFF
+								</Text>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -90,4 +104,4 @@ const ProductPage = (props) => {
 	);
 };
 
-export default connect(null,{setBackFromSearch})(ProductPage);
+export default connect(null, { setBackFromSearch })(ProductPage);

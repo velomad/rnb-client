@@ -45,10 +45,15 @@ const SearchSlide = (props) => {
 		setSearchSuggestions(false);
 	};
 
+	console.log(searchTerm)
 	const handleSearchSubmit = (e) => {
 		e.preventDefault();
 		props.setSearchTerm(searchTerm);
-		history.push(`/items/search?term=${searchTerm}`);
+		const filteredSearchTerm = searchTerm.replace(
+			/\b(men|women|casual)\b/g,
+			"",
+		);
+		history.push(`/items/search?term=${filteredSearchTerm}`);
 		handleClose();
 	};
 

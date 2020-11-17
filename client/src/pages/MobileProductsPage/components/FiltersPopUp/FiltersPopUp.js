@@ -86,47 +86,29 @@ const FiltersPopUp = (props) => {
 		const queryParamsValueArry = Object.values(parsedQueryParams);
 
 		if (
-			queryParamsKeyArry.includes("gender") === true &&
-			queryParamsValueArry.includes(genderFilterValue.gender)
-		) {
-			handleClose();
-		} else if (
-			queryParamsKeyArry.includes("discountPercent") === true &&
-			queryParamsValueArry.includes(discountFilterValue.discountPercent)
+			(queryParamsKeyArry.includes("gender") === true &&
+				queryParamsValueArry.includes(genderFilterValue.gender)) ||
+			(queryParamsKeyArry.includes("discountPercent") === true &&
+				queryParamsValueArry.includes(discountFilterValue))
 		) {
 			handleClose();
 		} else {
-			if (
-				"gender" in parsedQueryParams ||
-				"discountPercent" in parsedQueryParams
-			) {
+			if ("gender" in parsedQueryParams) {
 				delete parsedQueryParams.gender;
+			} else if ("discountPercent" in parsedQueryParams) {
 				delete parsedQueryParams.discountPercent;
 			}
 			history.push(
-				`/products?${qs.stringify(parsedQueryParams)}&${queryParams}`,
+				`${history.location.pathname}?${qs.stringify(
+					parsedQueryParams,
+				)}&${queryParams}`,
 			);
 			handleClose();
 		}
-
-		// var location = history.location.search;
-
-		// if (
-		// 	Object.keys(filterParams).includes("gender") === true &&
-		// 	Object.values(filterParams).includes(genderFilterValue)
-		// ) {
-		// 	handleClose();
-		// } else {
-		// 	if ("gender" in filterParams) {
-		// 		delete parsedQueryParams.gender;
-		// 	}
-		// 	history.push(`/products${location}&${queryParams}`);
-		// 	handleClose();
-		// }
 	};
 
-	// const filters = ["Gender", "Price", "Discount"];
-	const filters = ["Gender"];
+	const filters = ["Gender", "Price", "Discount"];
+	// const filters = ["Gender"];
 
 	const handleSelectFilter = (filter) => {
 		setFilterOption(filter);

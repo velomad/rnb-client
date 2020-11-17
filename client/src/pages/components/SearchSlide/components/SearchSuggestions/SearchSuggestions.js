@@ -26,7 +26,11 @@ const SearchSuggestions = ({
 		// suggestedTermCallback(term);
 		setSearchTerm(term)
 		handleClose()
-		history.push(`/items/search?term=${term}`)
+		const filteredSearchTerm = term.replace(
+			/\b(men|women|casual)\b/g,
+			"",
+		);
+		history.push(`/items/search?term=${filteredSearchTerm}`)
 	};
 
 	return (
