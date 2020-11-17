@@ -55,7 +55,7 @@ const MProductCard = ({
 								whiteSpace: "nowrap",
 							}}
 						>
-							<Text size="base" weight="600" variant="secondary">
+							<Text size="base" weight="600" variant="primaryDark">
 								{brand}
 							</Text>
 						</div>
@@ -74,7 +74,7 @@ const MProductCard = ({
 					<div className="flex px-1 space-x-4">
 						{price && (
 							<div>
-								<Text size="sm" weight="600">
+								<Text size="sm" weight="600" variant="secondary">
 									&#8377; {price}
 								</Text>
 							</div>
