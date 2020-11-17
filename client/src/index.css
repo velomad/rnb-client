@@ -23,6 +23,9 @@ code {
 .overflow-y-scroll::-webkit-scrollbar {
   display: none;
 }
+* :focus {
+  outline:none !important
+}
 
 /* ::-webkit-scrollbar {
   width: 1px;

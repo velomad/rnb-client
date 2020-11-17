@@ -127,26 +127,17 @@ const FiltersPopUp = (props) => {
 						<Typography variant="h6" className={classes.title}>
 							Filter
 						</Typography>
-						<IconButton
-							edge="start"
-							color="inherit"
-							onClick={handleClose}
-							aria-label="close"
-						>
-							<CloseIcon />
-						</IconButton>
+						<div onClick={() => console.log("test")}>
+							<Text
+								size="base"
+								variant="primary"
+								classes="uppercase outline-none"
+							>
+								clear all
+							</Text>
+						</div>
 					</Toolbar>
 				</AppBar>
-				{/* <div className="flex justify-between p-3">
-					<div>
-						<Text variant="secondary" weight="500" size="lg">
-							Filters
-						</Text>
-					</div>
-					<div onClick={handleClose}>
-						<CloseIcon />
-					</div>
-				</div> */}
 				<hr style={{ color: "solid black 1px" }} />
 
 				<div className="grid grid-cols-3 h-full">
