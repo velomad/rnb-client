@@ -85,9 +85,9 @@ const Footer = () => {
 						</div>
 					</div>
 				</div>
-				<div className="w-68 h-1 mx-auto container bg-gray-500 rounded mt-1"></div>
-				<div class="container px-2 py-20 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col">
-					<div class="flex-grow text-center flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+				{/* <div className="w-68 h-1 mx-auto container bg-gray-500 rounded mt-1"></div>
+				<div class="container px-2 py-20 mx-auto flex  md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col">
+					<div class="flex-grow text-center flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left ">
 						<div className="lg:w-1/3 md:w-1/2 w-full px-4">
 							<h1 class=" text-gray-100 tracking-widest text-xl mb-3">
 								Men's Clothing 
@@ -162,7 +162,7 @@ const Footer = () => {
 							</nav>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<div class="bg-gray-800">
 					<div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
 						<p class="text-gray-500 text-sm text-center sm:text-left">

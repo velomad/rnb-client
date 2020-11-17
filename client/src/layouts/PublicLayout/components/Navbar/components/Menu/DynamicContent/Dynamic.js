@@ -59,17 +59,10 @@ const DynamicContent = (props) => {
 					>
 						<div class="grid grid-cols-2 gap-56 ">
 							<div className="flex items-center">
-								{/* <img
-									src={`/static/images/${el.split('-')[1]}.png`}
-									width="50px"
-									className="mr-1"
-									alt='category'
-								/> */}
 								<button
 									class="uppercase text-xs font-semibold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
 									type="button"
 								>
-									{/* {props.activePanel === "men" ? el.split('-')[1] : el.split('-')[1]} */}
 									{props.activePanel === "men"
 										? el.split("-")[1]
 										: el.split("-")[1]}

@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchBar } from "../../../../../../components";
+import { SearchBar, Text } from "../../../../../../components";
 import { DynamicContent } from "../Menu";
 import { connect } from "react-redux";
 import "./primary.css";
@@ -61,6 +61,8 @@ const Primary = (props) => {
 		settoggleSideBar(value);
 	};
 
+	console.log(currentBrand);
+
 	return (
 		<React.Fragment>
 			<SideBar toggleSideBar={toggleSideBar} setToggleState={toggler} />
@@ -83,8 +85,8 @@ const Primary = (props) => {
 									<SearchBar />
 								</div>
 							</div>
-							<a	
-								style={{display:'none'}}
+							<a
+								style={{ display: "none" }}
 								href="#"
 								onClick={() => toggleSideDrawer("right", true)}
 								class="relative block text-sm text-white leading-5 py-2 mx-6 md:my-0 duration-2000 ease-out hover:font-bold"
@@ -101,7 +103,7 @@ const Primary = (props) => {
 							/>
 
 							<button
-								style={{display:'none'}}
+								style={{ display: "none" }}
 								type="button"
 								className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
 								aria-label="toggle menu"
@@ -225,48 +227,60 @@ const Primary = (props) => {
 						style={{ backgroundColor: "white" }}
 					>
 						<div className="container mt-0 lg:mt-0 md:mt-0 mx-auto w-full flex flex-wrap justify-between mx-2">
-							<div className="w-full text-gray-900 mb-2">
-								<svg
-									onClick={() => hideDropDown()}
-									className="cursor-pointer w-6 h-6 mb-2 bg-pink-600  text-white rounded-full h-8 w-8 p-1"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-									// xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M6 18L18 6M6 6l12 12"
-									></path>
-								</svg>
+							<div className="w-full text-gray-900 mb-6">
+								<Text classes="capitalize" size="xl" isTitle={true} variant="primary">
+									{currentBrand}
+								</Text>
 							</div>
 							<section class="mt-0">
-								<div className="flex">
-									<div
-										className="cursor-pointer"
-										onMouseEnter={() => activeCategory("men")}
-									>
-										<p className="text-1xl text-gray-900 font-bold mr-6">Men</p>
-										{activeCat === "men" ? (
-											<span class="inline-block h-1 w-12 rounded bg-pink-700 mt-1 mb-4"></span>
-										) : (
-											""
-										)}
+								<div className="flex justify-between">
+									<div className="flex">
+										<div
+											className="cursor-pointer"
+											onMouseEnter={() => activeCategory("men")}
+										>
+											<p className="text-1xl text-gray-900 font-bold mr-6">
+												Men
+											</p>
+											{activeCat === "men" ? (
+												<span class="inline-block h-1 w-12 rounded bg-pink-700 mt-1 mb-4"></span>
+											) : (
+												""
+											)}
+										</div>
+										<div
+											className="cursor-pointer"
+											onMouseEnter={() => activeCategory("women")}
+										>
+											<p className="text-1xl text-gray-900 font-bold mr-4">
+												Women
+											</p>
+											{activeCat === "women" ? (
+												<span class="inline-block h-1 w-20 rounded bg-pink-700 mt-1 mb-4"></span>
+											) : (
+												""
+											)}
+										</div>
 									</div>
-									<div
-										className="cursor-pointer"
-										onMouseEnter={() => activeCategory("women")}
-									>
-										<p className="text-1xl text-gray-900 font-bold mr-4">
-											Women
-										</p>
-										{activeCat === "women" ? (
-											<span class="inline-block h-1 w-20 rounded bg-pink-700 mt-1 mb-4"></span>
-										) : (
-											""
-										)}
+
+									<div className="flex">
+										<div className="w-full text-gray-900 mb-2">
+											<svg
+												onClick={() => hideDropDown()}
+												className="cursor-pointer w-6 h-6 mb-2 bg-gray-400 text-gray rounded-full h-8 w-8 p-1"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+												// xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="2"
+													d="M6 18L18 6M6 6l12 12"
+												></path>
+											</svg>
+										</div>
 									</div>
 								</div>
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
