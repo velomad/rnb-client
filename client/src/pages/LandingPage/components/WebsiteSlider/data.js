@@ -195,12 +195,30 @@ export const data = [
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 
 		circles: [
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
+			{
+				circleImage: "/static/images/websiteslider/snapdeal/dresses.jpeg",
+				circleName: "jackets",
+			},
+			{
+				circleImage: "/static/images/websiteslider/snapdeal/ethinicwear.webp",
+				circleName: "ethnic shoes",
+			},
+			{
+				circleImage: "/static/images/websiteslider/snapdeal/suitecase.webp",
+				circleName: "suitecase",
+			},
+			{
+				circleImage: "/static/images/websiteslider/snapdeal/formalshoes.jpeg",
+				circleName: "formal shoes",
+			},
+			{
+				circleImage: "/static/images/websiteslider/snapdeal/rings.jpeg",
+				circleName: "rings",
+			},
+			{
+				circleImage: "/static/images/websiteslider/snapdeal/innerwear.jpeg",
+				circleName: "innerwear",
+			},
 		],
 	},
 ];

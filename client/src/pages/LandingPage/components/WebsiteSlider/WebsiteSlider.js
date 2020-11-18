@@ -34,9 +34,9 @@ const MainSlider = () => {
 				{data.map((el) => (
 					<SwiperSlide>
 						<div
-							className="py-4"
+							className="py-4 space-y-4"
 							style={{
-								height: "16rem",
+								height: "18rem",
 								backgroundImage: `url(/static/images/gplaypattern.png)`,
 							}}
 						>

@@ -5,12 +5,20 @@ const LandingPage = () => {
 		<div className="bg-gray-200">
 			<WebsiteSlider />
 
-			<div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4">
+			<div className="grid gap-2 grid-cols-2 md:grid-cols-2 py-4 p-1">
 				<div>
-					<img class=" w-full h-56" src="static/images/clothing.jpg" />
+					<img
+						className="rounded-lg object-cover w-full"
+						style={{ height: "12rem" }}
+						src="static/images/clothing.jpg"
+					/>
 				</div>
 				<div>
-					<img class=" w-full h-56" src="static/images/electronic.jpg" />
+					<img
+						className="rounded-lg object-cover w-full"
+						style={{ height: "12rem" }}
+						src="static/images/electronic.jpg"
+					/>
 				</div>
 			</div>
 		</div>
