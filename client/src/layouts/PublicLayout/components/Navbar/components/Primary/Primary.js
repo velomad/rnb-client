@@ -10,7 +10,7 @@ import { amazonmen, amazonwomen } from "../Menu/DynamicContent/amazonMenuData";
 import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
 import { ajiomen, ajiowomen } from "../Menu/DynamicContent/ajioMenuData";
 import { snapdealmen, snapdealwomen } from "../Menu/DynamicContent/snapdealMenuData";
-
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {
 	tatacliqmen,
 	tatacliqwomen,
@@ -63,11 +63,17 @@ const Primary = (props) => {
 		settoggleSideBar(value);
 	};
 
+	const handleClickAway = () => {
+		console.log('click away navbar...');
+		settoggleSideBar(false);
+	};
+
 	console.log(currentBrand);
 
 	return (
 		<React.Fragment>
 			<SideBar toggleSideBar={toggleSideBar} setToggleState={toggler} />
+			
 			<nav className="container mx-auto px-2 space-y-2 py-2 md:py-0 lg:py-0">
 				<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					<div className="flex justify-between items-center">
@@ -87,17 +93,22 @@ const Primary = (props) => {
 									<SearchBar />
 								</div>
 							</div>
-							<a
-								style={{ display: "none" }}
-								href="#"
+							<button
 								onClick={() => toggleSideDrawer("right", true)}
-								class="relative block text-sm text-white leading-5 py-2 mx-6 md:my-0 duration-2000 ease-out hover:font-bold"
+								type="button"
+								className="text-gray-500 ml-64 md:ml-24 lg:ml-24  hover:text-gray-600 focus:outline-none focus:text-gray-600"
+								aria-label="toggle menu"
 							>
-								Electronics
-							</a>
+								<svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+									<path
+										fillRule="evenodd"
+										d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+									></path>
+								</svg>
+							</button>
 						</div>
 
-						<div className="flex md:hidden mb-4" onClick={() => showMenu()}>
+						<div className="flex md:hidden hidden mb-4" onClick={() => showMenu()}>
 							<SearchOutlinedIcon
 								onClick={() => props.setSearchSlide(true)}
 								className="text-white mx-2 px-1"
@@ -105,7 +116,7 @@ const Primary = (props) => {
 							/>
 
 							<button
-								style={{ display: "none" }}
+								onClick={() => toggleSideDrawer("right", true)}
 								type="button"
 								className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
 								aria-label="toggle menu"

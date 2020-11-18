@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Drawer from '@material-ui/core/Drawer';
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -16,17 +17,20 @@ import StarBorder from "@material-ui/icons/StarBorder";
 import Collapse from "@material-ui/core/Collapse";
 import { electronics } from "../Menu/DynamicContent/electronicsMenuData";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-
+import Icon from '@material-ui/core/Icon';
 import axios from "axios";
-const useStyles = makeStyles({
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+const useStyles = makeStyles((theme) => ({
 	list: {
-		width: 370,
+		width: 'auto',
+		[theme.breakpoints.up('md')]: {
+			width: 350,
+		}
 	},
 	fullList: {
 		width: "auto",
 	},
-});
-
+}));
 export default function SwipeableTemporaryDrawer(props) {
 	const classes = useStyles();
 	const [state, setState] = React.useState({
@@ -42,7 +46,7 @@ export default function SwipeableTemporaryDrawer(props) {
 				`https://price-api.datayuge.com/api/v1/compare/list?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&sub_category=${product}&can_compare=1&page=1`,
 			)
 			.then((response) => {
-				console.log("Data yuge res...", response);
+				console.log("Data yuge res...", response.data);
 			})
 			.catch((err) => {
 				console.log("Error fetching datayuge", err);
@@ -68,79 +72,79 @@ export default function SwipeableTemporaryDrawer(props) {
 		setState({ ...state, [anchor]: open });
 	};
 	const handleClickAway = () => {
-            // props.setToggleState(false)
+		console.log('click away...');
+		setState({ ...state, 'right': true });
 	};
 
 	const list = (anchor) => (
-		<ClickAwayListener onClickAway={handleClickAway}>
-			<div
-				className={clsx(classes.list, {
-					[classes.fullList]: anchor === "top" || anchor === "bottom",
-				})}
-				role="presentation"
-			>
-				<List>
-					{Object.keys(electronics)
-						.reverse()
-						.map((item, index) => {
-							return (
-								<React.Fragment>
-									<ListItem
-										key={index}
-										button
-										onClick={() => handleClick(item)}
-									>
-										<ListItemIcon>
-											<InboxIcon />
-										</ListItemIcon>
-										<ListItemText primary={item} />
-										{openListItem === item ? <ExpandLess /> : <ExpandMore />}
-									</ListItem>
-									<Collapse
-										in={openListItem === item}
-										timeout="auto"
-										unmountOnExit
-									>
-										{electronics[item].map((listItem, index) => {
-											return (
-												<List key={index} component="div" disablePadding>
-													{!!listItem.child_category_name ? (
-														<ListItem button className={classes.nested}>
-															<ListItemIcon>
-																<StarBorder />
-															</ListItemIcon>
-															<ListItemText
-																onClick={() =>
-																	getProducts(listItem.child_category)
-																}
-																primary={listItem.child_category_name}
-															/>
-														</ListItem>
-													) : null}
-												</List>
-											);
-										})}
-									</Collapse>
-								</React.Fragment>
-							);
-						})}
-				</List>
-			</div>
-		</ClickAwayListener>
+
+		<div
+			className={clsx(classes.list, {
+				[classes.fullList]: anchor === "top" || anchor === "bottom",
+			})}
+			role="presentation"
+		>
+			<List>
+				{Object.keys(electronics)
+					.reverse()
+					.map((item, index) => {
+						return (
+							<React.Fragment>
+								<ListItem
+									key={index}
+									button
+									onClick={() => handleClick(item)}
+								>
+									{/* <ListItemIcon>
+										<SvgIcon component={InboxIcon} viewBox="0 0 600 476.6" />
+									</ListItemIcon> */}
+									<ListItemText primary={item} />
+									{openListItem === item ? <ExpandLess /> : <ExpandMore />}
+								</ListItem>
+								<Collapse
+									in={openListItem === item}
+									timeout="auto"
+									unmountOnExit
+								>
+									{electronics[item].map((listItem, index) => {
+										return (
+											<List key={index} component="div" disablePadding>
+												{!!listItem.child_category_name ? (
+													<ListItem button className={classes.nested}>
+														<ListItemIcon>
+															<DoubleArrowIcon />
+														</ListItemIcon>
+														<ListItemText
+															onClick={() =>
+																getProducts(listItem.child_category)
+															}
+															primary={listItem.child_category_name}
+														/>
+													</ListItem>
+												) : null}
+											</List>
+										);
+									})}
+								</Collapse>
+							</React.Fragment>
+						);
+					})}
+			</List>
+		</div>
 	);
 
 	return (
 		<div>
 			{
 				<React.Fragment>
-					<SwipeableDrawer
-						anchor="right"
-						open={props.toggleSideBar}
-						onClose={toggleDrawer("right", false)}
-						onOpen={toggleDrawer("right", true)}
-					>
-						{list("right")}
-					</SwipeableDrawer>
+						<SwipeableDrawer
+							anchor="right"
+							open={props.toggleSideBar}
+							onClose={toggleDrawer("right", false)}
+							onOpen={toggleDrawer("right", true)}
+						>
+							{list("right")}
+						</SwipeableDrawer>
 				</React.Fragment>
 			}
 		</div>
