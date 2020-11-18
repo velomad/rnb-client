@@ -66,7 +66,7 @@ const Primary = (props) => {
 	return (
 		<React.Fragment>
 			<SideBar toggleSideBar={toggleSideBar} setToggleState={toggler} />
-			<nav className="container mx-auto px-2 py-3 md:py-0 lg:py-0">
+			<nav className="container mx-auto px-2 space-y-2 py-2 md:py-0 lg:py-0">
 				<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					<div className="flex justify-between items-center">
 						<div className="flex items-center">
@@ -129,7 +129,7 @@ const Primary = (props) => {
 						""
 					)} */}
 				</div>
-				<div class="flex flex-row p-0 pb-2 overflow-auto w-0 min-w-full">
+				<div class="flex flex-row overflow-auto  min-w-full">
 					<div
 						onClick={() => loadDropDown("amazon")}
 						class="text-sm text-center mr-8 cursor-pointer"
