@@ -19,7 +19,7 @@ const MainSlider = () => {
 				slidesPerView={2}
 				loop={true}
 				autoplay={{
-					delay: 2000,
+					delay: 4000,
 				}}
 				breakpoints={{
 					"@0.50": {
@@ -36,6 +36,7 @@ const MainSlider = () => {
 						<div
 							className="py-4"
 							style={{
+								height: "20rem",
 								backgroundImage: `url(/static/images/gplaypattern.png)`,
 							}}
 						>
@@ -51,7 +52,7 @@ const MainSlider = () => {
 							<div className="grid grid-cols-3 place-items-center space-y-8">
 								{el.circles.map((circle) => (
 									<div className="mt-8">
-										<div class="p-1 border-2 border-pink-500 rounded-full">
+										<div class="p-1 border-2 shadow-2xl border-pink-500 rounded-full">
 											<div class="w-16 h-16">
 												<img
 													class="shadow-md rounded-full w-full h-full object-contain"
@@ -76,7 +77,6 @@ const MainSlider = () => {
 					</SwiperSlide>
 				))}
 			</Swiper>
-			test
 		</div>
 	);
 };

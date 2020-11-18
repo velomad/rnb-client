@@ -4,12 +4,30 @@ export const data = [
 		websiteName: "amazon",
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 		circles: [
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/myntraicon.png",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
+			{
+				circleImage: "/static/images/websiteslider/amazon/bottomwear.jpg",
+				circleName: "bottomwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/amazon/topwear.jpg",
+				circleName: "topwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/amazon/footwear.jpg",
+				circleName: "footwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/amazon/westernwear.jpg",
+				circleName: "westernwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/amazon/indianwear.jpg",
+				circleName: "indianwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/amazon/sunglasses.jpg",
+				circleName: "sunglasses",
+			},
 		],
 	},
 	{
@@ -18,12 +36,30 @@ export const data = [
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 
 		circles: [
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
+			{
+				circleImage: "/static/images/websiteslider/flipkart/bags.jpeg",
+				circleName: "bags",
+			},
+			{
+				circleImage: "/static/images/websiteslider/flipkart/bottomwear.jpeg",
+				circleName: "bottomwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/flipkart/ethnicwear.jpeg",
+				circleName: "ethnicwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/flipkart/sportswear.jpeg",
+				circleName: "sportswear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/flipkart/tops.jpeg",
+				circleName: "tops",
+			},
+			{
+				circleImage: "/static/images/websiteslider/flipkart/winterwear.jpeg",
+				circleName: "winterwear",
+			},
 		],
 	},
 	{
@@ -32,12 +68,30 @@ export const data = [
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 
 		circles: [
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
+			{
+				circleImage: "/static/images/websiteslider/myntra/blazers.webp",
+				circleName: "blazers",
+			},
+			{
+				circleImage: "/static/images/websiteslider/myntra/ethnicwear.jpg",
+				circleName: "ethnicwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/myntra/footwear.webp",
+				circleName: "footwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/myntra/makeup.webp",
+				circleName: "makeup",
+			},
+			{
+				circleImage: "/static/images/websiteslider/myntra/nehru-jackets.webp",
+				circleName: "nehru jackets",
+			},
+			{
+				circleImage: "/static/images/websiteslider/myntra/sleepwear.webp",
+				circleName: "sleepwear",
+			},
 		],
 	},
 	{
@@ -77,12 +131,30 @@ export const data = [
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 
 		circles: [
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
+			{
+				circleImage: "/static/images/websiteslider/bewakoof/covers.webp",
+				circleName: "covers",
+			},
+			{
+				circleImage: "/static/images/websiteslider/bewakoof/joggers.webp",
+				circleName: "joggers",
+			},
+			{
+				circleImage: "/static/images/websiteslider/bewakoof/masks.webp",
+				circleName: "masks",
+			},
+			{
+				circleImage: "/static/images/websiteslider/bewakoof/polos.jpg",
+				circleName: "polo",
+			},
+			{
+				circleImage: "/static/images/websiteslider/bewakoof/shirts.jpeg",
+				circleName: "shirts",
+			},
+			{
+				circleImage: "/static/images/websiteslider/bewakoof/tops.webp",
+				circleName: "tops",
+			},
 		],
 	},
 	{
@@ -91,12 +163,30 @@ export const data = [
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 
 		circles: [
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
-			"/static/images/flipkarttopwear.jpeg",
+			{
+				circleImage: "/static/images/websiteslider/tatacliq/shorts.jpeg",
+				circleName: "shorts",
+			},
+			{
+				circleImage: "/static/images/websiteslider/tatacliq/formals.jpeg",
+				circleName: "formals",
+			},
+			{
+				circleImage: "/static/images/websiteslider/tatacliq/bottomwear.jpeg",
+				circleName: "bottomwear",
+			},
+			{
+				circleImage: "/static/images/websiteslider/tatacliq/watches.jpeg",
+				circleName: "watches",
+			},
+			{
+				circleImage: "/static/images/websiteslider/tatacliq/sneakers.jpeg",
+				circleName: "sneakers",
+			},
+			{
+				circleImage: "/static/images/websiteslider/tatacliq/jackets.jpeg",
+				circleName: "jackets",
+			},
 		],
 	},
 	{
