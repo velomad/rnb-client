@@ -1,4 +1,4 @@
-const { MainSlider } = require("./components");
+const { WebsiteSlider } = require("./components");
 
 const LandingPage = () => {
 	return (
@@ -17,7 +17,7 @@ const LandingPage = () => {
 					/>
 				</div>
 			</div>
-			<MainSlider />
+			<WebsiteSlider />
 		</div>
 	);
 };

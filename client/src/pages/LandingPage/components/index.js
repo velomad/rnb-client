@@ -1,2 +1,2 @@
-export {default as MainSlider} from "./MainSlider"
+export {default as WebsiteSlider} from "./WebsiteSlider"
 
