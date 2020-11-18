@@ -1,0 +1,7 @@
+${
+					hideOnScroll ? " ease-in" : "ease-out"
+				} ${hideOnScroll ? "visible" : "invisible"} ${
+					hideOnScroll
+						? "transition"
+						: "transform translate-y-0 -translate-y-full"
+				}
