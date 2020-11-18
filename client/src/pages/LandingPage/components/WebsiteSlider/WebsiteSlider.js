@@ -36,7 +36,7 @@ const MainSlider = () => {
 						<div
 							className="py-4"
 							style={{
-								height: "20rem",
+								height: "18rem",
 								backgroundImage: `url(/static/images/gplaypattern.png)`,
 							}}
 						>
@@ -49,9 +49,9 @@ const MainSlider = () => {
 								</div>
 							</div>
 
-							<div className="grid grid-cols-3 place-items-center space-y-8">
+							<div className="grid grid-cols-3 place-items-center space-y-2">
 								{el.circles.map((circle) => (
-									<div className="mt-8">
+									<div className="mt-2">
 										<div class="p-1 border-2 shadow-2xl border-pink-500 rounded-full">
 											<div class="w-16 h-16">
 												<img
