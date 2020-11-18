@@ -9,6 +9,8 @@ import { men, women } from "../Menu/DynamicContent/flipkartMenuData";
 import { amazonmen, amazonwomen } from "../Menu/DynamicContent/amazonMenuData";
 import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
 import { ajiomen, ajiowomen } from "../Menu/DynamicContent/ajioMenuData";
+import { snapdealmen, snapdealwomen } from "../Menu/DynamicContent/snapdealMenuData";
+
 import {
 	tatacliqmen,
 	tatacliqwomen,
@@ -220,6 +222,21 @@ const Primary = (props) => {
 						</div>
 						<p className="text-black font-bold"></p>
 					</div>
+					<div
+						onClick={() => loadDropDown("snapdeal")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/snapdealicon.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
 				</div>
 				{openDrawer ? (
 					<div
@@ -300,7 +317,7 @@ const Primary = (props) => {
 								</div>
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
 									{activePanel == "men" ? (
-										<div class="flex flex-wrap  mx-auto">
+										<div class="flex flex-wrap mx-auto overflow-y-scroll" style={{height: '17rem'}}>
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
@@ -317,7 +334,8 @@ const Primary = (props) => {
 														? tatacliqmen
 														: currentBrand == "bewakoof"
 														? bewakoofmen
-														: "",
+														: currentBrand == "snapdeal"
+														? snapdealmen : ""
 												)}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
@@ -329,7 +347,7 @@ const Primary = (props) => {
 									)}
 
 									{activePanel === "women" ? (
-										<div class="flex flex-wrap  mx-auto">
+										<div class="flex flex-wrap  mx-auto overflow-y-scroll" style={{height: '17rem'}}>
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
@@ -346,6 +364,8 @@ const Primary = (props) => {
 														? tatacliqwomen
 														: currentBrand == "bewakoof"
 														? bewakoofwomen
+														: currentBrand == "snapdeal"
+														? snapdealwomen
 														: "",
 												)}
 												activatesmallPanel={activatesmallPanel}

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/velomad/rnb-client#readme",
   "dependencies": {
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "express": "^4.17.1",
     "nodemon": "^2.0.6"
   }

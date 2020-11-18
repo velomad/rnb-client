@@ -5,6 +5,7 @@ import { myntramen, myntrawomen } from "./myntraMenuData";
 import { ajiomen, ajiowomen } from "./ajioMenuData";
 import { tatacliqmen, tatacliqwomen } from "./tatacliqMenuData";
 import { bewakoofmen, bewakoofwomen } from "./bewakoofMenuData";
+import { snapdealmen, snapdealwomen } from "./snapdealMenuData";
 import { history } from "../../../../../../../utils";
 
 const DynamicContent = (props) => {
@@ -42,6 +43,9 @@ const DynamicContent = (props) => {
 		} else if (props.currentBrand == "bewakoof") {
 			setWebCategoriesMen(bewakoofmen);
 			setWebCategoriesWomen(bewakoofwomen);
+		}else if (props.currentBrand == "snapdeal") {
+			setWebCategoriesMen(snapdealmen);
+			setWebCategoriesWomen(snapdealwomen);
 		}
 	}, [props]);
 	return (
