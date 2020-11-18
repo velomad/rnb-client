@@ -10,6 +10,8 @@ import { ScrollToTop } from "./utils";
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 const ProductPage = lazy(() => import("./pages/ProductPage"));
+const DataYugeProductsPage = lazy(() => import("./pages/DataYugePages/ProductsPage"));
+
 const MobileProductsPage = lazy(() => import("./pages/MobileProductsPage"));
 
 const Routes = () => {
@@ -45,6 +47,12 @@ const Routes = () => {
 							path="/product/:id"
 							layout={PublicLayout}
 							component={ProductPage}
+						/>
+						<WithLayoutRoute
+							exact
+							path="/electronic/products"
+							layout={PublicLayout}
+							component={DataYugeProductsPage}
 						/>
 						<Route path="*" component={() => "404 NOT FOUND"} />
 					</Switch>
