@@ -17,7 +17,7 @@ const MainSlider = () => {
 			<Swiper
 				spaceBetween={20}
 				slidesPerView={2}
-loop={true}
+				loop={true}
 				autoplay={{
 					delay: 2000,
 				}}
@@ -50,13 +50,24 @@ loop={true}
 
 							<div className="grid grid-cols-3 place-items-center space-y-8">
 								{el.circles.map((circle) => (
-									<div class="p-1 border-2 border-pink-500 rounded-full mt-8">
-										<div class="hoverable w-16 h-16 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-contain"
-												src={circle}
-												alt=""
-											/>
+									<div className="mt-8">
+										<div class="p-1 border-2 border-pink-500 rounded-full">
+											<div class="w-16 h-16">
+												<img
+													class="shadow-md rounded-full w-full h-full object-contain"
+													src={circle.circleImage}
+													alt=""
+												/>
+											</div>
+										</div>
+										<div className="text-center">
+											<Text
+												size="xs"
+												variant="primaryDark"
+												classes="capitalize"
+											>
+												{circle.circleName}
+											</Text>
 										</div>
 									</div>
 								))}

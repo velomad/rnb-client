@@ -7,7 +7,7 @@ function PublicLayout(props) {
 	const { children, withFooter = true } = props;
 	return (
 		<div>
-			<div style={{ paddingBottom: "155px" }}>
+			<div style={{ paddingBottom: "160px" }}>
 				<Navbar />
 			</div>
 
