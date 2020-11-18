@@ -36,16 +36,18 @@ const MainSlider = () => {
 						<div
 							className="py-4"
 							style={{
-								height: "18rem",
+								height: "16rem",
 								backgroundImage: `url(/static/images/gplaypattern.png)`,
 							}}
 						>
 							<div className="flex  items-center">
 								<div className="px-6">
-									<img src={el.websiteImage} width="40px" />
+									<img src={el.websiteImage} width="25px" />
 								</div>
 								<div className={el.styles}>
-									<Text>{el.websiteName}</Text>
+									<Text size="sm" variant="primary">
+										{el.websiteName}
+									</Text>
 								</div>
 							</div>
 
