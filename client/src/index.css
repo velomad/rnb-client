@@ -10,6 +10,11 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

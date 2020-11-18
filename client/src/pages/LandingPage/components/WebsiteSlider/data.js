@@ -41,7 +41,7 @@ export const data = [
 		],
 	},
 	{
-		websiteImage: "/static/images/ajio.png",
+		websiteImage: "/static/images/ajioicon.png",
 		websiteName: "ajio",
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 
@@ -69,7 +69,7 @@ export const data = [
 		],
 	},
 	{
-		websiteImage: "/static/images/tataqcliq.png",
+		websiteImage: "/static/images/tatacliqicon.png",
 		websiteName: "tatacliq",
 		styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 

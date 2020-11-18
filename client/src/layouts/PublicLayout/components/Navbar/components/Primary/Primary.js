@@ -183,7 +183,7 @@ const Primary = (props) => {
 							<div class="w-10 h-10 relative flex flex-shrink-0">
 								<img
 									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/ajio.png"
+									src="/static/images/ajioicon.png"
 									alt=""
 								/>
 							</div>
@@ -198,7 +198,7 @@ const Primary = (props) => {
 							<div class="w-10 h-10 relative flex flex-shrink-0">
 								<img
 									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/tataqcliq.png"
+									src="/static/images/tatacliqicon.png"
 									alt=""
 								/>
 							</div>
@@ -227,10 +227,25 @@ const Primary = (props) => {
 						style={{ backgroundColor: "white" }}
 					>
 						<div className="container mt-0 lg:mt-0 md:mt-0 mx-auto w-full flex flex-wrap justify-between mx-2">
-							<div className="w-full text-gray-900 mb-6">
-								<Text classes="capitalize" size="xl" isTitle={true} variant="primary">
-									{currentBrand}
-								</Text>
+							<div className="w-full flex items-center justify-between text-gray-900 mb-6">
+								<div>
+									<Text
+										classes="capitalize"
+										size="xl"
+										isTitle={true}
+										variant="primary"
+									>
+										{currentBrand}
+									</Text>
+								</div>
+								<div>
+									<img
+										src={`/static/images/${currentBrand}icon.${
+											currentBrand === "bewakoof" ? "jpg" : "png"
+										}`}
+										width="30px"
+									/>
+								</div>
 							</div>
 							<section class="mt-0">
 								<div className="flex justify-between">

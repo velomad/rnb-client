@@ -17,8 +17,9 @@ const MainSlider = () => {
 			<Swiper
 				spaceBetween={20}
 				slidesPerView={2}
+loop={true}
 				autoplay={{
-					delay: 5000,
+					delay: 2000,
 				}}
 				breakpoints={{
 					"@0.50": {
@@ -35,19 +36,16 @@ const MainSlider = () => {
 						<div
 							className="py-4"
 							style={{
-								backgroundImage: `url(/static/images/hypnotize.png)`,
+								backgroundImage: `url(/static/images/gplaypattern.png)`,
 							}}
 						>
 							<div className="flex  items-center">
-
-							<div className="px-6">
-								<img src={el.websiteImage} width="40px" />
-							</div>
-							<div className={el.styles}>
-								<Text>
-									{el.websiteName}
-								</Text>
-							</div>
+								<div className="px-6">
+									<img src={el.websiteImage} width="40px" />
+								</div>
+								<div className={el.styles}>
+									<Text>{el.websiteName}</Text>
+								</div>
 							</div>
 
 							<div className="grid grid-cols-3 place-items-center space-y-8">
