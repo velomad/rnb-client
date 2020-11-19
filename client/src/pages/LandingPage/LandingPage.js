@@ -1,4 +1,5 @@
-const { WebsiteSlider } = require("./components");
+import { WebsiteSlider, ProductSlider } from "./components";
+import { Text } from "../../components";
 
 const LandingPage = () => {
 	return (
@@ -19,6 +20,23 @@ const LandingPage = () => {
 						style={{ height: "12rem" }}
 						src="static/images/electronic.jpg"
 					/>
+				</div>
+			</div>
+			<div
+				className="bg-gray-500"
+				style={{
+					backgroundImage: `url(/static/images/design.jpg)`,
+					backgroundSize:"100%",
+					backgroundRepeat:"no-repeat"
+				}}
+			>
+				<div className="py-4 px-4">
+					{/* <Text variant="primary" size="lg" classes="capitalize">
+						best of mobile and accessories
+					</Text> */}
+				</div>
+				<div className="py-12">
+					<ProductSlider />
 				</div>
 			</div>
 		</div>

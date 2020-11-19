@@ -1,3 +1,6 @@
+
+========================= autohide navbar===============================
+
 ${
 					hideOnScroll ? " ease-in" : "ease-out"
 				} ${hideOnScroll ? "visible" : "invisible"} ${

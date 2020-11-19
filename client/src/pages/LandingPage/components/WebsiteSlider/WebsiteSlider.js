@@ -13,7 +13,7 @@ import "swiper/components/pagination/pagination.scss";
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 const MainSlider = () => {
 	return (
-		<div className="">
+		<div >
 			<Swiper
 				spaceBetween={20}
 				slidesPerView={2}

@@ -23,7 +23,13 @@ const Navbar = () => {
 	return useMemo(
 		() => (
 			<header
-				className={`bg-gray-900 shadow fixed w-full z-30 duration-75 shadow-xl`}
+				className={`bg-gray-900 shadow fixed w-full z-30 duration-75 shadow-xl
+				
+				
+${hideOnScroll ? " ease-in" : "ease-out"} ${
+					hideOnScroll ? "visible" : "opacity-75"
+				} 
+				`}
 			>
 				<div className="">
 					<Secondary />
