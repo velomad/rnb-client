@@ -74,7 +74,7 @@ const Primary = (props) => {
 		<React.Fragment>
 			<SideBar toggleSideBar={toggleSideBar} setToggleState={toggler} />
 			
-			<nav className="container mx-auto px-2 space-y-2 py-2 md:py-0 lg:py-0">
+			<nav className="container mx-auto px-2 space-y-0 lg:space-y-2 md:space-y-2 py-0 lg:py-2 lg:py-2 md:py-2 lg:py-0">
 				<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					<div className="flex justify-between items-center">
 						<div className="flex items-center">
@@ -84,7 +84,7 @@ const Primary = (props) => {
 							>
 								<img
 									src="https://raw.githubusercontent.com/velomad/ReachNBuy/main/src/assets/img/logo.png"
-									width="100px"
+									width="100px" style={{width:'4rem'}}
 								/>
 							</a>
 
@@ -96,7 +96,7 @@ const Primary = (props) => {
 							<button
 								onClick={() => toggleSideDrawer("right", true)}
 								type="button"
-								className="text-gray-500 ml-64 md:ml-24 lg:ml-24  hover:text-gray-600 focus:outline-none focus:text-gray-600"
+								className="text-gray-500 ml-64 hidden md:block md:ml-24 lg:ml-24  hover:text-gray-600 focus:outline-none focus:text-gray-600"
 								aria-label="toggle menu"
 							>
 								<svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
@@ -108,10 +108,10 @@ const Primary = (props) => {
 							</button>
 						</div>
 
-						<div className="flex md:hidden hidden mb-4" onClick={() => showMenu()}>
+						<div className="flex md:hidden mb-4" onClick={() => showMenu()}>
 							<SearchOutlinedIcon
 								onClick={() => props.setSearchSlide(true)}
-								className="text-white mx-2 px-1"
+								className="text-white mx-2 px-2"
 								fontSize="large"
 							/>
 
@@ -142,7 +142,7 @@ const Primary = (props) => {
 						""
 					)} */}
 				</div>
-				<div class="flex flex-row p-0 pb-2 overflow-auto w-0 min-w-full">
+				<div class="flex flex-row p-0 pb-0 lg:pb-2 md:pb-2 overflow-auto w-0 min-w-full">
 					<div
 						onClick={() => loadDropDown("amazon")}
 						class="text-sm text-center mr-8 cursor-pointer"
