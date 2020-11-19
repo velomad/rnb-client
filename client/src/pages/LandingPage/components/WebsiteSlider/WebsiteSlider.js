@@ -54,10 +54,10 @@ const MainSlider = () => {
 							<div className="grid grid-cols-3 place-items-center space-y-2">
 								{el.circles.map((circle) => (
 									<div className="mt-2">
-										<div class="p-1 border-2 shadow-2xl border-pink-500 rounded-full">
+										<div class="p-1 border-2 border-pink-500 rounded-full">
 											<div class="w-16 h-16">
 												<img
-													class="shadow-md rounded-full w-full h-full object-contain"
+													class="rounded-full w-full h-full object-contain"
 													src={circle.circleImage}
 													alt=""
 												/>
