@@ -111,7 +111,7 @@ const Primary = (props) => {
 						<div className="flex md:hidden mb-4" onClick={() => showMenu()}>
 							<SearchOutlinedIcon
 								onClick={() => props.setSearchSlide(true)}
-								className="text-white mx-2 px-2"
+								className="text-white mx-2 px-1"
 								fontSize="large"
 							/>
 
