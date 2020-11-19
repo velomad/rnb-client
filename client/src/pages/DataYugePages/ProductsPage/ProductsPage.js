@@ -1,11 +1,76 @@
 import React from 'react';
+import axios from "axios";
 import { ProductCard } from './components';
-const ProductsPage = () => {
-    return ( 
+import { Button } from '../../../components';
+const ProductsPage = (props) => {
+    const [productData, setProductData] = React.useState([]);
+    const [hasProducts, sethasProducts] = React.useState(true);
+    const [page, setPage] = React.useState(12);
+    React.useEffect(() => {
+        fetchData();
+    }, [props]);
+    const fetchData = () => {
+        setPage(page + 1);
+        axios
+            .get(
+                `https://price-api.datayuge.com/api/v1/compare/list?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&sub_category=${props.match.params.category}&can_compare=1&page=${page}`,
+            )
+            .then((response) => {
+                if (response.data.data === 'end of results') {
+                    sethasProducts(false)
+                } else {
+                    sethasProducts(true)
+                    let totalProducts = [];
+                    console.log('response.data', response.data.data);
+                    totalProducts = [...productData, ...response.data.data];
+                    console.log('Total Products', totalProducts);
+                    setProductData(totalProducts);
+                }
+            })
+            .catch((err) => {
+                console.log("Error fetching datayuge", err);
+            });
+    }
+
+    const getMoreProducts = () => {
+        fetchData();
+    }
+    return (
         <React.Fragment>
-            <ProductCard />
+            <div class="mt-0 mb-4">
+                <div class="grid gap-0 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 px-2 mb-6">
+                    {
+                        productData.map((el, index) => {
+                            return (
+                                <ProductCard
+                                    key={index}
+                                    epic={index}
+                                    canCompare={el.can_compare}
+                                    productId={el.product_id}
+                                    productImage={el.product_image}
+                                    productLink={el.product_link}
+                                    productLowestPrice={el.product_lowest_price}
+                                    productRating={el.product_rating}
+                                    productTitle={el.product_title}
+                                />
+                            )
+                        })
+                    }
+                </div>
+            </div>
+            <div className='text-center mb-2'>
+                {
+                    hasProducts ?
+                        <h4 className='font-bold text-gray-700' onClick={() => getMoreProducts()}>
+                            View More
+                    </h4> :
+                        <h4 className='font-bold text-gray-700'>
+                            No More Products Found
+                    </h4>
+                }
+            </div>
         </React.Fragment>
-     );
+    );
 }
- 
+
 export default ProductsPage;
