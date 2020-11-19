@@ -23,17 +23,17 @@ const LandingPage = () => {
 				</div>
 			</div>
 			<div
-				className="bg-gray-500"
-				style={{
-					backgroundImage: `url(/static/images/design.jpg)`,
-					backgroundSize:"100%",
-					backgroundRepeat:"no-repeat"
-				}}
+				className="bg-gray-100"
+				// style={{
+				// 	backgroundImage: `url(/static/images/tex.jpg)`,
+				// 	backgroundSize:"100%",
+				// 	backgroundRepeat:"no-repeat"
+				// }}
 			>
 				<div className="py-4 px-4">
-					{/* <Text variant="primary" size="lg" classes="capitalize">
-						best of mobile and accessories
-					</Text> */}
+					<Text variant="primaryDark" weight="600" isTitle={true} size="sm" classes="uppercase">
+						mobiles & accessories
+					</Text>
 				</div>
 				<div className="py-12">
 					<ProductSlider />

@@ -1,6 +1,7 @@
 import React from "react";
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Text } from "../../../../components";
 
 // Import Swiper styles
 import "swiper/swiper.scss";
@@ -35,12 +36,14 @@ const ProductSlider = () => {
 						style={{
 							height: "8rem",
 							width: "100%",
-							borderRadius:5,
-
+							borderRadius: 5,
+							background: "rgba(0,0,0,0.7)",
 							backgroundImage: `url(/static/images/gplaypattern.png)`,
 						}}
 					>
-						1
+						<Text size="sm" variant="white">
+							productName
+						</Text>
 					</div>
 				</SwiperSlide>
 
@@ -48,7 +51,7 @@ const ProductSlider = () => {
 					<div
 						style={{
 							height: "8rem",
-							borderRadius:5,
+							borderRadius: 5,
 
 							width: "100%",
 							backgroundImage: `url(/static/images/gplaypattern.png)`,
@@ -62,7 +65,7 @@ const ProductSlider = () => {
 					<div
 						style={{
 							height: "8rem",
-							borderRadius:5,
+							borderRadius: 5,
 
 							width: "100%",
 							backgroundImage: `url(/static/images/gplaypattern.png)`,
@@ -75,7 +78,7 @@ const ProductSlider = () => {
 				<SwiperSlide>
 					<div
 						style={{
-							borderRadius:5,
+							borderRadius: 5,
 							height: "8rem",
 							width: "100%",
 							backgroundImage: `url(/static/images/gplaypattern.png)`,
