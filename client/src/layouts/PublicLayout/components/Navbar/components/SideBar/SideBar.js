@@ -18,8 +18,8 @@ import Collapse from "@material-ui/core/Collapse";
 import { electronics } from "../Menu/DynamicContent/electronicsMenuData";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Icon from '@material-ui/core/Icon';
-import axios from "axios";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import { history } from '../../../../../../utils';
 const useStyles = makeStyles((theme) => ({
 	list: {
 		width: 'auto',
@@ -41,16 +41,7 @@ export default function SwipeableTemporaryDrawer(props) {
 	});
 	const [openListItem, setopenListItem] = React.useState("");
 	const getProducts = (product) => {
-		axios
-			.get(
-				`https://price-api.datayuge.com/api/v1/compare/list?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&sub_category=${product}&can_compare=1&page=1`,
-			)
-			.then((response) => {
-				console.log("Data yuge res...", response.data);
-			})
-			.catch((err) => {
-				console.log("Error fetching datayuge", err);
-			});
+		history.push('/electronic/products/'+product);
 	};
 	const handleClick = (val) => {
 		if (openListItem !== val) {
