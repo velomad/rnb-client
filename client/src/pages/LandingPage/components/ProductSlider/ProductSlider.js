@@ -15,35 +15,42 @@ const ProductSlider = () => {
 		<div>
 			<Swiper
 				spaceBetween={20}
-				slidesPerView="auto"
+				slidesPerView={3}
 				loop={true}
 				autoplay={{
 					delay: 4000,
 				}}
 				breakpoints={{
+					"@0.75": {
+						centeredSlides: true,
+						slidesPerView: 2,
+						spaceBetween: 10,
+					},
 					"@0.50": {
 						centeredSlides: true,
 						slidesPerView: 2,
 						spaceBetween: 10,
 					},
 				}}
-				onSlideChange={() => console.log("slide change")}
-				onSwiper={(swiper) => console.log(swiper)}
-				// pagination={{ clickable: true }}
 			>
 				<SwiperSlide>
 					<div
+						className="relative"
 						style={{
 							height: "8rem",
 							width: "100%",
 							borderRadius: 5,
 							background: "rgba(0,0,0,0.7)",
-							backgroundImage: `url(/static/images/gplaypattern.png)`,
+							backgroundImage: `url(/static/images/amazonicon.png)`,
+							backgroundSize: "contain, cover",
+							backgroundRepeat: "no-repeat",
 						}}
 					>
-						<Text size="sm" variant="white">
-							productName
-						</Text>
+						<div className="absolute bottom-0">
+							<Text size="sm" variant="white">
+my name is sagar tashvat chavan
+							</Text>
+						</div>
 					</div>
 				</SwiperSlide>
 

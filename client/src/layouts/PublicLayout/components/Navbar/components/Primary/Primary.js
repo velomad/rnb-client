@@ -142,7 +142,7 @@ const Primary = (props) => {
 						""
 					)} */}
 				</div>
-				<div class="flex flex-row p-0 pb-0 lg:pb-2 md:pb-2 overflow-auto w-0 min-w-full">
+				<div class="flex flex-row py-2 pb-0 lg:pb-2 md:pb-2 overflow-auto w-0 min-w-full">
 					<div
 						onClick={() => loadDropDown("amazon")}
 						class="text-sm text-center mr-8 cursor-pointer"
