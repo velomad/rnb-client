@@ -16,9 +16,11 @@ const ProductSlider = () => {
 			<Swiper
 				spaceBetween={20}
 				slidesPerView={3}
+				
 				loop={true}
 				autoplay={{
-					delay: 4000,
+					delay: 2500,
+					disableOnInteraction:false
 				}}
 				breakpoints={{
 					"@0.75": {
@@ -40,15 +42,15 @@ const ProductSlider = () => {
 							height: "8rem",
 							width: "100%",
 							borderRadius: 5,
-							background: "rgba(0,0,0,0.7)",
+							background: "rgba(0,0,0,0.6)",
 							backgroundImage: `url(/static/images/amazonicon.png)`,
 							backgroundSize: "contain, cover",
 							backgroundRepeat: "no-repeat",
 						}}
 					>
 						<div className="absolute bottom-0">
-							<Text size="sm" variant="white">
-my name is sagar tashvat chavan
+							<Text size="md" variant="white">
+								PRODUCT NAME
 							</Text>
 						</div>
 					</div>

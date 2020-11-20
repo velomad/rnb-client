@@ -20,6 +20,7 @@ const MainSlider = () => {
 				loop={true}
 				autoplay={{
 					delay: 4000,
+					disableOnInteraction:false
 				}}
 				breakpoints={{
 					"@0.50": {
@@ -27,9 +28,6 @@ const MainSlider = () => {
 						spaceBetween: 10,
 					},
 				}}
-				onSlideChange={() => console.log("slide change")}
-				onSwiper={(swiper) => console.log(swiper)}
-				// pagination={{ clickable: true }}
 			>
 				{data.map((el) => (
 					<SwiperSlide>
