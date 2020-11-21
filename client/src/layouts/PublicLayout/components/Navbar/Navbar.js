@@ -18,14 +18,10 @@ const Navbar = () => {
 		300,
 	);
 
-	console.log(hideOnScroll);
-
 	return useMemo(
 		() => (
 			<header
 				className={`bg-gray-900 shadow fixed w-full z-30 duration-200 shadow-xl
-				
-				
 ${hideOnScroll ? " ease-in" : "ease-out"} ${
 					hideOnScroll ? "visible" : "opacity-75"
 				} 
@@ -33,7 +29,7 @@ ${hideOnScroll ? " ease-in" : "ease-out"} ${
 			>
 				<div className="">
 					<Secondary />
-					<Primary />
+					<Primary  hideOnScroll={hideOnScroll}/>
 				</div>
 			</header>
 		),

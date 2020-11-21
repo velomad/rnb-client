@@ -59,6 +59,12 @@ const Routes = () => {
 							layout={PublicLayout}
 							component={DataYugeProductsPage}
 						/>
+						<WithLayoutRoute
+							exact
+							path="/electronic/product/:productId"
+							layout={PublicLayout}
+							component={DataYugeProductsPage}
+						/>
 						<Route path="*" component={() => "404 NOT FOUND"} />
 					</Switch>
 				</ScrollToTop>
