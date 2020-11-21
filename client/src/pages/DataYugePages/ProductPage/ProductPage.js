@@ -1,11 +1,11 @@
-import React from 'react';
-
+import React from "react";
+import { ProductSpecs } from "./components";
 const ProductPage = () => {
-    return(
-        <div>
-            all product components
-        </div>
-    )
-}
+	return (
+		<div>
+			<ProductSpecs />
+		</div>
+	);
+};
 
-export default ProductPage
+export default ProductPage;

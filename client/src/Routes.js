@@ -17,7 +17,9 @@ import LandingPage from './pages/LandingPage';
 import ProductsPage from './pages/ProductsPage';
 import ProductPage from './pages/ProductPage';
 import DataYugeProductsPage from './pages/DataYugePages/ProductsPage';
+import DataYugeProductPage from './pages/DataYugePages/ProductPage';
 import MobileProductsPage from './pages/MobileProductsPage';
+
 
 const Routes = () => {
 	return (
@@ -63,7 +65,7 @@ const Routes = () => {
 							exact
 							path="/electronic/product/:productId"
 							layout={PublicLayout}
-							component={DataYugeProductsPage}
+							component={DataYugeProductPage}
 						/>
 						<Route path="*" component={() => "404 NOT FOUND"} />
 					</Switch>
