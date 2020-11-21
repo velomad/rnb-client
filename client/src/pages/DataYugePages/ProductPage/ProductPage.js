@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductSpecs } from "./components";
+import { ProductSpecs, ProductImgBanner } from "./components";
 const ProductPage = (props) => {
     console.log(props)
 
