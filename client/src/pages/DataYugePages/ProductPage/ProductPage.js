@@ -3,7 +3,7 @@ import { ProductImgBanner } from './components';
 
 const ProductPage = () => {
     return(
-        <div>
+        <div className='mb-8'>
             <ProductImgBanner />
         </div>
     )
