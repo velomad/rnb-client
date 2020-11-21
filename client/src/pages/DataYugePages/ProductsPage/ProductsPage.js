@@ -3,17 +3,25 @@ import axios from "axios";
 import { ProductCard } from "./components";
 import { Button } from "../../../components";
 const ProductsPage = (props) => {
+	var currentPage = 1;
 	const [productData, setProductData] = React.useState([]);
 	const [hasProducts, sethasProducts] = React.useState(true);
-	const [page, setPage] = React.useState(12);
+	const [page, setPage] = React.useState(1);
 	React.useEffect(() => {
-		fetchData();
-	}, [props]);
-	const fetchData = () => {
-		setPage(page + 1);
+		if(props.match.params.category){
+			currentPage = 1;
+			fetchData(props.match.params.category);
+		}
+	}, [props.match.params.category]);
+	const fetchData = (newval) => {
+		if(!!newval){
+			currentPage = 1;
+		}else{
+			currentPage += 1;
+		}
 		axios
 			.get(
-				`https://price-api.datayuge.com/api/v1/compare/list?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&sub_category=${props.match.params.category}&can_compare=1&page=${page}`,
+				`https://price-api.datayuge.com/api/v1/compare/list?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&sub_category=${props.match.params.category}&can_compare=1&page=${currentPage}`,
 			)
 			.then((response) => {
 				if (response.data.data === "end of results") {
@@ -33,7 +41,7 @@ const ProductsPage = (props) => {
 	};
 
 	const getMoreProducts = () => {
-		fetchData();
+		fetchData(null);
 	};
 	return (
 		<React.Fragment>
