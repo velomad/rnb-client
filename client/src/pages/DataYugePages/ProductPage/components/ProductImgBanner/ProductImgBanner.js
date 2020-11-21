@@ -1,13 +1,8 @@
 import React from 'react';
 import { Slider } from '../../../../../components';
 
-const ProductImgBanner = () => {
-    const [productImages, setProductImages] = React.useState([
-        '/static/images/design.jpg',
-        '/static/images/dark-pattern.png',
-        '/static/images/ajioicon.png',
-        '/static/images/square.jpg',
-    ])
+const ProductImgBanner = (props) => {
+
     return ( 
         <React.Fragment>
             <Slider
@@ -22,7 +17,7 @@ const ProductImgBanner = () => {
                 slidesPerViewMobile={1}
                 spaceBetweenMobile={10}
                 cardHeight={'25rem'}
-                productImages={productImages}
+                productImages={props.images}
             />
         </React.Fragment>
      );
