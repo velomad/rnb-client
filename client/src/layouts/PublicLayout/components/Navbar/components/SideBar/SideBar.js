@@ -128,14 +128,15 @@ export default function SwipeableTemporaryDrawer(props) {
 		<div>
 			{
 				<React.Fragment>
-						<SwipeableDrawer
+						<Drawer
+							ModalProps={{BackdropProps:toggleDrawer("right", false)}}
 							anchor="right"
 							open={props.toggleSideBar}
 							onClose={toggleDrawer("right", false)}
 							onOpen={toggleDrawer("right", true)}
 						>
 							{list("right")}
-						</SwipeableDrawer>
+						</Drawer>
 				</React.Fragment>
 			}
 		</div>

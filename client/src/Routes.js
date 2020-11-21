@@ -7,16 +7,21 @@ import { PublicLayout } from "./layouts";
 import Loading from "./components/Loading";
 import { ScrollToTop } from "./utils";
 
-const LandingPage = lazy(() => import("./pages/LandingPage"));
-const ProductsPage = lazy(() => import("./pages/ProductsPage"));
-const ProductPage = lazy(() => import("./pages/ProductPage"));
-const DataYugeProductsPage = lazy(() => import("./pages/DataYugePages/ProductsPage"));
+// const LandingPage = lazy(() => import("./pages/LandingPage"));
+// const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+// const ProductPage = lazy(() => import("./pages/ProductPage"));
+// const DataYugeProductsPage = lazy(() => import("./pages/DataYugePages/ProductsPage"));
+// const MobileProductsPage = lazy(() => import("./pages/MobileProductsPage"));
 
-const MobileProductsPage = lazy(() => import("./pages/MobileProductsPage"));
+import LandingPage from './pages/LandingPage';
+import ProductsPage from './pages/ProductsPage';
+import ProductPage from './pages/ProductPage';
+import DataYugeProductsPage from './pages/DataYugePages/ProductsPage';
+import MobileProductsPage from './pages/MobileProductsPage';
 
 const Routes = () => {
 	return (
-		<Suspense fallback={<Loading />}>
+		// <Suspense fallback={<Loading />}>
 			<Router>
 				<ScrollToTop>
 					<Switch>
@@ -58,7 +63,7 @@ const Routes = () => {
 					</Switch>
 				</ScrollToTop>
 			</Router>
-		</Suspense>
+		// </Suspense>
 	);
 };
 

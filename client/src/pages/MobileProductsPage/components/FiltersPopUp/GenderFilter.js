@@ -33,10 +33,12 @@ const GenderFilter = (props) => {
 								: "flex items-center space-x-6"
 						}
 					>
-						<div>
+						{/* <div>
 							<img src="/static/images/male.png" width="50" />
-						</div>
-						<div>MEN</div>
+						</div> */}
+						<div
+						
+						className="p-4">MEN</div>
 					</div>
 				</li>
 				<li onClick={() => handleGenderSelection("women")}>
@@ -47,10 +49,10 @@ const GenderFilter = (props) => {
 								: "flex items-center space-x-6"
 						}
 					>
-						<div>
+						{/* <div>
 							<img src="/static/images/female.png" width="50" />
-						</div>
-						<div>WOMEN</div>
+						</div> */}
+						<div className="p-4">WOMEN</div>
 					</div>
 				</li>
 			</ul>

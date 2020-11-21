@@ -53,7 +53,7 @@ const DynamicContent = (props) => {
 			{props.categories.map((el, index) => (
 				<section
 					key={el}
-					className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-64"
+					className=" opacity-100 relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-64"
 				>
 					<div
 						class="md:hidden"
