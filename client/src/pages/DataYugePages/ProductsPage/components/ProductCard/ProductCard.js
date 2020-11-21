@@ -18,7 +18,7 @@ const ProductCard = ({
 
 	return (
 		<React.Fragment>
-			<Link to={`/electronic/product/${productId}`}> 
+			<Link to={`/electronic/product/${productId}?productImg=${productImage}`}> 
 				<div
 					className={`w-full h-full p-1 border-b-2  ${
 						epic % 2 !== 0 && "border-l-2"

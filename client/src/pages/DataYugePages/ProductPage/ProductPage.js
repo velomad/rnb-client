@@ -1,9 +1,13 @@
 import React from "react";
 import { ProductSpecs, ProductImgBanner } from "./components";
 import axios from 'axios';
+import qs from 'query-string';
+
+
 const ProductPage = (props) => {
     const [productSpecs,setProductSpecs] = React.useState([]);
     const [productImages,setproductImages] = React.useState([]);
+
 
 
     React.useEffect(() => {
@@ -29,7 +33,7 @@ const ProductPage = (props) => {
     return (
         <div>
             <div className='mb-8'>
-                <ProductImgBanner images={productImages} />
+                <ProductImgBanner images={productImages} productImg={qs.parse(props.location.search).productImg}/>
             </div>
             <ProductSpecs specs={productSpecs}  />
         </div>
