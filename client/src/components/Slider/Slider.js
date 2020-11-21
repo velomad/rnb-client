@@ -10,95 +10,43 @@ import "swiper/components/pagination/pagination.scss";
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
-const ProductSlider = () => {
-	return (
-		<div>
-			<Swiper
-				spaceBetween={20}
-				slidesPerView={3}
-				
-				loop={true}
-				autoplay={{
-					delay: 2500,
-					disableOnInteraction:false
-				}}
-				breakpoints={{
-					"@0.75": {
-						centeredSlides: true,
-						slidesPerView: 2,
-						spaceBetween: 10,
-					},
-					"@0.50": {
-						centeredSlides: true,
-						slidesPerView: 2,
-						spaceBetween: 10,
-					},
-				}}
-			>
-				<SwiperSlide>
-					<div
-						className="relative"
-						style={{
-							height: "8rem",
-							width: "100%",
-							borderRadius: 5,
-							background: "rgba(0,0,0,0.6)",
-							backgroundImage: `url(/static/images/amazonicon.png)`,
-							backgroundSize: "contain, cover",
-							backgroundRepeat: "no-repeat",
-						}}
-					>
-						<div className="absolute bottom-0">
-							<Text size="md" variant="white">
-								PRODUCT NAME
-							</Text>
-						</div>
-					</div>
-				</SwiperSlide>
-
-				<SwiperSlide>
-					<div
-						style={{
-							height: "8rem",
-							borderRadius: 5,
-
-							width: "100%",
-							backgroundImage: `url(/static/images/gplaypattern.png)`,
-						}}
-					>
-						2
-					</div>
-				</SwiperSlide>
-
-				<SwiperSlide>
-					<div
-						style={{
-							height: "8rem",
-							borderRadius: 5,
-
-							width: "100%",
-							backgroundImage: `url(/static/images/gplaypattern.png)`,
-						}}
-					>
-						2
-					</div>
-				</SwiperSlide>
-
-				<SwiperSlide>
-					<div
-						style={{
-							borderRadius: 5,
-							height: "8rem",
-							width: "100%",
-							backgroundImage: `url(/static/images/gplaypattern.png)`,
-						}}
-					>
-						2
-					</div>
-				</SwiperSlide>
-			</Swiper>
-		</div>
-	);
+const ProductSlider = (props) => {
+    return (
+        <div>
+            <Swiper
+                spaceBetween={props.spaceBetween}
+                slidesPerView={props.slidesPerView}
+                pagination={props.pagination}
+                loop={props.loop}
+                autoplay={props.autoplay}
+                breakpoints={{
+                    "@0.50": {
+                        slidesPerView: props.slidesPerViewMobile,
+                        spaceBetween: props.slidesPerViewMobile,
+                    },
+                }}
+            >
+                {
+                    props.productImages.map((el, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                <SwiperSlide>
+                                    <div
+                                        style={{
+                                            height: props.cardHeight,
+                                            width: "100%",
+                                        }}
+                                    >
+                                        <img src={el} />
+                                    </div>
+                                </SwiperSlide>
+                            </React.Fragment>
+                        )
+                    })
+                }
+            </Swiper>
+        </div>
+    );
 };
 
 export default ProductSlider;
