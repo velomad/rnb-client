@@ -1,9 +1,12 @@
 import React from "react";
 import { ProductSpecs } from "./components";
-const ProductPage = () => {
+const ProductPage = (props) => {
+    console.log(props)
+
+    const productId = props.match.params.productId
 	return (
 		<div>
-			<ProductSpecs />
+			<ProductSpecs productId={productId}/>
 		</div>
 	);
 };
