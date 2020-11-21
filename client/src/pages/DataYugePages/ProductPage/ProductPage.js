@@ -1,9 +1,10 @@
 import React from 'react';
+import { ProductImgBanner } from './components';
 
 const ProductPage = () => {
     return(
         <div>
-            all product components
+            <ProductImgBanner />
         </div>
     )
 }
