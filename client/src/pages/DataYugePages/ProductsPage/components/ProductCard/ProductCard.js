@@ -16,10 +16,17 @@ const ProductCard = ({
 }) => {
 	const [priceCheck, setPriceCheck] = useState(false);
 
+	const handleProduct = (newproductId,newproductImage,newproductLink,newproductLowestPrice,newproductRating,newproductTitle) =>{
+		let productDetails = [];
+		productDetails.push({'product':{'productId':newproductId,'productImage':newproductImage,'productLink':newproductLink,'productLowestPrice':newproductLowestPrice,'productRating':newproductRating,'productTitle':newproductTitle}});
+		sessionStorage.setItem("productDetails", JSON.stringify(productDetails));
+	}
+
 	return (
 		<React.Fragment>
 			<Link to={`/electronic/product/${productId}?productImg=${productImage}`}> 
 				<div
+					onClick={() => handleProduct(productId,productImage,productLink,productLowestPrice,productRating,productTitle)}
 					className={`w-full h-full p-1 border-b-2  ${
 						epic % 2 !== 0 && "border-l-2"
 					}`}

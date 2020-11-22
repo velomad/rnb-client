@@ -7,11 +7,12 @@ import qs from 'query-string';
 const ProductPage = (props) => {
     const [productSpecs,setProductSpecs] = React.useState([]);
     const [productImages,setproductImages] = React.useState([]);
-
-
+	const [product,setProduct] = React.useState([]); 
 
     React.useEffect(() => {
         console.log(props);
+        console.log('sessionid',JSON.parse(sessionStorage.getItem('productDetails')));
+		setProduct(JSON.parse(sessionStorage.getItem('productDetails')));
         fetchData();
     }, [props]);
 
@@ -33,9 +34,9 @@ const ProductPage = (props) => {
     return (
         <div>
             <div className='mb-8'>
-                <ProductImgBanner images={productImages} productImg={qs.parse(props.location.search).productImg}/>
+                <ProductImgBanner images={productImages} tempImg={product} />
             </div>
-            <ProductSpecs specs={productSpecs}  />
+            <ProductSpecs specs={productSpecs} productDetails={product}  />
         </div>
     );
 };
