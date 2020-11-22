@@ -18,7 +18,7 @@ const ProductImgBanner = (props) => {
 				cardHeight={"25rem"}
 				productImages={
 					props.images.length > 1
-						? [props.productImg]
+						? [props.tempImg[0].product.productImage]
 						: props.images
 				}
 			/>

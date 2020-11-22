@@ -26,8 +26,15 @@ const handleCompare = async () => {
 	
 }
 
+	const handleProduct = (newproductId,newproductImage,newproductLink,newproductLowestPrice,newproductRating,newproductTitle) =>{
+		let productDetails = [];
+		productDetails.push({'product':{'productId':newproductId,'productImage':newproductImage,'productLink':newproductLink,'productLowestPrice':newproductLowestPrice,'productRating':newproductRating,'productTitle':newproductTitle}});
+		sessionStorage.setItem("productDetails", JSON.stringify(productDetails));
+	}
+
 	return (
 		<React.Fragment>
+<<<<<<< HEAD
 			<div
 				className={`w-full h-full p-1 border-b-2  ${
 					epic % 2 !== 0 && "border-l-2"
@@ -36,6 +43,13 @@ const handleCompare = async () => {
 				{/* <div
 					className={`grid grid-cols-2 absolute h-48 ${
 						priceCheck ? "visible" : "invisible"
+=======
+			<Link to={`/electronic/product/${productId}?productImg=${productImage}`}> 
+				<div
+					onClick={() => handleProduct(productId,productImage,productLink,productLowestPrice,productRating,productTitle)}
+					className={`w-full h-full p-1 border-b-2  ${
+						epic % 2 !== 0 && "border-l-2"
+>>>>>>> 94945158b9506950bf7087704cca76678e0c55cd
 					}`}
 				>
 					<PriceCheck />
