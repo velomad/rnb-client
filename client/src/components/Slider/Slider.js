@@ -37,7 +37,7 @@ const ProductSlider = (props) => {
                                             width: "100%",
                                         }}
                                     >
-                                        <img src={el} />
+                                        <img src={el} className={`object-contain w-full`}/>
                                     </div>
                                 </SwiperSlide>
                             </React.Fragment>

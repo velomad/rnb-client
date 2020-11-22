@@ -1,22 +1,38 @@
 import React from "react";
 import axios from "axios";
-import { ProductCard } from "./components";
+import { ProductCard, ComparisonPopUp } from "./components";
 import { Button } from "../../../components";
 const ProductsPage = (props) => {
 	var currentPage = 1;
 	const [productData, setProductData] = React.useState([]);
 	const [hasProducts, sethasProducts] = React.useState(true);
-	const [page, setPage] = React.useState(1);
+	const [comparison, setComparison] = React.useState(false);
+	const [productImage, setProductImage] = React.useState("");
+	const [productId, setProductId] = React.useState("");
+	const [data, setData] = React.useState({});
+
+	const getComparison = (val, image, id, ts) => {
+		console.log(ts)
+		setComparison(val);
+		setProductImage(image);
+		setProductId(id);
+		setData(ts);
+	};
+
+	const getComparisonFromPopUp = (val) => {
+		setComparison(val);
+	};
+
 	React.useEffect(() => {
-		if(props.match.params.category){
+		if (props.match.params.category) {
 			currentPage = 1;
 			fetchData(props.match.params.category);
 		}
 	}, [props.match.params.category]);
 	const fetchData = (newval) => {
-		if(!!newval){
+		if (!!newval) {
 			currentPage = 1;
-		}else{
+		} else {
 			currentPage += 1;
 		}
 		axios
@@ -47,7 +63,6 @@ const ProductsPage = (props) => {
 		<React.Fragment>
 			<div>
 				<div class="grid gap-0 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 px-2 mb-6">
-                    
 					{productData.map((el, index) => {
 						return (
 							<ProductCard
@@ -60,6 +75,9 @@ const ProductsPage = (props) => {
 								productLowestPrice={el.product_lowest_price}
 								productRating={el.product_rating}
 								productTitle={el.product_title}
+								getComparisonState={(val, image, id, ts) =>
+									getComparison(val, image, id,ts)
+								}
 							/>
 						);
 					})}
@@ -79,6 +97,15 @@ const ProductsPage = (props) => {
 					<h4 className="font-bold text-gray-700">No More Products Found</h4>
 				)}
 			</div>
+
+			<ComparisonPopUp
+				isCompare={comparison}
+				getComparisonState={(val) => getComparisonFromPopUp(val)}
+				image={productImage}
+				id={productId}
+				newproductData={data}
+			/>
+
 		</React.Fragment>
 	);
 };

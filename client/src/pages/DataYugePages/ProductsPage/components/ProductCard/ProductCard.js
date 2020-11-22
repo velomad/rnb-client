@@ -3,7 +3,9 @@ import { Text, Button } from "../../../../../components";
 import { history } from "../../../../../utils";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PriceCheck from "./PriceCheck";
+import Axios from "axios";
 import { Link } from "react-router-dom";
+import ProductsPage from "../../ProductsPage";
 const ProductCard = ({
 	canCompare,
 	productId,
@@ -13,24 +15,34 @@ const ProductCard = ({
 	productRating,
 	productTitle,
 	epic,
+	getComparisonState
 }) => {
-	const [priceCheck, setPriceCheck] = useState(false);
+
+const handleCompare = async () => {
+	const response = await Axios.get(
+		`https://price-api.datayuge.com/api/v1/compare/detail?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&id=${productId}`,
+	);
+	getComparisonState(true, productImage, productId, response.data.data)
+	
+}
 
 	return (
 		<React.Fragment>
-			<Link to={`/electronic/product/${productId}?productImg=${productImage}`}> 
-				<div
-					className={`w-full h-full p-1 border-b-2  ${
-						epic % 2 !== 0 && "border-l-2"
+			<div
+				className={`w-full h-full p-1 border-b-2  ${
+					epic % 2 !== 0 && "border-l-2"
+				}`}
+			>
+				{/* <div
+					className={`grid grid-cols-2 absolute h-48 ${
+						priceCheck ? "visible" : "invisible"
 					}`}
 				>
-					<div
-						className={`grid grid-cols-2 absolute h-48 ${
-							priceCheck ? "visible" : "invisible"
-						}`}
-					>
-						<PriceCheck />
-					</div>
+					<PriceCheck />
+				</div> */}
+				<Link
+					to={`/electronic/product/${productId}?productImg=${productImage}`}
+				>
 					<div className="flex justify-center">
 						{productImage !== null ? (
 							<LazyLoadImage
@@ -49,9 +61,11 @@ const ProductCard = ({
 							</div>
 						)}
 					</div>
-					<div>
-						<div className="p-1">
-							{/* <div
+				</Link>
+
+				<div>
+					<div className="p-1">
+						{/* <div
                                     style={{
                                         overflow: "hidden",
                                         textOverflow: "ellipsis",
@@ -62,6 +76,9 @@ const ProductCard = ({
                                         {productTitle}
                                     </Text>
                                 </div> */}
+						<Link
+							to={`/electronic/product/${productId}?productImg=${productImage}`}
+						>
 							<div
 								style={{
 									overflow: "hidden",
@@ -73,45 +90,46 @@ const ProductCard = ({
 									{productTitle}
 								</Text>
 							</div>
-						</div>
-						<div className="flex px-1 space-x-4">
-							{productLowestPrice && (
-								<div>
-									<Text size="sm" weight="600" variant="secondary">
-										&#8377; {productLowestPrice}
-									</Text>
-								</div>
-							)}
-							{/* {price !== priceStrike && priceStrike !== null ? (
+						</Link>
+					</div>
+					<div className="flex px-1 space-x-4">
+						{productLowestPrice && (
+							<div>
+								<Text size="sm" weight="600" variant="secondary">
+									&#8377; {productLowestPrice}
+								</Text>
+							</div>
+						)}
+						{/* {price !== priceStrike && priceStrike !== null ? (
                                     <div>
                                         <Text size="sm" weight="600" variant="primary">
                                             <del>&#8377; {priceStrike}</del>
                                         </Text>
                                     </div>
                                 ) : null} */}
+					</div>
+
+					<div className="flex justify-between p-1">
+						<div>
+							<Button
+								size="small"
+								variant="primary"
+								animate={true}
+								handleClick={()=> handleCompare()}
+							>
+								Compare
+							</Button>
 						</div>
-						<div className="flex justify-between p-1">
+						{productRating && (
 							<div>
-								<Button
-									size="small"
-									variant="primary"
-									animate={true}
-									handleClick={() => setPriceCheck(true)}
-								>
-									price Check
-								</Button>
+								<Text size="xs" variant="primary">
+									Rating :{productRating}
+								</Text>
 							</div>
-							{productRating && (
-								<div>
-									<Text size="xs" variant="primary">
-										Rating :{productRating}
-									</Text>
-								</div>
-							)}
-						</div>
+						)}
 					</div>
 				</div>
-			</Link>
+			</div>
 		</React.Fragment>
 	);
 };
