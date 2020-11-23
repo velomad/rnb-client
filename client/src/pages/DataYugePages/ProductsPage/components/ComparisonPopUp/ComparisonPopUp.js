@@ -36,20 +36,16 @@ const ComparisonPopUp = (props) => {
 		stores,
 	} = props.productDetail;
 
-	const storeNames = ["tatacliq", "amazon", "flipkart", "paytmmall"];
-	let displayStores = [];
-
-	var epic = [];
+	var storesToDisplay = [];
 	if (stores) {
 		stores.map((el, index) => {
-			Object.keys(el).map((item,itemindex) => {
+			Object.keys(el).map((item, itemindex) => {
 				if (el[item].length !== 0) {
-					epic.push(el);
+					storesToDisplay.push(el);
 				}
-			})
+			});
 		});
 	}
-	console.log(epic);
 
 	const classes = useStyles();
 	return (
@@ -156,10 +152,9 @@ const ComparisonPopUp = (props) => {
 						))}
 					</div> */}
 
-					<div>
-					<WebsiteThumbSlider />
-					</div>
-
+						<div>
+							<WebsiteThumbSlider stores={storesToDisplay} />
+						</div>
 					</div>
 				</div>
 			</Dialog>
