@@ -15,7 +15,7 @@ const ProductImgBanner = (props) => {
 				}}
 				slidesPerViewMobile={1}
 				spaceBetweenMobile={10}
-				cardHeight={"25rem"}
+				cardHeight={"h-48"}
 				productImages={
 					props.images.length > 1
 						? [props.tempImg[0].product.productImage]
