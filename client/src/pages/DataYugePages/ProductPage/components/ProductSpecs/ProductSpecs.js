@@ -4,14 +4,14 @@ import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/Star';
 const ProductSpecs = (props) => {
 	console.log('specs', props.specs.sub_specs);
-	console.log('product Details ',props.productDetails)
+	console.log('product Details ', props.productDetails)
 	let ratingToReturn = [];
 	const Rating = () => {
 		for (let i = 0; i < props.productDetails[0].product.productRating; i++) {
-		  ratingToReturn.push(<span> {<StarIcon style={{color:'orange'}} />}</span>);
+			ratingToReturn.push(<span> {<StarIcon style={{ color: 'orange' }} />}</span>);
 		}
 		return ratingToReturn;
-	  };
+	};
 	return (
 		<React.Fragment>
 			{
@@ -21,7 +21,7 @@ const ProductSpecs = (props) => {
 							<h4 className='font-bold text-gray-700'>{el.product.productTitle}</h4>
 							<h4 className='font-bold text-black'>&#x20B9; {el.product.productLowestPrice}</h4>
 							<h4 className='font-bold text-gray-700'>Rating: {Rating()}</h4>
-							
+
 							{/* <h4 className='text-bold text-black'>{el.product.productLink}</h4> */}
 						</div>
 					)
@@ -50,18 +50,14 @@ const ProductSpecs = (props) => {
 									{
 										props.specs.sub_specs[el].map((item, itemindex) => {
 											return (
-												<Grid item xs={6}>
-													<p key={itemindex} className='font-medium text-gray-600 ml-4 mr-4 mt-2 mb-2'>{item.spec_key}</p>
-												</Grid>
-											)
-										})
-									}
-									{
-										props.specs.sub_specs[el].map((item, itemindex) => {
-											return (
-												<Grid item xs={6}>
-													<p key={itemindex} className='font-medium text-gray-600 ml-4 mr-4 mt-2 mb-2'>{item.spec_value}</p>
-												</Grid>
+												<React.Fragment>
+													<Grid item xs={6}>
+														<p key={itemindex} className='font-medium text-gray-600 ml-4 mr-4 mt-2 mb-2'>{item.spec_key}</p>
+													</Grid>
+													<Grid item xs={6}>
+														<p key={itemindex} className='font-medium text-gray-600 ml-4 mr-4 mt-2 mb-2'>{item.spec_value}</p>
+													</Grid>
+												</React.Fragment>
 											)
 										})
 									}
