@@ -36,27 +36,17 @@ const ComparisonPopUp = (props) => {
 		stores,
 	} = props.productDetail;
 
-	const storeNames = ["tatacliq", "amazon", "flipkart"];
+	const storeNames = ["tatacliq", "amazon", "flipkart", "paytmmall"];
 	let displayStores = [];
-
-	// if (stores) {
-	// 	stores.map((el) => {
-	// 		storeNames.forEach((element) => {
-	// 			if (typeof (el[element] === "Object" && ![] )) {
-	// 				displayStores.push(el[element]);
-	// 			}
-	// 		});
-	// 	});
-	// }
 
 	var epic = [];
 	if (stores) {
-		stores.forEach((element) => {
-			storeNames.forEach((el) => {
-				if (typeof element[el] === "object") {
-					epic.push(element[el]);
+		stores.map((el, index) => {
+			Object.keys(el).map((item,itemindex) => {
+				if (el[item].length !== 0) {
+					epic.push(el);
 				}
-			});
+			})
 		});
 	}
 	console.log(epic);
