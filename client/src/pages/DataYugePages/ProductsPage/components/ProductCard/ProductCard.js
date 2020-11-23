@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Text, Button } from "../../../../../components";
 import { history } from "../../../../../utils";
+import { setCompareProduct } from "../../../../../store/actions";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PriceCheck from "./PriceCheck";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import ProductsPage from "../../ProductsPage";
+import {connect} from "react-redux";
+
 const ProductCard = ({
 	canCompare,
 	productId,
@@ -15,15 +18,12 @@ const ProductCard = ({
 	productRating,
 	productTitle,
 	epic,
-	getComparisonState
+	setCompareProduct
 }) => {
 
-const handleCompare = async () => {
-	const response = await Axios.get(
-		`https://price-api.datayuge.com/api/v1/compare/detail?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&id=${productId}`,
-	);
-	getComparisonState(true, productImage, productId, response.data.data)
-	
+const handleCompare = () => {
+	console.log("clicled")	
+	setCompareProduct(true, productId)
 }
 
 	const handleProduct = (newproductId,newproductImage,newproductLink,newproductLowestPrice,newproductRating,newproductTitle) =>{
@@ -34,7 +34,6 @@ const handleCompare = async () => {
 
 	return (
 		<React.Fragment>
-<<<<<<< HEAD
 			<div
 				className={`w-full h-full p-1 border-b-2  ${
 					epic % 2 !== 0 && "border-l-2"
@@ -43,13 +42,6 @@ const handleCompare = async () => {
 				{/* <div
 					className={`grid grid-cols-2 absolute h-48 ${
 						priceCheck ? "visible" : "invisible"
-=======
-			<Link to={`/electronic/product/${productId}?productImg=${productImage}`}> 
-				<div
-					onClick={() => handleProduct(productId,productImage,productLink,productLowestPrice,productRating,productTitle)}
-					className={`w-full h-full p-1 border-b-2  ${
-						epic % 2 !== 0 && "border-l-2"
->>>>>>> 94945158b9506950bf7087704cca76678e0c55cd
 					}`}
 				>
 					<PriceCheck />
@@ -129,7 +121,7 @@ const handleCompare = async () => {
 								size="small"
 								variant="primary"
 								animate={true}
-								handleClick={()=> handleCompare()}
+								handleClick={handleCompare}
 							>
 								Compare
 							</Button>
@@ -148,4 +140,4 @@ const handleCompare = async () => {
 	);
 };
 
-export default ProductCard;
+export default connect(null, {setCompareProduct})(ProductCard);

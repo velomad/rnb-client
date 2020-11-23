@@ -6,22 +6,7 @@ const ProductsPage = (props) => {
 	var currentPage = 1;
 	const [productData, setProductData] = React.useState([]);
 	const [hasProducts, sethasProducts] = React.useState(true);
-	const [comparison, setComparison] = React.useState(false);
-	const [productImage, setProductImage] = React.useState("");
-	const [productId, setProductId] = React.useState("");
-	const [data, setData] = React.useState({});
 
-	const getComparison = (val, image, id, ts) => {
-		console.log(ts)
-		setComparison(val);
-		setProductImage(image);
-		setProductId(id);
-		setData(ts);
-	};
-
-	const getComparisonFromPopUp = (val) => {
-		setComparison(val);
-	};
 
 	React.useEffect(() => {
 		if (props.match.params.category) {
@@ -75,9 +60,6 @@ const ProductsPage = (props) => {
 								productLowestPrice={el.product_lowest_price}
 								productRating={el.product_rating}
 								productTitle={el.product_title}
-								getComparisonState={(val, image, id, ts) =>
-									getComparison(val, image, id,ts)
-								}
 							/>
 						);
 					})}
@@ -98,14 +80,7 @@ const ProductsPage = (props) => {
 				)}
 			</div>
 
-			<ComparisonPopUp
-				isCompare={comparison}
-				getComparisonState={(val) => getComparisonFromPopUp(val)}
-				image={productImage}
-				id={productId}
-				newproductData={data}
-			/>
-
+			<ComparisonPopUp />
 		</React.Fragment>
 	);
 };
