@@ -3,19 +3,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Dialog, AppBar, Toolbar, Slide, Typography } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import qs from "query-string";
-import { Slider, Text } from "../../../../../components";
+import { Slider, Text, Rating } from "../../../../../components";
 import { setCompareProduct } from "../../../../../store/actions";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
 		position: "relative",
-		backgroundColor: " #fff",
+		backgroundColor: " #1a202c",
 	},
 	title: {
 		marginLeft: theme.spacing(2),
 		flex: 1,
-		color: "#444",
+		color: "#fff",
 	},
 }));
 
@@ -69,10 +69,16 @@ const ComparisonPopUp = (props) => {
 				TransitionComponent={Transition}
 			>
 				<AppBar className={classes.appBar}>
-					<Toolbar>
-						<Typography variant="h6" className={classes.title}>
+					<Toolbar className="flex justify-between">
+						{/* <Typography variant="h6" className={classes.title}>
 							Comparison
-						</Typography>
+						</Typography> */}
+						<div>
+							<img
+								src="https://raw.githubusercontent.com/velomad/ReachNBuy/main/src/assets/img/logo.png"
+								width="50px"
+							/>
+						</div>
 						<div onClick={() => props.setCompareProduct(false, null)}>
 							<CloseIcon className="text-gray-600" />
 						</div>
@@ -95,43 +101,70 @@ const ComparisonPopUp = (props) => {
 							cardHeight={"h-40"}
 						/>
 					</div>
-					<div>
-						<Text>{product_brand}</Text>
-					</div>
-					<div>
-						<Text>{product_name}</Text>
-					</div>
 
-					<div className="flex justify-between">
+					<div className="space-y-3 p-2">
 						<div>
-							<Text>{product_mrp}</Text>
+							<Text size="xl" weight="600" variant="primaryDark">
+								{product_brand}
+							</Text>
 						</div>
 						<div>
-							<Text>{product_ratings}</Text>
+							<Text size="lg" variant="primary">
+								{product_name}
+							</Text>
 						</div>
-					</div>
 
-					<div>
 						<div>
-							<Text>MOEL</Text>
+							<Text variant="primaryDark" weight="600" size="lg">
+								&#8377; {product_mrp}
+							</Text>
 						</div>
-						<div>
-							<Text>{product_model}</Text>
-						</div>
-					</div>
+						<div>{Rating(product_ratings)}</div>
 
-					{available_colors && (
-						<div>
+						<div className="space-y-1">
 							<div>
-								<Text>colors</Text>
+								<Text
+									classes="uppercase"
+									variant="danger"
+									size="md"
+									weight="600"
+								>
+									model
+								</Text>
 							</div>
 							<div>
-								{available_colors.map((el) => (
-									<Text>{el}</Text>
-								))}
+								<Text variant="primary">{product_model}</Text>
 							</div>
 						</div>
-					)}
+
+						{available_colors && (
+							<div className="space-y-1">
+								<div>
+									<Text
+										variant="danger"
+										size="md"
+										weight="600"
+										classes="uppercase"
+									>
+										colours
+									</Text>
+								</div>
+								<div>
+									{available_colors.map((el) => (
+										<Text variant="primary">{el}, </Text>
+									))}
+								</div>
+							</div>
+						)}
+
+						{/* <div>
+						{epic.map(el => (
+							<div>
+								{JSON.stringify(el)}
+							</div>
+						))}
+					</div> */}
+					</div>
 				</div>
 			</Dialog>
 		</div>
