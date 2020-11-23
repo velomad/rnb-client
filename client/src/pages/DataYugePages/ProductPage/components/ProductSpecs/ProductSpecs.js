@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/Star';
 const ProductSpecs = (props) => {
 	console.log('specs', props.specs.sub_specs);
+	console.log('product Details ',props.productDetails)
 	let ratingToReturn = [];
 	const Rating = () => {
 		for (let i = 0; i < props.productDetails[0].product.productRating; i++) {

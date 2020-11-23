@@ -35,6 +35,7 @@ const handleCompare = () => {
 	return (
 		<React.Fragment>
 			<div
+				onClick={() => handleProduct(productId,productImage,productLink,productLowestPrice,productRating,productTitle,)}
 				className={`w-full h-full p-1 border-b-2  ${
 					epic % 2 !== 0 && "border-l-2"
 				}`}
