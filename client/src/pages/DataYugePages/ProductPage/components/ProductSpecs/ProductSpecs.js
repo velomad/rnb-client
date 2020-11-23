@@ -2,6 +2,8 @@ import React from "react";
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/Star';
+import { Text } from '../../../../../components';
+import Divider from '@material-ui/core/Divider';
 const ProductSpecs = (props) => {
 	console.log('specs', props.specs.sub_specs);
 	console.log('product Details ', props.productDetails)
@@ -19,9 +21,10 @@ const ProductSpecs = (props) => {
 					return (
 						<div key={index} className='m-4'>
 							<h4 className='font-bold text-gray-700'>{el.product.productTitle}</h4>
-							<h4 className='font-bold text-black'>&#x20B9; {el.product.productLowestPrice}</h4>
-							<h4 className='font-bold text-gray-700'>Rating: {Rating()}</h4>
-
+							<div className=''>
+								<h4 className='font-bold text-black'>&#x20B9; {el.product.productLowestPrice}</h4>
+								<h4 className='font-bold text-gray-700'>{Rating()}</h4>
+							</div>
 							{/* <h4 className='text-bold text-black'>{el.product.productLink}</h4> */}
 						</div>
 					)
@@ -45,17 +48,25 @@ const ProductSpecs = (props) => {
 					Object.keys(props.specs.sub_specs).map((el, index) => {
 						return (
 							<React.Fragment>
-								<h5 key={index} className='font-bold text-black m-4'>{el}</h5>
+								<div className='py-2'>
+									<Divider />
+								</div>
+								<Text key={index} variant='primaryDark' weight="600" classes="ml-4" >{el}</Text>
 								<Grid container spacing={0}>
+
 									{
 										props.specs.sub_specs[el].map((item, itemindex) => {
 											return (
 												<React.Fragment>
-													<Grid item xs={6}>
-														<p key={itemindex} className='font-medium text-gray-600 ml-4 mr-4 mt-2 mb-2'>{item.spec_key}</p>
+													<Grid item xs={6} className='space-y-4'>
+														<div className='ml-4 mr-4 mt-2 mb-2'>
+															<Text variant='primary' key={itemindex} >{item.spec_key}</Text>
+														</div>
 													</Grid>
 													<Grid item xs={6}>
-														<p key={itemindex} className='font-medium text-gray-600 ml-4 mr-4 mt-2 mb-2'>{item.spec_value}</p>
+														<div className='ml-4 mr-4 mt-2 mb-2'>
+															<Text variant='primary' key={itemindex}>{item.spec_value}</Text>
+														</div>
 													</Grid>
 												</React.Fragment>
 											)
