@@ -6,6 +6,7 @@ import qs from "query-string";
 import { Slider, Text, Rating } from "../../../../../components";
 import { setCompareProduct } from "../../../../../store/actions";
 import { connect } from "react-redux";
+import WebsiteThumbSlider from "./WebsiteThumbSlider";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -164,6 +165,11 @@ const ComparisonPopUp = (props) => {
 							</div>
 						))}
 					</div> */}
+
+					<div>
+					<WebsiteThumbSlider />
+					</div>
+
 					</div>
 				</div>
 			</Dialog>
