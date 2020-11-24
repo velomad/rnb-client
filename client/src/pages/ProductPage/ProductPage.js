@@ -11,6 +11,7 @@ const ProductPage = (props) => {
 	const [product, setproduct] = useState({});
 
 	const productId = props.match.params.id;
+	
 	useEffect(() => {
 		getInfo();
 	}, []);

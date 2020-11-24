@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SwiperCore, { Navigation, Pagination, Autoplay, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Text } from "../../../../../components";
+import { Button, Text } from "../../../../../components";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
@@ -12,24 +12,13 @@ const WebsiteThumbSlider = ({ stores }) => {
 	console.log(stores);
 	const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-	// 	flipkart:
-	// is_cod: "1"
-	// is_emi: "0"
-	// product_color: "white"
-	// product_delivery: "3-5"
-	// product_delivery_cost: "0"
-	// product_mrp: "3240"
-	// product_offer: ""
-	// product_price: "2499"
-	// product_store: "Flipkart"
-	// product_store_logo: "https://images-api.datayuge.in/image/ZmxpcGthcnRfc3RvcmUucG5n.png"
-	// product_store_url: "https://dl.flipkart.com/dl/orient-wendy-3-blade-ceiling-fan/p/itmdwufxecghveg5?pid=FANEFKJZFVHYEMEX&affid=arunbabul"
-	// return_time: "10 Days"
+	const handleBuyNowClick = (productLink) => {
+		window.open(productLink, "_blank");
+	};
+
 	return (
 		<div className="space-y-4">
-			<Swiper thumbs={{ swiper: thumbsSwiper }} 
-			spaceBetween={20}
-			>
+			<Swiper thumbs={{ swiper: thumbsSwiper }} spaceBetween={20}>
 				{stores.map((el, index) =>
 					Object.keys(el).map((elem) => (
 						<React.Fragment key={index}>
@@ -112,17 +101,29 @@ const WebsiteThumbSlider = ({ stores }) => {
 										</div>
 									</div>
 
-									{el[elem].return_time !== "" ? (
-										<div className="flex space-x-4">
-											<Text variant="primaryDark" size="md">
-												Return Time:
-											</Text>
-											<Text variant="primary" size="md">
-												{el[elem].return_time}
-											</Text>
+									<div className="flex justify-between items-center">
+										{el[elem].return_time !== "" ? (
+											<div className="flex space-x-4">
+												<Text variant="primaryDark" size="md">
+													Return Time:
+												</Text>
+												<Text variant="primary" size="md">
+													{el[elem].return_time}
+												</Text>
+											</div>
+										) : null}
+										<div>
+											<Button
+												size="base"
+												variant="primary"
+												handleClick={(productLink) =>
+													handleBuyNowClick(el[elem].product_store_url)
+												}
+											>
+												Buy Now
+											</Button>
 										</div>
-									) : null}
-
+									</div>
 									<div>
 										<Text variant="primary" size="md">
 											{el[elem].product_offer}
@@ -134,7 +135,7 @@ const WebsiteThumbSlider = ({ stores }) => {
 					)),
 				)}
 			</Swiper>
-			
+
 			<Swiper
 				onSwiper={setThumbsSwiper}
 				spaceBetween={10}

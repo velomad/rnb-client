@@ -1,4 +1,3 @@
-import { AssignmentReturnRounded } from "@material-ui/icons";
 import {
 	GET_PRODUCTS_LOAD,
 	GET_PRODUCTS_FETCH,

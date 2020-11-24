@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Drawer from '@material-ui/core/Drawer';
+import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -17,21 +17,27 @@ import StarBorder from "@material-ui/icons/StarBorder";
 import Collapse from "@material-ui/core/Collapse";
 import { electronics } from "../Menu/DynamicContent/electronicsMenuData";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Icon from '@material-ui/core/Icon';
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-import { history } from '../../../../../../utils';
+import Icon from "@material-ui/core/Icon";
+import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import { history } from "../../../../../../utils";
+import { Text } from "../../../../../../components";
+import { connect } from "react-redux";
+import { setSidebar } from "../../../../../../store/actions";
 const useStyles = makeStyles((theme) => ({
 	list: {
-		width: 'auto',
-		[theme.breakpoints.up('md')]: {
+		width: 270,
+		[theme.breakpoints.up("md")]: {
 			width: 350,
-		}
+		},
+		
 	},
 	fullList: {
 		width: "auto",
 	},
 }));
-export default function SwipeableTemporaryDrawer(props) {
+const Sidebar = (props) => {
+	console.log(props.open);
+
 	const classes = useStyles();
 	const [state, setState] = React.useState({
 		top: false,
@@ -40,9 +46,12 @@ export default function SwipeableTemporaryDrawer(props) {
 		right: false,
 	});
 	const [openListItem, setopenListItem] = React.useState("");
+
 	const getProducts = (product) => {
-		history.push('/electronic/products/'+product);
+		props.setSidebar(false);
+		history.push("/electronic/products/" + product);
 	};
+
 	const handleClick = (val) => {
 		if (openListItem !== val) {
 			setopenListItem(val);
@@ -51,24 +60,7 @@ export default function SwipeableTemporaryDrawer(props) {
 		}
 	};
 
-	const toggleDrawer = (anchor, open) => (event) => {
-		if (
-			event &&
-			event.type === "keydown" &&
-			(event.key === "Tab" || event.key === "Shift")
-		) {
-			return;
-		}
-
-		setState({ ...state, [anchor]: open });
-	};
-	const handleClickAway = () => {
-		console.log('click away...');
-		setState({ ...state, 'right': true });
-	};
-
 	const list = (anchor) => (
-
 		<div
 			className={clsx(classes.list, {
 				[classes.fullList]: anchor === "top" || anchor === "bottom",
@@ -81,11 +73,7 @@ export default function SwipeableTemporaryDrawer(props) {
 					.map((item, index) => {
 						return (
 							<React.Fragment>
-								<ListItem
-									key={index}
-									button
-									onClick={() => handleClick(item)}
-								>
+								<ListItem key={index} button onClick={() => handleClick(item)}>
 									{/* <ListItemIcon>
 										<SvgIcon component={InboxIcon} viewBox="0 0 600 476.6" />
 									</ListItemIcon> */}
@@ -109,7 +97,11 @@ export default function SwipeableTemporaryDrawer(props) {
 															onClick={() =>
 																getProducts(listItem.child_category)
 															}
-															primary={listItem.child_category_name}
+															primary={
+																<Text  weight="600">
+																	{listItem.child_category_name}
+																</Text>
+															}
 														/>
 													</ListItem>
 												) : null}
@@ -126,19 +118,27 @@ export default function SwipeableTemporaryDrawer(props) {
 
 	return (
 		<div>
-			{
-				<React.Fragment>
-						<Drawer
-							ModalProps={{BackdropProps:toggleDrawer("right", false)}}
-							anchor="right"
-							open={props.toggleSideBar}
-							onClose={toggleDrawer("right", false)}
-							onOpen={toggleDrawer("right", true)}
-						>
-							{list("right")}
-						</Drawer>
-				</React.Fragment>
-			}
+			<React.Fragment>
+				<Drawer
+					className="opacity-75"
+					ModalProps={{ onBackdropClick: () => props.setSidebar(false) }}
+					anchor="right"
+					// onBackdropClick={props.setSidebar(false)}
+					// className={classes.drawer}
+					open={props.open}
+					// classes={{
+					// 	paper: classes.drawerPaper,
+					// }}
+				>
+					{list("right")}
+				</Drawer>
+			</React.Fragment>
 		</div>
 	);
-}
+};
+
+const mapStateToProps = ({ uiState }) => ({
+	open: uiState.isSidebar,
+});
+
+export default connect(mapStateToProps, { setSidebar })(Sidebar);

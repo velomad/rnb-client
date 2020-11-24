@@ -25,9 +25,6 @@ const MobileProductsPage = (props, location) => {
 
 	useEffect( async () => {
 
-		// const params = new URLSearchParams(location.search)
-
-		// const q = params.get("q")
 		console.log(history.location.pathname)
 
 		if(!props.isBack){

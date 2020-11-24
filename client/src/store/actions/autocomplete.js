@@ -15,7 +15,7 @@ export const getSuggestions = (searchQuery, category) => async (dispatch) => {
 			: (URL = `${baseUrl}/api/v1/search?term=${searchQuery}&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`);
 
 		const resp = await Axios.get(URL);
-		console.log(resp.data.keywords)
+		console.log(resp.data.keywords);
 		dispatch({
 			type: GET_SUGGESTIONS_FETCH,
 			payload:

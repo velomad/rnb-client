@@ -4,7 +4,7 @@ import { DynamicContent } from "../Menu";
 import { connect } from "react-redux";
 import "./primary.css";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import { setSearchSlide } from "../../../../../../store/actions";
+import { setSearchSlide, setSidebar } from "../../../../../../store/actions";
 import { men, women } from "../Menu/DynamicContent/flipkartMenuData";
 import { amazonmen, amazonwomen } from "../Menu/DynamicContent/amazonMenuData";
 import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
@@ -68,7 +68,6 @@ const Primary = (props) => {
 		settoggleSideBar(false);
 	};
 
-	console.log(currentBrand);
 
 	return (
 		<React.Fragment>
@@ -116,7 +115,8 @@ const Primary = (props) => {
 							/>
 
 							<button
-								onClick={() => toggleSideDrawer("right", true)}
+								// onClick={() => toggleSideDrawer("right", true)}
+								onClick={() => props.setSidebar(true)}
 								type="button"
 								className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
 								aria-label="toggle menu"
@@ -399,4 +399,4 @@ const Primary = (props) => {
 	);
 };
 
-export default connect(null, { setSearchSlide })(Primary);
+export default connect(null, { setSearchSlide, setSidebar })(Primary);

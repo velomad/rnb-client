@@ -26,7 +26,7 @@ export const getProducts = (page) => async (dispatch) => {
 		const API_URL = `${baseUrl}/api/v1${URL}&page=${page}&limit=30&api_key=${process.env.REACT_APP_DATASKORE_API_KEY}`;
 
 		const resp = await Axios.get(API_URL);
-		console.log(resp)
+		console.log(resp);
 		dispatch({
 			type: GET_PRODUCTS_FETCH,
 			payload: resp.data.data.result,

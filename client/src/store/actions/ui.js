@@ -7,6 +7,7 @@ import {
 	COMPARE_PRODUCT_SLIDE,
 	COMPARE_PRODUCT_LOAD,
 	COMPARE_PRODUCT_FETCH,
+	SET_SIDEBAR
 } from "../types";
 
 export const setFilterPopUpAction = (value) => (dispatch) => {
@@ -25,6 +26,7 @@ export const setBackFromSearch = (value) => (dispatch) => {
 	dispatch({ type: BACK_FROM_PRODUCT_DETAIL, payload: value });
 };
 
+
 export const setCompareProduct = (value, productId) => async (dispatch) => {
 	dispatch({ type: COMPARE_PRODUCT_SLIDE, payload: value });
 	dispatch({ type: COMPARE_PRODUCT_LOAD });
@@ -37,4 +39,8 @@ export const setCompareProduct = (value, productId) => async (dispatch) => {
 	} catch (err) {
 		console.log(err);
 	}
+};
+
+export const setSidebar = (value) => (dispatch) => {
+	dispatch({ type: SET_SIDEBAR, payload: value });
 };

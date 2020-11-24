@@ -6,6 +6,7 @@ import {
 	COMPARE_PRODUCT_SLIDE,
 	COMPARE_PRODUCT_LOAD,
 	COMPARE_PRODUCT_FETCH,
+	SET_SIDEBAR
 } from "../types";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
 	isCompare: false,
 	comparisonProductDetail: {},
 	comparisonProductDetailLoading: true,
+	isSidebar : false
 };
 
 const ui = (state = initialState, action) => {
@@ -56,6 +58,11 @@ const ui = (state = initialState, action) => {
 				...state,
 				comparisonProductDetailLoading: false,
 				comparisonProductDetail: payload,
+			};
+		case SET_SIDEBAR:
+			return {
+				...state,
+				isSidebar: payload,
 			};
 		default:
 			return state;
