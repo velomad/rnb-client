@@ -38,6 +38,7 @@ const SearchSlide = (props) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [searchSuggestions, setSearchSuggestions] = useState(false);
 	const [suggestedTerm, setSuggestedTerm] = useState("");
+	const [catgeory, setCategory] = useState("clothing");
 
 	const handleClose = () => {
 		props.setSearchSlide(false);
@@ -45,7 +46,7 @@ const SearchSlide = (props) => {
 		setSearchSuggestions(false);
 	};
 
-	console.log(searchTerm)
+	console.log(searchTerm);
 	const handleSearchSubmit = (e) => {
 		e.preventDefault();
 		props.setSearchTerm(searchTerm);
@@ -59,7 +60,7 @@ const SearchSlide = (props) => {
 
 	const handleChange = (e) => {
 		setSearchTerm(e.target.value);
-		e.target.value.length > 2 && props.getSuggestions(e.target.value);
+		e.target.value.length > 2 && props.getSuggestions(e.target.value, catgeory);
 		e.target.value.length > 2
 			? setSearchSuggestions(true)
 			: setSearchSuggestions(false);
@@ -73,6 +74,17 @@ const SearchSlide = (props) => {
 	return (
 		<div>
 			<Dialog fullScreen open={props.isActive} TransitionComponent={Transition}>
+				<div
+					className="grid grid-cols-2 p-2 place-items-center w-full"
+					style={{ background: "rgba(0,0,0,0.7)" }}
+				>
+					<div onClick={() => setCategory("clothing")}>
+						<img src="/static/images/dress.svg" width="35px" />
+					</div>
+					<div onClick={() => setCategory("electronic")}>
+						<img src="/static/images/headphones.svg" width="35px" />
+					</div>
+				</div>
 				<div className="flex p-2 items-center">
 					<div onClick={handleClose}>
 						<ArrowBackIcon fontSize="default" className="text-gray-600" />
@@ -82,7 +94,7 @@ const SearchSlide = (props) => {
 							<input
 								type="text"
 								className={`h-8 w-full outline-none ${classes.caretStyles}`}
-								placeholder="Search for products"
+								placeholder={`Search for ${catgeory} products`}
 								onChange={handleChange}
 								value={searchTerm}
 							/>
@@ -116,6 +128,7 @@ const SearchSlide = (props) => {
 					</div>
 				) : (
 					<SearchSuggestions
+						catgeory={catgeory}
 						handleClose={handleClose}
 						// suggestedTermCallback={getSuggestedTerm}
 						suggestions={props.suggestions}

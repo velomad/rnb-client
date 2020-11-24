@@ -4,7 +4,7 @@ const Rating = (stars) => {
     let ratingToReturn = []
 	for (let i = 0; i < Number(stars); i++) {
 		ratingToReturn.push(
-			<span> {<StarIcon style={{ color: "orange", fontSize:"1.5rem"}}  />}</span>,
+			<span> {<StarIcon style={{ color: "orange"}} fontSize="small" />}</span>,
 		);
 	}
 	return ratingToReturn;

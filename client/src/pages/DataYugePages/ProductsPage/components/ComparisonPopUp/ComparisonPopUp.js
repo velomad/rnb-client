@@ -10,7 +10,7 @@ import WebsiteThumbSlider from "./WebsiteThumbSlider";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
-		position: "relative",
+		position: "fixed",
 		backgroundColor: " #1a202c",
 	},
 	title: {
@@ -71,7 +71,7 @@ const ComparisonPopUp = (props) => {
 						</div>
 					</Toolbar>
 				</AppBar>
-				<div className="py-4">
+				<div className="py-4 pt-16">
 					<div>
 						<Slider
 							productImages={product_images}
@@ -89,26 +89,27 @@ const ComparisonPopUp = (props) => {
 						/>
 					</div>
 
-					<div className="space-y-3 p-2">
+					<div className="space-y-1 p-2">
 						<div>
 							<Text size="xl" weight="600" variant="primaryDark">
 								{product_brand}
 							</Text>
 						</div>
 						<div>
-							<Text size="lg" variant="primary">
+							<Text size="sm" variant="primary">
 								{product_name}
 							</Text>
 						</div>
 
-						<div>
-							<Text variant="primaryDark" weight="600" size="lg">
-								&#8377; {product_mrp}
-							</Text>
+						<div className="flex space-x-6">
+							<div>
+								<Text variant="primaryDark" weight="600" size="lg">
+									&#8377; {product_mrp}
+								</Text>
+							</div>
+							<div>{Rating(product_ratings)}</div>
 						</div>
-						<div>{Rating(product_ratings)}</div>
-
-						<div className="space-y-1">
+						<div>
 							<div>
 								<Text
 									classes="uppercase"
@@ -120,12 +121,12 @@ const ComparisonPopUp = (props) => {
 								</Text>
 							</div>
 							<div>
-								<Text variant="primary">{product_model}</Text>
+								<Text variant="primary" size="sm">{product_model}</Text>
 							</div>
 						</div>
 
 						{available_colors && (
-							<div className="space-y-1">
+							<div >
 								<div>
 									<Text
 										variant="danger"
@@ -138,7 +139,7 @@ const ComparisonPopUp = (props) => {
 								</div>
 								<div>
 									{available_colors.map((el) => (
-										<Text variant="primary">{el}, </Text>
+										<Text variant="primary" size="sm">{el}, </Text>
 									))}
 								</div>
 							</div>
@@ -151,10 +152,9 @@ const ComparisonPopUp = (props) => {
 							</div>
 						))}
 					</div> */}
-
-						<div>
-							<WebsiteThumbSlider stores={storesToDisplay} />
-						</div>
+					</div>
+					<div className="py-4">
+						<WebsiteThumbSlider stores={storesToDisplay} />
 					</div>
 				</div>
 			</Dialog>
