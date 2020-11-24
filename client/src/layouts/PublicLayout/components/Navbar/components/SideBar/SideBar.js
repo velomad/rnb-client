@@ -26,13 +26,16 @@ import { setSidebar } from "../../../../../../store/actions";
 const useStyles = makeStyles((theme) => ({
 	list: {
 		width: 270,
+		backgroundColor: "#222",
 		[theme.breakpoints.up("md")]: {
 			width: 350,
 		},
-		
 	},
 	fullList: {
 		width: "auto",
+	},
+	drawer: {
+		opacity: 0.9,
 	},
 }));
 const Sidebar = (props) => {
@@ -77,7 +80,13 @@ const Sidebar = (props) => {
 									{/* <ListItemIcon>
 										<SvgIcon component={InboxIcon} viewBox="0 0 600 476.6" />
 									</ListItemIcon> */}
-									<ListItemText primary={item} />
+									<ListItemText
+										primary={
+											<Text variant="white" weight="500">
+												{item}
+											</Text>
+										}
+									/>
 									{openListItem === item ? <ExpandLess /> : <ExpandMore />}
 								</ListItem>
 								<Collapse
@@ -98,7 +107,7 @@ const Sidebar = (props) => {
 																getProducts(listItem.child_category)
 															}
 															primary={
-																<Text  weight="600">
+																<Text variant="white" weight="500">
 																	{listItem.child_category_name}
 																</Text>
 															}
@@ -120,7 +129,7 @@ const Sidebar = (props) => {
 		<div>
 			<React.Fragment>
 				<Drawer
-					className="opacity-75"
+					className={classes.drawer}
 					ModalProps={{ onBackdropClick: () => props.setSidebar(false) }}
 					anchor="right"
 					// onBackdropClick={props.setSidebar(false)}
