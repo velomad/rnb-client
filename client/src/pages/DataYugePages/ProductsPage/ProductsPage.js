@@ -8,16 +8,19 @@ import {
 	setResetElectronicProducts,
 } from "../../../store/actions";
 import { connect } from "react-redux";
-const ProductsPage = (props) => {
-	var currentPage = 1;
 
+var currentPage = 1;
+
+const ProductsPage = (props) => {
 	React.useEffect(async () => {
 		await props.setResetElectronicProducts();
+		currentPage = 1;
 		props.getElectronicProducts(currentPage, props.match.params.category);
 	}, [props.match.params.category, history.location.search]);
 
 	const getMoreProducts = () => {
 		currentPage += 1;
+		console.log(currentPage);
 		props.getElectronicProducts(currentPage, props.match.params.category);
 	};
 	return (
@@ -42,17 +45,18 @@ const ProductsPage = (props) => {
 				</div>
 			</div>
 			<div className="text-center mb-6">
-				{/* {hasProducts ? ( */}
-				<Button
-					handleClick={() => getMoreProducts()}
-					size="base"
-					variant="primary"
-					classes="w-32"
-				>
-					View More
-				</Button>
-				{/* ) : (<h4 className="font-bold text-gray-700">No More Products Found</h4> */}
-				{/* )} */}
+				{!props.isResults ? (
+					<Button
+						handleClick={() => getMoreProducts()}
+						size="base"
+						variant="primary"
+						classes="w-32"
+					>
+						View More
+					</Button>
+				) : (
+					<h4 className="font-bold text-gray-700">No More Products Found</h4>
+				)}
 			</div>
 
 			<ComparisonPopUp />
@@ -62,6 +66,7 @@ const ProductsPage = (props) => {
 
 const mapStateToProps = ({ dataYugeProductsState }) => ({
 	productData: dataYugeProductsState.electronicProducts,
+	isResults: dataYugeProductsState.endOfResults,
 });
 
 export default connect(mapStateToProps, {

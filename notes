@@ -8,3 +8,11 @@ ${
 						? "transition"
 						: "transform translate-y-0 -translate-y-full"
 				}
+
+
+==========================================================================
+
+1. query params in filtering 
+2. drawer gender corrections
+3. filtering and sorting for electronic API's
+4. API calls on landing page

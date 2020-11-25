@@ -9,6 +9,7 @@ import {
 const initialState = {
 	electronicProductsLoading: false,
 	electronicProducts: [],
+	endOfResults: false,
 };
 
 const getProductsLoading = (state) => {
@@ -19,15 +20,23 @@ const getProductsLoading = (state) => {
 };
 
 const getProducts = (state, payload) => {
-	const newProductsData = [...state.electronicProducts, ...payload];
+	let newProductsData = [];
+	let results = false;
+
+	if (payload !== "end of results") {
+		newProductsData = [...state.electronicProducts, ...payload];
+	} else {
+		results = true;
+		newProductsData = state.electronicProducts;
+	}
 
 	return {
 		...state,
 		electronicProducts: newProductsData,
+		endOfResults: results,
 	};
 };
 const setResetProducts = (state) => {
-
 	return {
 		...state,
 		electronicProducts: [],
