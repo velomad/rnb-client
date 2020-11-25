@@ -23,12 +23,9 @@ const SearchSuggestions = ({
 	setSearchTerm,
 	searchCategory,
 }) => {
-
-
-	
 	const getSearchResults = (term) => {
 		// suggestedTermCallback(term);
-		setSearchTerm(term);
+		setSearchTerm({ searchTerm: term, category: searchCategory });
 		const filteredSearchTerm = term.replace(/\b(men|women|casual)\b/g, "");
 		if (searchCategory === "electronic") {
 			history.push(`/electronic/items/search?product=${filteredSearchTerm}`);

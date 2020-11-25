@@ -5,14 +5,22 @@ import { history } from "../../../../../utils";
 import { removeSearchTerm } from "../../../../../store/actions";
 import { connect } from "react-redux";
 
-const SearchChip = ({ removeSearchTerm, searchTerms, handleClose }) => {
+const SearchChip = ({
+	removeSearchTerm,
+	searchTerms,
+	handleClose,
+}) => {
 	const handleDelete = (removeTerm) => {
 		removeSearchTerm(removeTerm);
 	};
 
 	const handleClick = (term) => {
+		if (term.category === "electronic") {
+			history.push(`/electronic/items/search?product=${term.searchTerm}`);
+		} else {
+			history.push(`/items/search?term=${term.searchTerm}`);
+		}
 		handleClose();
-		history.push(`/items/search?term=${term}`);
 	};
 
 	const recentSearches = JSON.parse(localStorage.getItem("recentSearches"));
@@ -24,9 +32,15 @@ const SearchChip = ({ removeSearchTerm, searchTerms, handleClose }) => {
 				<Chip
 					key={index}
 					label={
-						<Text size="md" variant="white">
-							{term}
-						</Text>
+						<div
+							className={`${
+								term.searchTerm.length > 18 && "overflow-hidden truncate w-32"
+							}`}
+						>
+							<Text size="md" variant="white">
+								{term.searchTerm}
+							</Text>
+						</div>
 					}
 					onClick={() => handleClick(term)}
 					onDelete={() => handleDelete(term)}

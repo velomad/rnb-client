@@ -37,7 +37,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const SearchSlide = (props) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [searchSuggestions, setSearchSuggestions] = useState(false);
-	const [suggestedTerm, setSuggestedTerm] = useState("");
 	const [catgeory, setCategory] = useState("clothing");
 
 	const handleClose = () => {
@@ -49,7 +48,7 @@ const SearchSlide = (props) => {
 	console.log(searchTerm);
 	const handleSearchSubmit = (e) => {
 		e.preventDefault();
-		props.setSearchTerm(searchTerm);
+		props.setSearchTerm({searchTerm, catgeory});
 		const filteredSearchTerm = searchTerm.replace(
 			/\b(men|women|casual)\b/g,
 			"",
@@ -81,13 +80,25 @@ const SearchSlide = (props) => {
 		<div>
 			<Dialog fullScreen open={props.isActive} TransitionComponent={Transition}>
 				<div
-					className="grid grid-cols-2 p-2 place-items-center w-full"
-					style={{ background: "rgba(0,0,0,0.7)" }}
+					className="grid grid-cols-2 p-2 place-items-center "
+					style={{ background: "rgba(0, 0, 0, 0.7)" }}
 				>
-					<div onClick={() => setCategory("clothing")}>
+					<div
+						onClick={() => setCategory("clothing")}
+						className={`${
+							catgeory === "clothing" &&
+							"border-2 border-blue-400 rounded-full p-2"
+						}`}
+					>
 						<img src="/static/images/dress.svg" width="35px" />
 					</div>
-					<div onClick={() => setCategory("electronic")}>
+					<div
+						onClick={() => setCategory("electronic")}
+						className={`${
+							catgeory === "electronic" &&
+							"border-2 border-blue-400 rounded-full p-2"
+						}`}
+					>
 						<img src="/static/images/headphones.svg" width="35px" />
 					</div>
 				</div>
@@ -127,7 +138,7 @@ const SearchSlide = (props) => {
 									</Text>
 								</div>
 								<div>
-									<SearchChip handleClose={handleClose} />
+									<SearchChip handleClose={handleClose} searchCategory={catgeory}/>
 								</div>
 							</div>
 						)}
