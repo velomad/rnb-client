@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { ProductCard, ComparisonPopUp } from "./components";
 import { Button } from "../../../components";
+import { history } from "../../../utils";
 import {
 	getElectronicProducts,
 	setResetElectronicProducts,
@@ -13,7 +14,7 @@ const ProductsPage = (props) => {
 	React.useEffect(async () => {
 		await props.setResetElectronicProducts();
 		props.getElectronicProducts(currentPage, props.match.params.category);
-	}, [props.match.params.category]);
+	}, [props.match.params.category, history.location.search]);
 
 	const getMoreProducts = () => {
 		currentPage += 1;
