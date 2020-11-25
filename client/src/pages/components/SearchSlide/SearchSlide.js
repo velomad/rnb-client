@@ -54,9 +54,15 @@ const SearchSlide = (props) => {
 			/\b(men|women|casual)\b/g,
 			"",
 		);
-		history.push(`/items/search?term=${filteredSearchTerm}`);
+		if (catgeory === "electronic") {
+			history.push(`/electronic/items/search?product=${filteredSearchTerm}`);
+		} else {
+			history.push(`/items/search?term=${filteredSearchTerm}`);
+		}
 		handleClose();
 	};
+
+	console.log(catgeory);
 
 	const handleChange = (e) => {
 		setSearchTerm(e.target.value);
@@ -128,7 +134,7 @@ const SearchSlide = (props) => {
 					</div>
 				) : (
 					<SearchSuggestions
-						catgeory={catgeory}
+						searchCategory={catgeory}
 						handleClose={handleClose}
 						// suggestedTermCallback={getSuggestedTerm}
 						suggestions={props.suggestions}

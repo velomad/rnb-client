@@ -26,6 +26,13 @@ const getProducts = (state, payload) => {
 		electronicProducts: newProductsData,
 	};
 };
+const setResetProducts = (state) => {
+
+	return {
+		...state,
+		electronicProducts: [],
+	};
+};
 
 const dataYugeProducts = (state = initialState, action) => {
 	const { type, payload } = action;
@@ -34,6 +41,8 @@ const dataYugeProducts = (state = initialState, action) => {
 			return getProductsLoading(state);
 		case GET_ELECTRONIC_PRODUCTS_FETCH:
 			return getProducts(state, payload);
+		case RESET_ELECTRONIC_PRODUCTS:
+			return setResetProducts(state);
 		default:
 			return state;
 	}

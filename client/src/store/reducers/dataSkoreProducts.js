@@ -19,6 +19,7 @@ const isProductsLoading = (state) => {
 	};
 };
 
+
 const getProducts = (state, payload, totalProducts, category) => {
 	const newData = state.products.concat(payload);
 

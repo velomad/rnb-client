@@ -3,7 +3,7 @@ import { Text } from "../../../../../components";
 import { history } from "../../../../../utils";
 import { setSearchTerm } from "../../../../../store/actions";
 import SearchIcon from "@material-ui/icons/Search";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 const SuggestionsLoading = () => {
 	return (
@@ -20,17 +20,22 @@ const SearchSuggestions = ({
 	isSuggestionsLoading,
 	suggestedTermCallback,
 	handleClose,
-	setSearchTerm
+	setSearchTerm,
+	searchCategory,
 }) => {
+
+
+	
 	const getSearchResults = (term) => {
 		// suggestedTermCallback(term);
-		setSearchTerm(term)
-		handleClose()
-		const filteredSearchTerm = term.replace(
-			/\b(men|women|casual)\b/g,
-			"",
-		);
-		history.push(`/items/search?term=${filteredSearchTerm}`)
+		setSearchTerm(term);
+		const filteredSearchTerm = term.replace(/\b(men|women|casual)\b/g, "");
+		if (searchCategory === "electronic") {
+			history.push(`/electronic/items/search?product=${filteredSearchTerm}`);
+		} else {
+			history.push(`/items/search?term=${filteredSearchTerm}`);
+		}
+		handleClose();
 	};
 
 	return (
@@ -62,4 +67,4 @@ const SearchSuggestions = ({
 	);
 };
 
-export default connect(null, {setSearchTerm})(SearchSuggestions);
+export default connect(null, { setSearchTerm })(SearchSuggestions);

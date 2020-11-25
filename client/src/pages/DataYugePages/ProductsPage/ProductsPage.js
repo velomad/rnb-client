@@ -2,12 +2,16 @@ import React from "react";
 import axios from "axios";
 import { ProductCard, ComparisonPopUp } from "./components";
 import { Button } from "../../../components";
-import { getElectronicProducts } from "../../../store/actions";
+import {
+	getElectronicProducts,
+	setResetElectronicProducts,
+} from "../../../store/actions";
 import { connect } from "react-redux";
 const ProductsPage = (props) => {
 	var currentPage = 1;
 
-	React.useEffect(() => {
+	React.useEffect(async () => {
+		await props.setResetElectronicProducts();
 		props.getElectronicProducts(currentPage, props.match.params.category);
 	}, [props.match.params.category]);
 
@@ -59,6 +63,7 @@ const mapStateToProps = ({ dataYugeProductsState }) => ({
 	productData: dataYugeProductsState.electronicProducts,
 });
 
-export default connect(mapStateToProps, { getElectronicProducts })(
-	ProductsPage,
-);
+export default connect(mapStateToProps, {
+	getElectronicProducts,
+	setResetElectronicProducts,
+})(ProductsPage);

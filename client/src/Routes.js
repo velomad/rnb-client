@@ -63,6 +63,12 @@ const Routes = () => {
 						/>
 						<WithLayoutRoute
 							exact
+							path="/electronic/items/search"
+							layout={PublicLayout}
+							component={DataYugeProductsPage}
+						/>
+						<WithLayoutRoute
+							exact
 							path="/electronic/product/:productId"
 							layout={PublicLayout}
 							component={DataYugeProductPage}
