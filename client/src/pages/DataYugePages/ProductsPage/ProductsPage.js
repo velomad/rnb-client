@@ -7,6 +7,7 @@ import {
 	getElectronicProducts,
 	setResetElectronicProducts,
 } from "../../../store/actions";
+
 import { connect } from "react-redux";
 
 var currentPage = 1;

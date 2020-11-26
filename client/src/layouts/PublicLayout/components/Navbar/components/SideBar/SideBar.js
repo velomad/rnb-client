@@ -87,7 +87,7 @@ const Sidebar = (props) => {
 											</Text>
 										}
 									/>
-									{openListItem === item ? <ExpandLess className="text-pink-700"/> : <ExpandMore className="text-gray-600"/>}
+									{openListItem === item ? <ExpandLess className="text-pink-100"/> : <ExpandMore className="text-gray-600"/>}
 								</ListItem>
 								<Collapse
 									in={openListItem === item}
