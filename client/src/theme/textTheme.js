@@ -6,6 +6,7 @@ export const textVariant = {
 	contrast: `text-gray-300`,
 	secondary: `text-gray-900`,
 	white: `text-gray-100`,
+	black: `text-black`,
 	info: `text-indigo-500`,
 	danger: `text-red-600	`,
 };

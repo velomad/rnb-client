@@ -11,13 +11,19 @@ const ProductSpecs = (props) => {
 		<React.Fragment>
 			{props.productDetails.map((el, index) => {
 				return (
-					<div key={index} className="m-4">
-						<h4 className="font-bold text-gray-700">
-							{el.product.productTitle}
-						</h4>
-						<h4 className="font-bold text-black">
-							&#x20B9; {el.product.productLowestPrice}
-						</h4>
+					<div key={index} className="m-4 shadow-lg p-2 rounded-md">
+						<div>
+							<Text variant="primaryDark" size="base">
+								{el.product.productTitle}
+							</Text>
+						</div>
+
+						<div>
+							<Text size="lg" variant="black" weight="600">
+								&#x20B9; {el.product.productLowestPrice}
+							</Text>
+						</div>
+
 						<h4 className="font-bold text-gray-700">
 							{Rating(props.productDetails[0].product.productRating)}
 						</h4>
@@ -26,15 +32,21 @@ const ProductSpecs = (props) => {
 					</div>
 				);
 			})}
-			<h4 className="font-black text-gray-700 m-4">Main Specifications</h4>
-			<ul>
+			<div className="p-4">
+				<Text variant="primary" isTitle={true} classes="uppercase">
+					Specificaions
+				</Text>
+			</div>
+			<ul className="shadow-lg m-4 rounded-md ">
 				{props.specs &&
 				props.specs.main_specs &&
 				props.specs.main_specs.length > 0 ? (
 					props.specs.main_specs.map((el, index) => {
 						return (
-							<li className="font-bold text-gray-700 ml-6" key={index}>
-								<ArrowRightIcon /> {el}
+							<li className="p-2 py-1" key={index}>
+								<Text variant="primary ">
+									<ArrowRightIcon /> {el}
+								</Text>
 							</li>
 						);
 					})
@@ -42,7 +54,6 @@ const ProductSpecs = (props) => {
 					<li className="font-bold text-gray-700 ml-4">Not Available</li>
 				)}
 			</ul>
-			<h4 className="font-black text-gray-700 m-4">Specifications</h4>
 			{props.specs && props.specs.sub_specs ? (
 				Object.keys(props.specs.sub_specs).map((el, index) => {
 					return (

@@ -3,10 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Dialog, AppBar, Toolbar, Slide, Typography } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import qs from "query-string";
-import { Slider, Text, Rating } from "../../../../../components";
+import { Slider, Text, Rating, Button } from "../../../../../components";
 import { setCompareProduct } from "../../../../../store/actions";
 import { connect } from "react-redux";
 import WebsiteThumbSlider from "./WebsiteThumbSlider";
+import LowPriceDetector from "./LowPriceDetector";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -46,6 +47,11 @@ const ComparisonPopUp = (props) => {
 			});
 		});
 	}
+
+	let link = "";
+
+	const LowCoststoreLink =
+		storesToDisplay[0][Object.keys(storesToDisplay[0])].product_store_url;
 
 	const classes = useStyles();
 	return (
@@ -89,7 +95,7 @@ const ComparisonPopUp = (props) => {
 						/>
 					</div>
 
-					<div className="space-y-1 p-2">
+					<div className="space-y-2 p-2 shadow-lg m-4 rounded-md">
 						<div>
 							<Text size="xl" weight="600" variant="primaryDark">
 								{product_brand}
@@ -102,14 +108,17 @@ const ComparisonPopUp = (props) => {
 						</div>
 
 						<div className="flex space-x-6">
-							<div>
-								<Text variant="primaryDark" weight="600" size="lg">
-									&#8377; {product_mrp}
-								</Text>
-							</div>
+							{product_mrp !== "" && (
+								<div>
+									<Text variant="primaryDark" weight="600" size="lg">
+										&#8377; {product_mrp}
+									</Text>
+								</div>
+							)}
+
 							<div>{Rating(product_ratings)}</div>
 						</div>
-						<div>
+						{/* <div>
 							<div>
 								<Text
 									classes="uppercase"
@@ -121,12 +130,14 @@ const ComparisonPopUp = (props) => {
 								</Text>
 							</div>
 							<div>
-								<Text variant="primary" size="sm">{product_model}</Text>
+								<Text variant="primary" size="sm">
+									{product_model}
+								</Text>
 							</div>
-						</div>
+						</div> */}
 
 						{available_colors && (
-							<div >
+							<div className="flex space-x-6 items-center">
 								<div>
 									<Text
 										variant="danger"
@@ -137,9 +148,11 @@ const ComparisonPopUp = (props) => {
 										colours
 									</Text>
 								</div>
-								<div>
+								<div className="flex flex-wrap">
 									{available_colors.map((el) => (
-										<Text variant="primary" size="sm">{el}, </Text>
+										<Text variant="primary" size="sm">
+											{el},
+										</Text>
 									))}
 								</div>
 							</div>
@@ -153,6 +166,29 @@ const ComparisonPopUp = (props) => {
 						))}
 					</div> */}
 					</div>
+
+					<div className="py-4 p-2 shadow-xl m-4 rounded-md">
+						{storesToDisplay.map((el, index) =>
+							Object.keys(el).map((elem) => (
+								<LowPriceDetector
+									price={el[elem].product_price}
+									image={el[elem].product_store_logo}
+									index={index}
+								/>
+							)),
+						)}
+						<div className="text-center py-2">
+							<Button
+								variant="primary"
+								size="base"
+								animate={true}
+								handleClick={() => window.open(LowCoststoreLink, "_blank")}
+							>
+								buy now at lowest price
+							</Button>
+						</div>
+					</div>
+
 					<div className="py-4">
 						<WebsiteThumbSlider stores={storesToDisplay} />
 					</div>
