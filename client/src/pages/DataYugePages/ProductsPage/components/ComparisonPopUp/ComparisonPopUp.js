@@ -48,10 +48,11 @@ const ComparisonPopUp = (props) => {
 		});
 	}
 
-	let link = "";
-
-	const LowCoststoreLink =
-		storesToDisplay[0][Object.keys(storesToDisplay[0])].product_store_url;
+	let LowCoststoreLink;
+	if (storesToDisplay[0]) {
+		LowCoststoreLink =
+			storesToDisplay[0][Object.keys(storesToDisplay[0])].product_store_url;
+	}
 
 	const classes = useStyles();
 	return (
