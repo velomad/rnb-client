@@ -168,28 +168,29 @@ const ComparisonPopUp = (props) => {
 					</div> */}
 					</div>
 
-					<div className="py-4 p-2 shadow-xl m-4 rounded-md">
-						{storesToDisplay.map((el, index) =>
-							Object.keys(el).map((elem) => (
-								<LowPriceDetector
-									price={el[elem].product_price}
-									image={el[elem].product_store_logo}
-									index={index}
-								/>
-							)),
-						)}
-						<div className="text-center py-2">
-							<Button
-								variant="primary"
-								size="base"
-								animate={true}
-								handleClick={() => window.open(LowCoststoreLink, "_blank")}
-							>
-								buy now at lowest price
-							</Button>
+					{storesToDisplay.length > 0 && (
+						<div className="py-4 p-2 shadow-xl m-4 rounded-md">
+							{storesToDisplay.map((el, index) =>
+								Object.keys(el).map((elem) => (
+									<LowPriceDetector
+										price={el[elem].product_price}
+										image={el[elem].product_store_logo}
+										index={index}
+									/>
+								)),
+							)}
+							<div className="text-center py-2">
+								<Button
+									variant="primary"
+									size="base"
+									animate={true}
+									handleClick={() => window.open(LowCoststoreLink, "_blank")}
+								>
+									buy now at lowest price
+								</Button>
+							</div>
 						</div>
-					</div>
-
+					)}
 					<div className="py-4">
 						<WebsiteThumbSlider stores={storesToDisplay} />
 					</div>

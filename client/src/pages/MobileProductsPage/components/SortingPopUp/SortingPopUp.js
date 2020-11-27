@@ -18,6 +18,7 @@ import { setSortPopUpAction } from "../../../../store/actions";
 import { Text } from "../../../../components";
 import { history } from "../../../../utils";
 import qs from "query-string";
+import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -40,32 +41,39 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const SortingPopUp = (props) => {
+	const [sortVal, setSortVal] = useQueryParam("sort", StringParam);
+
 	const handleClose = () => {
 		props.setSortPopUpAction(false);
 	};
 
 	const handleSort = (sortWith) => {
-		var pathName = history.location.pathname
+		var pathName = history.location.pathname;
 		var parsedQueryParams = qs.parse(history.location.search);
 		const queryParamsArry = Object.keys(parsedQueryParams);
 		const queryParamsValueArry = Object.values(parsedQueryParams);
-
-		if (
-			queryParamsArry.includes("sort") === true &&
-			queryParamsValueArry.includes(sortWith)
-		) {
-			handleClose();
-		} else {
-			if ("sort" in parsedQueryParams) {
-				delete parsedQueryParams.sort;
-			}
-			history.push(
-				`${pathName}?${qs.stringify(parsedQueryParams)}&sort=${sortWith}`,
-			);
-			window.scrollTo(0,0)
-			handleClose();
-		}
+		// if (
+		// 	queryParamsArry.includes("sort") === true &&
+		// 	queryParamsValueArry.includes(sortWith)
+		// ) {
+		// 	handleClose();
+		// } else {
+		// 	if ("sort" in parsedQueryParams) {
+		// 		delete parsedQueryParams.sort;
+		// 	}
+		// 	history.push(
+		// 		`${pathName}?${qs.stringify(parsedQueryParams)}&sort=${sortWith}`,
+		// 	);
+		// 	window.scrollTo(0, 0);
+		// 	handleClose();
+		// }
+		setSortVal(sortWith);
+			// history.push(
+			// 	`${pathName}?${qs.stringify(parsedQueryParams)}&sort=${sortVal}`,
+			// );
 	};
+
+	console.log(sortVal)
 
 	const classes = useStyles();
 

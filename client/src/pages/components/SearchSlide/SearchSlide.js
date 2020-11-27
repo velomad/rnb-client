@@ -48,7 +48,7 @@ const SearchSlide = (props) => {
 	console.log(searchTerm);
 	const handleSearchSubmit = (e) => {
 		e.preventDefault();
-		props.setSearchTerm({searchTerm, catgeory});
+		props.setSearchTerm({searchTerm, category:catgeory});
 		const filteredSearchTerm = searchTerm.replace(
 			/\b(men|women|casual)\b/g,
 			"",

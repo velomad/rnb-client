@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import { WithLayoutRoute } from "./routers";
-
+import { QueryParamProvider } from 'use-query-params';
 import { PublicLayout } from "./layouts";
 import Loading from "./components/Loading";
 import { ScrollToTop } from "./utils";
@@ -13,18 +13,18 @@ import { ScrollToTop } from "./utils";
 // const DataYugeProductsPage = lazy(() => import("./pages/DataYugePages/ProductsPage"));
 // const MobileProductsPage = lazy(() => import("./pages/MobileProductsPage"));
 
-import LandingPage from './pages/LandingPage';
-import ProductsPage from './pages/ProductsPage';
-import ProductPage from './pages/ProductPage';
-import DataYugeProductsPage from './pages/DataYugePages/ProductsPage';
-import DataYugeProductPage from './pages/DataYugePages/ProductPage';
-import MobileProductsPage from './pages/MobileProductsPage';
-
+import LandingPage from "./pages/LandingPage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductPage from "./pages/ProductPage";
+import DataYugeProductsPage from "./pages/DataYugePages/ProductsPage";
+import DataYugeProductPage from "./pages/DataYugePages/ProductPage";
+import MobileProductsPage from "./pages/MobileProductsPage";
 
 const Routes = () => {
 	return (
 		// <Suspense fallback={<Loading />}>
-			<Router>
+		<Router>
+			<QueryParamProvider ReactRouterRoute={Route}>
 				<ScrollToTop>
 					<Switch>
 						<WithLayoutRoute
@@ -76,7 +76,8 @@ const Routes = () => {
 						<Route path="*" component={() => "404 NOT FOUND"} />
 					</Switch>
 				</ScrollToTop>
-			</Router>
+			</QueryParamProvider>
+		</Router>
 		// </Suspense>
 	);
 };
