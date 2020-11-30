@@ -43,6 +43,7 @@ const ProductPage = (props) => {
 	}
 
 	let LowCoststoreLink;
+	console.log(storesToDisplay)
 	if (storesToDisplay[0]) {
 		LowCoststoreLink =
 			storesToDisplay[0][Object.keys(storesToDisplay[0])].product_store_url;

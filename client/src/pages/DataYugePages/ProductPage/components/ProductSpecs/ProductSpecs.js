@@ -140,7 +140,11 @@ const ProductSpecs = (props) => {
 								);
 							})
 						) : (
-							<h4>No data</h4>
+							<div className="mx-auto">
+								<div className="flex items-center justify-center">
+									Not Available
+								</div>
+							</div>
 						)}
 					</div>
 				)}
