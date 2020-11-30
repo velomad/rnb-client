@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import { ProductCard, ComparisonPopUp } from "./components";
+import { ProductCard} from "./components";
 import { Button } from "../../../components";
 import { history } from "../../../utils";
 import {
@@ -13,6 +12,10 @@ import { connect } from "react-redux";
 var currentPage = 1;
 
 const ProductsPage = (props) => {
+	let type = history.location.pathname.split("/")[
+		history.location.pathname.split("/").length - 1
+	];
+
 	React.useEffect(async () => {
 		await props.setResetElectronicProducts();
 		currentPage = 1;
@@ -47,20 +50,21 @@ const ProductsPage = (props) => {
 			</div>
 			<div className="text-center mb-6">
 				{!props.isResults ? (
-					<Button
-						handleClick={() => getMoreProducts()}
-						size="base"
-						variant="primary"
-						classes="w-32"
-					>
-						View More
-					</Button>
+					type !== "search" && (
+						<Button
+							handleClick={() => getMoreProducts()}
+							size="base"
+							variant="primary"
+							classes="w-32"
+						>
+							View More
+						</Button>
+					)
 				) : (
 					<h4 className="font-bold text-gray-700">No More Products Found</h4>
 				)}
 			</div>
 
-			{/* <ComparisonPopUp /> */}
 		</React.Fragment>
 	);
 };

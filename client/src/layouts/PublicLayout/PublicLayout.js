@@ -3,7 +3,6 @@ import { SearchSlide } from "../../pages/components";
 import { history } from "../../utils";
 
 function PublicLayout(props) {
-	console.log(history.location.pathname);
 	const { children, withFooter = true } = props;
 	return (
 		<div>

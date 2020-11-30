@@ -3,7 +3,6 @@ import { Text, Rating, Button } from "../../../components";
 
 import {
 	ProductSpecs,
-	ProductImgBanner,
 	WebsiteThumbSlider,
 	ProductImageSlider,
 	LowPriceDetector,
@@ -43,7 +42,6 @@ const ProductPage = (props) => {
 	}
 
 	let LowCoststoreLink;
-	console.log(storesToDisplay)
 	if (storesToDisplay[0]) {
 		LowCoststoreLink =
 			storesToDisplay[0][Object.keys(storesToDisplay[0])].product_store_url;
@@ -54,27 +52,8 @@ const ProductPage = (props) => {
 	};
 
 	React.useEffect(() => {
-		// console.log(props);
-		// console.log('sessionid',JSON.parse(sessionStorage.getItem('productDetails')));
-		// setProduct(JSON.parse(sessionStorage.getItem('productDetails')));
-		// fetchData();
 		props.setCompareProduct(props.match.params.productId);
 	}, []);
-
-	// const fetchData = () => {
-	//     let URL1 = `https://price-api.datayuge.com/api/v1/compare/specs?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&id=${props.match.params.productId}`
-	//     let URL2 = `https://price-api.datayuge.com/api/v1/compare/images?api_key=nt5N7VXa0hYPHiIwRTJKZpwFiMjzvcicnoS&id=${props.match.params.productId}`
-
-	//     const promise1 = axios.get(URL1);
-	//     const promise2 = axios.get(URL2);
-
-	//     Promise.all([promise1, promise2]).then(function (values) {
-	//         console.log('Promise one',values[0].data.data);
-	//         console.log('Promise two',values[1].data.images.large);
-	//         setProductSpecs(values[0].data.data);
-	//         setproductImages(values[1].data.images.large);
-	//     });
-	// }
 
 	return (
 		<React.Fragment>
@@ -82,10 +61,6 @@ const ProductPage = (props) => {
 				"Loading..."
 			) : (
 				<div>
-					{/* <div className='mb-8'>
-                <ProductImgBanner images={productImages} tempImg={product} />
-            </div> */}
-					{/* <ProductSpecs specs={productSpecs} productDetails={product}  /> */}
 					<ProductImageSlider productImages={product_images} />
 					<div className="space-y-2 p-2 shadow-lg m-4 rounded-md">
 						<div className="flex justify-between items-center">
@@ -111,34 +86,8 @@ const ProductPage = (props) => {
 						</div>
 
 						<div className="flex space-x-6">
-							{/* {product_mrp !== "" && (
-						<div>
-							<Text variant="primaryDark" weight="600" size="lg">
-								&#8377; {product_mrp}
-							</Text>
-						</div>
-					)} */}
-
 							<div>{Rating(product_ratings)}</div>
 						</div>
-						{/* <div>
-							<div>
-								<Text
-									classes="uppercase"
-									variant="danger"
-									size="md"
-									weight="600"
-								>
-									model
-								</Text>
-							</div>
-							<div>
-								<Text variant="primary" size="sm">
-									{product_model}
-								</Text>
-							</div>
-						</div> */}
-
 						{available_colors && (
 							<div className="flex space-x-6 items-center">
 								<div>
@@ -160,14 +109,6 @@ const ProductPage = (props) => {
 								</div>
 							</div>
 						)}
-
-						{/* <div>
-						{epic.map(el => (
-							<div>
-								{JSON.stringify(el)}
-							</div>
-						))}
-					</div> */}
 					</div>
 					<div className="space-y-6">
 						<LowPriceDetector
