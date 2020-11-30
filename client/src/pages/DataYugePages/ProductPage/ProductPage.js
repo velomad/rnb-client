@@ -10,7 +10,10 @@ import {
 } from "./components";
 import qs from "query-string";
 import { connect } from "react-redux";
-import { setCompareProduct , setProductSpecsPopUp} from "../../../store/actions/";
+import {
+	setCompareProduct,
+	setProductSpecsPopUp,
+} from "../../../store/actions/";
 
 const ProductPage = (props) => {
 	const [productSpecsActive, setProductSpecsActive] = React.useState(false);
@@ -46,7 +49,7 @@ const ProductPage = (props) => {
 	}
 
 	const handleSpecsState = () => {
-		props.setProductSpecsPopUp(true)
+		props.setProductSpecsPopUp(true);
 	};
 
 	React.useEffect(() => {
@@ -73,37 +76,41 @@ const ProductPage = (props) => {
 	// }
 
 	return (
-		<div>
-			{/* <div className='mb-8'>
+		<React.Fragment>
+			{props.productDetailLoading === true ? (
+				"Loading..."
+			) : (
+				<div>
+					{/* <div className='mb-8'>
                 <ProductImgBanner images={productImages} tempImg={product} />
             </div> */}
-			{/* <ProductSpecs specs={productSpecs} productDetails={product}  /> */}
-			<ProductImageSlider productImages={product_images} />
-			<div className="space-y-2 p-2 shadow-lg m-4 rounded-md">
-				<div className="flex justify-between items-center">
-					<div>
-						<Text size="xl" weight="600" variant="primaryDark">
-							{product_brand}
-						</Text>
-					</div>
-					<div>
-						<Button
-							classes="p-2 border-2 border-gray rounded-md text-xs text-gray-600 title-font tracking-widest uppercase"
-							handleClick={handleSpecsState}
-						>
-							view specs
-						</Button>
-					</div>
-				</div>
+					{/* <ProductSpecs specs={productSpecs} productDetails={product}  /> */}
+					<ProductImageSlider productImages={product_images} />
+					<div className="space-y-2 p-2 shadow-lg m-4 rounded-md">
+						<div className="flex justify-between items-center">
+							<div>
+								<Text size="xl" weight="600" variant="primaryDark">
+									{product_brand}
+								</Text>
+							</div>
+							<div>
+								<Button
+									classes="p-2 border-2 border-gray rounded-md text-xs text-gray-600 title-font tracking-widest uppercase"
+									handleClick={handleSpecsState}
+								>
+									view specs
+								</Button>
+							</div>
+						</div>
 
-				<div>
-					<Text size="sm" variant="primary">
-						{product_name}
-					</Text>
-				</div>
+						<div>
+							<Text size="sm" variant="primary">
+								{product_name}
+							</Text>
+						</div>
 
-				<div className="flex space-x-6">
-					{/* {product_mrp !== "" && (
+						<div className="flex space-x-6">
+							{/* {product_mrp !== "" && (
 						<div>
 							<Text variant="primaryDark" weight="600" size="lg">
 								&#8377; {product_mrp}
@@ -111,9 +118,9 @@ const ProductPage = (props) => {
 						</div>
 					)} */}
 
-					<div>{Rating(product_ratings)}</div>
-				</div>
-				{/* <div>
+							<div>{Rating(product_ratings)}</div>
+						</div>
+						{/* <div>
 							<div>
 								<Text
 									classes="uppercase"
@@ -131,42 +138,56 @@ const ProductPage = (props) => {
 							</div>
 						</div> */}
 
-				{available_colors && (
-					<div className="flex space-x-6 items-center">
-						<div>
-							<Text variant="danger" size="md" weight="600" classes="uppercase">
-								colours
-							</Text>
-						</div>
-						<div className="flex flex-wrap">
-							{available_colors.map((el) => (
-								<Text variant="primary" size="sm">
-									{el},
-								</Text>
-							))}
-						</div>
-					</div>
-				)}
+						{available_colors && (
+							<div className="flex space-x-6 items-center">
+								<div>
+									<Text
+										variant="danger"
+										size="md"
+										weight="600"
+										classes="uppercase"
+									>
+										colours
+									</Text>
+								</div>
+								<div className="flex flex-wrap">
+									{available_colors.map((el) => (
+										<Text variant="primary" size="sm">
+											{el},
+										</Text>
+									))}
+								</div>
+							</div>
+						)}
 
-				{/* <div>
+						{/* <div>
 						{epic.map(el => (
 							<div>
 								{JSON.stringify(el)}
 							</div>
 						))}
 					</div> */}
-			</div>
-			<div className="space-y-6">
-				<LowPriceDetector stores={storesToDisplay} link={LowCoststoreLink} />
-				<WebsiteThumbSlider stores={storesToDisplay} />
-			</div>
-			<ProductSpecs productId={props.match.params.productId}/>
-		</div>
+					</div>
+					<div className="space-y-6">
+						<LowPriceDetector
+							stores={storesToDisplay}
+							link={LowCoststoreLink}
+						/>
+						<WebsiteThumbSlider stores={storesToDisplay} />
+					</div>
+					<ProductSpecs productId={props.match.params.productId} />
+				</div>
+			)}
+		</React.Fragment>
 	);
 };
 
 const mapStateToProps = ({ dataYugeProductsState }) => ({
 	productDetail: dataYugeProductsState.comparisonProductDetail,
+	productDetailLoading: dataYugeProductsState.comparisonProductDetailLoading,
 });
 
-export default connect(mapStateToProps, { setCompareProduct,  setProductSpecsPopUp})(ProductPage);
+export default connect(mapStateToProps, {
+	setCompareProduct,
+	setProductSpecsPopUp,
+})(ProductPage);
