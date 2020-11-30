@@ -56,7 +56,7 @@ const SortingPopUp = (props) => {
 		// 	queryParamsArry.includes("sort") === true &&
 		// 	queryParamsValueArry.includes(sortWith)
 		// ) {
-		// 	handleClose();
+			handleClose();
 		// } else {
 		// 	if ("sort" in parsedQueryParams) {
 		// 		delete parsedQueryParams.sort;
