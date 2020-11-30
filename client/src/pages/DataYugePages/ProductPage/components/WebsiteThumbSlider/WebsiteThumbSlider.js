@@ -18,6 +18,43 @@ const WebsiteThumbSlider = ({ stores }) => {
 
 	return (
 		<div className="space-y-4">
+			<Swiper
+				// className="swiper-container"
+				onSwiper={setThumbsSwiper}
+				spaceBetween={10}
+				autoplay={true}
+				// freeMode={true}
+				slidesPerView={3}
+				loop={false}
+				// centeredSlides={true}
+				watchSlidesVisibility={true}
+				watchSlidesProgress={true}
+				breakpoints={{
+					"@0.50": {
+						centeredSlides: false,
+						slidesPerView: 3,
+						spaceBetween: 10,
+					},
+				}}
+			>
+				{stores.map((el, index) =>
+					Object.keys(el).map((elem) => (
+						<React.Fragment key={index}>
+							<SwiperSlide>
+								<div class="p-1 rounded-full">
+									<div class="w-20 h-20 rounded-full border-pink-500 border-2">
+										<img
+											class="shadow-md rounded-full w-full h-full object-contain "
+											src={el[elem].product_store_logo}
+										/>
+									</div>
+								</div>
+							</SwiperSlide>
+						</React.Fragment>
+					)),
+				)}
+			</Swiper>
+
 			<Swiper thumbs={{ swiper: thumbsSwiper }} spaceBetween={20}>
 				{stores.map((el, index) =>
 					Object.keys(el).map((elem) => (
@@ -102,16 +139,16 @@ const WebsiteThumbSlider = ({ stores }) => {
 									</div>
 
 									<div className="flex justify-between items-center">
-										{el[elem].return_time !== "" ? (
+										{/* {el[elem].return_time !== "" ? ( */}
 											<div className="flex space-x-4">
 												<Text variant="primaryDark" size="md">
 													Return Time:
 												</Text>
 												<Text variant="primary" size="md">
-													{el[elem].return_time}
+													{el[elem].return_time !== "" ? el[elem].return_time : "N/A"}
 												</Text>
 											</div>
-										) : null}
+										{/* ) : null} */}
 										<div>
 											<Button
 												size="base"
@@ -128,43 +165,6 @@ const WebsiteThumbSlider = ({ stores }) => {
 										<Text variant="primary" size="md">
 											{el[elem].product_offer}
 										</Text>
-									</div>
-								</div>
-							</SwiperSlide>
-						</React.Fragment>
-					)),
-				)}
-			</Swiper>
-
-			<Swiper
-				className="swiper-container"
-				onSwiper={setThumbsSwiper}
-				spaceBetween={10}
-				autoplay={true}
-				// freeMode={true}
-				slidesPerView={3}
-				loop={false}
-				// centeredSlides={true}
-				watchSlidesVisibility={true}
-				watchSlidesProgress={true}
-				breakpoints={{
-					"@0.50": {
-						centeredSlides: false,
-						slidesPerView: 3,
-						spaceBetween: 10,
-					},
-				}}
-			>
-				{stores.map((el, index) =>
-					Object.keys(el).map((elem) => (
-						<React.Fragment key={index}>
-							<SwiperSlide>
-								<div class="p-1 rounded-full">
-									<div class="w-20 h-20 rounded-full border-pink-500 border-2">
-										<img
-											class="shadow-md rounded-full w-full h-full object-contain "
-											src={el[elem].product_store_logo}
-										/>
 									</div>
 								</div>
 							</SwiperSlide>

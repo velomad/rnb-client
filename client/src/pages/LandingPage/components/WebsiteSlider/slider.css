@@ -1,5 +1,9 @@
 
-  @media screen and (min-width: 640px) {
+.swiper-pagination-bullet {
+  background-color: deeppink;
+}
+
+@media screen and (min-width: 640px) {
     .swiper-container {
       width: 640px;
     }

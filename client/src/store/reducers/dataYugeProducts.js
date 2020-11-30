@@ -4,12 +4,20 @@ import {
 	GET_ELECTRONIC_PRODUCTS_FETCH,
 	RESET_ELECTRONIC_PRODUCTS,
 	SET_ELECTORNIC_PRODUCT_CATEGORY_CHANGE,
+	COMPARE_PRODUCT_LOAD,
+	COMPARE_PRODUCT_FETCH,
+	PRODUCT_SPECS_LOAD,
+	PRODUCT_SPECS_FETCH,
 } from "../types";
 
 const initialState = {
 	electronicProductsLoading: false,
 	electronicProducts: [],
 	endOfResults: false,
+	comparisonProductDetail: {},
+	comparisonProductDetailLoading: true,
+	productSpecsLoading: false,
+	productSpecs: [],
 };
 
 const getProductsLoading = (state) => {
@@ -52,6 +60,28 @@ const dataYugeProducts = (state = initialState, action) => {
 			return getProducts(state, payload);
 		case RESET_ELECTRONIC_PRODUCTS:
 			return setResetProducts(state);
+		case COMPARE_PRODUCT_LOAD:
+			return {
+				...state,
+				comparisonProductDetailLoading: true,
+			};
+		case COMPARE_PRODUCT_FETCH:
+			return {
+				...state,
+				comparisonProductDetailLoading: false,
+				comparisonProductDetail: payload,
+			};
+		case PRODUCT_SPECS_LOAD:
+			return {
+				...state,
+				productSpecsLoading: true,
+			};
+		case PRODUCT_SPECS_FETCH:
+			return {
+				...state,
+				productSpecsLoading: false,
+				productSpecs: payload,
+			};
 		default:
 			return state;
 	}

@@ -4,10 +4,9 @@ import { history } from "../../../../../utils";
 import { setCompareProduct } from "../../../../../store/actions";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PriceCheck from "./PriceCheck";
-import Axios from "axios";
 import { Link } from "react-router-dom";
 import ProductsPage from "../../ProductsPage";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 const ProductCard = ({
 	canCompare,
@@ -18,24 +17,48 @@ const ProductCard = ({
 	productRating,
 	productTitle,
 	epic,
-	setCompareProduct
+	setCompareProduct,
 }) => {
+	const handleCompare = () => {
+		console.log("clicled");
+		setCompareProduct(true, productId);
+	};
 
-const handleCompare = () => {
-	console.log("clicled")	
-	setCompareProduct(true, productId)
-}
-
-	const handleProduct = (newproductId,newproductImage,newproductLink,newproductLowestPrice,newproductRating,newproductTitle) =>{
+	const handleProduct = (
+		newproductId,
+		newproductImage,
+		newproductLink,
+		newproductLowestPrice,
+		newproductRating,
+		newproductTitle,
+	) => {
 		let productDetails = [];
-		productDetails.push({'product':{'productId':newproductId,'productImage':newproductImage,'productLink':newproductLink,'productLowestPrice':newproductLowestPrice,'productRating':newproductRating,'productTitle':newproductTitle}});
+		productDetails.push({
+			product: {
+				productId: newproductId,
+				productImage: newproductImage,
+				productLink: newproductLink,
+				productLowestPrice: newproductLowestPrice,
+				productRating: newproductRating,
+				productTitle: newproductTitle,
+			},
+		});
 		sessionStorage.setItem("productDetails", JSON.stringify(productDetails));
-	}
+	};
 
 	return (
 		<React.Fragment>
 			<div
-				onClick={() => handleProduct(productId,productImage,productLink,productLowestPrice,productRating,productTitle,)}
+				onClick={() =>
+					handleProduct(
+						productId,
+						productImage,
+						productLink,
+						productLowestPrice,
+						productRating,
+						productTitle,
+					)
+				}
 				className={`w-full h-full p-1 border-b-2  ${
 					epic % 2 !== 0 && "border-l-2"
 				}`}
@@ -47,9 +70,7 @@ const handleCompare = () => {
 				>
 					<PriceCheck />
 				</div> */}
-				<Link
-					to={`/electronic/product/${productId}?productImg=${productImage}`}
-				>
+				<Link to={`/electronic/product/${productId}`}>
 					<div className="flex justify-center">
 						{productImage !== null ? (
 							<LazyLoadImage
@@ -83,9 +104,7 @@ const handleCompare = () => {
                                         {productTitle}
                                     </Text>
                                 </div> */}
-						<Link
-							to={`/electronic/product/${productId}?productImg=${productImage}`}
-						>
+						<Link to={`/electronic/product/${productId}`}>
 							<div
 								style={{
 									overflow: "hidden",
@@ -117,7 +136,7 @@ const handleCompare = () => {
 					</div>
 
 					<div className="flex justify-between p-1">
-						<div>
+						{/* <div>
 							<Button
 								size="small"
 								variant="primary"
@@ -126,7 +145,7 @@ const handleCompare = () => {
 							>
 								Compare
 							</Button>
-						</div>
+						</div> */}
 						{productRating && (
 							<div>
 								<Text size="xs" variant="primary">
@@ -141,4 +160,4 @@ const handleCompare = () => {
 	);
 };
 
-export default connect(null, {setCompareProduct})(ProductCard);
+export default connect(null, { setCompareProduct })(ProductCard);

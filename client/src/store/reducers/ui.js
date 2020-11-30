@@ -3,10 +3,8 @@ import {
 	SORT_POPUP,
 	SEARCH_SLIDE,
 	BACK_FROM_PRODUCT_DETAIL,
-	COMPARE_PRODUCT_SLIDE,
-	COMPARE_PRODUCT_LOAD,
-	COMPARE_PRODUCT_FETCH,
-	SET_SIDEBAR
+	SET_SIDEBAR,
+	PRODUCT_SPECS_POPUP
 } from "../types";
 
 const initialState = {
@@ -14,10 +12,8 @@ const initialState = {
 	isSort: false,
 	isSearchSlide: false,
 	isBackFromProductDetail: false,
-	isCompare: false,
-	comparisonProductDetail: {},
-	comparisonProductDetailLoading: true,
-	isSidebar : false
+	isSidebar : false,
+	isProductSpecsPopUp : false
 };
 
 const ui = (state = initialState, action) => {
@@ -43,26 +39,16 @@ const ui = (state = initialState, action) => {
 				...state,
 				isBackFromProductDetail: payload,
 			};
-		case COMPARE_PRODUCT_SLIDE:
-			return {
-				...state,
-				isCompare: payload,
-			};
-		case COMPARE_PRODUCT_LOAD:
-			return {
-				...state,
-				comparisonProductDetailLoading: true,
-			};
-		case COMPARE_PRODUCT_FETCH:
-			return {
-				...state,
-				comparisonProductDetailLoading: false,
-				comparisonProductDetail: payload,
-			};
+		
 		case SET_SIDEBAR:
 			return {
 				...state,
 				isSidebar: payload,
+			};
+		case PRODUCT_SPECS_POPUP:
+			return {
+				...state,
+				isProductSpecsPopUp: payload,
 			};
 		default:
 			return state;

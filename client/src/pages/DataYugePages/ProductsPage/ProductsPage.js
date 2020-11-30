@@ -60,7 +60,7 @@ const ProductsPage = (props) => {
 				)}
 			</div>
 
-			<ComparisonPopUp />
+			{/* <ComparisonPopUp /> */}
 		</React.Fragment>
 	);
 };
