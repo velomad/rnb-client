@@ -20,6 +20,7 @@ import DiscountFilter from "./DiscountFilter";
 import BrandFilter from "./BrandFilter";
 import qs from "query-string";
 import { history } from "../../../../utils";
+import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -38,6 +39,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const FiltersPopUp = (props) => {
+	const [pro, setNum] = useQueryParam('discountPercent[gte]', StringParam);
+	const [foo, setFoo] = useQueryParam('gender', StringParam);
+	const [priceFilterGte, setpriceFilterGte] = useQueryParam('productPrice[gte]', StringParam);
+	const [priceFilterLte, setpriceFilterLte] = useQueryParam('productPrice[lte]', StringParam);
+
 	const parsedQueryParams = qs.parse(history.location.search);
 	let selectedDiscount;
 
@@ -73,38 +79,50 @@ const FiltersPopUp = (props) => {
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
 	};
+	const clearFilter = () =>{
+		setNum(undefined);
+		setFoo(undefined);
+		setpriceFilterGte(undefined);
+		setpriceFilterLte(undefined);
+		window.location.reload();
+	}
 
+	console.log('priceFilterValue',priceFilterValue);
 	const handleApplyFilter = () => {
-		// query params comming form the filtered states object to pe passed in push method
-		const queryParams = qs.stringify(filterParams);
+		setNum(discountFilterValue.discount);
+		setFoo(genderFilterValue.gender);
+		setpriceFilterGte(priceFilterValue['productPrice[gte]']);
+		setpriceFilterLte(priceFilterValue['productPrice[lte]']);
+		handleClose();
+		// // query params comming form the filtered states object to pe passed in push method
+		// const queryParams = qs.stringify(filterParams);
 
-		// parsed queryparams from the current URL
-		var parsedQueryParams = qs.parse(history.location.search);
+		// // parsed queryparams from the current URL
+		// var parsedQueryParams = qs.parse(history.location.search);
 
-		// the object of selected filters
-		const queryParamsKeyArry = Object.keys(parsedQueryParams);
-		const queryParamsValueArry = Object.values(parsedQueryParams);
+		// // the object of selected filters
+		// const queryParamsKeyArry = Object.keys(parsedQueryParams);
+		// const queryParamsValueArry = Object.values(parsedQueryParams);
 
-		if (
-			(queryParamsKeyArry.includes("gender") === true &&
-				queryParamsValueArry.includes(genderFilterValue.gender)) ||
-			(queryParamsKeyArry.includes("discountPercent") === true &&
-				queryParamsValueArry.includes(discountFilterValue))
-		) {
-			handleClose();
-		} else {
-			if ("gender" in parsedQueryParams) {
-				delete parsedQueryParams.gender;
-			} else if ("discountPercent" in parsedQueryParams) {
-				delete parsedQueryParams.discountPercent;
-			}
-			history.push(
-				`${history.location.pathname}?${qs.stringify(
-					parsedQueryParams,
-				)}&${queryParams}`,
-			);
-			handleClose();
-		}
+		// if (
+		// 	(queryParamsKeyArry.includes("gender") === true &&
+		// 		queryParamsValueArry.includes(genderFilterValue.gender)) ||
+		// 	(queryParamsKeyArry.includes("discountPercent") === true &&
+		// 		queryParamsValueArry.includes(discountFilterValue))
+		// ) {
+		// 	handleClose();
+		// } else {
+		// 	if ("gender" in parsedQueryParams) {
+		// 		delete parsedQueryParams.gender;
+		// 	} else if ("discountPercent" in parsedQueryParams) {
+		// 		delete parsedQueryParams.discountPercent;
+		// 	}
+		// 	history.push(
+		// 		`${history.location.pathname}?${qs.stringify(
+		// 			parsedQueryParams,
+		// 		)}&${queryParams}`,
+		// 	);
+		// }
 	};
 
 	const filters = ["Gender", "Price", "Discount"];
@@ -127,7 +145,7 @@ const FiltersPopUp = (props) => {
 						<Typography variant="h6" className={classes.title}>
 							Filter
 						</Typography>
-						<div onClick={() => console.log("test")}>
+						<div onClick={clearFilter}>
 							<Text
 								size="base"
 								variant="primary"

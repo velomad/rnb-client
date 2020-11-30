@@ -48,10 +48,10 @@ const SortingPopUp = (props) => {
 	};
 
 	const handleSort = (sortWith) => {
-		var pathName = history.location.pathname;
-		var parsedQueryParams = qs.parse(history.location.search);
-		const queryParamsArry = Object.keys(parsedQueryParams);
-		const queryParamsValueArry = Object.values(parsedQueryParams);
+		// var pathName = history.location.pathname;
+		// var parsedQueryParams = qs.parse(history.location.search);
+		// const queryParamsArry = Object.keys(parsedQueryParams);
+		// const queryParamsValueArry = Object.values(parsedQueryParams);
 		// if (
 		// 	queryParamsArry.includes("sort") === true &&
 		// 	queryParamsValueArry.includes(sortWith)

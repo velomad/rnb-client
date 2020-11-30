@@ -20,10 +20,14 @@ const RadioLabel = (props) => {
 
 const DiscountFilter = (props) => {
 	const discounts = [10, 20, 30, 40, 50, 60, 70];
-	
+
 
 	const getDiscount = (e) => {
-		props.getDiscountFilterValue(e.target.value);
+		props.getDiscountFilterValue(
+			{
+				'discount': e.target.value
+			}
+		);
 	};
 
 	return (
@@ -34,7 +38,7 @@ const DiscountFilter = (props) => {
 						aria-label="discount"
 						name="discount"
 						defaultValue={props.selectedDiscount}
-						value={props.discountFilterValue}
+						value={props.discountFilterValue.discount}
 						onChange={getDiscount}
 					>
 						{discounts.map((el) => (
