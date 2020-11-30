@@ -37,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
 	dialogPaper: {
 		maxHeight: "70vh",
 		marginTop: "30vh",
+		borderTopLeftRadius: 15,
+		borderTopRightRadius: 15,
 	},
 }));
 
@@ -100,7 +102,7 @@ const ProductSpecs = (props) => {
 					</div>
 				);
 			})} */}
-				<div className="p-4"></div>
+
 				<ul className="shadow-lg m-4 rounded-md ">
 					{props.specs &&
 					props.specs.main_specs &&
