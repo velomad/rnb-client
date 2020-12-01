@@ -11,6 +11,7 @@ import {
 	COMPARE_PRODUCT_FETCH,
 	PRODUCT_SPECS_LOAD,
 	PRODUCT_SPECS_FETCH,
+	COMPARE_PRODUCT_ERROR,
 } from "../types";
 
 export const getElectronicProducts = (page, category) => async (dispatch) => {
@@ -52,7 +53,11 @@ export const setCompareProduct = (productId) => async (dispatch) => {
 		console.log("response from action", response.data.data);
 		dispatch({ type: COMPARE_PRODUCT_FETCH, payload: response.data.data });
 	} catch (err) {
-		console.log(err);
+		console.log(err.response.data.error_code);
+		dispatch({
+			type: COMPARE_PRODUCT_ERROR,
+			payload: err.response.data.error_code,
+		});
 	}
 };
 

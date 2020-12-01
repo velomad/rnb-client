@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
 		color: "#dddcd7",
 		fontSize: 16,
 	},
+	dialogPaper: {
+		maxHeight: "45vh",
+		marginTop: "55vh",
+		borderTopLeftRadius: 15,
+		borderTopRightRadius: 15,
+	},
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -48,32 +54,11 @@ const SortingPopUp = (props) => {
 	};
 
 	const handleSort = (sortWith) => {
-		// var pathName = history.location.pathname;
-		// var parsedQueryParams = qs.parse(history.location.search);
-		// const queryParamsArry = Object.keys(parsedQueryParams);
-		// const queryParamsValueArry = Object.values(parsedQueryParams);
-		// if (
-		// 	queryParamsArry.includes("sort") === true &&
-		// 	queryParamsValueArry.includes(sortWith)
-		// ) {
-			handleClose();
-		// } else {
-		// 	if ("sort" in parsedQueryParams) {
-		// 		delete parsedQueryParams.sort;
-		// 	}
-		// 	history.push(
-		// 		`${pathName}?${qs.stringify(parsedQueryParams)}&sort=${sortWith}`,
-		// 	);
-		// 	window.scrollTo(0, 0);
-		// 	handleClose();
-		// }
 		setSortVal(sortWith);
-			// history.push(
-			// 	`${pathName}?${qs.stringify(parsedQueryParams)}&sort=${sortVal}`,
-			// );
+		handleClose();
 	};
 
-	console.log(sortVal)
+	console.log(sortVal);
 
 	const classes = useStyles();
 
@@ -82,23 +67,25 @@ const SortingPopUp = (props) => {
 			<Dialog
 				fullScreen
 				open={props.isActive}
-				// onClose={handleClose}
+				onBackdropClick={handleClose}
 				TransitionComponent={Transition}
-				style={{ height: "45vh", marginTop: "55vh" }}
+				classes={{ paper: classes.dialogPaper }}
 			>
 				<AppBar className={classes.appBar}>
-					<Toolbar>
-						<Typography variant="h6" className={classes.title}>
-							Sort By
-						</Typography>
-						<IconButton
-							edge="start"
-							color="inherit"
-							onClick={handleClose}
-							aria-label="close"
-						>
-							<CloseIcon />
-						</IconButton>
+					<Toolbar className="flex justify-between">
+						<div>
+							<Text weight="400" isTitle={true} classes="uppercase">sort by</Text>
+						</div>
+						<div>
+							<IconButton
+								edge="start"
+								color="inherit"
+								onClick={handleClose}
+								aria-label="close"
+							>
+								<CloseIcon />
+							</IconButton>
+						</div>
 					</Toolbar>
 				</AppBar>
 				{/* <div className="flex justify-between p-3">

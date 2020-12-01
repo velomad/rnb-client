@@ -15,10 +15,6 @@ import {
 } from "../../../store/actions/";
 
 const ProductPage = (props) => {
-	const [productSpecsActive, setProductSpecsActive] = React.useState(false);
-	const [productImages, setproductImages] = React.useState([]);
-	const [product, setProduct] = React.useState([]);
-
 	const {
 		product_images,
 		product_brand,
@@ -59,6 +55,8 @@ const ProductPage = (props) => {
 		<React.Fragment>
 			{props.productDetailLoading === true ? (
 				"Loading..."
+			) : props.errorCode === 603 ? (
+				"Inactive Product"
 			) : (
 				<div>
 					<ProductImageSlider productImages={product_images} />
@@ -127,6 +125,7 @@ const ProductPage = (props) => {
 const mapStateToProps = ({ dataYugeProductsState }) => ({
 	productDetail: dataYugeProductsState.comparisonProductDetail,
 	productDetailLoading: dataYugeProductsState.comparisonProductDetailLoading,
+	errorCode: dataYugeProductsState.errorCode,
 });
 
 export default connect(mapStateToProps, {

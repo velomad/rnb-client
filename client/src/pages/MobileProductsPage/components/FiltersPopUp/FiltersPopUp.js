@@ -32,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
 		flex: 1,
 		color: "#dddcd7",
 	},
+	dialogPaper: {
+		maxHeight: "80vh",
+		marginTop: "20vh",
+		borderTopLeftRadius: 15,
+		borderTopRightRadius: 15,
+	},
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -39,10 +45,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const FiltersPopUp = (props) => {
-	const [pro, setNum] = useQueryParam('discountPercent[gte]', StringParam);
-	const [foo, setFoo] = useQueryParam('gender', StringParam);
-	const [priceFilterGte, setpriceFilterGte] = useQueryParam('productPrice[gte]', StringParam);
-	const [priceFilterLte, setpriceFilterLte] = useQueryParam('productPrice[lte]', StringParam);
+	const [pro, setNum] = useQueryParam("discountPercent[gte]", StringParam);
+	const [foo, setFoo] = useQueryParam("gender", StringParam);
+	const [priceFilterGte, setpriceFilterGte] = useQueryParam(
+		"productPrice[gte]",
+		StringParam,
+	);
+	const [priceFilterLte, setpriceFilterLte] = useQueryParam(
+		"productPrice[lte]",
+		StringParam,
+	);
 
 	const parsedQueryParams = qs.parse(history.location.search);
 	let selectedDiscount;
@@ -79,20 +91,20 @@ const FiltersPopUp = (props) => {
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
 	};
-	const clearFilter = () =>{
+	const clearFilter = () => {
 		setNum(undefined);
 		setFoo(undefined);
 		setpriceFilterGte(undefined);
 		setpriceFilterLte(undefined);
 		window.location.reload();
-	}
+	};
 
-	console.log('priceFilterValue',priceFilterValue);
+	console.log("priceFilterValue", priceFilterValue);
 	const handleApplyFilter = () => {
 		setNum(discountFilterValue.discount);
 		setFoo(genderFilterValue.gender);
-		setpriceFilterGte(priceFilterValue['productPrice[gte]']);
-		setpriceFilterLte(priceFilterValue['productPrice[lte]']);
+		setpriceFilterGte(priceFilterValue["productPrice[gte]"]);
+		setpriceFilterLte(priceFilterValue["productPrice[lte]"]);
 		handleClose();
 		// // query params comming form the filtered states object to pe passed in push method
 		// const queryParams = qs.stringify(filterParams);
@@ -139,12 +151,20 @@ const FiltersPopUp = (props) => {
 	const classes = useStyles();
 	return (
 		<div>
-			<Dialog fullScreen open={props.isActive} TransitionComponent={Transition}>
+			<Dialog
+				fullScreen
+				open={props.isActive}
+				onBackdropClick={handleClose}
+				classes={{ paper: classes.dialogPaper }}
+				TransitionComponent={Transition}
+			>
 				<AppBar className={classes.appBar}>
-					<Toolbar>
-						<Typography variant="h6" className={classes.title}>
-							Filter
-						</Typography>
+					<Toolbar className="flex justify-between">
+						<div>
+							<Text weight="400" isTitle={true} classes="uppercase">
+								Filters
+							</Text>
+						</div>
 						<div onClick={clearFilter}>
 							<Text
 								size="base"

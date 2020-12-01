@@ -8,6 +8,7 @@ import {
 	COMPARE_PRODUCT_FETCH,
 	PRODUCT_SPECS_LOAD,
 	PRODUCT_SPECS_FETCH,
+	COMPARE_PRODUCT_ERROR,
 } from "../types";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
 	comparisonProductDetailLoading: true,
 	productSpecsLoading: false,
 	productSpecs: [],
+	errorCode: "",
 };
 
 const getProductsLoading = (state) => {
@@ -70,6 +72,7 @@ const dataYugeProducts = (state = initialState, action) => {
 				...state,
 				comparisonProductDetailLoading: false,
 				comparisonProductDetail: payload,
+				errorCode: "",
 			};
 		case PRODUCT_SPECS_LOAD:
 			return {
@@ -81,6 +84,12 @@ const dataYugeProducts = (state = initialState, action) => {
 				...state,
 				productSpecsLoading: false,
 				productSpecs: payload,
+			};
+		case COMPARE_PRODUCT_ERROR:
+			return {
+				...state,
+				comparisonProductDetailLoading: false,
+				errorCode: payload,
 			};
 		default:
 			return state;
