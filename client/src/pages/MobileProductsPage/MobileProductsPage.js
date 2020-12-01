@@ -43,40 +43,35 @@ const MobileProductsPage = (props, location) => {
 
 	return (
 		<div>
-			{props.productsLoading === true ? (
-				"Loading..."
-			) : props.products.length > 0 ? (
-				<InfiniteScroll
-					className="grid grid-cols-2"
-					dataLength={props.products.length}
-					next={() => fetchMoreData()}
-					hasMore={hasMore}
-					loader={<h4>Loading...</h4>}
-					endMessage={<h4>No More Items</h4>}
-				>
-					{props.products.map((e, index) => (
-						<div
-							className="overflow-hidden"
-							style={{ borderRight: "solid #ccc 0px" }}
-							key={index}
-						>
-							<MobileProductCard
-								id={e._id}
-								image={e.imageUrl}
-								website={e.website}
-								price={e.productPrice}
-								priceStrike={e.productPriceStrike}
-								name={e.productName}
-								brand={e.brandName}
-								discount={e.discountPercent}
-								rating={e.productRating}
-							/>
-						</div>
-					))}
-				</InfiniteScroll>
-			) : (
-				"no products found"
-			)}
+			<InfiniteScroll
+				className="grid grid-cols-2"
+				dataLength={props.products.length}
+				next={() => fetchMoreData()}
+				hasMore={hasMore}
+				loader={<h4>Loading...</h4>}
+				endMessage={<h4>No More Items</h4>}
+			>
+				{props.products.map((e, index) => (
+					<div
+						className="overflow-hidden"
+						style={{ borderRight: "solid #ccc 0px" }}
+						key={index}
+					>
+						<MobileProductCard
+							id={e._id}
+							image={e.imageUrl}
+							website={e.website}
+							price={e.productPrice}
+							priceStrike={e.productPriceStrike}
+							name={e.productName}
+							brand={e.brandName}
+							discount={e.discountPercent}
+							rating={e.productRating}
+						/>
+					</div>
+				))}
+			</InfiniteScroll>
+
 			{/* filter navigator */}
 			<FilterNav />
 

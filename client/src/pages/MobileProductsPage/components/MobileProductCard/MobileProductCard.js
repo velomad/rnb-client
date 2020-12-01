@@ -1,4 +1,4 @@
-import { Text } from "../../../../components";
+import { Rating, Text } from "../../../../components";
 import { history } from "../../../../utils";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
@@ -87,7 +87,7 @@ const MProductCard = ({
 							</div>
 						) : null}
 					</div>
-					<div className="flex space-x-4 p-1">
+					<div className="flex justify-between p-1">
 						<div>
 							<Text size="xs" variant="danger">
 								{website}
@@ -96,7 +96,7 @@ const MProductCard = ({
 						{rating && (
 							<div>
 								<Text size="xs" variant="primary">
-									Rating :{rating}
+									{Rating(rating)}
 								</Text>
 							</div>
 						)}

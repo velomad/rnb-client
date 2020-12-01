@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, Rating, Button } from "../../../components";
+import { Skeleton } from "./components";
 
 import {
 	ProductSpecs,
@@ -54,7 +55,7 @@ const ProductPage = (props) => {
 	return (
 		<React.Fragment>
 			{props.productDetailLoading === true ? (
-				"Loading..."
+				<Skeleton />
 			) : props.errorCode === 603 ? (
 				"Inactive Product"
 			) : (

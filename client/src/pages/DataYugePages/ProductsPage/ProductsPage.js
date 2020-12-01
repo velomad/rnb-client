@@ -30,7 +30,7 @@ const ProductsPage = (props) => {
 	return (
 		<React.Fragment>
 			<div>
-				<div class="grid gap-0 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 px-2 mb-6">
+				<div class="grid gap-0 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-2 mb-6">
 					{props.productData.map((el, index) => {
 						return (
 							<ProductCard

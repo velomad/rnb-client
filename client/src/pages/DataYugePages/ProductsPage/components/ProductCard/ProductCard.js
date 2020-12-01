@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Button } from "../../../../../components";
+import { Text, Button, Rating } from "../../../../../components";
 import { history } from "../../../../../utils";
 import { setCompareProduct } from "../../../../../store/actions";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -149,7 +149,7 @@ const ProductCard = ({
 						{productRating && (
 							<div>
 								<Text size="xs" variant="primary">
-									Rating :{productRating}
+									{Rating(productRating)}
 								</Text>
 							</div>
 						)}
