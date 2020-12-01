@@ -26,6 +26,7 @@ const getProducts = (state, payload, totalProducts, category) => {
 	return {
 		...state,
 		products: newData,
+		productsLoading:false,
 		totalProducts,
 		category,
 	};

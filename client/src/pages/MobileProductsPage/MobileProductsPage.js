@@ -43,7 +43,9 @@ const MobileProductsPage = (props, location) => {
 
 	return (
 		<div>
-			{props.products.length > 0 ? (
+			{props.productsLoading === true ? (
+				"Loading..."
+			) : props.products.length > 0 ? (
 				<InfiniteScroll
 					className="grid grid-cols-2"
 					dataLength={props.products.length}
@@ -89,6 +91,7 @@ const MobileProductsPage = (props, location) => {
 
 const mapStateToProps = ({ dataSkoreProductsState, uiState }) => ({
 	products: dataSkoreProductsState.products,
+	productsLoading: dataSkoreProductsState.productsLoading,
 	isBack: uiState.isBackFromProductDetail,
 	totalProducts: dataSkoreProductsState.totalProducts,
 	category: dataSkoreProductsState.category,

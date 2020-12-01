@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
 		color: "#dddcd7",
 	},
 	dialogPaper: {
-		maxHeight: "80vh",
-		marginTop: "20vh",
+		maxHeight: "85vh",
+		marginTop: "15vh",
 		borderTopLeftRadius: 15,
 		borderTopRightRadius: 15,
 	},
@@ -106,39 +106,9 @@ const FiltersPopUp = (props) => {
 		setpriceFilterGte(priceFilterValue["productPrice[gte]"]);
 		setpriceFilterLte(priceFilterValue["productPrice[lte]"]);
 		handleClose();
-		// // query params comming form the filtered states object to pe passed in push method
-		// const queryParams = qs.stringify(filterParams);
-
-		// // parsed queryparams from the current URL
-		// var parsedQueryParams = qs.parse(history.location.search);
-
-		// // the object of selected filters
-		// const queryParamsKeyArry = Object.keys(parsedQueryParams);
-		// const queryParamsValueArry = Object.values(parsedQueryParams);
-
-		// if (
-		// 	(queryParamsKeyArry.includes("gender") === true &&
-		// 		queryParamsValueArry.includes(genderFilterValue.gender)) ||
-		// 	(queryParamsKeyArry.includes("discountPercent") === true &&
-		// 		queryParamsValueArry.includes(discountFilterValue))
-		// ) {
-		// 	handleClose();
-		// } else {
-		// 	if ("gender" in parsedQueryParams) {
-		// 		delete parsedQueryParams.gender;
-		// 	} else if ("discountPercent" in parsedQueryParams) {
-		// 		delete parsedQueryParams.discountPercent;
-		// 	}
-		// 	history.push(
-		// 		`${history.location.pathname}?${qs.stringify(
-		// 			parsedQueryParams,
-		// 		)}&${queryParams}`,
-		// 	);
-		// }
 	};
 
 	const filters = ["Gender", "Price", "Discount"];
-	// const filters = ["Gender"];
 
 	const handleSelectFilter = (filter) => {
 		setFilterOption(filter);
@@ -166,11 +136,7 @@ const FiltersPopUp = (props) => {
 							</Text>
 						</div>
 						<div onClick={clearFilter}>
-							<Text
-								size="base"
-								variant="primary"
-								classes="uppercase outline-none"
-							>
+							<Text size="sm" classes="uppercase outline-none text-pink-300">
 								clear all
 							</Text>
 						</div>

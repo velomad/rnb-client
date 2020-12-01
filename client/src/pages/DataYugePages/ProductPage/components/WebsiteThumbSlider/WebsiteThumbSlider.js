@@ -42,7 +42,7 @@ const WebsiteThumbSlider = ({ stores }) => {
 						<React.Fragment key={index}>
 							<SwiperSlide>
 								<div class="p-1 rounded-full">
-									<div class="w-20 h-20 rounded-full border-pink-500 border-2">
+									<div class="w-20 h-20 rounded-full ring-4 ring-indigo-300 ring-opacity-80 border-2">
 										<img
 											class="shadow-md rounded-full w-full h-full object-contain "
 											src={el[elem].product_store_logo}
@@ -64,6 +64,7 @@ const WebsiteThumbSlider = ({ stores }) => {
 									className="p-4 space-y-5"
 									style={{
 										backgroundImage: `url(/static/images/gplaypattern.png)`,
+										height:"30rem"
 									}}
 								>
 									<div className="flex justify-between">
