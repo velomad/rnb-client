@@ -50,7 +50,6 @@ const ProductsPage = (props) => {
 							})}
 						</div>
 					</div>
-					<Skeleton />
 					<div className="text-center mb-6">
 						{!props.isResults ? (
 							type !== "search" && (
