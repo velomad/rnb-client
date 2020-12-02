@@ -31,7 +31,7 @@ const MProductCard = ({
 				<div className="flex justify-center">
 					{image !== null ? (
 						<LazyLoadImage
-							effect="blur"
+							effect="opacity"
 							src={image}
 							key={id}
 							className="object-contain h-48 w-full"

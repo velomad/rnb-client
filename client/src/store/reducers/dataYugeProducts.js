@@ -43,6 +43,7 @@ const getProducts = (state, payload) => {
 	return {
 		...state,
 		electronicProducts: newProductsData,
+		electronicProductsLoading: false,
 		endOfResults: results,
 	};
 };

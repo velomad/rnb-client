@@ -19,7 +19,11 @@ const WebsiteThumbSlider = ({ stores }) => {
 	return (
 		<div className="space-y-4">
 			<Swiper
-				// className="swiper-container"
+				className="grid grid-cols-3 place-content-center h-32"
+				style={{
+					background: `url(/static/images/hypnotize.png)`,
+					opacity: 0.8,
+				}}
 				onSwiper={setThumbsSwiper}
 				spaceBetween={10}
 				autoplay={true}
@@ -42,9 +46,12 @@ const WebsiteThumbSlider = ({ stores }) => {
 						<React.Fragment key={index}>
 							<SwiperSlide>
 								<div class="p-1 rounded-full">
-									<div class="w-20 h-20 rounded-full ring-4 ring-indigo-300 ring-opacity-80 border-2">
+									<div
+										className="p-1 rounded-full ring-2 ring-pink-600 border-2"
+										style={{ height: "5rem", width: "5rem" }}
+									>
 										<img
-											class="shadow-md rounded-full w-full h-full object-contain "
+											className="shadow-md rounded-full w-full h-full object-contain"
 											src={el[elem].product_store_logo}
 										/>
 									</div>
@@ -64,7 +71,7 @@ const WebsiteThumbSlider = ({ stores }) => {
 									className="p-4 space-y-5"
 									style={{
 										backgroundImage: `url(/static/images/gplaypattern.png)`,
-										height:"30rem"
+										height: "30rem",
 									}}
 								>
 									<div className="flex justify-between">
@@ -141,14 +148,16 @@ const WebsiteThumbSlider = ({ stores }) => {
 
 									<div className="flex justify-between items-center">
 										{/* {el[elem].return_time !== "" ? ( */}
-											<div className="flex space-x-4">
-												<Text variant="primaryDark" size="md">
-													Return Time:
-												</Text>
-												<Text variant="primary" size="md">
-													{el[elem].return_time !== "" ? el[elem].return_time : "N/A"}
-												</Text>
-											</div>
+										<div className="flex space-x-4">
+											<Text variant="primaryDark" size="md">
+												Return Time:
+											</Text>
+											<Text variant="primary" size="md">
+												{el[elem].return_time !== ""
+													? el[elem].return_time
+													: "N/A"}
+											</Text>
+										</div>
 										{/* ) : null} */}
 										<div>
 											<Button
