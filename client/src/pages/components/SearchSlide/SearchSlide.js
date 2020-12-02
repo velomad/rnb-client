@@ -48,7 +48,7 @@ const SearchSlide = (props) => {
 	console.log(searchTerm);
 	const handleSearchSubmit = (e) => {
 		e.preventDefault();
-		props.setSearchTerm({searchTerm, category:catgeory});
+		props.setSearchTerm({ searchTerm, category: catgeory });
 		const filteredSearchTerm = searchTerm.replace(
 			/\b(men|women|casual)\b/g,
 			"",
@@ -80,14 +80,14 @@ const SearchSlide = (props) => {
 		<div>
 			<Dialog fullScreen open={props.isActive} TransitionComponent={Transition}>
 				<div
-					className="grid grid-cols-2 p-2 place-items-center "
+					className="grid grid-cols-2 p-2 place-items-center"
 					style={{ background: "rgba(0, 0, 0, 0.7)" }}
 				>
 					<div
 						onClick={() => setCategory("clothing")}
 						className={`${
 							catgeory === "clothing" &&
-							"border-2 border-blue-400 rounded-full p-2"
+							"border-2 ring-4 ring-pink-600 transition duration-500 ease-in-out rounded-full p-2"
 						}`}
 					>
 						<img src="/static/images/dress.svg" width="35px" />
@@ -96,10 +96,21 @@ const SearchSlide = (props) => {
 						onClick={() => setCategory("electronic")}
 						className={`${
 							catgeory === "electronic" &&
-							"border-2 border-blue-400 rounded-full p-2"
+							"border-2 ring-4 ring-pink-600 transition duration-500 ease-in-out rounded-full p-2"
 						}`}
 					>
 						<img src="/static/images/headphones.svg" width="35px" />
+					</div>
+
+					<div className="text-center py-2">
+						<Text size="sm" variant="white" isTitle={true}>
+							Clothing & Accessories
+						</Text>
+					</div>
+					<div className="text-center py-2">
+						<Text size="sm" variant="white" isTitle={true}>
+							Electronics
+						</Text>
 					</div>
 				</div>
 				<div className="flex p-2 items-center">
@@ -138,7 +149,10 @@ const SearchSlide = (props) => {
 									</Text>
 								</div>
 								<div>
-									<SearchChip handleClose={handleClose} searchCategory={catgeory}/>
+									<SearchChip
+										handleClose={handleClose}
+										searchCategory={catgeory}
+									/>
 								</div>
 							</div>
 						)}
