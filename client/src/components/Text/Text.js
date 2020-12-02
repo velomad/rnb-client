@@ -4,7 +4,7 @@ import { textVariant, textSize, textWeight } from "../../theme/textTheme";
 const Text = ({ size, variant, weight, children, isTitle, classes }) => {
 	return (
 		<span
-			className={`font-mono ${textVariant[variant]} ${textSize[size]} ${
+			className={`font-sans ${textVariant[variant]} ${textSize[size]} ${
 				textWeight[weight]
 			} ${isTitle === true ? ` title-font tracking-widest` : null} ${classes}`}
 		>
