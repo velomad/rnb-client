@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
 	Dialog,
@@ -49,6 +49,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const SortingPopUp = (props) => {
 	const [sortVal, setSortVal] = useQueryParam("sort", StringParam);
 
+	const queryParams = qs.parse(history.location.search);
+
+	useEffect(() => {
+		console.log(queryParams);
+	}, []);
+
 	const handleClose = () => {
 		props.setSortPopUpAction(false);
 	};
@@ -74,7 +80,9 @@ const SortingPopUp = (props) => {
 				<AppBar className={classes.appBar}>
 					<Toolbar className="flex justify-between">
 						<div>
-							<Text weight="400" isTitle={true} classes="uppercase">sort by</Text>
+							<Text weight="400" isTitle={true} classes="uppercase">
+								sort by
+							</Text>
 						</div>
 						<div>
 							<IconButton
@@ -88,16 +96,7 @@ const SortingPopUp = (props) => {
 						</div>
 					</Toolbar>
 				</AppBar>
-				{/* <div className="flex justify-between p-3">
-					<div>
-						<Text variant="secondary" weight="500" size="lg">
-							Sort By
-						</Text>
-					</div>
-					<div onClick={handleClose}>
-						<CloseIcon />
-					</div>
-				</div> */}
+
 				<hr style={{ color: "solid black 1px" }} />
 				<div className="p-2 h-full flex content-center flex-wrap ">
 					<ul className="py-2">
@@ -123,7 +122,12 @@ const SortingPopUp = (props) => {
 										</g>
 									</g>
 								</svg>
-								<Text variant="primary" size="md" weight="500">
+								<Text
+									variant="primary"
+									size="md"
+									weight="500"
+									classes={`${sortVal == "rating" && "text-pink-600"} `}
+								>
 									Rating
 								</Text>
 							</div>
@@ -134,7 +138,12 @@ const SortingPopUp = (props) => {
 									src="https://constant.myntassets.com/pwa/assets/img/ed2090c9-27f0-4eb0-ad1b-7bb58b955d4e1571633941585-offers-2x.png"
 									width="25px"
 								/>
-								<Text variant="primary" size="md" weight="500">
+								<Text
+									variant="primary"
+									size="md"
+									weight="600"
+									classes={`${sortVal == "discount" && "text-pink-600"} `}
+								>
 									Discount
 								</Text>
 							</div>
@@ -155,7 +164,12 @@ const SortingPopUp = (props) => {
 										></path>
 									</g>
 								</svg>
-								<Text variant="primary" size="md" weight="500">
+								<Text
+									variant="primary"
+									size="md"
+									weight="600"
+									classes={`${sortVal == "high" && "text-pink-600"} `}
+								>
 									Price : High To Low
 								</Text>
 							</div>
@@ -176,7 +190,12 @@ const SortingPopUp = (props) => {
 										></path>
 									</g>
 								</svg>
-								<Text variant="primary" size="md" weight="500">
+								<Text
+									variant="primary"
+									size="md"
+									weight="600"
+									classes={`${sortVal == "low" && "text-pink-600"} `}
+								>
 									Price : Low To High
 								</Text>
 							</div>
