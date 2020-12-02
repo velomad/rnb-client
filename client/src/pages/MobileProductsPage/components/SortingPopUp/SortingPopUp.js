@@ -108,6 +108,7 @@ const SortingPopUp = (props) => {
 									viewBox="0 0 24 24"
 									class="SortModalIcon"
 								>
+									
 									<defs>
 										<path id="a" d="M0 0h12.5v16H0z"></path>
 									</defs>
