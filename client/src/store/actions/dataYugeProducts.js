@@ -26,7 +26,11 @@ export const getElectronicProducts = (page, category) => async (dispatch) => {
 		if (isQueryParam) {
 			API_URL = `${baseUrl}/api/v1/compare/search?api_key=${process.env.REACT_APP_DATAYUGE_API_KEY}&product=${searchTerm}&page=${page}`;
 		} else {
-			API_URL = `${baseUrl}/api/v1/compare/list?api_key=${process.env.REACT_APP_DATAYUGE_API_KEY}&sub_category=${category}&can_compare=1&page=${page}`;
+			API_URL = `${baseUrl}/api/v1/compare/list?${history.location.search.slice(
+				1,
+			)}&api_key=${
+				process.env.REACT_APP_DATAYUGE_API_KEY
+			}&sub_category=${category}&can_compare=1&page=${page}`;
 		}
 
 		const response = await Axios.get(API_URL);

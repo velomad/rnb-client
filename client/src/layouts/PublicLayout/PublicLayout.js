@@ -18,7 +18,8 @@ function PublicLayout(props) {
 			<div
 				style={
 					history.location.pathname === "/products" ||
-					history.location.pathname === "/items/search"
+					history.location.pathname === "/items/search" ||
+					history.location.pathname === history.location.pathname
 						? { paddingBottom: 50 }
 						: null
 				}

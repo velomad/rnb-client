@@ -87,7 +87,11 @@ const Sidebar = (props) => {
 											</Text>
 										}
 									/>
-									{openListItem === item ? <ExpandLess className="text-pink-100"/> : <ExpandMore className="text-gray-600"/>}
+									{openListItem === item ? (
+										<ExpandLess className="text-pink-100" />
+									) : (
+										<ExpandMore className="text-gray-600" />
+									)}
 								</ListItem>
 								<Collapse
 									in={openListItem === item}
@@ -100,7 +104,7 @@ const Sidebar = (props) => {
 												{!!listItem.child_category_name ? (
 													<ListItem button className={classes.nested}>
 														<ListItemIcon>
-															<DoubleArrowIcon className="text-gray-600"/>
+															<DoubleArrowIcon className="text-gray-600" />
 														</ListItemIcon>
 														<ListItemText
 															onClick={() =>

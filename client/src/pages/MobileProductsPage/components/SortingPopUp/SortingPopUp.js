@@ -49,11 +49,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const SortingPopUp = (props) => {
 	const [sortVal, setSortVal] = useQueryParam("sort", StringParam);
 
-	const queryParams = qs.parse(history.location.search);
+	var isQueryParam =
+		"sub_category" in qs.parse(history.location.search.slice(1));
 
-	useEffect(() => {
-		console.log(queryParams);
-	}, []);
+	const isElectronic = history.location.pathname.split("/")[1] === "electronic";
 
 	const handleClose = () => {
 		props.setSortPopUpAction(false);
@@ -100,7 +99,12 @@ const SortingPopUp = (props) => {
 				<hr style={{ color: "solid black 1px" }} />
 				<div className="p-2 h-full flex content-center flex-wrap ">
 					<ul className="py-2">
-						<li className="py-3" onClick={() => handleSort("rating")}>
+						<li
+							className="py-3"
+							onClick={() =>
+								handleSort(`${isElectronic ? "popularity" : "rating"}`)
+							}
+						>
 							<div className="flex space-x-4 items-center">
 								<svg
 									width="24"
@@ -108,7 +112,6 @@ const SortingPopUp = (props) => {
 									viewBox="0 0 24 24"
 									class="SortModalIcon"
 								>
-									
 									<defs>
 										<path id="a" d="M0 0h12.5v16H0z"></path>
 									</defs>
@@ -129,27 +132,35 @@ const SortingPopUp = (props) => {
 									weight="600"
 									classes={`${sortVal == "rating" && "text-pink-600"} `}
 								>
-									Rating
+									{isElectronic ? "Popularity" : "Rating"}
 								</Text>
 							</div>
 						</li>
-						<li className="py-3" onClick={() => handleSort("discount")}>
-							<div className="flex space-x-4 items-center">
-								<img
-									src="https://constant.myntassets.com/pwa/assets/img/ed2090c9-27f0-4eb0-ad1b-7bb58b955d4e1571633941585-offers-2x.png"
-									width="25px"
-								/>
-								<Text
-									variant="primary"
-									size="md"
-									weight="600"
-									classes={`${sortVal == "discount" && "text-pink-600"} `}
-								>
-									Discount
-								</Text>
-							</div>
-						</li>
-						<li className="py-3" onClick={() => handleSort("high")}>
+
+						{!isElectronic && (
+							<li className="py-3" onClick={() => handleSort("discount")}>
+								<div className="flex space-x-4 items-center">
+									<img
+										src="https://constant.myntassets.com/pwa/assets/img/ed2090c9-27f0-4eb0-ad1b-7bb58b955d4e1571633941585-offers-2x.png"
+										width="25px"
+									/>
+									<Text
+										variant="primary"
+										size="md"
+										weight="600"
+										classes={`${sortVal == "discount" && "text-pink-600"} `}
+									>
+										Discount
+									</Text>
+								</div>
+							</li>
+						)}
+						<li
+							className="py-3"
+							onClick={() =>
+								handleSort(`${isElectronic ? "hightolow" : "high"}`)
+							}
+						>
 							<div className="flex space-x-4">
 								<svg
 									width="24"
@@ -175,7 +186,12 @@ const SortingPopUp = (props) => {
 								</Text>
 							</div>
 						</li>
-						<li className="py-3" onClick={() => handleSort("low")}>
+						<li
+							className="py-3"
+							onClick={() =>
+								handleSort(`${isElectronic ? "lowtohigh" : "low"}`)
+							}
+						>
 							<div className="flex space-x-4">
 								<svg
 									width="24"

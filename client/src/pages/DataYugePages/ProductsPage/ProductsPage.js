@@ -1,6 +1,11 @@
 import React from "react";
 import { ProductCard, Skeleton } from "./components";
 import { Button, Text } from "../../../components";
+import {
+	FiltersPopUp,
+	FilterNav,
+	SortingPopUp,
+} from "../../../pages/MobileProductsPage/components";
 import { history } from "../../../utils";
 import {
 	getElectronicProducts,
@@ -11,6 +16,8 @@ import { connect } from "react-redux";
 
 var currentPage = 1;
 
+console.log(history.location.pathname);
+
 const ProductsPage = (props) => {
 	let type = history.location.pathname.split("/")[
 		history.location.pathname.split("/").length - 1
@@ -20,7 +27,9 @@ const ProductsPage = (props) => {
 		await props.setResetElectronicProducts();
 		currentPage = 1;
 		props.getElectronicProducts(currentPage, props.match.params.category);
-	}, [props.match.params.category, history.location.search]);
+	}, [history.location.pathname, history.location.search]);
+
+	// props.match.params.category
 
 	const getMoreProducts = () => {
 		currentPage += 1;
@@ -81,6 +90,14 @@ const ProductsPage = (props) => {
 					</div>
 				</div>
 			)}
+			{/* filter navigator */}
+			{/* <FilterNav /> */}
+
+			{/* popup for filter */}
+			<FiltersPopUp />
+
+			{/* popup for sorting */}
+			<SortingPopUp />
 		</React.Fragment>
 	);
 };

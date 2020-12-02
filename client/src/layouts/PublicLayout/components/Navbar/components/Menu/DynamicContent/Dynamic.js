@@ -7,6 +7,7 @@ import { tatacliqmen, tatacliqwomen } from "./tatacliqMenuData";
 import { bewakoofmen, bewakoofwomen } from "./bewakoofMenuData";
 import { snapdealmen, snapdealwomen } from "./snapdealMenuData";
 import { history } from "../../../../../../../utils";
+import { Text } from "../../../../../../../components";
 
 const DynamicContent = (props) => {
 	const [webCategoriesMen, setWebCategoriesMen] = React.useState([]);
@@ -43,7 +44,7 @@ const DynamicContent = (props) => {
 		} else if (props.currentBrand == "bewakoof") {
 			setWebCategoriesMen(bewakoofmen);
 			setWebCategoriesWomen(bewakoofwomen);
-		}else if (props.currentBrand == "snapdeal") {
+		} else if (props.currentBrand == "snapdeal") {
 			setWebCategoriesMen(snapdealmen);
 			setWebCategoriesWomen(snapdealwomen);
 		}
@@ -120,11 +121,13 @@ const DynamicContent = (props) => {
 												class="my-3 tracking-wide capitalize"
 											>
 												{/* {props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-men')[0].replace('-',' '):el} */}
-												{props.currentBrand == "myntra"
-													? el.split("-").join(" ")
-													: props.currentBrand == "tatacliq" || "bewakoof"
-													? el.split("-").join(" ")
-													: el.split("-").join(" ")}
+												<Text>
+													{props.currentBrand == "myntra"
+														? el.split("-").join(" ")
+														: props.currentBrand == "tatacliq" || "bewakoof"
+														? el.split("-").join(" ")
+														: el.split("-").join(" ")}
+												</Text>
 											</li>
 									  ))
 									: null}
@@ -140,11 +143,13 @@ const DynamicContent = (props) => {
 												: props.currentBrand == "tatacliq" || "bewakoof"
 												? el.split("-women")[0].replace("-", " ")
 												: el} */}
-												{props.currentBrand == "myntra"
-													? el.split("-").join(" ")
-													: props.currentBrand == "tatacliq" || "bewakoof"
-													? el.split("-").join(" ")
-													: el.split("-").join(" ")}
+												<Text>
+													{props.currentBrand == "myntra"
+														? el.split("-").join(" ")
+														: props.currentBrand == "tatacliq" || "bewakoof"
+														? el.split("-").join(" ")
+														: el.split("-").join(" ")}
+												</Text>
 											</li>
 									  ))
 									: null}
