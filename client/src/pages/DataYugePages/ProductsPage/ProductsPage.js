@@ -29,7 +29,9 @@ const ProductsPage = (props) => {
 	};
 	return (
 		<React.Fragment>
-			{props.productsLoading !== true ? (
+			{currentPage === 1 && props.productsLoading === true ? (
+				<Skeleton />
+			) : (
 				<div>
 					<div>
 						<div class="grid gap-0 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-2 mb-6">
@@ -75,12 +77,9 @@ const ProductsPage = (props) => {
 									</div>
 								</div>
 							</div>
-							
 						)}
 					</div>
 				</div>
-			) : (
-				<Skeleton />
 			)}
 		</React.Fragment>
 	);
