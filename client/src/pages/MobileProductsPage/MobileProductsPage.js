@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import MobileProductCard from "./components/MobileProductCard";
-import { FilterNav, FiltersPopUp, SortingPopUp } from "./components";
+import { FilterNav, FiltersPopUp, SortingPopUp, Skeleton } from "./components";
 import { connect } from "react-redux";
 import {
 	getProducts,
@@ -42,45 +42,54 @@ const MobileProductsPage = (props, location) => {
 	}, [history.location.search]);
 
 	return (
-		<div>
-			<InfiniteScroll
-				className="grid grid-cols-2"
-				dataLength={props.products.length}
-				next={() => fetchMoreData()}
-				hasMore={hasMore}
-				loader={<h4>Loading...</h4>}
-				endMessage={<h4>No More Items</h4>}
-			>
-				{props.products.map((e, index) => (
-					<div
-						className="overflow-hidden"
-						style={{ borderRight: "solid #ccc 0px" }}
-						key={index}
-					>
-						<MobileProductCard
-							id={e._id}
-							image={e.imageUrl}
-							website={e.website}
-							price={e.productPrice}
-							priceStrike={e.productPriceStrike}
-							name={e.productName}
-							brand={e.brandName}
-							discount={e.discountPercent}
-							rating={e.productRating}
-						/>
-					</div>
-				))}
-			</InfiniteScroll>
+		<React.Fragment>
+			<div>
+				<InfiniteScroll
+					// className={`${
+					// 	props.productsLoading === false && CurrentPage == 1
+					// 		? "grid grid-cols-2"
+					// 		: props.productsLoading === false && CurrentPage !== 1 && hasMore === false
+					// 		? "grid grid-cols-2"
+					// 		: null
+					// }`}
+					className="grid grid-cols-2 gap-1"
+					dataLength={props.products.length}
+					next={() => fetchMoreData()}
+					hasMore={hasMore}
+					loader={<Skeleton />}
+					endMessage={<h4>No More Items</h4>}
+				>
+					{props.products.map((e, index) => (
+						<div
+							className="overflow-hidden"
+							style={{ borderRight: "solid #ccc 0px" }}
+							key={index}
+						>
+							<MobileProductCard
+								id={e._id}
+								image={e.imageUrl}
+								website={e.website}
+								price={e.productPrice}
+								priceStrike={e.productPriceStrike}
+								name={e.productName}
+								brand={e.brandName}
+								discount={e.discountPercent}
+								rating={e.productRating}
+							/>
+						</div>
+					))}
+				</InfiniteScroll>
 
-			{/* filter navigator */}
-			<FilterNav />
+				{/* filter navigator */}
+				<FilterNav />
 
-			{/* popup for filter */}
-			<FiltersPopUp />
+				{/* popup for filter */}
+				<FiltersPopUp />
 
-			{/* popup for sorting */}
-			<SortingPopUp />
-		</div>
+				{/* popup for sorting */}
+				<SortingPopUp />
+			</div>
+		</React.Fragment>
 	);
 };
 
