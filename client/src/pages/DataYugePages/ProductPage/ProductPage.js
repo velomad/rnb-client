@@ -38,10 +38,22 @@ const ProductPage = (props) => {
 		});
 	}
 
+	const prices = [];
+
+	storesToDisplay.map((el, index) => {
+		Object.keys(el).map((elem) => {
+			prices.push(Number(el[elem].product_price));
+		});
+	});
+
+	const minPriceIndex = () => prices.indexOf(Math.min.apply(Math, prices));
+
 	let LowCoststoreLink;
-	if (storesToDisplay[0]) {
+	if (storesToDisplay[minPriceIndex()]) {
 		LowCoststoreLink =
-			storesToDisplay[0][Object.keys(storesToDisplay[0])].product_store_url;
+			storesToDisplay[minPriceIndex()][
+				Object.keys(storesToDisplay[minPriceIndex()])
+			].product_store_url;
 	}
 
 	const handleSpecsState = () => {
@@ -113,6 +125,7 @@ const ProductPage = (props) => {
 						<LowPriceDetector
 							stores={storesToDisplay}
 							link={LowCoststoreLink}
+							minPrice={minPriceIndex()}
 						/>
 						<WebsiteThumbSlider stores={storesToDisplay} />
 					</div>

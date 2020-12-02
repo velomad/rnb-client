@@ -103,12 +103,12 @@ const SearchSlide = (props) => {
 					</div>
 
 					<div className="text-center py-2">
-						<Text size="sm" variant="white" isTitle={true}>
+						<Text size="sm" variant="white">
 							Clothing & Accessories
 						</Text>
 					</div>
 					<div className="text-center py-2">
-						<Text size="sm" variant="white" isTitle={true}>
+						<Text size="sm" variant="white">
 							Electronics
 						</Text>
 					</div>

@@ -45,13 +45,6 @@ const MobileProductsPage = (props, location) => {
 		<React.Fragment>
 			<div>
 				<InfiniteScroll
-					// className={`${
-					// 	props.productsLoading === false && CurrentPage == 1
-					// 		? "grid grid-cols-2"
-					// 		: props.productsLoading === false && CurrentPage !== 1 && hasMore === false
-					// 		? "grid grid-cols-2"
-					// 		: null
-					// }`}
 					className="grid grid-cols-2 gap-1"
 					dataLength={props.products.length}
 					next={() => fetchMoreData()}

@@ -1,12 +1,11 @@
-import React from "react";
-import {Button} from "../../../../../components";
+import React, { useEffect } from "react";
+import { ProductSpecs } from "..";
+import { Button } from "../../../../../components";
 import Detector from "./Detector";
 
+const LowPriceDetector = ({ stores, link , minPrice}) => {
 
-const LowPriceDetector = ({stores, link}) => {
-    console.log(stores)
-    console.log(link)
-
+	
 	return (
 		<div>
 			{stores && stores.length > 0 && (
@@ -17,6 +16,7 @@ const LowPriceDetector = ({stores, link}) => {
 								price={el[elem].product_price}
 								image={el[elem].product_store_logo}
 								index={index}
+								lowIndex={minPrice}
 							/>
 						)),
 					)}

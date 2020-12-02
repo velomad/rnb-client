@@ -126,7 +126,7 @@ const SortingPopUp = (props) => {
 								<Text
 									variant="primary"
 									size="md"
-									weight="500"
+									weight="600"
 									classes={`${sortVal == "rating" && "text-pink-600"} `}
 								>
 									Rating

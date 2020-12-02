@@ -7,7 +7,7 @@ const Skeleton = () => {
 	return (
 		<React.Fragment>
 			{[...Array(n)].map(() => (
-				<div>
+				<div className="p-2">
 					<Sk
 						variant="rect"
 						height="10rem"
