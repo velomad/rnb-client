@@ -64,14 +64,15 @@ const DynamicContent = (props) => {
 					>
 						<div class="grid grid-cols-2 gap-56 ">
 							<div className="flex items-center">
-								<button
-									class="uppercase text-xs font-semibold tracking-wider text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+								<Text
+									classes="capitalize text-pink-700 focus:outline-none border-t border-white py-4 w-full text-left"
+									weight="600"
 									type="button"
 								>
 									{props.activePanel === "men"
 										? el.split("-")[1]
 										: el.split("-")[1]}
-								</button>
+								</Text>
 							</div>
 							<div className="pt-3">
 								<svg
