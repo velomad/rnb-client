@@ -75,6 +75,7 @@ const ProductsPage = (props) => {
 									</div>
 								</div>
 							</div>
+							
 						)}
 					</div>
 				</div>
