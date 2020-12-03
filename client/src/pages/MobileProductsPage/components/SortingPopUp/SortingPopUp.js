@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
 	dialogPaper: {
 		maxHeight: "45vh",
 		marginTop: "55vh",
-		borderTopLeftRadius: 15,
-		borderTopRightRadius: 15,
+		borderTopLeftRadius: 10,
+		borderTopRightRadius: 10,
 	},
 }));
 
@@ -62,8 +62,6 @@ const SortingPopUp = (props) => {
 		setSortVal(sortWith);
 		handleClose();
 	};
-
-	console.log(sortVal);
 
 	const classes = useStyles();
 

@@ -31,36 +31,40 @@ const PriceFilter = (props) => {
 	};
 
 	return (
-		<div className="p-4 h-full g-gray-100 ">
-			<div className="md:hidden">
-				<Text variant="primary" size="lg" weight="500">
-					Select the price range
-				</Text>
-			</div>
+		<div className="p-4 g-gray-100">
+			{!props.isElectronic && (
+				<React.Fragment>
+					<div className="md:hidden">
+						<Text variant="primary" size="lg" weight="500">
+							Select the price range
+						</Text>
+					</div>
 
-			{props.totalProducts !== "" && (
-				<div>
-					<Text variant="primaryDark" size="sm" weight="500">
-						{props.totalProducts} Products
-					</Text>
-				</div>
+					{props.totalProducts !== "" && (
+						<div>
+							<Text variant="primaryDark" size="sm" weight="500">
+								{props.totalProducts} Products
+							</Text>
+						</div>
+					)}
+					<div className="mt-10 px-4 flex justify-center">
+						<PriceSlider getSliderValue={sliderValue} start={start} end={end} />
+					</div>
+					<div className="px-2 flex justify-between items-center">
+						<div>
+							<Text variant="primaryDark" weight="600" size="lg">
+								&#8377;{startValue}
+							</Text>
+						</div>
+
+						<div>
+							<Text variant="primaryDark" weight="600" size="lg">
+								&#8377;{endValue}+
+							</Text>
+						</div>
+					</div>
+				</React.Fragment>
 			)}
-			<div className="mt-10 px-4 flex justify-center">
-				<PriceSlider getSliderValue={sliderValue} start={start} end={end} />
-			</div>
-			<div className="px-2 flex justify-between items-center">
-				<div>
-					<Text variant="primaryDark" weight="600" size="lg">
-						&#8377;{startValue}
-					</Text>
-				</div>
-
-				<div>
-					<Text variant="primaryDark" weight="600" size="lg">
-						&#8377;{endValue}+
-					</Text>
-				</div>
-			</div>
 		</div>
 	);
 };

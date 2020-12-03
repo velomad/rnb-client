@@ -52,7 +52,7 @@ const Sidebar = (props) => {
 
 	const getProducts = (product) => {
 		props.setSidebar(false);
-		history.push("/electronic/products/" + product);
+		history.push("/electronic/products?sub_category=" + product);
 	};
 
 	const handleClick = (val) => {

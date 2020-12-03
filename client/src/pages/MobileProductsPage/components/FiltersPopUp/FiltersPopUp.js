@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { groupBy } from "lodash";
 import {
 	Dialog,
 	AppBar,
@@ -17,7 +18,7 @@ import PriceSlider from "./PriceSlider";
 import PriceFilter from "./PriceFilter";
 import GenderFilter from "./GenderFilter";
 import DiscountFilter from "./DiscountFilter";
-import BrandFilter from "./BrandFilter";
+import CheckboxFilter from "./CheckboxFilter";
 import qs from "query-string";
 import { history } from "../../../../utils";
 import { useQueryParam, NumberParam, StringParam } from "use-query-params";
@@ -33,10 +34,8 @@ const useStyles = makeStyles((theme) => ({
 		color: "#dddcd7",
 	},
 	dialogPaper: {
-		maxHeight: "85vh",
-		marginTop: "15vh",
-		borderTopLeftRadius: 15,
-		borderTopRightRadius: 15,
+		maxHeight: "100vh",
+		// marginTop: "15vh",
 	},
 }));
 
@@ -56,6 +55,8 @@ const FiltersPopUp = (props) => {
 		StringParam,
 	);
 
+	const isElectronic = history.location.pathname.split("/")[1] === "electronic";
+
 	const parsedQueryParams = qs.parse(history.location.search);
 	let selectedDiscount;
 
@@ -63,8 +64,10 @@ const FiltersPopUp = (props) => {
 		selectedDiscount = parsedQueryParams.discountPercent;
 	}
 
-	const [filterOption, setFilterOption] = useState("Gender");
-	const [active, setActive] = useState("0");
+	const [filterOption, setFilterOption] = useState(
+		`${isElectronic ? "Brand" : "Gender"}`,
+	);
+	const [active, setActive] = useState("1");
 	const [genderFilterValue, setGenderFilterValue] = useState("");
 	const [discountFilterValue, setDiscountFilterValue] = React.useState("");
 	const [priceFilterValue, setPriceFilterValue] = React.useState("");
@@ -87,7 +90,6 @@ const FiltersPopUp = (props) => {
 			: null,
 		priceFilterValue,
 	);
-	console.log("afterrrr", filterParams);
 
 	const handleClose = () => {
 		props.setFilterPopUpAction(false);
@@ -109,7 +111,13 @@ const FiltersPopUp = (props) => {
 		handleClose();
 	};
 
-	const filters = ["Gender", "Price", "Discount"];
+	const filters = ["Gender", "Price", "Discount", "Brand"];
+
+	let filterTitles = [];
+
+	props.dataYugeFilters.map((el) => {
+		filterTitles.push(el.title);
+	});
 
 	const handleSelectFilter = (filter, active) => {
 		setFilterOption(filter);
@@ -119,6 +127,23 @@ const FiltersPopUp = (props) => {
 	const setDiscount = (value) => {
 		setDiscountFilterValue(value);
 	};
+
+	let filterTitleMapper;
+	if (isElectronic) {
+		filterTitleMapper = filterTitles;
+	} else {
+		filterTitleMapper = filters;
+	}
+
+	console.log(filterOption);
+	console.log(props.dataYugeFilters);
+
+	// const getFilterData = () => {
+	// 	let finalData = props.dataYugeFilters.filter(
+	// 		(el) => el.title == filterOption,
+	// 	);
+	// 	return finalData;
+	// };
 
 	const classes = useStyles();
 	return (
@@ -149,7 +174,7 @@ const FiltersPopUp = (props) => {
 				<div className="grid grid-cols-3 h-full">
 					<div className="col-span-1 bg-gray-200 h-full">
 						<ul>
-							{filters.map((el, index) => (
+							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
 									<li
 										className={`p-3 ${index == active && "bg-white"}`}
@@ -172,6 +197,7 @@ const FiltersPopUp = (props) => {
 							/>
 						) : filterOption === "Price" ? (
 							<PriceFilter
+								isElectronic={isElectronic}
 								getPriceFilterValue={setPrice}
 								parsedQueryParams={parsedQueryParams}
 							/>
@@ -182,9 +208,14 @@ const FiltersPopUp = (props) => {
 								discountFilterValue={discountFilterValue}
 								parsedQueryParams={parsedQueryParams}
 							/>
-						) : filterOption === "Brand" ? (
-							<BrandFilter parsedQueryParams={parsedQueryParams} />
 						) : null}
+						<div>
+							<CheckboxFilter
+								filterOption={filterOption}
+								filterData={props.dataYugeFilters}
+								parsedQueryParams={parsedQueryParams}
+							/>
+						</div>
 					</div>
 				</div>
 				<hr style={{ color: "solid black 1px" }} />
@@ -204,8 +235,9 @@ const FiltersPopUp = (props) => {
 	);
 };
 
-const mapStateToProps = ({ uiState }) => ({
+const mapStateToProps = ({ uiState, dataYugeProductsState }) => ({
 	isActive: uiState.isFilter,
+	dataYugeFilters: dataYugeProductsState.filters,
 });
 
 const mapDispatchToProps = { setFilterPopUpAction };

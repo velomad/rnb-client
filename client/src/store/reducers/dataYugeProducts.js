@@ -14,6 +14,7 @@ import {
 const initialState = {
 	electronicProductsLoading: false,
 	electronicProducts: [],
+	filters: [],
 	endOfResults: false,
 	comparisonProductDetail: {},
 	comparisonProductDetailLoading: true,
@@ -29,7 +30,7 @@ const getProductsLoading = (state) => {
 	};
 };
 
-const getProducts = (state, payload) => {
+const getProducts = (state, payload, filters) => {
 	let newProductsData = [];
 	let results = false;
 
@@ -43,6 +44,7 @@ const getProducts = (state, payload) => {
 	return {
 		...state,
 		electronicProducts: newProductsData,
+		filters: filters,
 		electronicProductsLoading: false,
 		endOfResults: results,
 	};
@@ -55,12 +57,12 @@ const setResetProducts = (state) => {
 };
 
 const dataYugeProducts = (state = initialState, action) => {
-	const { type, payload } = action;
+	const { type, payload, filters } = action;
 	switch (type) {
 		case GET_ELECTRONIC_PRODUCTS_LOAD:
 			return getProductsLoading(state);
 		case GET_ELECTRONIC_PRODUCTS_FETCH:
-			return getProducts(state, payload);
+			return getProducts(state, payload, filters);
 		case RESET_ELECTRONIC_PRODUCTS:
 			return setResetProducts(state);
 		case COMPARE_PRODUCT_LOAD:

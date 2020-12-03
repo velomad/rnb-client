@@ -27,9 +27,9 @@ const ProductsPage = (props) => {
 		await props.setResetElectronicProducts();
 		currentPage = 1;
 		props.getElectronicProducts(currentPage, props.match.params.category);
-	}, [history.location.pathname, history.location.search]);
+	}, [ history.location.search]);
 
-	// props.match.params.category
+	// props.match.params.category,
 
 	const getMoreProducts = () => {
 		currentPage += 1;
@@ -91,7 +91,7 @@ const ProductsPage = (props) => {
 				</div>
 			)}
 			{/* filter navigator */}
-			{/* <FilterNav /> */}
+			<FilterNav />
 
 			{/* popup for filter */}
 			<FiltersPopUp />
