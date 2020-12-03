@@ -13,14 +13,14 @@ import "swiper/components/pagination/pagination.scss";
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 const MainSlider = () => {
 	return (
-		<div >
+		<div>
 			<Swiper
 				spaceBetween={20}
 				slidesPerView={2}
 				loop={true}
 				autoplay={{
 					delay: 4000,
-					disableOnInteraction:false
+					disableOnInteraction: false,
 				}}
 				breakpoints={{
 					"@0.50": {
@@ -52,12 +52,12 @@ const MainSlider = () => {
 							<div className="grid grid-cols-3 place-items-center space-y-2">
 								{el.circles.map((circle) => (
 									<div className="mt-2">
-										<div class="p-1 border-2 border-pink-500 rounded-full">
-											<div class="w-16 h-16">
+										<div>
+											<div className="p-1 border-2 ring-2 ring-pink-500 ring-opacity  rounded-full w-20 h-20">
 												<img
-													class="rounded-full w-full h-full object-contain"
+													className="rounded-full w-full h-full object-contain"
 													src={circle.circleImage}
-													alt=""
+													alt="Categories"
 												/>
 											</div>
 										</div>

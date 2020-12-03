@@ -15,7 +15,7 @@ const PriceFilter = (props) => {
 	if ("productPrice[lte]" in props.parsedQueryParams) {
 		end = props.parsedQueryParams["productPrice[lte]"];
 	} else {
-		end = 2000;
+		end = 20000;
 	}
 
 	const [startValue, setStartValue] = useState(start);

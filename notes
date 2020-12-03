@@ -12,7 +12,9 @@ ${
 
 ==========================================================================
 
-1. query params in filtering 
-2. drawer gender corrections
-3. filtering and sorting for electronic API's
-4. API calls on landing page
+issues
+
+1. no products found not showing for mobileproductspage instead showing skeleton
+2. back button problem 
+3. problem in soritng for datayuge products
+4. 

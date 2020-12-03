@@ -29,7 +29,7 @@ export default function PriceSlider(props) {
 		<div className={classes.root}>
 			<Slider
 				min={0}
-				max={2000}
+				max={20000}
 				value={value}
 				onChange={handleChange}
 				valueLabelDisplay="auto"
