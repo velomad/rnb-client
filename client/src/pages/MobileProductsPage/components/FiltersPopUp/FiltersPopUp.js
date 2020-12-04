@@ -65,9 +65,9 @@ const FiltersPopUp = (props) => {
 	}
 
 	const [filterOption, setFilterOption] = useState(
-		`${isElectronic ? "Brand" : "Gender"}`,
+		`${!isElectronic ? "Gender" : "Price"}`,
 	);
-	const [active, setActive] = useState("1");
+	const [active, setActive] = useState("");
 	const [genderFilterValue, setGenderFilterValue] = useState("");
 	const [discountFilterValue, setDiscountFilterValue] = React.useState("");
 	const [priceFilterValue, setPriceFilterValue] = React.useState("");
@@ -95,6 +95,7 @@ const FiltersPopUp = (props) => {
 		props.setFilterPopUpAction(false);
 	};
 	const clearFilter = () => {
+		handleClose()
 		setNum(undefined);
 		setFoo(undefined);
 		setpriceFilterGte(undefined);
@@ -111,13 +112,15 @@ const FiltersPopUp = (props) => {
 		handleClose();
 	};
 
-	const filters = ["Gender", "Price", "Discount", "Brand"];
+	const filters = ["Gender", "Price", "Discount"];
 
 	let filterTitles = [];
 
-	props.dataYugeFilters.map((el) => {
-		filterTitles.push(el.title);
-	});
+	if (props.dataYugeFilters) {
+		props.dataYugeFilters.map((el) => {
+			filterTitles.push(el.title);
+		});
+	}
 
 	const handleSelectFilter = (filter, active) => {
 		setFilterOption(filter);
@@ -172,7 +175,10 @@ const FiltersPopUp = (props) => {
 				<hr style={{ color: "solid black 1px" }} />
 
 				<div className="grid grid-cols-3 h-full">
-					<div className="col-span-1 bg-gray-200 h-full">
+					<div
+						className="col-span-1 bg-gray-200 overflow-y-scroll"
+						style={{ height: document.body.clientHeight - 110 }}
+					>
 						<ul>
 							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
@@ -190,32 +196,36 @@ const FiltersPopUp = (props) => {
 						</ul>
 					</div>
 					<div className="col-span-2">
-						{filterOption === "Gender" ? (
-							<GenderFilter
-								setParentGender={handleCurrentGender}
-								parsedQueryParams={parsedQueryParams}
-							/>
-						) : filterOption === "Price" ? (
-							<PriceFilter
-								isElectronic={isElectronic}
-								getPriceFilterValue={setPrice}
-								parsedQueryParams={parsedQueryParams}
-							/>
-						) : filterOption === "Discount" ? (
-							<DiscountFilter
-								selectedDiscount={selectedDiscount}
-								getDiscountFilterValue={setDiscount}
-								discountFilterValue={discountFilterValue}
-								parsedQueryParams={parsedQueryParams}
-							/>
-						) : null}
-						<div>
-							<CheckboxFilter
-								filterOption={filterOption}
-								filterData={props.dataYugeFilters}
-								parsedQueryParams={parsedQueryParams}
-							/>
-						</div>
+						{!isElectronic ? (
+							<React.Fragment>
+								{filterOption === "Gender" ? (
+									<GenderFilter
+										setParentGender={handleCurrentGender}
+										parsedQueryParams={parsedQueryParams}
+									/>
+								) : filterOption === "Price" ? (
+									<PriceFilter
+										getPriceFilterValue={setPrice}
+										parsedQueryParams={parsedQueryParams}
+									/>
+								) : filterOption === "Discount" ? (
+									<DiscountFilter
+										selectedDiscount={selectedDiscount}
+										getDiscountFilterValue={setDiscount}
+										discountFilterValue={discountFilterValue}
+										parsedQueryParams={parsedQueryParams}
+									/>
+								) : null}
+							</React.Fragment>
+						) : (
+							<div>
+								<CheckboxFilter
+									filterOption={filterOption}
+									filterData={props.dataYugeFilters}
+									parsedQueryParams={parsedQueryParams}
+								/>
+							</div>
+						)}
 					</div>
 				</div>
 				<hr style={{ color: "solid black 1px" }} />

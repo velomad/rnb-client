@@ -22,7 +22,10 @@ const CheckboxFilter = (props) => {
 	console.log("final dara", props.filterData);
 
 	return (
-		<div className="overflow-y-auto" style={{ height: "75vh" }}>
+		<div
+			className="overflow-y-auto"
+			style={{ height: document.body.clientHeight - 110 }}
+		>
 			<ul className="p-4">
 				{name &&
 					name.map((el, index) => (
