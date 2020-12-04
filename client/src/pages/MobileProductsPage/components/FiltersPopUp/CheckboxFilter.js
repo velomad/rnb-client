@@ -3,10 +3,11 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const CheckboxFilter = (props) => {
-	const [checked, setChecked] = React.useState(true);
+	const [checkedItems, setCheckedItems] = React.useState(new Map());
 	const [name, setName] = React.useState([]);
-	console.log(props.filterData);
-	// console.log(props.filterOption)
+
+	console.log(checkedItems);
+
 	useEffect(() => {
 		if (!!props.filterOption && props.filterOption !== "Gender") {
 			let contents = props.filterData.filter(
@@ -19,9 +20,13 @@ const CheckboxFilter = (props) => {
 	}, [props.filterOption]);
 
 	const handleChange = (event) => {
-		setChecked(event.target.checked);
+		const item = event.target.value;
+		const checked = event.target.checked;
+		setCheckedItems((prevState) => {
+			return new Map(prevState).set(item, checked);
+		});
 	};
-	console.log("final dara", props.filterData);
+	console.log("final data", props.filterData);
 
 	return (
 		<div
@@ -35,9 +40,10 @@ const CheckboxFilter = (props) => {
 							<FormControlLabel
 								control={
 									<Checkbox
-										checked={checked}
+										checked={checkedItems.get(el.name)}
 										onChange={handleChange}
-										name="checkedA"
+										name={el.name}
+										value={el.filter}
 									/>
 								}
 								label={el.name}
