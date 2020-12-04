@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { groupBy } from "lodash";
 import {
@@ -64,6 +64,11 @@ const FiltersPopUp = (props) => {
 		selectedDiscount = parsedQueryParams.discountPercent;
 	}
 
+	useEffect(() => {
+		setFilterOption(`${!isElectronic ? "Gender" : "Price"}`);
+		setActive("")
+	}, [history.location.search]);
+
 	const [filterOption, setFilterOption] = useState(
 		`${!isElectronic ? "Gender" : "Price"}`,
 	);
@@ -81,7 +86,6 @@ const FiltersPopUp = (props) => {
 	};
 
 	let filterParams = {};
-	console.log("beforeeee", filterParams);
 	Object.assign(
 		filterParams,
 		genderFilterValue,
@@ -95,7 +99,7 @@ const FiltersPopUp = (props) => {
 		props.setFilterPopUpAction(false);
 	};
 	const clearFilter = () => {
-		handleClose()
+		handleClose();
 		setNum(undefined);
 		setFoo(undefined);
 		setpriceFilterGte(undefined);
@@ -103,7 +107,6 @@ const FiltersPopUp = (props) => {
 		window.location.reload();
 	};
 
-	console.log("priceFilterValue", priceFilterValue);
 	const handleApplyFilter = () => {
 		setNum(discountFilterValue.discount);
 		setFoo(genderFilterValue.gender);
@@ -137,9 +140,6 @@ const FiltersPopUp = (props) => {
 	} else {
 		filterTitleMapper = filters;
 	}
-
-	console.log(filterOption);
-	console.log(props.dataYugeFilters);
 
 	// const getFilterData = () => {
 	// 	let finalData = props.dataYugeFilters.filter(

@@ -12,7 +12,9 @@ const CheckboxFilter = (props) => {
 			let contents = props.filterData.filter(
 				(el) => el.title == props.filterOption,
 			);
-			setName(contents[0].contents);
+			if (contents[0]) {
+				setName(contents[0].contents);
+			}
 		}
 	}, [props.filterOption]);
 
