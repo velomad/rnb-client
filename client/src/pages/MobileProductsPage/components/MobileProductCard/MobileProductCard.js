@@ -14,6 +14,7 @@ const MProductCard = ({
 	id,
 }) => {
 	const handleProductClick = () => {
+		// debugger
 		history.push("/product/" + id);
 	};
 

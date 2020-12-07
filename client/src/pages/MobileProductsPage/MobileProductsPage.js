@@ -28,17 +28,17 @@ const MobileProductsPage = (props, location) => {
 	};
 
 	useEffect(async () => {
-		console.log(history.location.pathname);
+		setHasMore(true);
+		// console.log(history.location.pathname);
 
-		if (!props.isBack) {
-			CurrentPage = 1;
-			props.setResetProducts();
-			await props.getProducts(1);
-			setHasMore(true);
-			props.setBackFromSearch(false);
-		} else {
-			props.setBackFromSearch(false);
-		}
+		// if (!props.isBack) {
+		CurrentPage = 1;
+		props.setResetProducts();
+		await props.getProducts(1);
+		// 	props.setBackFromSearch(false);
+		// } else {
+		// 	props.setBackFromSearch(false);
+		// }
 	}, [history.location.search]);
 
 	return (

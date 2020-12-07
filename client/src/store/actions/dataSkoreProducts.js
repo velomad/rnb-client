@@ -14,11 +14,11 @@ export const getProducts = (page) => async (dispatch) => {
 		const baseUrl = "https://reachnbuy.com";
 		var URL;
 
-		if (history.location.pathname.slice(1) === "search") {
-			URL = history.location.pathname + history.location.search;
-		} else {
-			URL = history.location.pathname + history.location.search;
-		}
+		// if (history.location.pathname.slice(1) === "search") {
+		// URL = history.location.pathname + history.location.search;
+		// } else {
+		URL = history.location.pathname + history.location.search;
+		// }
 
 		history.listen(() => {
 			return;
