@@ -63,17 +63,17 @@ const ProductsPage = (props) => {
 					</div>
 					<div className="text-center mb-6">
 						{!props.isResults ? (
-							type !== "search" && (
-								<Button
-									handleClick={() => getMoreProducts()}
-									size="base"
-									variant="primary"
-									classes="w-32"
-								>
-									View More
-								</Button>
-							)
+							// type !== "search" && (
+							<Button
+								handleClick={() => getMoreProducts()}
+								size="base"
+								variant="primary"
+								classes="w-32"
+							>
+								View More
+							</Button>
 						) : (
+							// )
 							<div className=" h-96 p-16 flex">
 								<div className="m-auto space-y-8">
 									<div>
