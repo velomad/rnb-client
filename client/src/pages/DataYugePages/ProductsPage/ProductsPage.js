@@ -1,6 +1,8 @@
 import React from "react";
 import { ProductCard, Skeleton } from "./components";
 import { Button, Text } from "../../../components";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 import {
 	FiltersPopUp,
 	FilterNav,
@@ -70,7 +72,11 @@ const ProductsPage = (props) => {
 								variant="primary"
 								classes="w-32"
 							>
-								View More
+								{props.productsLoading ? (
+									<CircularProgress color="secondary" size="20px" />
+								) : (
+									"View More"
+								)}
 							</Button>
 						) : (
 							// )

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { makeStyles } from "@material-ui/core/styles";
 import { groupBy } from "lodash";
 import {
@@ -65,17 +67,27 @@ const FiltersPopUp = (props) => {
 	}
 
 	useEffect(() => {
-		setFilterOption(`${!isElectronic ? "Gender" : "Price"}`);
-		setActive("")
-	}, [history.location.search]);
+		debugger;
+		props.dataYugeFilters.map((el) => {
+			el.contents.map((elem) => {
+				elem["isChecked"] = false;
+			});
+		});
 
-	const [filterOption, setFilterOption] = useState(
+		console.log("props.dataYugeFilters", props.dataYugeFilters);
+
+		setFilterOption(`${!isElectronic ? "Gender" : "Price"}`);
+		setActive(0);
+	}, [history.location.search, props.dataYugeFilters]);
+
+	var [filterOption, setFilterOption] = useState(
 		`${!isElectronic ? "Gender" : "Price"}`,
 	);
-	const [active, setActive] = useState("");
+	const [active, setActive] = useState(0);
 	const [genderFilterValue, setGenderFilterValue] = useState("");
 	const [discountFilterValue, setDiscountFilterValue] = React.useState("");
 	const [priceFilterValue, setPriceFilterValue] = React.useState("");
+	const [filterNames, setFilterNames] = React.useState([]);
 
 	const handleCurrentGender = (currentGender) => {
 		setGenderFilterValue({ gender: currentGender });
@@ -140,13 +152,6 @@ const FiltersPopUp = (props) => {
 	} else {
 		filterTitleMapper = filters;
 	}
-
-	// const getFilterData = () => {
-	// 	let finalData = props.dataYugeFilters.filter(
-	// 		(el) => el.title == filterOption,
-	// 	);
-	// 	return finalData;
-	// };
 
 	const classes = useStyles();
 	return (
@@ -219,11 +224,23 @@ const FiltersPopUp = (props) => {
 							</React.Fragment>
 						) : (
 							<div>
-								<CheckboxFilter
+								{
+									props.dataYugeFilters.length !== 0?
+									<CheckboxFilter
 									filterOption={filterOption}
-									filterData={props.dataYugeFilters}
-									parsedQueryParams={parsedQueryParams}
+									activeOption={active}
+									filterNames={filterTitles}
+									filters={
+										active.toString() && {
+											[filterOption]:
+												props.dataYugeFilters[active]
+													.contents
+										}
+									}
 								/>
+								: ""
+								}
+								
 							</div>
 						)}
 					</div>

@@ -41,7 +41,6 @@ export const getElectronicProducts = (page) => async (dispatch) => {
 			const promise1 = Axios.get(API_URL);
 			const promise2 = Axios.get(API_URL_2);
 			Promise.all([promise1, promise2]).then(function (values) {
-				console.log(values[0].data.data);
 				dispatch({
 					type: GET_ELECTRONIC_PRODUCTS_FETCH,
 					payload: values[0].data.data,
