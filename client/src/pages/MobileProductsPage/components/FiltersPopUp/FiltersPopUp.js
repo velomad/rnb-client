@@ -67,7 +67,8 @@ const FiltersPopUp = (props) => {
 	}
 
 	useEffect(() => {
-		debugger;
+
+		!isElectronic &&
 		props.dataYugeFilters.map((el) => {
 			el.contents.map((elem) => {
 				elem["isChecked"] = false;
@@ -223,25 +224,27 @@ const FiltersPopUp = (props) => {
 								) : null}
 							</React.Fragment>
 						) : (
-							<div>
-								{
-									props.dataYugeFilters.length !== 0?
-									<CheckboxFilter
-									filterOption={filterOption}
-									activeOption={active}
-									filterNames={filterTitles}
-									filters={
-										active.toString() && {
-											[filterOption]:
-												props.dataYugeFilters[active]
-													.contents
-										}
-									}
-								/>
-								: ""
-								}
-								
-							</div>
+							<React.Fragment>
+								{!isElectronic && (
+									<div>
+										{props.dataYugeFilters.length !== 0 ? (
+											<CheckboxFilter
+												filterOption={filterOption}
+												activeOption={active}
+												filterNames={filterTitles}
+												filters={
+													active.toString() && {
+														[filterOption]:
+															props.dataYugeFilters[active].contents,
+													}
+												}
+											/>
+										) : (
+											""
+										)}
+									</div>
+								)}
+							</React.Fragment>
 						)}
 					</div>
 				</div>
