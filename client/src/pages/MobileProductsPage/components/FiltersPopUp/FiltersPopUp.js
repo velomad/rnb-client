@@ -58,6 +58,7 @@ const FiltersPopUp = (props) => {
 	);
 
 	const isElectronic = history.location.pathname.split("/")[1] === "electronic";
+	const isFilters = qs.parse(history.location.search);
 
 	const parsedQueryParams = qs.parse(history.location.search);
 	let selectedDiscount;
@@ -67,15 +68,13 @@ const FiltersPopUp = (props) => {
 	}
 
 	useEffect(() => {
-
-		!isElectronic &&
-		props.dataYugeFilters.map((el) => {
-			el.contents.map((elem) => {
-				elem["isChecked"] = false;
+		if ("sub_category" in isFilters && props.dataYugeFilters) {
+			props.dataYugeFilters.map((el) => {
+				el.contents.map((elem) => {
+					elem["isChecked"] = false;
+				});
 			});
-		});
-
-		console.log("props.dataYugeFilters", props.dataYugeFilters);
+		}
 
 		setFilterOption(`${!isElectronic ? "Gender" : "Price"}`);
 		setActive(0);
@@ -225,9 +224,10 @@ const FiltersPopUp = (props) => {
 							</React.Fragment>
 						) : (
 							<React.Fragment>
-								{!isElectronic && (
+								{"sub_category" in isFilters && (
 									<div>
-										{props.dataYugeFilters.length !== 0 ? (
+										{props.dataYugeFilters &&
+										props.dataYugeFilters.length !== 0 ? (
 											<CheckboxFilter
 												filterOption={filterOption}
 												activeOption={active}

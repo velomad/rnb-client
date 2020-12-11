@@ -10,11 +10,12 @@ import {
 	setFilterPopUpAction,
 	setSortPopUpAction,
 } from "../../../../store/actions";
-import {Text} from '../../../../components';
+import { Text } from "../../../../components";
 const useStyles = makeStyles({
 	root: {
 		width: "50%",
-		backgroundColor: "#fff",
+		// backgroundColor: "#666",
+		background: "rgba(0,0,0,0.7)",
 		zIndex: 100,
 	},
 	stickToBottom: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 		bottom: 0,
 	},
 	iconStyle: {
-		color: "#222",
+		color: "#fff",
 	},
 });
 
@@ -39,9 +40,9 @@ const BottomNav = (props) => {
 	const Filter = () => {
 		return (
 			<div className="flex items-center space-x-1">
-				<TuneIcon className={classes.iconStyle} /> 
+				<TuneIcon className={classes.iconStyle} />
 				<div>
-					<Text size="base" variant="secondary">
+					<Text size="base" variant="white">
 						Filter
 					</Text>
 				</div>
@@ -52,9 +53,9 @@ const BottomNav = (props) => {
 	const Sort = () => {
 		return (
 			<div className="flex items-center space-x-1">
-				<ImportExportIcon className={classes.iconStyle} /> 
+				<ImportExportIcon className={classes.iconStyle} />
 				<div>
-					<Text size="base" variant="secondary">
+					<Text size="base" variant="white">
 						Sort
 					</Text>
 				</div>
@@ -68,10 +69,7 @@ const BottomNav = (props) => {
 			showLabels
 			className={clsx(classes.root, classes.stickToBottom)}
 		>
-			<BottomNavigationAction
-				onClick={handleSortPopUp}
-				icon={<Sort />}
-			/>
+			<BottomNavigationAction onClick={handleSortPopUp} icon={<Sort />} />
 
 			<BottomNavigationAction onClick={handleFiltersPopUp} icon={<Filter />} />
 		</BottomNavigation>
