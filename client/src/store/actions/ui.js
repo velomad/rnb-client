@@ -7,6 +7,7 @@ import {
 	SET_SIDEBAR,
 	COMPARE_PRODUCT_POPUP,
 	PRODUCT_SPECS_POPUP,
+	SET_APPLIED_FILTERS
 } from "../types";
 
 export const setFilterPopUpAction = (value) => (dispatch) => {
@@ -31,4 +32,8 @@ export const setSidebar = (value) => (dispatch) => {
 
 export const setProductSpecsPopUp = (value) => (dispatch) => {
 	dispatch({ type: PRODUCT_SPECS_POPUP, payload: value });
+};
+
+export const setAppliedFilters = (value) => (dispatch) => {
+	dispatch({ type: SET_APPLIED_FILTERS, payload: value });
 };

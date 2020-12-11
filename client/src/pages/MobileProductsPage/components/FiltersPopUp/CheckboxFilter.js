@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
+import { connect } from "react-redux";
+import { setAppliedFilters } from "../../../../store/actions";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const CheckboxFilter = (props) => {
 	const [renderUI, setRenderUI] = useState(false);
-	const [appliedFilters, setAppliedFilters] = useState([]);
 
 	const handleChange = (e, newData) => {
+
 		let dummyArr = [];
 		newData.index = e.target.id;
 		dummyArr.push(newData);
@@ -36,6 +38,10 @@ const CheckboxFilter = (props) => {
 				}
 			});
 		});
+		props.setAppliedFilters(props.filters[props.filterOption].filter(el=> {
+			return el.isChecked === true 
+		}));
+
 	};
 
 	return (
@@ -94,4 +100,4 @@ const CheckboxFilter = (props) => {
 	);
 };
 
-export default CheckboxFilter;
+export default connect(null, { setAppliedFilters })(CheckboxFilter);

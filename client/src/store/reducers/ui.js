@@ -4,7 +4,8 @@ import {
 	SEARCH_SLIDE,
 	BACK_FROM_PRODUCT_DETAIL,
 	SET_SIDEBAR,
-	PRODUCT_SPECS_POPUP
+	PRODUCT_SPECS_POPUP,
+	SET_APPLIED_FILTERS,
 } from "../types";
 
 const initialState = {
@@ -12,8 +13,9 @@ const initialState = {
 	isSort: false,
 	isSearchSlide: false,
 	isBackFromProductDetail: false,
-	isSidebar : false,
-	isProductSpecsPopUp : false
+	isSidebar: false,
+	isProductSpecsPopUp: false,
+	appliedFilters: [],
 };
 
 const ui = (state = initialState, action) => {
@@ -39,7 +41,6 @@ const ui = (state = initialState, action) => {
 				...state,
 				isBackFromProductDetail: payload,
 			};
-		
 		case SET_SIDEBAR:
 			return {
 				...state,
@@ -49,6 +50,12 @@ const ui = (state = initialState, action) => {
 			return {
 				...state,
 				isProductSpecsPopUp: payload,
+			};
+		case SET_APPLIED_FILTERS:
+			return {
+				...state,
+				appliedFilters: payload,
+				...state.appliedFilters,
 			};
 		default:
 			return state;

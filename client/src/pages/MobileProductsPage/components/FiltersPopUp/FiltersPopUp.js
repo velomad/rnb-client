@@ -57,6 +57,9 @@ const FiltersPopUp = (props) => {
 		StringParam,
 	);
 
+
+		console.log(props.appliedFilters)
+
 	const isElectronic = history.location.pathname.split("/")[1] === "electronic";
 	const isFilters = qs.parse(history.location.search);
 
@@ -268,6 +271,7 @@ const FiltersPopUp = (props) => {
 const mapStateToProps = ({ uiState, dataYugeProductsState }) => ({
 	isActive: uiState.isFilter,
 	dataYugeFilters: dataYugeProductsState.filters,
+	appliedFilters: uiState.appliedFilters,
 });
 
 const mapDispatchToProps = { setFilterPopUpAction };

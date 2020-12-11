@@ -20,10 +20,6 @@ const WebsiteThumbSlider = ({ stores }) => {
 		<div className="space-y-4">
 			<Swiper
 				className="grid grid-cols-3 place-content-center h-32"
-				style={{
-					background: `url(/static/images/hypnotize.png)`,
-					opacity: 0.8,
-				}}
 				onSwiper={setThumbsSwiper}
 				spaceBetween={10}
 				autoplay={true}
@@ -44,8 +40,8 @@ const WebsiteThumbSlider = ({ stores }) => {
 				{stores.map((el, index) =>
 					Object.keys(el).map((elem) => (
 						<React.Fragment key={index}>
-							<SwiperSlide>
-								<div class="p-1 rounded-full">
+							<SwiperSlide className="place-self-center">
+								<div class="p-1 rounded-full ml-2">
 									<div
 										className="p-1 rounded-full ring-2 ring-pink-600 border-2"
 										style={{ height: "5rem", width: "5rem" }}
