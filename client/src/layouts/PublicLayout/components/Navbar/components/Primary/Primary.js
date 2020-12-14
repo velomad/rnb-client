@@ -72,28 +72,136 @@ const Primary = (props) => {
 	return (
 		<React.Fragment>
 			<SideBar toggleSideBar={toggleSideBar} setToggleState={toggler} />
-			
-			<nav className="container mx-auto px-2 space-y-0 lg:space-y-2 md:space-y-2 py-0 lg:py-2 lg:py-2 md:py-2 lg:py-0">
+
+			<nav className="container mx-auto px-0 space-y-0 lg:space-y-0 md:space-y-0 py-0 lg:py-0 lg:py-0 md:py-0 lg:py-0">
 				<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					<div className="flex justify-between items-center">
-						<div className="flex items-center">
+						<div className="flex items-center justify-between">
 							<a
 								className="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700"
 								href="#"
 							>
 								<img
 									src="https://raw.githubusercontent.com/velomad/ReachNBuy/main/src/assets/img/logo.png"
-									width="100px" style={{width:'4rem'}}
+									width="100px" style={{ width: '4rem' }}
 								/>
 							</a>
 
-							<div className="mx-64 hidden md:block">
-								<div className="relative text-gray-600">
-									<SearchBar />
+							<div class="flex flex-row py-0 pb-0 lg:pb-1 items-center md:pb-1 md:ml-4 lg:ml-4 overflow-auto w-full">
+								<div className="hidden md:block">
+									<div className="relative text-gray-600">
+										<SearchBar />
+									</div>
+								</div>
+								<div
+									onClick={() => loadDropDown("amazon")}
+									class="text-sm text-center mr-8 cursor-pointer"
+								>
+									<div class="p-1 border-2 border-white rounded-full">
+										<div class="w-10 h-10 relative flex flex-shrink-0">
+											<img
+												class="shadow-md rounded-full w-full h-full object-cover"
+												src="/static/images/amazon.png"
+												alt=""
+											/>
+										</div>
+									</div>
+									<p className="text-black font-bold"></p>
+								</div>
+								<div
+									onClick={() => loadDropDown("flipkart")}
+									class="text-sm text-center mr-8 cursor-pointer"
+								>
+									<div class="p-1 border-2 border-white rounded-full">
+										<div class="hoverable w-10 h-10 relative flex flex-shrink-0">
+											<img
+												class="shadow-md rounded-full w-full h-full object-cover"
+												src="/static/images/flipkart.png"
+												alt=""
+											/>
+										</div>
+									</div>
+									<p className="text-black font-bold"></p>
+								</div>
+								<div
+									onClick={() => loadDropDown("myntra")}
+									class="text-sm text-center mr-8 cursor-pointer"
+								>
+									<div class="p-1 border-2 border-white rounded-full">
+										<div class="w-10 h-10 relative flex flex-shrink-0">
+											<img
+												class="shadow-md rounded-full w-full h-full object-cover"
+												src="/static/images/myntra.png"
+												alt=""
+											/>
+										</div>
+									</div>
+									<p className="text-black font-bold"></p>
+								</div>
+								<div
+									onClick={() => loadDropDown("ajio")}
+									class="text-sm text-center mr-8 cursor-pointer"
+								>
+									<div class="p-1 border-2 border-white rounded-full">
+										<div class="w-10 h-10 relative flex flex-shrink-0">
+											<img
+												class="shadow-md rounded-full w-full h-full object-cover"
+												src="/static/images/ajioicon.png"
+												alt=""
+											/>
+										</div>
+									</div>
+									<p className="text-black font-bold"></p>
+								</div>
+								<div
+									onClick={() => loadDropDown("tatacliq")}
+									class="text-sm text-center mr-8 cursor-pointer"
+								>
+									<div class="p-1 border-2 border-white rounded-full">
+										<div class="w-10 h-10 relative flex flex-shrink-0">
+											<img
+												class="shadow-md rounded-full w-full h-full object-cover"
+												src="/static/images/tatacliqicon.png"
+												alt=""
+											/>
+										</div>
+									</div>
+									<p className="text-black font-bold"></p>
+								</div>
+								<div
+									onClick={() => loadDropDown("bewakoof")}
+									class="text-sm text-center mr-8 cursor-pointer"
+								>
+									<div class="p-1 border-2 border-white rounded-full">
+										<div class="w-10 h-10 relative flex flex-shrink-0">
+											<img
+												class="shadow-md rounded-full w-full h-full object-cover"
+												src="/static/images/bewakoof.jpg"
+												alt=""
+											/>
+										</div>
+									</div>
+									<p className="text-black font-bold"></p>
+								</div>
+								<div
+									onClick={() => loadDropDown("snapdeal")}
+									class="text-sm text-center mr-8 cursor-pointer"
+								>
+									<div class="p-1 border-2 border-white rounded-full">
+										<div class="w-10 h-10 relative flex flex-shrink-0">
+											<img
+												class="shadow-md rounded-full w-full h-full object-cover"
+												src="/static/images/snapdealicon.png"
+												alt=""
+											/>
+										</div>
+									</div>
+									<p className="text-black font-bold"></p>
 								</div>
 							</div>
+
 							<button
-								onClick={() => toggleSideDrawer("right", true)}
+								onClick={() => props.setSidebar(true)}
 								type="button"
 								className="text-gray-500 ml-64 hidden md:block md:ml-24 lg:ml-24  hover:text-gray-600 focus:outline-none focus:text-gray-600"
 								aria-label="toggle menu"
@@ -142,113 +250,7 @@ const Primary = (props) => {
 						""
 					)} */}
 				</div>
-				<div class="flex flex-row py-2 pb-0 lg:pb-2 md:pb-2 overflow-auto w-0 min-w-full">
-					<div
-						onClick={() => loadDropDown("amazon")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/amazon.png"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
-					<div
-						onClick={() => loadDropDown("flipkart")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="hoverable w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/flipkart.png"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
-					<div
-						onClick={() => loadDropDown("myntra")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/myntra.png"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
-					<div
-						onClick={() => loadDropDown("ajio")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/ajioicon.png"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
-					<div
-						onClick={() => loadDropDown("tatacliq")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/tatacliqicon.png"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
-					<div
-						onClick={() => loadDropDown("bewakoof")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/bewakoof.jpg"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
-					<div
-						onClick={() => loadDropDown("snapdeal")}
-						class="text-sm text-center mr-8 cursor-pointer"
-					>
-						<div class="p-1 border-2 border-white rounded-full">
-							<div class="w-10 h-10 relative flex flex-shrink-0">
-								<img
-									class="shadow-md rounded-full w-full h-full object-cover"
-									src="/static/images/snapdealicon.png"
-									alt=""
-								/>
-							</div>
-						</div>
-						<p className="text-black font-bold"></p>
-					</div>
-				</div>
+
 				{openDrawer ? (
 					<div
 						className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl z-20"
@@ -268,9 +270,8 @@ const Primary = (props) => {
 								</div>
 								<div>
 									<img
-										src={`/static/images/${currentBrand}icon.${
-											currentBrand === "bewakoof" ? "jpg" : "png"
-										}`}
+										src={`/static/images/${currentBrand}icon.${currentBrand === "bewakoof" ? "jpg" : "png"
+											}`}
 										width="30px"
 									/>
 								</div>
@@ -288,8 +289,8 @@ const Primary = (props) => {
 											{activeCat === "men" ? (
 												<span class="inline-block h-1 w-12 rounded bg-pink-700 mt-1 mb-4"></span>
 											) : (
-												""
-											)}
+													""
+												)}
 										</div>
 										<div
 											className="cursor-pointer"
@@ -301,8 +302,8 @@ const Primary = (props) => {
 											{activeCat === "women" ? (
 												<span class="inline-block h-1 w-20 rounded bg-pink-700 mt-1 mb-4"></span>
 											) : (
-												""
-											)}
+													""
+												)}
 										</div>
 									</div>
 
@@ -314,7 +315,7 @@ const Primary = (props) => {
 												fill="none"
 												stroke="currentColor"
 												viewBox="0 0 24 24"
-												// xmlns="http://www.w3.org/2000/svg"
+											// xmlns="http://www.w3.org/2000/svg"
 											>
 												<path
 													stroke-linecap="round"
@@ -328,7 +329,7 @@ const Primary = (props) => {
 								</div>
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
 									{activePanel == "men" ? (
-										<div class="flex flex-wrap mx-auto overflow-y-scroll" style={{height: '17rem'}}>
+										<div class="flex flex-wrap mx-auto overflow-y-scroll" style={{ height: '17rem' }}>
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
@@ -336,17 +337,17 @@ const Primary = (props) => {
 													currentBrand == "amazon"
 														? amazonmen
 														: currentBrand == "flipkart"
-														? men
-														: currentBrand == "myntra"
-														? myntramen
-														: currentBrand == "ajio"
-														? ajiomen
-														: currentBrand == "tatacliq"
-														? tatacliqmen
-														: currentBrand == "bewakoof"
-														? bewakoofmen
-														: currentBrand == "snapdeal"
-														? snapdealmen : ""
+															? men
+															: currentBrand == "myntra"
+																? myntramen
+																: currentBrand == "ajio"
+																	? ajiomen
+																	: currentBrand == "tatacliq"
+																		? tatacliqmen
+																		: currentBrand == "bewakoof"
+																			? bewakoofmen
+																			: currentBrand == "snapdeal"
+																				? snapdealmen : ""
 												)}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
@@ -354,11 +355,11 @@ const Primary = (props) => {
 											/>
 										</div>
 									) : (
-										""
-									)}
+											""
+										)}
 
 									{activePanel === "women" ? (
-										<div class="flex flex-wrap  mx-auto overflow-y-scroll" style={{height: '17rem'}}>
+										<div class="flex flex-wrap  mx-auto overflow-y-scroll" style={{ height: '17rem' }}>
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
@@ -366,18 +367,18 @@ const Primary = (props) => {
 													currentBrand == "amazon"
 														? amazonwomen
 														: currentBrand == "flipkart"
-														? women
-														: currentBrand == "myntra"
-														? myntrawomen
-														: currentBrand == "ajio"
-														? ajiowomen
-														: currentBrand == "tatacliq"
-														? tatacliqwomen
-														: currentBrand == "bewakoof"
-														? bewakoofwomen
-														: currentBrand == "snapdeal"
-														? snapdealwomen
-														: "",
+															? women
+															: currentBrand == "myntra"
+																? myntrawomen
+																: currentBrand == "ajio"
+																	? ajiowomen
+																	: currentBrand == "tatacliq"
+																		? tatacliqwomen
+																		: currentBrand == "bewakoof"
+																			? bewakoofwomen
+																			: currentBrand == "snapdeal"
+																				? snapdealwomen
+																				: "",
 												)}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
@@ -385,15 +386,15 @@ const Primary = (props) => {
 											/>
 										</div>
 									) : (
-										""
-									)}
+											""
+										)}
 								</div>
 							</section>
 						</div>
 					</div>
 				) : (
-					""
-				)}
+						""
+					)}
 			</nav>
 		</React.Fragment>
 	);
