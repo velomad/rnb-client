@@ -8,7 +8,6 @@ const CheckboxFilter = (props) => {
 	const [renderUI, setRenderUI] = useState(false);
 
 	const handleChange = (e, newData) => {
-
 		let dummyArr = [];
 		newData.index = e.target.id;
 		dummyArr.push(newData);
@@ -38,10 +37,38 @@ const CheckboxFilter = (props) => {
 				}
 			});
 		});
-		props.setAppliedFilters(props.filters[props.filterOption].filter(el=> {
-			return el.isChecked === true 
-		}));
 
+		// props.setAppliedFilters(
+		// 	props.filters[props.filterOption].filter((el) => {
+		// 		return el.isChecked === true;
+		// 	}),
+		// );
+		var testArry = [];
+		props.filters[props.filterOption].map((el) => {
+			if (el.isChecked === true) {
+				for (let i = 0; i < testArry.length; i++) {
+					if (!!testArry[i]?testArry[i].name: "" !== el.name && !!testArry[i]?testArry[i].index: "" !== el.index) {
+						testArry.push(el);
+					}
+				}
+				let Parse = !!eval(sessionStorage.getItem("test"))
+					? eval(sessionStorage.getItem("test"))
+					: [];
+				Parse.map((newEl, index) => {
+					if (testArry.length !== 0) {
+						for (let i = 0; i < testArry.length; i++) {
+							if (
+								testArry[i].name !== newEl.name &&
+								testArry[i].index !== newEl.index
+							) {
+								testArry.push(newEl);
+							}
+						}
+					}
+				});
+			}
+		});
+		sessionStorage.setItem("test", JSON.stringify(testArry));
 	};
 
 	return (

@@ -57,8 +57,7 @@ const FiltersPopUp = (props) => {
 		StringParam,
 	);
 
-
-		console.log(props.appliedFilters)
+	console.log(props.appliedFilters);
 
 	const isElectronic = history.location.pathname.split("/")[1] === "electronic";
 	const isFilters = qs.parse(history.location.search);
@@ -72,11 +71,13 @@ const FiltersPopUp = (props) => {
 
 	useEffect(() => {
 		if ("sub_category" in isFilters && props.dataYugeFilters) {
-			props.dataYugeFilters.map((el) => {
-				el.contents.map((elem) => {
-					elem["isChecked"] = false;
+			props.dataYugeFilters &&
+				props.dataYugeFilters.map((el) => {
+					el.contents &&
+						el.contents.map((elem) => {
+							elem["isChecked"] = false;
+						});
 				});
-			});
 		}
 
 		setFilterOption(`${!isElectronic ? "Gender" : "Price"}`);
