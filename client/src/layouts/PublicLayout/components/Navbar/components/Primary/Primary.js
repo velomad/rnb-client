@@ -76,7 +76,7 @@ const Primary = (props) => {
 			<nav className="container mx-auto px-0 space-y-0 lg:space-y-0 md:space-y-0 py-0 lg:py-0 lg:py-0 md:py-0 lg:py-0">
 				<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					<div className="flex justify-between items-center">
-						<div className="flex items-center justify-between">
+						<div className="mx-2 md:mx-0 lg:mx-0 flex items-center justify-between">
 							<a
 								className="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700"
 								href="#"
@@ -86,7 +86,7 @@ const Primary = (props) => {
 									width="100px" style={{ width: '4rem' }}
 								/>
 							</a>
-
+							<div className='hidden md:block lg:block'>
 							<div class="flex flex-row py-0 pb-0 lg:pb-1 items-center md:pb-1 md:ml-4 lg:ml-4 overflow-auto w-full">
 								<div className="hidden md:block">
 									<div className="relative text-gray-600">
@@ -199,6 +199,7 @@ const Primary = (props) => {
 									<p className="text-black font-bold"></p>
 								</div>
 							</div>
+							</div>
 
 							<button
 								onClick={() => props.setSidebar(true)}
@@ -215,7 +216,7 @@ const Primary = (props) => {
 							</button>
 						</div>
 
-						<div className="flex md:hidden mb-4" onClick={() => showMenu()}>
+						<div className="flex md:hidden mb-4 mx-2 md:mx-0 lg:mx-0" onClick={() => showMenu()}>
 							<SearchOutlinedIcon
 								onClick={() => props.setSearchSlide(true)}
 								className="text-white mx-2 px-1"
@@ -250,7 +251,113 @@ const Primary = (props) => {
 						""
 					)} */}
 				</div>
-
+				<div class="md:hidden lg:hidden flex flex-row py-0 pb-0 lg:pb-1 items-center ml-2 md:pb-1 md:ml-4 lg:ml-4 overflow-auto w-full">
+					<div
+						onClick={() => loadDropDown("amazon")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/amazon.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+					<div
+						onClick={() => loadDropDown("flipkart")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="hoverable w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/flipkart.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+					<div
+						onClick={() => loadDropDown("myntra")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/myntra.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+					<div
+						onClick={() => loadDropDown("ajio")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/ajioicon.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+					<div
+						onClick={() => loadDropDown("tatacliq")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/tatacliqicon.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+					<div
+						onClick={() => loadDropDown("bewakoof")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/bewakoof.jpg"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+					<div
+						onClick={() => loadDropDown("snapdeal")}
+						class="text-sm text-center mr-8 cursor-pointer"
+					>
+						<div class="p-1 border-2 border-white rounded-full">
+							<div class="w-10 h-10 relative flex flex-shrink-0">
+								<img
+									class="shadow-md rounded-full w-full h-full object-cover"
+									src="/static/images/snapdealicon.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<p className="text-black font-bold"></p>
+					</div>
+				</div>
 				{openDrawer ? (
 					<div
 						className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl z-20"
