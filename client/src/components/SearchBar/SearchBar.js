@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	searchsuggestions: {
 		borderTop: "1px solid #ccc",
-		position: "absolute",
-		zIndex: "999",
+		position: "fixed",
+		zIndex: "9999",
 		width: "23rem",
 		marginLeft: "6rem",
 		background: "white",
