@@ -59,8 +59,8 @@ const ProductCard = ({
 						productTitle,
 					)
 				}
-				className={`w-full h-full p-1 border-b-2  ${
-					epic % 2 !== 0 && "border-l-2"
+				className={`hover:shadow-xl transition duration-500 ease-in-out scale-110  w-full h-full p-4 md:p-8 border-b-2 md:border-b-0  ${
+					epic % 2 !== 0 && "border-l-2 md:border-l-0"
 				}`}
 			>
 				{/* <div

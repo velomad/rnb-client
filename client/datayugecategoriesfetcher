@@ -1,3 +1,5 @@
+REACT_APP_DATAYUGE_API_KEY=RIQbQr3vE1yshdz7IuqrV57LpG13JYVE9WR 
+
 const axios = require('axios');
 const lodash = require('lodash');
 var fs = require("fs");

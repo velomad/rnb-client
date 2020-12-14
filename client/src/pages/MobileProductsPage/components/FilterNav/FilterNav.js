@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 	root: {
 		width: "50%",
 		// backgroundColor: "#666",
-		background: "rgba(0,0,0,0.7)",
+		background: "rgba(230,230,230,230)",
 		zIndex: 100,
 	},
 	stickToBottom: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 		bottom: 0,
 	},
 	iconStyle: {
-		color: "#fff",
+		color: "#000",
 	},
 });
 
@@ -42,7 +42,7 @@ const BottomNav = (props) => {
 			<div className="flex items-center space-x-1">
 				<TuneIcon className={classes.iconStyle} />
 				<div>
-					<Text size="base" variant="white">
+					<Text size="base" variant="black">
 						Filter
 					</Text>
 				</div>
@@ -55,7 +55,7 @@ const BottomNav = (props) => {
 			<div className="flex items-center space-x-1">
 				<ImportExportIcon className={classes.iconStyle} />
 				<div>
-					<Text size="base" variant="white">
+					<Text size="base" variant="black">
 						Sort
 					</Text>
 				</div>

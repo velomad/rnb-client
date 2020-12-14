@@ -15,7 +15,16 @@ const initialState = {
 	isBackFromProductDetail: false,
 	isSidebar: false,
 	isProductSpecsPopUp: false,
-	appliedFilters: [],
+	appliedFilters: JSON.parse(sessionStorage.getItem("filters")) || [],
+};
+
+const setAppliedFilters = (state, payload) => {
+	sessionStorage.setItem("filters", JSON.stringify(payload));
+
+	return {
+		...state,
+		appliedFilters: payload,
+	};
 };
 
 const ui = (state = initialState, action) => {
@@ -52,11 +61,7 @@ const ui = (state = initialState, action) => {
 				isProductSpecsPopUp: payload,
 			};
 		case SET_APPLIED_FILTERS:
-			return {
-				...state,
-				appliedFilters: payload,
-				...state.appliedFilters,
-			};
+			return setAppliedFilters(state, payload);
 		default:
 			return state;
 	}

@@ -7,7 +7,11 @@ import {
 	ProductSkeleton,
 } from "./components";
 import { connect } from "react-redux";
-import { getProducts , setResetProducts, setBackFromSearch} from "../../store/actions";
+import {
+	getProducts,
+	setResetProducts,
+	setBackFromSearch,
+} from "../../store/actions";
 import { history } from "../../utils";
 
 const ProductsPage = (props) => {
@@ -17,18 +21,18 @@ const ProductsPage = (props) => {
 		setPage(value);
 	};
 
-
 	useEffect(async () => {
-		if(!props.isBack){
+		if (!props.isBack) {
 			props.setResetProducts();
 			await props.getProducts(page);
 			props.setBackFromSearch(false);
-		}{
+		}
+		{
 			props.setBackFromSearch(false);
 		}
 	}, [history.location.search, page]);
 
-	console.log(page)
+	console.log(page);
 
 	return (
 		<React.Fragment>
@@ -108,4 +112,8 @@ const mapStateToProps = ({ dataSkoreProductsState, uiState }) => ({
 	category: dataSkoreProductsState.category,
 });
 
-export default connect(mapStateToProps, { getProducts, setResetProducts, setBackFromSearch })(ProductsPage);
+export default connect(mapStateToProps, {
+	getProducts,
+	setResetProducts,
+	setBackFromSearch,
+})(ProductsPage);
