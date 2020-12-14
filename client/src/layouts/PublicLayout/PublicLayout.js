@@ -6,7 +6,13 @@ function PublicLayout(props) {
 	const { children, withFooter = true } = props;
 	return (
 		<div>
-			<div style={{ paddingBottom: "9rem" }}>
+			<div
+				style={
+					window.innerWidth > 769
+						? { paddingBottom: "6rem" }
+						: { paddingBottom: "9rem" }
+				}
+			>
 				<Navbar />
 			</div>
 
