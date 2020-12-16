@@ -1,8 +1,7 @@
 import React from "react";
-import { Header, ProductCard, Skeleton } from "./components";
+import { Filters, Header, ProductCard, Skeleton } from "./components";
 import { Button, Text } from "../../../components";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 
 import {
 	FiltersPopUp,
@@ -43,36 +42,13 @@ const ProductsPage = (props) => {
 		<React.Fragment>
 			<div className="md:p-2">
 				<div className="hidden md:block">
-					<div className="border-b-2 p-4 py-6 grid grid-cols-5">
+					<div className="border-b-2 p-4 py-4 grid place-items-center  grid-cols-5">
 						<Header categoryName={history.location.search.split("=")[1]} />
 					</div>
 				</div>
 				<div className="md:grid gap-4 grid-cols-5">
 					<div className="hidden md:block p-2">
-						<div className="flex justify-between">
-							<div>
-								<Text variant="primary" classes="uppercase" size="sm">
-									filters
-								</Text>
-							</div>
-							<div>
-								<div className="flex items-center">
-									<DeleteOutlineOutlinedIcon
-										fontSize="small"
-										className="text-red-500"
-									/>
-									<Text
-										weight={600}
-										variant="danger"
-										classes="uppercase"
-										size="xs"
-									>
-										Clear All
-									</Text>
-								</div>
-							</div>
-						</div>
-						akjhdas
+						<Filters />
 					</div>
 					<div className="gap-4 border-l-2 col-span-4">
 						{currentPage === 1 && props.productsLoading === true ? (

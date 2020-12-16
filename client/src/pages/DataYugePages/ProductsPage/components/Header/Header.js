@@ -11,12 +11,15 @@ const Header = ({ categoryName }) => {
 					{categoryName}
 				</Text>
 			</div>
-			<div className="col-span-3">
-				<Chip
-					size="small"
-					label="filter option"
-					// onDelete={handleDelete}
-				/>
+			<div className="col-span-3 space-x-4 space-y-4">
+				{[...Array(12)].map(() => (
+					<Chip
+						className="mt-4"
+						size="small"
+						label="filter option"
+						// onDelete={handleDelete}
+					/>
+				))}
 			</div>
 			<div>
 				<div class="group inline-block">
@@ -43,12 +46,17 @@ const Header = ({ categoryName }) => {
 					>
 						<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
 							<Text variant="primary" size="sm">
-								Discount
+								Popularity
 							</Text>
 						</li>
 						<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
 							<Text variant="primary" size="sm">
 								High to low
+							</Text>
+						</li>
+						<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+							<Text variant="primary" size="sm">
+								Low to High
 							</Text>
 						</li>
 					</ul>
