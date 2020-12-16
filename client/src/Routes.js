@@ -19,6 +19,8 @@ import ProductPage from "./pages/ProductPage";
 import DataYugeProductsPage from "./pages/DataYugePages/ProductsPage";
 import DataYugeProductPage from "./pages/DataYugePages/ProductPage";
 import MobileProductsPage from "./pages/MobileProductsPage";
+// import DesktopProductPage from "./pages/DataYugePages/ProductPage/DesktopProductPage";
+
 
 const Routes = () => {
 	return (

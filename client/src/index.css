@@ -54,3 +54,15 @@ code {
   background: #fafbfc;
 }
 
+.MuiDialog-scrollPaper {
+  display: flex;
+  justify-content: flex-end !important;
+}
+
+
+@media screen and (min-width: 768px){
+.swiper-container {
+    width: 95% !important;
+}
+}
+

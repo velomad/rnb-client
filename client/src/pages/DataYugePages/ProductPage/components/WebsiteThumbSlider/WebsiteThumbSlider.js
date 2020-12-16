@@ -65,10 +65,18 @@ const WebsiteThumbSlider = ({ stores }) => {
 							<SwiperSlide>
 								<div
 									className="p-4 space-y-5"
-									style={{
+									style={
+										window.innerWidth > 769 ?
+									{
+
+										width: '29rem',
+										backgroundImage: `url(/static/images/gplaypattern.png)`
+									} : {
 										backgroundImage: `url(/static/images/gplaypattern.png)`,
 										height: "30rem",
 									}}
+
+									
 								>
 									<div className="flex justify-between">
 										{/* <Text variant="primaryDark" size="lg" isTitle={true} classes="uppercase">
