@@ -41,7 +41,7 @@ const ProductsPage = (props) => {
 	};
 	return (
 		<React.Fragment>
-			<div className="p-2">
+			<div className="md:p-2">
 				<div className="hidden md:block">
 					<div className="border-b-2 p-4 py-6 grid grid-cols-5">
 						<Header categoryName={history.location.search.split("=")[1]} />
