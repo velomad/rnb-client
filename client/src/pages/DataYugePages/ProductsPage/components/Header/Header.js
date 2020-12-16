@@ -21,8 +21,10 @@ const Header = ({ categoryName }) => {
 			<div>
 				<div class="group inline-block">
 					<button class="outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
-						<span class="pr-1 font-semibold flex-1">
-							<Text variant="primary">Dropdown</Text>
+						<span class="pr-1 flex-1">
+							<Text variant="primary" size="sm" weight="700">
+								Dropdown
+							</Text>
 						</span>
 						<span>
 							<svg
@@ -40,13 +42,15 @@ const Header = ({ categoryName }) => {
   transition duration-150 ease-in-out origin-top min-w-32"
 					>
 						<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-							<Text variant="primary" size="sm">Discount</Text>
+							<Text variant="primary" size="sm">
+								Discount
+							</Text>
 						</li>
 						<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                            <Text variant="primary" size="sm">
-                                High to low
-                            </Text>
-                        </li>
+							<Text variant="primary" size="sm">
+								High to low
+							</Text>
+						</li>
 					</ul>
 				</div>
 			</div>

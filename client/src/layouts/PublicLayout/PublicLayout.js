@@ -9,8 +9,8 @@ function PublicLayout(props) {
 			<div
 				style={
 					window.innerWidth > 769
-						? { paddingBottom: "6rem" }
-						: { paddingBottom: "9rem" }
+						? { paddingBottom: "6em" }
+						: { paddingBottom: "9em" }
 				}
 			>
 				<Navbar />
