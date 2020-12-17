@@ -8,7 +8,8 @@ import Autocomplete, {
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
-import {history} from "../../utils";
+import { history } from "../../utils";
+import { values } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
 	formControl: {
@@ -79,9 +80,9 @@ export default function Filter() {
 	const [inputValue, setInputValue] = React.useState("");
 	const [inputSearch, setInputSearch] = React.useState("");
 	const [options, setOptions] = React.useState([]);
-    const [searchState, setsearchState] = React.useState(false);
-    const [suggestionClicked, setSuggestionClicked] = React.useState(false);
-    
+	const [searchState, setsearchState] = React.useState(false);
+	const [suggestionClicked, setSuggestionClicked] = React.useState(false);
+
 
 	const [unit, setUnit] = React.useState("https://reachnbuy.com/api/v1/search");
 
@@ -96,27 +97,44 @@ export default function Filter() {
 	const loading = open && options.length === 0;
 
 	function handleChange(value) {
-        setsearchState(true);
-        setSuggestionClicked(false)
-        setInputValue(value);
+		setsearchState(true);
+		setSuggestionClicked(false)
+		setInputValue(value);
 		debounceOnChange(value);
+	}
+	const handelDropdown = (event, value) => {
+		setUnit(event.target.value);
 	}
 
 	React.useEffect(() => {
 		let active = true;
+		let response;
 		setsearchState(true);
 		(async () => {
 			if (!!inputValue) {
-				const response = await axios.get(
-					`${unit}?term=${inputValue}&api_key=dfr4d57ft84sdq47f8ew`,
-				);
+				if (unit === 'https://reachnbuy.com/api/v1/search') {
+					response = await axios.get(
+						`${unit}?term=${inputValue}&api_key=dfr4d57ft84sdq47f8ew`,
+					);
+				} else {
+					response = await axios.get(
+						`${unit}?api_key=2sEAvvdVPsyiFWpBrr69tTmfKwdR7RpseGi&product=${inputValue}`,
+					);
+				}
+
 
 				if (active) {
 					let searchData = [];
 					console.log(response.data.suggestions);
-					response.data.suggestions.map((item) => {
-						searchData.push({ display_name: item });
-					});
+					if (unit === 'https://reachnbuy.com/api/v1/search') {
+						response.data.suggestions.map((item) => {
+							searchData.push({ display_name: item });
+						});
+					} else {
+						response.data.keywords.map((item) => {
+							searchData.push({ display_name: item });
+						});
+					}
 					console.log("searchData", searchData);
 					setOptions(searchData);
 					setsearchState(false);
@@ -128,10 +146,14 @@ export default function Filter() {
 	}, [inputSearch]);
 
 	const handleSuggestionClick = (searchTerm) => {
-        console.log("do it");
-        setInputValue("")
-        setSuggestionClicked(true)
-        history.push(`/items/search?term=${searchTerm}`)
+		console.log("do it");
+		setInputValue("")
+		setSuggestionClicked(true)
+		if (unit === 'https://reachnbuy.com/api/v1/search') {
+			history.push(`/items/search?term=${searchTerm}`)
+		} else {
+			history.push(`/electronic/items/search?product=${searchTerm}`)
+		}
 	};
 	return (
 		<React.Fragment>
@@ -141,22 +163,22 @@ export default function Filter() {
 					<div class="relative text-gray-600">
 						<input
 							type="text"
-                            name="serch"
-                            value={inputValue}
-                            placeholder="Clothing Search"
-                            autoComplete="off"
+							name="serch"
+							value={inputValue}
+							placeholder="Clothing Search"
+							autoComplete="off"
 							onChange={(event) => handleChange(event.target.value)}
 							class="bg-white h-10 w-full px-32 pr-48 rounded-full text-sm focus:outline-none"
 						/>
 						<select
 							className="absolute outline-none rounded-full p-2 mt-1 mr-1 left-0 top-0"
 							value={unit}
-							onChange={(event, value) => setUnit(value)}
+							onChange={(event, value) => handelDropdown(event, value)}
 						>
-							<option selected value={"http://localhost:8080/api/v1/search"}>
+							<option selected value="https://reachnbuy.com/api/v1/search">
 								Clothing
 							</option>
-							<option value={2}>Electronics</option>
+							<option value="https://price-api.datayuge.com/api/v1/compare/search/suggest">Electronics</option>
 						</select>
 
 						<button
@@ -182,28 +204,28 @@ export default function Filter() {
 							</svg>
 						</button>
 					</div>
-					<div className={`${suggestionClicked ? "hidden" : "visible" }`}>
+					<div className={`${suggestionClicked ? "hidden" : "visible"}`}>
 						{options.length > 0 ? (
 							<ul className={classes.searchsuggestions}>
 								{searchState ? (
 									<li className={classes.suggestiontext}>Loading...</li>
 								) : (
-									options.map((item, index) => {
-										return (
-											<li
-												key={index}
-												onClick={() => handleSuggestionClick(item.display_name)}
-												className={classes.suggestiontext}
-											>
-												{item.display_name}
-											</li>
-										);
-									})
-								)}
+										options.map((item, index) => {
+											return (
+												<li
+													key={index}
+													onClick={() => handleSuggestionClick(item.display_name)}
+													className={classes.suggestiontext}
+												>
+													{item.display_name}
+												</li>
+											);
+										})
+									)}
 							</ul>
 						) : (
-							""
-						)}
+								""
+							)}
 					</div>
 				</div>
 			</div>
