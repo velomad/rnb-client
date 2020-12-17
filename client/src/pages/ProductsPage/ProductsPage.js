@@ -36,7 +36,7 @@ const ProductsPage = (props) => {
 
 	return (
 		<React.Fragment>
-			<div class="h-screen w-full flex antialiased bg-white overflow-hidden">
+			{/* <div class="h-screen w-full flex antialiased bg-white overflow-hidden">
 				<div class="flex-1 flex flex-col">
 					<div className="py-4">
 						<Heading />
@@ -61,7 +61,7 @@ const ProductsPage = (props) => {
 												<span class="mt-3 text-sm text-gray-500">
 													{props.totalProducts - 5}+ Products
 												</span>
-												<div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+												<div class="">
 													{props.products.length > 0 ? (
 														props.products.map((e, index) => (
 															<div
@@ -93,11 +93,91 @@ const ProductsPage = (props) => {
 						</section>
 					</main>
 					<hr className="bg-gray-900" />
-					<div className="flex justify-center py-8">
-						<Pagination
-							totalProducts={props.totalProducts}
-							setPageNumber={getPage}
-						/>
+					
+				</div>
+			</div> */}
+
+			<div className="md:p-2">
+				<div className="hidden md:block">
+					<div className="border-b-2 p-4 py-4">
+						<Heading category={props.category} />
+					</div>
+				</div>
+				<div className="md:grid gap-4 grid-cols-5">
+					<div className="hidden md:block p-2">
+						<Filters />
+					</div>
+					<div className="gap-4 border-l-2 col-span-4">
+						{/* {currentPage === 1 && props.productsLoading === true ? (
+							<Skeleton />
+						) : ( */}
+						<div>
+							<div>
+								<div class="grid gap-0 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-2 mb-6">
+									{props.products.length > 0 ? (
+										props.products.map((e, index) => (
+											<div
+												class="w-full max-w-sm mx-auto rounded-md overflow-hidden"
+												key={index}
+											>
+												<ProductCard
+													id={e._id}
+													image={e.imageUrl}
+													website={e.website}
+													price={e.productPrice}
+													priceStrike={e.productPriceStrike}
+													name={e.productName}
+													brand={e.brandName}
+													discount={e.discountPercent}
+													rating={e.productRating}
+												/>
+											</div>
+										))
+									) : (
+										<ProductSkeleton />
+									)}
+								</div>
+							</div>
+							{/* <div className="text-center mb-6">
+								{!props.isResults ? (
+									// type !== "search" && (
+									<Button
+										handleClick={() => getMoreProducts()}
+										size="base"
+										variant="primary"
+										classes="w-32"
+									>
+										{props.productsLoading ? (
+											<CircularProgress color="secondary" size="20px" />
+										) : (
+											"View More"
+										)}
+									</Button>
+								) : (
+									// )
+									<div className=" h-96 p-16 flex">
+										<div className="m-auto space-y-8">
+											<div>
+												<img src="/static/images/progress.svg" />
+											</div>
+											<div>
+												<Text variant="primary" size="lg" classes="capitalize">
+													Soon Getting more proucts for you.
+												</Text>
+											</div>
+										</div>
+									</div>
+								)}
+							</div> */}
+						</div>
+						{/* )} */}
+
+						<div className="flex justify-center py-8">
+							<Pagination
+								totalProducts={props.totalProducts}
+								setPageNumber={getPage}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

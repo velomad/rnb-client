@@ -66,7 +66,7 @@ const Header = ({ categoryName, dataYugeFilters }) => {
 					{categoryName}
 				</Text>
 			</div>
-			<div className="col-span-3 space-x-4 space-y-8">
+			<div className="col-span-3 space-x-4  space-y-8">
 				{"sub_category" in isFilters &&
 					dataYugeFilters &&
 					dataYugeFilters.slice(5, -1).map((el, index) => (
@@ -105,7 +105,7 @@ const Header = ({ categoryName, dataYugeFilters }) => {
 						/>
 					))}
 
-				<div className="grid grid-cols-4">
+				<div className={`grid ${activeChip !== null && "h-72 overflow-y-scroll" }  grid-cols-4`}>
 					{/* {filtersData.map((el, index) => (
 						<div>
 							<Text size="xs" variant="primary">

@@ -100,7 +100,7 @@ const ProductCard = ({
 						productTitle,
 					)
 				}
-				className={`hover:shadow-xl transition duration-500 ease-in-out scale-110  w-full h-full p-2 md:p-8 border-b-2 md:border-b-0  ${
+				className={`hover:shadow-lg rounded-xl transition duration-500 ease-in-out scale-110  w-full h-full p-2 md:p-8 border-b-2 md:border-b-0  ${
 					epic % 2 !== 0 && "border-l-2 md:border-l-0"
 				}`}
 			>
@@ -112,7 +112,7 @@ const ProductCard = ({
 					<PriceCheck />
 				</div> */}
 
-				<div className="flex justify-center">
+				<div className="flex justify-center transition duration-700 ease-in-out transform hover:-translate-y-2">
 					{productImage !== null ? (
 						<LazyLoadImage
 							effect="blur"
