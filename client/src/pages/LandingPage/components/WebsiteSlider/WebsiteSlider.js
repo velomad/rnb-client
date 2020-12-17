@@ -27,12 +27,19 @@ const MainSlider = () => {
 						slidesPerView: 1,
 						spaceBetween: 10,
 					},
+					"@2.00": {
+						slidesPerView: 3,
+						spaceBetween: 10,
+					},
+					
 				}}
 			>
 				{data.map((el) => (
-					<SwiperSlide>
+					<SwiperSlide 
+						className="py-4"
+					>
 						<div
-							className="py-4 space-y-4"
+							className="py-4  space-y-4 rounded-lg"
 							style={{
 								height: "18rem",
 								backgroundImage: `url(/static/images/gplaypattern.png)`,

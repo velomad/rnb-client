@@ -39,16 +39,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 const Sidebar = (props) => {
-	console.log(props.open);
-
 	const classes = useStyles();
-	const [state, setState] = React.useState({
-		top: false,
-		left: false,
-		bottom: false,
-		right: false,
-	});
 	const [openListItem, setopenListItem] = React.useState("");
+
+	console.log(openListItem);
 
 	const getProducts = (product) => {
 		props.setSidebar(false);
@@ -69,6 +63,16 @@ const Sidebar = (props) => {
 				[classes.fullList]: anchor === "top" || anchor === "bottom",
 			})}
 			role="presentation"
+			style={
+				openListItem === "close" || openListItem === ""
+					? {
+							backgroundColor: "#222",
+							height: "100%",
+					  }
+					: {
+							backgroundColor: "#222",
+					  }
+			}
 		>
 			<List>
 				{Object.keys(electronics)

@@ -5,7 +5,7 @@ const Skeleton = () => {
 	const n = 8;
 
 	return (
-		<div className="grid grid-cols-2 gap-2 py-2">
+		<div className="p-2 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 py-2">
 			{[...Array(n)].map(() => (
 				<div>
 					<Sk

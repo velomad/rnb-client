@@ -69,7 +69,7 @@ const WebsiteThumbSlider = ({ stores }) => {
 										window.innerWidth > 769 ?
 									{
 
-										width: '29rem',
+										width: '100%',
 										backgroundImage: `url(/static/images/gplaypattern.png)`
 									} : {
 										backgroundImage: `url(/static/images/gplaypattern.png)`,
