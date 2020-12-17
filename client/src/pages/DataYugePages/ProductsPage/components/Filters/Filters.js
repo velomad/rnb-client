@@ -79,14 +79,14 @@ const Filters = (props) => {
 			</div>
 
 			<div>
-				{props.dataYugeFilters.slice(0, 3).map((elem, index) => (
+				{props.dataYugeFilters.slice(0, 5).map((elem, index) => (
 					<div className="py-6">
 						<Text variant="primaryDark" weight="700">
 							{elem.title}
 						</Text>
-						<div className="space-y-4">
+						<div className="space-y-0">
 							<ul
-								className={`p-4 ${
+								className={`${
 									elem.contents.length > 6 && "h-96"
 								} overflow-y-scroll`}
 							>
@@ -109,7 +109,11 @@ const Filters = (props) => {
 															id={index}
 														/>
 													}
-													label={<Text variant="primaryDark" size="sm">{el.name}</Text>}
+													label={
+														<Text variant="primaryDark" size="sm">
+															{el.name}
+														</Text>
+													}
 												/>
 											</li>
 									  ))
@@ -131,7 +135,11 @@ const Filters = (props) => {
 															id={index}
 														/>
 													}
-													label={<Text variant="primary" size="sm">el.name</Text>}
+													label={
+														<Text variant="primary" size="sm">
+															{el.name}
+														</Text>
+													}
 												/>
 											</li>
 									  ))}

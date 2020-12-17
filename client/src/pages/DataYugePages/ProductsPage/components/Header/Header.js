@@ -1,9 +1,12 @@
 import React from "react";
 import { Text } from "../../../../../components";
 import Chip from "@material-ui/core/Chip";
+import { connect } from "react-redux";
 import "./header.css";
 
-const Header = ({ categoryName }) => {
+const Header = ({ categoryName, dataYugeFilters }) => {
+	console.log(dataYugeFilters);
+
 	return (
 		<React.Fragment>
 			<div>
@@ -12,11 +15,15 @@ const Header = ({ categoryName }) => {
 				</Text>
 			</div>
 			<div className="col-span-3 space-x-4 space-y-4">
-				{[...Array(12)].map(() => (
+				{dataYugeFilters.slice(5, -1).map((el) => (
 					<Chip
 						className="mt-4"
 						size="small"
-						label="filter option"
+						label={
+							<Text size="xs" variant="primary">
+								{el.title}
+							</Text>
+						}
 						// onDelete={handleDelete}
 					/>
 				))}
@@ -66,4 +73,9 @@ const Header = ({ categoryName }) => {
 	);
 };
 
-export default Header;
+const mapStateToProps = ({ uiState, dataYugeProductsState }) => ({
+	dataYugeFilters: dataYugeProductsState.filters,
+	appliedFilters: uiState.appliedFilters,
+});
+
+export default connect(mapStateToProps)(Header);
