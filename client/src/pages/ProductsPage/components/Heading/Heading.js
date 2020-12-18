@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 import { Text } from "../../../../components";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 
-const Heading = ({ category }) => {
+const Heading = ({ category, totalProducts }) => {
 	return (
 		<div className="grid grid-cols-5 gap-6">
 			<div className="flex justify-between">
@@ -30,15 +30,27 @@ const Heading = ({ category }) => {
 			</div>
 			<div className="col-span-3">
 				<div className="flex justify-between align-center ml-8">
-					<div>
-						<Text
-							variant="primaryDark"
-							classes="uppercase"
-							weight="700"
-							size="sm"
-						>
-							{category}
-						</Text>
+					<div className="flex-none">
+						<div>
+							<Text
+								variant="primaryDark"
+								classes="uppercase"
+								weight="700"
+								size="sm"
+							>
+								{category}
+							</Text>
+						</div>
+						<div>
+							<Text
+								variant="primary"
+								classes="capitalize"
+								weight="700"
+								size="sm"
+							>
+								{totalProducts - 5}+ Products
+							</Text>
+						</div>
 					</div>
 					<div>
 						<div>
@@ -66,7 +78,12 @@ const Heading = ({ category }) => {
 								>
 									<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
 										<Text variant="primary" size="sm">
-											Popularity
+											Rating
+										</Text>
+									</li>
+									<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+										<Text variant="primary" size="sm">
+											Discount
 										</Text>
 									</li>
 									<li class="rounded-sm px-3 py-1 hover:bg-gray-100">

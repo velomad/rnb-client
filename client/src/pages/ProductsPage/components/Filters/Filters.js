@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Divider, Grid, Typography } from "@material-ui/core";
 import { Text } from "../../../../components";
 import PriceFilter from "../../../MobileProductsPage/components/FiltersPopUp/PriceFilter";
@@ -13,21 +13,12 @@ import {
 	FormControl,
 	FormLabel,
 } from "@material-ui/core";
-import { Button } from '../../../../components';
+import { Button } from "../../../../components";
 
-const useStyles = makeStyles({
-	root: {
-		width: 200,
-	},
-});
-
-function valuetext(value) {
-	return `${value}°C`;
-}
 const Filters = (props) => {
 	const [selectedGender, setSelectedGender] = React.useState("");
 	const discounts = [10, 20, 30, 40, 50, 60, 70];
-	const classes = useStyles();
+	const genderArry = ["men", "women"];
 	const start = 0;
 	const end = 20000;
 	const [value, setValue] = React.useState([start, end]);
@@ -36,13 +27,13 @@ const Filters = (props) => {
 		let priceObj = {
 			"productPrice[gte]": value[0],
 			"productPrice[lte]": value[1],
-		}
+		};
 
 		const queryparams = qs.stringify(priceObj);
 		const parsedQueryParams = history.location.search;
 
 		history.push(`/products${parsedQueryParams}&${queryparams}`);
-	}
+	};
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -51,8 +42,18 @@ const Filters = (props) => {
 	const RadioLabel = (props) => {
 		return (
 			<div>
-				<Text variant="primary" size="lg">
+				<Text variant="primary" size="sm">
 					{props.val}% and Above
+				</Text>
+			</div>
+		);
+	};
+
+	const GenderRadioLabel = (props) => {
+		return (
+			<div>
+				<Text variant="primary" size="sm">
+					{props.val}
 				</Text>
 			</div>
 		);
@@ -60,9 +61,9 @@ const Filters = (props) => {
 
 	const getDiscount = (e) => {
 		let discountObj = {};
-		console.log('before genderObj', discountObj)
-		discountObj = { 'discountPercent': e.target.value }
-		console.log('after genderObj', discountObj)
+		console.log("before genderObj", discountObj);
+		discountObj = { discountPercent: e.target.value };
+		console.log("after genderObj", discountObj);
 		const queryparams = qs.stringify(discountObj);
 		const parsedQueryParams = history.location.search;
 
@@ -72,9 +73,9 @@ const Filters = (props) => {
 	const handleGenderSelection = (currentGender) => {
 		setSelectedGender(currentGender);
 		let genderObj = {};
-		console.log('before genderObj', genderObj)
-		genderObj = { 'gender': currentGender }
-		console.log('after genderObj', genderObj)
+		console.log("before genderObj", genderObj);
+		genderObj = { gender: currentGender };
+		console.log("after genderObj", genderObj);
 		const queryparams = qs.stringify(genderObj);
 		const parsedQueryParams = history.location.search;
 
@@ -82,58 +83,50 @@ const Filters = (props) => {
 	};
 	return (
 		<div>
-			<div className='my-0'>
-				{/* <Text weight={600} size="base" variant="secondary">
-					GENDER
-				</Text> */}
-				<ul className="p-0 py-2 space-y-0 flex cursor-pointer">
-					<li onClick={() => handleGenderSelection("men")}>
-						<div
-							className={
-								selectedGender === "men"
-									? "flex items-center space-x-6 rounded text-white bg-gray-900 transition duration-500 ease-in-out"
-									: "flex items-center space-x-6"
-							}
-						>
-							<div>
-								<img src="/static/images/male.png" width="50" />
+			<div className="py-4 space-y-4">
+				<div>
+					<Text weight={600} size="md" variant="primaryDark">
+						Gender
+					</Text>
+				</div>
+				<FormControl component="fieldset">
+					<RadioGroup
+						aria-label="discount"
+						name="discount"
+						value={props.discountFilterValue}
+						onChange={getDiscount}
+					>
+						{genderArry.map((el) => (
+							<div key={el} className=" flex space-x-4 items-center">
+								<div>
+									<FormControlLabel
+										value={`${el}`}
+										s
+										control={<Radio />}
+										label={<GenderRadioLabel val={el} />}
+									/>
+								</div>
 							</div>
-							<small className='ml-6 pb-2 pt-2 pr-4'>MEN</small>
-						</div>
-					</li>
-					<li onClick={() => handleGenderSelection("women")}>
-						<div
-							className={
-								selectedGender === "women"
-									? "flex items-center space-x-6 rounded text-white bg-gray-900 transition duration-500 ease-in-out"
-									: "flex items-center space-x-6"
-							}
-						>
-							<div>
-								<img src="/static/images/female.png" width="50" />
-							</div>
-							<small className='ml-6 pb-2 pt-2 pr-4'>WOMEN</small>
-						</div>
-					</li>
-				</ul>
+						))}
+					</RadioGroup>
+				</FormControl>
 			</div>
 			<div className="my-5">
 				<Divider variant="fullWidth" />
 			</div>
-			<div className="my-3">
-				<Text weight={600} size="base" variant="secondary">
-					PRICE
+			<div className="py-4 space-y-4">
+				<Text weight={600} size="md" variant="primaryDark">
+					Price
 				</Text>
-				<div className="mt-5">
-					<div className={classes.root}>
+				<div>
+					<div className="px-4">
 						<Slider
 							min={0}
-							max={2000}
+							max={20000}
 							value={value}
 							onChange={handleChange}
 							valueLabelDisplay="auto"
 							aria-labelledby="range-slider"
-							getAriaValueText={valuetext}
 						/>
 					</div>
 					<div className="px-2 flex justify-between items-center">
@@ -145,28 +138,31 @@ const Filters = (props) => {
 
 						<div>
 							<Text variant="primaryDark" weight="600" size="lg">
-								&#8377;{value[1]}+
-					</Text>
+								&#8377;{value[1]} {value[1] === 20000 && "+"}
+							</Text>
 						</div>
 					</div>
-					<div className='ml-32'>
-					<Button  onClick={() => applyPriceFilter()} size='small' variant='primary' >
-						Apply
-					</Button>
+					<div className="mt-4">
+						<Button
+							onClick={() => applyPriceFilter()}
+							size="small"
+							variant="primary"
+						>
+							Apply
+						</Button>
 					</div>
-					
 				</div>
 			</div>
 			<div className="my-5">
 				<Divider variant="fullWidth" />
 			</div>
 			<div>
-				<Grid container className="my-3">
-					<Text weight={600} size="base" variant="secondary">
-						DISCOUNT
+				<div className="">
+					<Text weight={600} size="md" variant="primaryDark">
+						Discount
 					</Text>
-				</Grid>
-				<div className="p-4 h-full g-gray-100">
+				</div>
+				<div className=" h-full g-gray-100">
 					<div className="py-4 space-y-6">
 						<FormControl component="fieldset">
 							<RadioGroup
@@ -184,11 +180,6 @@ const Filters = (props) => {
 												label={<RadioLabel val={el} />}
 											/>
 										</div>
-										{/* <div>
-									<Text variant="primary" size="lg">
-										{el}% and Above
-									</Text>
-								</div> */}
 									</div>
 								))}
 							</RadioGroup>

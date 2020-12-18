@@ -42,7 +42,7 @@ const ProductsPage = (props) => {
 		<React.Fragment>
 			<div className="md:p-2">
 				<div className="hidden md:block">
-					<div className="border-b-2 p-4 py-4 grid place-items-center  grid-cols-5">
+					<div className="border-b-2 p-4 py-4 grid place-items-center grid-cols-5">
 						<Header categoryName={history.location.search.split("=")[1]} />
 					</div>
 				</div>

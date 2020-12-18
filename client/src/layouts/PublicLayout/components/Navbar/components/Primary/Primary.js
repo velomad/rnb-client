@@ -9,7 +9,10 @@ import { men, women } from "../Menu/DynamicContent/flipkartMenuData";
 import { amazonmen, amazonwomen } from "../Menu/DynamicContent/amazonMenuData";
 import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
 import { ajiomen, ajiowomen } from "../Menu/DynamicContent/ajioMenuData";
-import { snapdealmen, snapdealwomen } from "../Menu/DynamicContent/snapdealMenuData";
+import {
+	snapdealmen,
+	snapdealwomen,
+} from "../Menu/DynamicContent/snapdealMenuData";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {
 	tatacliqmen,
@@ -64,10 +67,9 @@ const Primary = (props) => {
 	};
 
 	const handleClickAway = () => {
-		console.log('click away navbar...');
+		console.log("click away navbar...");
 		settoggleSideBar(false);
 	};
-
 
 	return (
 		<React.Fragment>
@@ -83,128 +85,129 @@ const Primary = (props) => {
 							>
 								<img
 									src="https://raw.githubusercontent.com/velomad/ReachNBuy/main/src/assets/img/logo.png"
-									width="100px" style={{ width: '4rem' }}
+									width="100px"
+									style={{ width: "4rem" }}
 								/>
 							</a>
-							<div className='hidden md:block lg:block'>
-							<div class="flex flex-row py-0 pb-0 lg:pb-1 items-center md:pb-1 md:ml-4 lg:ml-4 overflow-auto w-full">
-								<div className="hidden md:block">
-									<div className="relative text-gray-600">
-										<SearchBar />
-									</div>
-								</div>
-								<div
-									onClick={() => loadDropDown("amazon")}
-									class="text-sm text-center mr-8 cursor-pointer"
-								>
-									<div class="p-1 border-2 border-white rounded-full">
-										<div class="w-10 h-10 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-cover"
-												src="/static/images/amazon.png"
-												alt=""
-											/>
+							<div className="hidden md:block lg:block">
+								<div class="flex flex-row py-0 pb-0 lg:pb-1 items-center md:pb-1 md:ml-4 lg:ml-4 overflow-auto w-full">
+									<div className="hidden md:block">
+										<div className="relative text-gray-600">
+											<SearchBar />
 										</div>
 									</div>
-									<p className="text-black font-bold"></p>
-								</div>
-								<div
-									onClick={() => loadDropDown("flipkart")}
-									class="text-sm text-center mr-8 cursor-pointer"
-								>
-									<div class="p-1 border-2 border-white rounded-full">
-										<div class="hoverable w-10 h-10 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-cover"
-												src="/static/images/flipkart.png"
-												alt=""
-											/>
+									<div
+										onClick={() => loadDropDown("amazon")}
+										class="text-sm text-center mr-8 cursor-pointer"
+									>
+										<div class="p-1 border-2 border-white rounded-full">
+											<div class="w-10 h-10 relative flex flex-shrink-0">
+												<img
+													class="shadow-md rounded-full w-full h-full object-cover"
+													src="/static/images/amazon.png"
+													alt=""
+												/>
+											</div>
 										</div>
+										<p className="text-black font-bold"></p>
 									</div>
-									<p className="text-black font-bold"></p>
-								</div>
-								<div
-									onClick={() => loadDropDown("myntra")}
-									class="text-sm text-center mr-8 cursor-pointer"
-								>
-									<div class="p-1 border-2 border-white rounded-full">
-										<div class="w-10 h-10 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-cover"
-												src="/static/images/myntra.png"
-												alt=""
-											/>
+									<div
+										onClick={() => loadDropDown("flipkart")}
+										class="text-sm text-center mr-8 cursor-pointer"
+									>
+										<div class="p-1 border-2 border-white rounded-full">
+											<div class="hoverable w-10 h-10 relative flex flex-shrink-0">
+												<img
+													class="shadow-md rounded-full w-full h-full object-cover"
+													src="/static/images/flipkart.png"
+													alt=""
+												/>
+											</div>
 										</div>
+										<p className="text-black font-bold"></p>
 									</div>
-									<p className="text-black font-bold"></p>
-								</div>
-								<div
-									onClick={() => loadDropDown("ajio")}
-									class="text-sm text-center mr-8 cursor-pointer"
-								>
-									<div class="p-1 border-2 border-white rounded-full">
-										<div class="w-10 h-10 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-cover"
-												src="/static/images/ajioicon.png"
-												alt=""
-											/>
+									<div
+										onClick={() => loadDropDown("myntra")}
+										class="text-sm text-center mr-8 cursor-pointer"
+									>
+										<div class="p-1 border-2 border-white rounded-full">
+											<div class="w-10 h-10 relative flex flex-shrink-0">
+												<img
+													class="shadow-md rounded-full w-full h-full object-cover"
+													src="/static/images/myntra.png"
+													alt=""
+												/>
+											</div>
 										</div>
+										<p className="text-black font-bold"></p>
 									</div>
-									<p className="text-black font-bold"></p>
-								</div>
-								<div
-									onClick={() => loadDropDown("tatacliq")}
-									class="text-sm text-center mr-8 cursor-pointer"
-								>
-									<div class="p-1 border-2 border-white rounded-full">
-										<div class="w-10 h-10 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-cover"
-												src="/static/images/tatacliqicon.png"
-												alt=""
-											/>
+									<div
+										onClick={() => loadDropDown("ajio")}
+										class="text-sm text-center mr-8 cursor-pointer"
+									>
+										<div class="p-1 border-2 border-white rounded-full">
+											<div class="w-10 h-10 relative flex flex-shrink-0">
+												<img
+													class="shadow-md rounded-full w-full h-full object-cover"
+													src="/static/images/ajioicon.png"
+													alt=""
+												/>
+											</div>
 										</div>
+										<p className="text-black font-bold"></p>
 									</div>
-									<p className="text-black font-bold"></p>
-								</div>
-								<div
-									onClick={() => loadDropDown("bewakoof")}
-									class="text-sm text-center mr-8 cursor-pointer"
-								>
-									<div class="p-1 border-2 border-white rounded-full">
-										<div class="w-10 h-10 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-cover"
-												src="/static/images/bewakoof.jpg"
-												alt=""
-											/>
+									<div
+										onClick={() => loadDropDown("tatacliq")}
+										class="text-sm text-center mr-8 cursor-pointer"
+									>
+										<div class="p-1 border-2 border-white rounded-full">
+											<div class="w-10 h-10 relative flex flex-shrink-0">
+												<img
+													class="shadow-md rounded-full w-full h-full object-cover"
+													src="/static/images/tatacliqicon.png"
+													alt=""
+												/>
+											</div>
 										</div>
+										<p className="text-black font-bold"></p>
 									</div>
-									<p className="text-black font-bold"></p>
-								</div>
-								<div
-									onClick={() => loadDropDown("snapdeal")}
-									class="text-sm text-center mr-8 cursor-pointer"
-								>
-									<div class="p-1 border-2 border-white rounded-full">
-										<div class="w-10 h-10 relative flex flex-shrink-0">
-											<img
-												class="shadow-md rounded-full w-full h-full object-cover"
-												src="/static/images/snapdealicon.png"
-												alt=""
-											/>
+									<div
+										onClick={() => loadDropDown("bewakoof")}
+										class="text-sm text-center mr-8 cursor-pointer"
+									>
+										<div class="p-1 border-2 border-white rounded-full">
+											<div class="w-10 h-10 relative flex flex-shrink-0">
+												<img
+													class="shadow-md rounded-full w-full h-full object-cover"
+													src="/static/images/bewakoof.jpg"
+													alt=""
+												/>
+											</div>
 										</div>
+										<p className="text-black font-bold"></p>
 									</div>
-									<p className="text-black font-bold"></p>
+									<div
+										onClick={() => loadDropDown("snapdeal")}
+										class="text-sm text-center mr-8 cursor-pointer"
+									>
+										<div class="p-1 border-2 border-white rounded-full">
+											<div class="w-10 h-10 relative flex flex-shrink-0">
+												<img
+													class="shadow-md rounded-full w-full h-full object-cover"
+													src="/static/images/snapdealicon.png"
+													alt=""
+												/>
+											</div>
+										</div>
+										<p className="text-black font-bold"></p>
+									</div>
 								</div>
-							</div>
 							</div>
 
 							<button
 								onClick={() => props.setSidebar(true)}
 								type="button"
-								className="text-gray-500 ml-64 hidden md:block md:ml-24 lg:ml-24  hover:text-gray-600 focus:outline-none focus:text-gray-600"
+								className="bg-white p-1 rounded-md text-gray-900 ml-64 hidden md:block md:ml-24 lg:ml-24  hover:text-gray-900 focus:outline-none focus:text-gray-900"
 								aria-label="toggle menu"
 							>
 								<svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
@@ -216,7 +219,10 @@ const Primary = (props) => {
 							</button>
 						</div>
 
-						<div className="flex md:hidden mb-4 mx-2 md:mx-0 lg:mx-0" onClick={() => showMenu()}>
+						<div
+							className="flex md:hidden mb-4 px-2 md:mx-0 lg:mx-0"
+							onClick={() => showMenu()}
+						>
 							<SearchOutlinedIcon
 								onClick={() => props.setSearchSlide(true)}
 								className="text-white mx-2 px-1"
@@ -224,10 +230,9 @@ const Primary = (props) => {
 							/>
 
 							<button
-								// onClick={() => toggleSideDrawer("right", true)}
 								onClick={() => props.setSidebar(true)}
 								type="button"
-								className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+								className="text-gray-100 hover:text-gray-600 focus:outline-none focus:text-gray-600"
 								aria-label="toggle menu"
 							>
 								<svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
@@ -239,17 +244,6 @@ const Primary = (props) => {
 							</button>
 						</div>
 					</div>
-					{/* {open ? (
-						<div class="md:flex items-center">
-							<div class="mt-3 md:hidden">
-								<div class="pt-2 relative mx-auto text-gray-600">
-									<SearchBar />
-								</div>
-							</div>
-						</div>
-					) : (
-						""
-					)} */}
 				</div>
 				<div class="md:hidden lg:hidden flex flex-row py-0 pb-0 lg:pb-1 items-center ml-2 md:pb-1 md:ml-4 lg:ml-4 overflow-auto w-full">
 					<div
@@ -377,8 +371,9 @@ const Primary = (props) => {
 								</div>
 								<div>
 									<img
-										src={`/static/images/${currentBrand}icon.${currentBrand === "bewakoof" ? "jpg" : "png"
-											}`}
+										src={`/static/images/${currentBrand}icon.${
+											currentBrand === "bewakoof" ? "jpg" : "png"
+										}`}
 										width="30px"
 									/>
 								</div>
@@ -396,8 +391,8 @@ const Primary = (props) => {
 											{activeCat === "men" ? (
 												<span class="inline-block h-1 w-12 rounded bg-pink-700 mt-1 mb-4"></span>
 											) : (
-													""
-												)}
+												""
+											)}
 										</div>
 										<div
 											className="cursor-pointer"
@@ -409,8 +404,8 @@ const Primary = (props) => {
 											{activeCat === "women" ? (
 												<span class="inline-block h-1 w-20 rounded bg-pink-700 mt-1 mb-4"></span>
 											) : (
-													""
-												)}
+												""
+											)}
 										</div>
 									</div>
 
@@ -422,7 +417,7 @@ const Primary = (props) => {
 												fill="none"
 												stroke="currentColor"
 												viewBox="0 0 24 24"
-											// xmlns="http://www.w3.org/2000/svg"
+												// xmlns="http://www.w3.org/2000/svg"
 											>
 												<path
 													stroke-linecap="round"
@@ -436,7 +431,10 @@ const Primary = (props) => {
 								</div>
 								<div class="border-t md:px-4 md:pt-0 md:pb-5">
 									{activePanel == "men" ? (
-										<div class="flex flex-wrap mx-auto overflow-y-scroll" style={{ height: '17rem' }}>
+										<div
+											class="flex flex-wrap mx-auto overflow-y-scroll"
+											style={{ height: "17rem" }}
+										>
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
@@ -444,17 +442,18 @@ const Primary = (props) => {
 													currentBrand == "amazon"
 														? amazonmen
 														: currentBrand == "flipkart"
-															? men
-															: currentBrand == "myntra"
-																? myntramen
-																: currentBrand == "ajio"
-																	? ajiomen
-																	: currentBrand == "tatacliq"
-																		? tatacliqmen
-																		: currentBrand == "bewakoof"
-																			? bewakoofmen
-																			: currentBrand == "snapdeal"
-																				? snapdealmen : ""
+														? men
+														: currentBrand == "myntra"
+														? myntramen
+														: currentBrand == "ajio"
+														? ajiomen
+														: currentBrand == "tatacliq"
+														? tatacliqmen
+														: currentBrand == "bewakoof"
+														? bewakoofmen
+														: currentBrand == "snapdeal"
+														? snapdealmen
+														: "",
 												)}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
@@ -462,11 +461,14 @@ const Primary = (props) => {
 											/>
 										</div>
 									) : (
-											""
-										)}
+										""
+									)}
 
 									{activePanel === "women" ? (
-										<div class="flex flex-wrap  mx-auto overflow-y-scroll" style={{ height: '17rem' }}>
+										<div
+											class="flex flex-wrap  mx-auto overflow-y-scroll"
+											style={{ height: "17rem" }}
+										>
 											<DynamicContent
 												currentBrand={currentBrand}
 												hideDropDown={hideDropDown}
@@ -474,18 +476,18 @@ const Primary = (props) => {
 													currentBrand == "amazon"
 														? amazonwomen
 														: currentBrand == "flipkart"
-															? women
-															: currentBrand == "myntra"
-																? myntrawomen
-																: currentBrand == "ajio"
-																	? ajiowomen
-																	: currentBrand == "tatacliq"
-																		? tatacliqwomen
-																		: currentBrand == "bewakoof"
-																			? bewakoofwomen
-																			: currentBrand == "snapdeal"
-																				? snapdealwomen
-																				: "",
+														? women
+														: currentBrand == "myntra"
+														? myntrawomen
+														: currentBrand == "ajio"
+														? ajiowomen
+														: currentBrand == "tatacliq"
+														? tatacliqwomen
+														: currentBrand == "bewakoof"
+														? bewakoofwomen
+														: currentBrand == "snapdeal"
+														? snapdealwomen
+														: "",
 												)}
 												activatesmallPanel={activatesmallPanel}
 												activePanel={activePanel}
@@ -493,15 +495,15 @@ const Primary = (props) => {
 											/>
 										</div>
 									) : (
-											""
-										)}
+										""
+									)}
 								</div>
 							</section>
 						</div>
 					</div>
 				) : (
-						""
-					)}
+					""
+				)}
 			</nav>
 		</React.Fragment>
 	);

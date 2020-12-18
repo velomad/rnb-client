@@ -30,10 +30,12 @@ const ProductCard = ({
 		<div className="my-3">
 			<Grid container>
 				<div
+					className="hover:shadow-lg transition duration-500 ease-in-out rounded-xl"
 					onClick={handleProductClick}
 					style={{
 						width: "210px",
-						height: "320px",
+						padding: 10,
+						height: "340px",
 						position: "relative",
 					}}
 				>

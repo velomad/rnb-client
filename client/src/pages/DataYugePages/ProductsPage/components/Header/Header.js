@@ -105,7 +105,7 @@ const Header = ({ categoryName, dataYugeFilters }) => {
 						/>
 					))}
 
-				<div className={`grid ${activeChip !== null && "h-72 overflow-y-scroll" }  grid-cols-4`}>
+				<div className={`grid ${activeChip !== null  && "overflow-y-scroll" }  grid-cols-4`}>
 					{/* {filtersData.map((el, index) => (
 						<div>
 							<Text size="xs" variant="primary">
