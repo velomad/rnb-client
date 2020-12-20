@@ -433,7 +433,7 @@ const Primary = (props) => {
 									{activePanel == "men" ? (
 										<div
 											class="flex flex-wrap mx-auto overflow-y-scroll"
-											style={{ height: "17rem" }}
+											style={{ height: "20rem" }}
 										>
 											<DynamicContent
 												currentBrand={currentBrand}
@@ -467,7 +467,7 @@ const Primary = (props) => {
 									{activePanel === "women" ? (
 										<div
 											class="flex flex-wrap  mx-auto overflow-y-scroll"
-											style={{ height: "17rem" }}
+											style={{ height: "20rem" }}
 										>
 											<DynamicContent
 												currentBrand={currentBrand}
