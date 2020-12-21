@@ -138,4 +138,4 @@ const mapStateToProps = ({ dataYugeProductsState }) => ({
 export default connect(mapStateToProps, {
 	getElectronicProducts,
 	setResetElectronicProducts,
-})(ProductsPage);
+})(React.memo(ProductsPage));

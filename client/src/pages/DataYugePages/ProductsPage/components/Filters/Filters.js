@@ -3,12 +3,32 @@ import { Text } from "../../../../../components";
 import { history } from "../../../../../utils";
 import { connect } from "react-redux";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import qs from "query-string";
+import {
+	useQueryParam,
+	NumberParam,
+	StringParam,
+	DelimitedArrayParam,
+} from "use-query-params";
+import {
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	FormControl,
+	FormLabel,
+} from "@material-ui/core";
 
 const Filters = (props) => {
 	const [renderUI, setRenderUI] = useState(false);
+
+	const [start, setPriceStart] = useQueryParam("price_start", StringParam);
+	const [end, setPriceEnd] = useQueryParam("price_end", StringParam);
+	const [paramFilter, setFilter] = useQueryParam("filter", DelimitedArrayParam);
+
+	console.log(renderUI);
+	console.log(props.dataYugeFilters);
 
 	const isFilters = qs.parse(history.location.search);
 
@@ -24,12 +44,21 @@ const Filters = (props) => {
 		}
 	}, []);
 
-	const handleChange = (e, newData) => {
+	// const getDiscount = (e) => {
+	// 	props.getDiscountFilterValue(
+	// 		{
+	// 			'discount': e.target.value
+	// 		}
+	// 	);
+	// };
+
+	const handleChange = (e, newData, sideIndex) => {
 		let dummyArr = [];
 		newData.index = e.target.id;
+		const val = e.target.value;
 		dummyArr.push(newData);
 
-		props.dataYugeFilters.map((el, outindex) => {
+		props.dataYugeFilters[sideIndex].contents.map((el, outindex) => {
 			dummyArr.map((innerEl) => {
 				if (
 					Number(outindex) === Number(innerEl.index) &&
@@ -38,6 +67,15 @@ const Filters = (props) => {
 				) {
 					el.isChecked = true;
 					setRenderUI(!renderUI);
+
+					// setPriceStart(val.split("-")[0]);
+					// setPriceEnd(val.split("-")[1]);
+
+					if ("filter" in qs.parse(history.location.search)) {
+						setFilter(...paramFilter, "|" + val);
+					} else {
+						setFilter(val);
+					}
 				} else {
 					if (
 						innerEl.isChecked === true &&
@@ -54,6 +92,16 @@ const Filters = (props) => {
 				}
 			});
 		});
+	};
+
+	const RadioLabel = (props) => {
+		return (
+			<div>
+				<Text variant="primary" size="sm">
+					{props.val}
+				</Text>
+			</div>
+		);
 	};
 
 	return (
@@ -82,10 +130,46 @@ const Filters = (props) => {
 				</div>
 			</div>
 
+			<div className="py-2 pt-4">
+				<Text variant="primaryDark" weight="700" size="sm">
+					Price
+				</Text>
+			</div>
+
+			<div>
+				<FormControl component="fieldset">
+					<RadioGroup
+						aria-label="discount"
+						name="discount"
+						// defaultValue={props.selectedDiscount}
+						// value={props.discountFilterValue.discount}
+						// onChange={getDiscount}
+					>
+						{props.dataYugeFilters.length > 0 &&
+							props.dataYugeFilters[0].contents.map((el) => (
+								<div key={el.name} className=" flex space-x-4 items-center">
+									<div>
+										<FormControlLabel
+											value={`${el.name}`}
+											control={<Radio />}
+											label={<RadioLabel val={el.name} />}
+										/>
+									</div>
+									{/* <div>
+									<Text variant="primary" size="lg">
+										{el}% and Above
+									</Text>
+								</div> */}
+								</div>
+							))}
+					</RadioGroup>
+				</FormControl>
+			</div>
+
 			<div>
 				{"sub_category" in isFilters &&
-				props.dataYugeFilters &&
-					props.dataYugeFilters.slice(0, 5).map((elem, index) => (
+					props.dataYugeFilters &&
+					props.dataYugeFilters.slice(1, 5).map((elem, mainindex) => (
 						<div className="py-6 border-b-2">
 							<div className="flex justify-between">
 								<Text variant="primaryDark" size="sm" weight="700">
@@ -101,7 +185,7 @@ const Filters = (props) => {
 									className={`${
 										elem.contents.length > 6 && "h-96"
 									} overflow-y-scroll`}
-									style={{scrollbarColor:"deepskyblue"}}
+									style={{ scrollbarColor: "deepskyblue" }}
 								>
 									{renderUI
 										? elem.contents &&
@@ -113,10 +197,11 @@ const Filters = (props) => {
 															<Checkbox
 																size="small"
 																checked={el.isChecked}
-																onChange={(e) => handleChange(e, el)}
+																onChange={(e) => handleChange(e, el, mainindex)}
 																name={<Text variant="primary">{el.name}</Text>}
 																value={
-																	props.filterOption === "Price"
+																	props.dataYugeFilters[mainindex].title ===
+																	"Price"
 																		? el.price_start + "-" + el.price_end
 																		: el.filter
 																}
@@ -140,10 +225,11 @@ const Filters = (props) => {
 															<Checkbox
 																size="small"
 																checked={el.isChecked}
-																onChange={(e) => handleChange(e, el)}
+																onChange={(e) => handleChange(e, el, mainindex)}
 																name={<Text variant="primary">{el.name}</Text>}
 																value={
-																	props.filterOption === "Price"
+																	props.dataYugeFilters[mainindex].title ===
+																	"Price"
 																		? el.price_start + "-" + el.price_end
 																		: el.filter
 																}
@@ -172,4 +258,4 @@ const mapStateToProps = ({ uiState, dataYugeProductsState }) => ({
 	appliedFilters: uiState.appliedFilters,
 });
 
-export default connect(mapStateToProps)(Filters);
+export default connect(mapStateToProps)(React.memo(Filters));

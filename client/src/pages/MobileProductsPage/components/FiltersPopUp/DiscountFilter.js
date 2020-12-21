@@ -8,15 +8,15 @@ import {
 	FormLabel,
 } from "@material-ui/core";
 
-const RadioLabel = (props) => {
-	return (
-		<div>
-			<Text variant="primary" size="lg">
-				{props.val}% and Above
-			</Text>
-		</div>
-	);
-};
+	const RadioLabel = (props) => {
+		return (
+			<div>
+				<Text variant="primary" size="lg">
+					{props.val}% and Above
+				</Text>
+			</div>
+		);
+	};
 
 const DiscountFilter = (props) => {
 	const discounts = [10, 20, 30, 40, 50, 60, 70];
