@@ -8,7 +8,8 @@ export const textVariant = {
 	white: `text-gray-100`,
 	black: `text-black`,
 	info: `text-indigo-500`,
-	danger: `text-red-600	`,
+	danger: `text-red-600`,
+	pink: `text-pink-600`,
 };
 
 export const textSize = {

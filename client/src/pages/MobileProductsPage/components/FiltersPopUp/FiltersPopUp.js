@@ -181,7 +181,7 @@ const FiltersPopUp = (props) => {
 						</div>
 					</Toolbar>
 				</AppBar>
-				<hr style={{ color: "solid black 1px" }} />
+				{/* <hr style={{ color: "solid black 1px" }} /> */}
 
 				<div className="grid grid-cols-3 h-full">
 					<div
@@ -195,11 +195,17 @@ const FiltersPopUp = (props) => {
 										className={`p-3 ${index == active && "bg-white"}`}
 										onClick={() => handleSelectFilter(el, index)}
 									>
-										<Text size="md" variant="primary">
-											{el}
+										<Text
+											size="sm"
+											weight="600"
+											variant={`${index == active ? "pink" : "primary"}`}
+										>
+											{el}{" "}
+											{el === "Brand" &&
+												`(${props.dataYugeFilters[index].contents.length})`}
 										</Text>
 									</li>
-									<hr style={{ color: "solid black 1px" }} />
+									{/* <hr style={{ color: "solid black 1px" }} /> */}
 								</React.Fragment>
 							))}
 						</ul>
@@ -252,7 +258,7 @@ const FiltersPopUp = (props) => {
 						)}
 					</div>
 				</div>
-				<hr style={{ color: "solid black 1px" }} />
+				{/* <hr style={{ color: "solid black 1px" }} /> */}
 
 				<div className="flex items-center justify-around p-4">
 					<div onClick={() => handleClose()}>
