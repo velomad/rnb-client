@@ -1,15 +1,13 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 import Autocomplete, {
 	createFilterOptions,
 } from "@material-ui/lab/Autocomplete";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import axios from "axios";
 import { history } from "../../utils";
-import { values } from "lodash";
+import { Text } from "../../components";
+import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 
 const useStyles = makeStyles((theme) => ({
 	formControl: {
@@ -38,14 +36,14 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: "6rem",
 		background: "white",
 		bordeRadius: "4px",
-		maxHeight: "200px",
+		maxHeight: "250px",
 		overflowY: "auto",
 	},
 	suggestiontext: {
 		cursor: "pointer",
 		textTransform: "capitalize",
 		fontWeight: "500",
-		paddingTop: "8px",
+		padding: "8px",
 		textAlign: "left",
 		paddingLeft: "10px",
 		"&:hover": {
@@ -55,6 +53,15 @@ const useStyles = makeStyles((theme) => ({
 	},
 	selectEmpty: {
 		marginTop: theme.spacing(2),
+	},
+
+	searchIcon: {
+		color: "lightgray",
+		marginRight: 20,
+		"&:hover": {
+			color: "deeppink",
+			transition: "ease-out 0.5s",
+		},
 	},
 }));
 
@@ -83,7 +90,6 @@ export default function Filter() {
 	const [searchState, setsearchState] = React.useState(false);
 	const [suggestionClicked, setSuggestionClicked] = React.useState(false);
 
-
 	const [unit, setUnit] = React.useState("https://reachnbuy.com/api/v1/search");
 
 	const debounceOnChange = React.useCallback(
@@ -98,13 +104,13 @@ export default function Filter() {
 
 	function handleChange(value) {
 		setsearchState(true);
-		setSuggestionClicked(false)
+		setSuggestionClicked(false);
 		setInputValue(value);
 		debounceOnChange(value);
 	}
 	const handelDropdown = (event, value) => {
 		setUnit(event.target.value);
-	}
+	};
 
 	React.useEffect(() => {
 		let active = true;
@@ -112,7 +118,7 @@ export default function Filter() {
 		setsearchState(true);
 		(async () => {
 			if (!!inputValue) {
-				if (unit === 'https://reachnbuy.com/api/v1/search') {
+				if (unit === "https://reachnbuy.com/api/v1/search") {
 					response = await axios.get(
 						`${unit}?term=${inputValue}&api_key=dfr4d57ft84sdq47f8ew`,
 					);
@@ -122,11 +128,10 @@ export default function Filter() {
 					);
 				}
 
-
 				if (active) {
 					let searchData = [];
 					console.log(response.data.suggestions);
-					if (unit === 'https://reachnbuy.com/api/v1/search') {
+					if (unit === "https://reachnbuy.com/api/v1/search") {
 						response.data.suggestions.map((item) => {
 							searchData.push({ display_name: item });
 						});
@@ -147,12 +152,12 @@ export default function Filter() {
 
 	const handleSuggestionClick = (searchTerm) => {
 		console.log("do it");
-		setInputValue("")
-		setSuggestionClicked(true)
-		if (unit === 'https://reachnbuy.com/api/v1/search') {
-			history.push(`/items/search?term=${searchTerm}`)
+		setInputValue("");
+		setSuggestionClicked(true);
+		if (unit === "https://reachnbuy.com/api/v1/search") {
+			history.push(`/items/search?term=${searchTerm}`);
 		} else {
-			history.push(`/electronic/items/search?product=${searchTerm}`)
+			history.push(`/electronic/items/search?product=${searchTerm}`);
 		}
 	};
 	return (
@@ -178,7 +183,9 @@ export default function Filter() {
 							<option selected value="https://reachnbuy.com/api/v1/search">
 								Clothing
 							</option>
-							<option value="https://price-api.datayuge.com/api/v1/compare/search/suggest">Electronics</option>
+							<option value="https://price-api.datayuge.com/api/v1/compare/search/suggest">
+								Electronics
+							</option>
 						</select>
 
 						<button
@@ -208,24 +215,31 @@ export default function Filter() {
 						{options.length > 0 ? (
 							<ul className={classes.searchsuggestions}>
 								{searchState ? (
-									<li className={classes.suggestiontext}>Loading...</li>
+									<li className={classes.suggestiontext}>
+										<Text variant="primary" size="sm">
+											Loading...
+										</Text>
+									</li>
 								) : (
-										options.map((item, index) => {
-											return (
-												<li
-													key={index}
-													onClick={() => handleSuggestionClick(item.display_name)}
-													className={classes.suggestiontext}
-												>
+									options.map((item, index) => {
+										return (
+											<li
+												key={index}
+												onClick={() => handleSuggestionClick(item.display_name)}
+												className={classes.suggestiontext}
+											>
+												<SearchOutlinedIcon className={classes.searchIcon} />
+												<Text variant="primary" size="sm">
 													{item.display_name}
-												</li>
-											);
-										})
-									)}
+												</Text>
+											</li>
+										);
+									})
+								)}
 							</ul>
 						) : (
-								""
-							)}
+							""
+						)}
 					</div>
 				</div>
 			</div>

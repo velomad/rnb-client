@@ -42,7 +42,6 @@ const Sidebar = (props) => {
 	const classes = useStyles();
 	const [openListItem, setopenListItem] = React.useState("");
 
-	console.log(openListItem);
 
 	const getProducts = (product) => {
 		props.setSidebar(false);

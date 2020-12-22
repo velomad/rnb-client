@@ -131,13 +131,13 @@ const Filters = (props) => {
 					</div>
 					<div className="px-2 flex justify-between items-center">
 						<div>
-							<Text variant="primaryDark" weight="600" size="lg">
+							<Text variant="primaryDark" weight="600" size="sm">
 								&#8377;{value[0]}
 							</Text>
 						</div>
 
 						<div>
-							<Text variant="primaryDark" weight="600" size="lg">
+							<Text variant="primaryDark" weight="600" size="sm">
 								&#8377;{value[1]} {value[1] === 20000 && "+"}
 							</Text>
 						</div>

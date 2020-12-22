@@ -18,7 +18,7 @@ const ProductPage = (props) => {
 		getInfo();
 	}, []);
 	const goto = () => {
-		props.setBackFromSearch(true);
+		// props.setBackFromSearch(true);
 		history.goBack();
 	};
 	const getInfo = async () => {

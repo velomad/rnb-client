@@ -90,16 +90,7 @@ const ProductCard = ({
 				<ProductPage productID={productID} />
 			</Dialog>
 			<div
-				onClick={() =>
-					handleProduct(
-						productId,
-						productImage,
-						productLink,
-						productLowestPrice,
-						productRating,
-						productTitle,
-					)
-				}
+				id="card"
 				className={`md:hover:shadow-lg md:rounded-xl transition duration-500 ease-in-out scale-110  w-full h-full p-2 md:p-8 border-b-2 md:border-b-0  ${
 					epic % 2 !== 0 && "border-l-2 md:border-l-0"
 				}`}
@@ -112,16 +103,38 @@ const ProductCard = ({
 					<PriceCheck />
 				</div> */}
 
-				<div className="flex justify-center transition duration-700 ease-in-out transform hover:-translate-y-2">
+				<div className=" transition duration-700 ease-in-out transform hover:-translate-y-2">
 					{productImage !== null ? (
 						<LazyLoadImage
+							onClick={() =>
+								handleProduct(
+									productId,
+									productImage,
+									productLink,
+									productLowestPrice,
+									productRating,
+									productTitle,
+								)
+							}
 							effect="blur"
 							src={productImage}
 							key={productId}
 							className="object-contain h-48 w-full"
 						/>
 					) : (
-						<div className="object-contain h-48 w-full flex">
+						<div
+							className="object-contain h-48 w-full flex"
+							onClick={() =>
+								handleProduct(
+									productId,
+									productImage,
+									productLink,
+									productLowestPrice,
+									productRating,
+									productTitle,
+								)
+							}
+						>
 							<div className="m-auto">
 								<Text size="base" variant="primary">
 									No Image
@@ -129,6 +142,15 @@ const ProductCard = ({
 							</div>
 						</div>
 					)}
+					<div
+						className="invisible md:visible border-2 cursor-pointer text-center hover:border-none rounded-lg p-0.5 z-10 text-gray-500 transition duration-400 ease-in-out hover:bg-gray-800 hover:text-white"
+						// onClick={handleWishList}
+						id="wishlist"
+					>
+						<Text classes="uppercase" size="xs" weight="700">
+							Wishlist
+						</Text>
+					</div>
 				</div>
 
 				<div>

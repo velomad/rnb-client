@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "../../../../../components";
 
 const Detector = (props) => {
-	console.log(props.lowIndex)
+	console.log(props.lowIndex);
 	return (
 		<React.Fragment>
 			<div className="flex items-center justify-between p-4 ">
@@ -10,10 +10,13 @@ const Detector = (props) => {
 					<img src={props.image} width="100px" />
 				</div>
 
-				<div className={`${props.index == 0 ? "" : ""}  outline-black p-2 `}>
-					{/* <span class="animate-ping relative inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span> */}
+				<div
+					className={`${
+						props.index == 0 ? "" : ""
+					}  border-dotted border-4 p-2 `}
+				>
 					{props.index == props.lowIndex && (
-						<span class=" absolute animate-ping  right-4 transform -translate-y-4 inline-flex rounded-full h-3 w-3 pb-8 bg-pink-500"></span>
+						<span class=" absolute animate-ping right-12 transform -translate-y-6 inline-flex rounded-full h-8 w-12 pb-8 bg-pink-500"></span>
 					)}
 					<Text weight="600" variant="primary">
 						&#8377; {props.price}

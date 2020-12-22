@@ -1,9 +1,6 @@
-REACT_APP_DATAYUGE_API_KEY=RIQbQr3vE1yshdz7IuqrV57LpG13JYVE9WR 
-
 const axios = require('axios');
 const lodash = require('lodash');
 var fs = require("fs");
-
 
 let allRawData = [];
 let categoryHeading = [];
@@ -42,6 +39,7 @@ axios.get("https://price-api.datayuge.com/api/v1/compare/list/categories?api_key
                             }
                         }
                     }
+                    
                     let groupByHeading = lodash.groupBy(categories, 'heading');
 
                     writeStream.write(JSON.stringify(groupByHeading));
@@ -56,4 +54,3 @@ axios.get("https://price-api.datayuge.com/api/v1/compare/list/categories?api_key
         }
     }, 10000)
 });
-

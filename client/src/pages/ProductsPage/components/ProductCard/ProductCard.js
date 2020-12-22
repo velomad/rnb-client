@@ -27,11 +27,10 @@ const ProductCard = ({
 	};
 
 	return (
-		<div className="my-3">
+		<div className="my-3" id="card">
 			<Grid container>
 				<div
 					className="hover:shadow-lg transition duration-500 ease-in-out rounded-xl"
-					onClick={handleProductClick}
 					style={{
 						width: "210px",
 						padding: 10,
@@ -46,30 +45,51 @@ const ProductCard = ({
 							</Text>
 						</div>
 					)}
-					{/* <div onClick={handleWishList} className="absolute right-0 p-1">
-						<Wishlist className="text-red-600" />
-					</div> */}
+
 					<div className="flex justify-center transition duration-700 ease-in-out transform hover:-translate-y-2">
-						<img src={image} className="object-contain h-48 w-full" />
+						<img
+							src={image}
+							className="object-contain h-48 w-full cursor-pointer"
+							onClick={handleProductClick}
+						/>
+						<div
+							className="absolute py-2 cursor-pointer text-center h-8 w-full bg-white bottom-0"
+							id="wishlist"
+						>
+							<div
+								className="border-2 hover:border-none rounded-lg p-0.5 z-10 text-gray-500 transition duration-700 ease-in-out hover:bg-gray-800 hover:text-white"
+								onClick={handleWishList}
+							>
+								<Text classes="uppercase" size="xs" weight="700">
+									Wishlist
+								</Text>
+							</div>
+						</div>
 					</div>
-					<div className="p-2">
-						<div>
-							<Text size="base" weight="600" variant="secondary">
-								{brand}
-							</Text>
+
+					<div className="p-2 cursor-pointer">
+						<div onClick={handleProductClick}>
+							<div>
+								<Text size="base" weight="600" variant="secondary">
+									{brand}
+								</Text>
+							</div>
+							<div
+								style={{
+									overflow: "hidden",
+									textOverflow: "ellipsis",
+									whiteSpace: "nowrap",
+								}}
+							>
+								<Text size="sm" weight="500" variant="primary">
+									{name}
+								</Text>
+							</div>
 						</div>
 						<div
-							style={{
-								overflow: "hidden",
-								textOverflow: "ellipsis",
-								whiteSpace: "nowrap",
-							}}
+							style={{ bottom: 0, position: "absolute" }}
+							onClick={handleProductClick}
 						>
-							<Text size="sm" weight="500" variant="primary">
-								{name}
-							</Text>
-						</div>
-						<div style={{ bottom: 0, position: "absolute" }}>
 							<Grid container spacing={1} className="mt-4">
 								<Grid item>
 									<Text size="sm" weight="600">
