@@ -35,18 +35,27 @@ const Filters = (props) => {
 	const isFilters = qs.parse(history.location.search);
 
 	console.log("=====================", qs.parse(history.location.search));
-
-	useEffect(() => {
-		if ("sub_category" in isFilters) {
-			props.dataYugeFilters &&
-				props.dataYugeFilters.map((el) => {
-					el.contents &&
-						el.contents.map((elem) => {
-							elem["isChecked"] = false;
+	const calculateTrueFalse = () => {
+		props.dataYugeFilters &&
+			props.dataYugeFilters.slice(1, 5).map((el) => {
+				el.contents &&
+					el.contents.map((elem) => {
+						let splitedarry = !!qs.parse(history.location.search).filter
+							? qs.parse(history.location.search).filter.split("|")
+							: [];
+						splitedarry.map((paramEL, paramindex) => {
+							if (elem.filter === paramEL) {
+								elem["isChecked"] = true;
+							} else {
+								elem["isChecked"] = false;
+							}
 						});
-				});
-		}
-	}, []);
+					});
+			});
+	};
+	if ("sub_category" in isFilters) {
+		calculateTrueFalse();
+	}
 
 	// const getDiscount = (e) => {
 	// 	props.getDiscountFilterValue(
@@ -57,12 +66,12 @@ const Filters = (props) => {
 	// };
 
 	const handleChange = (e, newData, sideIndex) => {
+		calculateTrueFalse();
 		let dummyArr = [];
 		newData.index = e.target.id;
 		const val = e.target.value;
 		dummyArr.push(newData);
 
-		debugger;
 		props.dataYugeFilters[sideIndex + 1].contents.map((el, outindex) => {
 			dummyArr.map((innerEl) => {
 				if (
@@ -87,14 +96,24 @@ const Filters = (props) => {
 						Number(outindex) === Number(innerEl.index)
 					) {
 						el.isChecked = false;
-						let arrySplit = qs.parse(history.location.search).filter.split('|');
-						arrySplit
 						setRenderUI(!renderUI);
+						let arrySplit = qs.parse(history.location.search).filter.split("|");
+						const splitIndex = arrySplit.indexOf(val);
+						if (splitIndex > -1) {
+							arrySplit.splice(splitIndex, 1);
+						}
+						setFilter(arrySplit.join("|"));
 					}
 					if (el.isChecked) {
 					} else {
 						el.isChecked = false;
 						setRenderUI(!renderUI);
+						// let arrySplit = !!qs.parse(history.location.search).filter?qs.parse(history.location.search).filter.split('|'): ""
+						// const splitIndex = arrySplit.indexOf(val);
+						// if(splitIndex > -1){
+						// 	arrySplit.splice(splitIndex, 1);
+						// }
+						// setFilter(arrySplit.join('|'));
 					}
 				}
 			});
