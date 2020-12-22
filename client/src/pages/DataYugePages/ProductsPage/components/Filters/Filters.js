@@ -20,17 +20,21 @@ import {
 	FormLabel,
 } from "@material-ui/core";
 
+let paramsArry = [];
+
 const Filters = (props) => {
 	const [renderUI, setRenderUI] = useState(false);
 
 	const [start, setPriceStart] = useQueryParam("price_start", StringParam);
 	const [end, setPriceEnd] = useQueryParam("price_end", StringParam);
-	const [paramFilter, setFilter] = useQueryParam("filter", DelimitedArrayParam);
+	const [paramFilter, setFilter] = useQueryParam("filter", StringParam);
 
 	console.log(renderUI);
 	console.log(props.dataYugeFilters);
 
 	const isFilters = qs.parse(history.location.search);
+
+	console.log("=====================", qs.parse(history.location.search));
 
 	useEffect(() => {
 		if ("sub_category" in isFilters) {
@@ -58,7 +62,8 @@ const Filters = (props) => {
 		const val = e.target.value;
 		dummyArr.push(newData);
 
-		props.dataYugeFilters[sideIndex].contents.map((el, outindex) => {
+		debugger;
+		props.dataYugeFilters[sideIndex + 1].contents.map((el, outindex) => {
 			dummyArr.map((innerEl) => {
 				if (
 					Number(outindex) === Number(innerEl.index) &&
@@ -72,7 +77,7 @@ const Filters = (props) => {
 					// setPriceEnd(val.split("-")[1]);
 
 					if ("filter" in qs.parse(history.location.search)) {
-						setFilter(...paramFilter, "|" + val);
+						setFilter(qs.parse(history.location.search).filter + "|" + val);
 					} else {
 						setFilter(val);
 					}
@@ -82,6 +87,8 @@ const Filters = (props) => {
 						Number(outindex) === Number(innerEl.index)
 					) {
 						el.isChecked = false;
+						let arrySplit = qs.parse(history.location.search).filter.split('|');
+						arrySplit
 						setRenderUI(!renderUI);
 					}
 					if (el.isChecked) {
@@ -104,11 +111,10 @@ const Filters = (props) => {
 		);
 	};
 
-
 	const onPriceChange = (start, end) => {
-		setPriceStart(start)
-		setPriceEnd(end)
-	}
+		setPriceStart(start);
+		setPriceEnd(end);
+	};
 
 	return (
 		<div>
@@ -152,7 +158,9 @@ const Filters = (props) => {
 										<FormControlLabel
 											value={`${el.name}`}
 											control={<Radio />}
-											onChange={() => onPriceChange(el.price_start, el.price_end)}
+											onChange={() =>
+												onPriceChange(el.price_start, el.price_end)
+											}
 											label={<RadioLabel val={el.name} />}
 										/>
 									</div>
@@ -196,7 +204,7 @@ const Filters = (props) => {
 																onChange={(e) => handleChange(e, el, mainindex)}
 																name={<Text variant="primary">{el.name}</Text>}
 																value={
-																	props.dataYugeFilters[mainindex].title ===
+																	props.dataYugeFilters[mainindex + 1].title ===
 																	"Price"
 																		? el.price_start + "-" + el.price_end
 																		: el.filter
@@ -224,7 +232,7 @@ const Filters = (props) => {
 																onChange={(e) => handleChange(e, el, mainindex)}
 																name={<Text variant="primary">{el.name}</Text>}
 																value={
-																	props.dataYugeFilters[mainindex].title ===
+																	props.dataYugeFilters[mainindex + 1].title ===
 																	"Price"
 																		? el.price_start + "-" + el.price_end
 																		: el.filter
