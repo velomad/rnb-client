@@ -17,15 +17,9 @@ const GenderFilter = (props) => {
 		setSelectedFilter("");
 	};
 
-	// if (Object.values(props.filterParams).includes === "men") {
-	// 	console.log(true);
-	// }
-
-	console.log(selectedFilter);
-
 	return (
 		<div>
-			<ul className="p-4 space-y-2">
+			<ul className="p-4 space-y-6">
 				<li onClick={() => handleGenderSelection("men")}>
 					<div
 						className={
@@ -34,10 +28,10 @@ const GenderFilter = (props) => {
 								: "flex items-center space-x-6"
 						}
 					>
-						{/* <div>
-							<img src="/static/images/male.png" width="50" />
-						</div> */}
-						<div className="p-4">
+						<div className="p-4 flex items-center justify-around shadow-xl w-full rounded-xl">
+							<div>
+								<img src="/static/images/boy.svg" width="35px" />
+							</div>
 							<Text size="lg" classes="capitalize" isTitle={true}>
 								men
 							</Text>
@@ -52,13 +46,15 @@ const GenderFilter = (props) => {
 								: "flex items-center space-x-6"
 						}
 					>
-						{/* <div>
-							<img src="/static/images/female.png" width="50" />
-						</div> */}
-						<div className="p-4">
-							<Text size="lg" classes="capitalize" isTitle={true}>
-								women
-							</Text>
+						<div className="p-4 flex items-center justify-around shadow-xl w-full rounded-xl">
+							<div>
+								<img src="/static/images/female.svg" width="35px" />
+							</div>
+							<div>
+								<Text size="lg" classes="capitalize" isTitle={true}>
+									women
+								</Text>
+							</div>
 						</div>
 					</div>
 				</li>

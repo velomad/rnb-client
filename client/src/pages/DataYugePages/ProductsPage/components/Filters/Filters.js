@@ -104,6 +104,12 @@ const Filters = (props) => {
 		);
 	};
 
+
+	const onPriceChange = (start, end) => {
+		setPriceStart(start)
+		setPriceEnd(end)
+	}
+
 	return (
 		<div>
 			<div className="flex justify-between">
@@ -138,13 +144,7 @@ const Filters = (props) => {
 
 			<div>
 				<FormControl component="fieldset">
-					<RadioGroup
-						aria-label="discount"
-						name="discount"
-						// defaultValue={props.selectedDiscount}
-						// value={props.discountFilterValue.discount}
-						// onChange={getDiscount}
-					>
+					<RadioGroup aria-label="discount" name="discount">
 						{props.dataYugeFilters.length > 0 &&
 							props.dataYugeFilters[0].contents.map((el) => (
 								<div key={el.name} className=" flex space-x-4 items-center">
@@ -152,14 +152,10 @@ const Filters = (props) => {
 										<FormControlLabel
 											value={`${el.name}`}
 											control={<Radio />}
+											onChange={() => onPriceChange(el.price_start, el.price_end)}
 											label={<RadioLabel val={el.name} />}
 										/>
 									</div>
-									{/* <div>
-									<Text variant="primary" size="lg">
-										{el}% and Above
-									</Text>
-								</div> */}
 								</div>
 							))}
 					</RadioGroup>

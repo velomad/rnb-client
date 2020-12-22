@@ -4,10 +4,34 @@ import { connect } from "react-redux";
 import { setAppliedFilters } from "../../../../store/actions";
 import { Text } from "../../../../components";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Radio, RadioGroup, FormControl, FormLabel } from "@material-ui/core";
+import {
+	useQueryParam,
+	NumberParam,
+	StringParam,
+	DelimitedArrayParam,
+} from "use-query-params";
 
 const CheckboxFilter = (props) => {
 	const [renderUI, setRenderUI] = useState(false);
 	const [brandFilter, setBrandFilter] = useState("");
+
+	const [priceStart, setStart] = useState("");
+	const [priceEnd, setEnd] = useState("");
+
+	const RadioLabel = (props) => {
+		return (
+			<div>
+				<Text variant="primary" size="sm">
+					{props.val}
+				</Text>
+			</div>
+		);
+	};
+
+	const onPriceChange = (start, end) => {
+		props.priceFilter({ start, end });
+	};
 
 	const handleChange = (e, newData) => {
 		let dummyArr = [];
@@ -123,61 +147,88 @@ const CheckboxFilter = (props) => {
 				</div>
 			)}
 
-			<ul className="p-4">
-				{renderUI
-					? props.filters &&
-					  filteredData.map((el, index) => (
-							<li key={index}>
-								<FormControlLabel
-									key={el + index}
-									control={
-										<Checkbox
-											checked={el.isChecked}
-											onChange={(e) => handleChange(e, el)}
-											name={el.name}
-											value={
-												props.filterOption === "Price"
-													? el.price_start + "-" + el.price_end
-													: el.filter
-											}
-											id={index}
-										/>
-									}
-									label={
-										<Text size="sm" variant="primary" weight="700">
-											{el.name}
-										</Text>
-									}
-								/>
-							</li>
-					  ))
-					: props.filters &&
-					  filteredData.map((el, index) => (
-							<li key={index}>
-								<FormControlLabel
-									key={el + index}
-									control={
-										<Checkbox
-											checked={el.isChecked}
-											onChange={(e) => handleChange(e, el)}
-											name={el.name}
-											value={
-												props.filterOption === "Price"
-													? el.price_start + "-" + el.price_end
-													: el.filter
-											}
-											id={index}
-										/>
-									}
-									label={
-										<Text size="sm" variant="primary" weight="700">
-											{el.name}
-										</Text>
-									}
-								/>
-							</li>
-					  ))}
-			</ul>
+			{props.filterOption === "Price" ? (
+				<div className="p-4">
+					<FormControl component="fieldset">
+						<RadioGroup aria-label="discount" name="discount">
+							{
+								// props.filters.length > 0 &&
+								props.filters[props.filterOption].map((el) => (
+									<div key={el.name} className=" flex space-x-4 items-center">
+										<div>
+											<FormControlLabel
+												value={`${el.name}`}
+												control={<Radio />}
+												checked={Number(el.price_start) === 0}
+												onChange={() =>
+													onPriceChange(el.price_start, el.price_end)
+												}
+												label={<RadioLabel val={el.name} />}
+											/>
+										</div>
+									</div>
+								))
+							}
+						</RadioGroup>
+					</FormControl>
+				</div>
+			) : (
+				<ul className="p-4">
+					{renderUI
+						? props.filters &&
+						  filteredData.map((el, index) => (
+								<li key={index}>
+									<FormControlLabel
+										key={el + index}
+										control={
+											<Checkbox
+												checked={el.isChecked}
+												onChange={(e) => handleChange(e, el)}
+												name={el.name}
+												value={
+													props.filterOption === "Price"
+														? el.price_start + "-" + el.price_end
+														: el.filter
+												}
+												id={index}
+											/>
+										}
+										label={
+											<Text size="sm" variant="primary" weight="700">
+												{el.name}
+											</Text>
+										}
+									/>
+								</li>
+						  ))
+						: props.filters &&
+						  filteredData.map((el, index) => (
+								<li key={index}>
+									<FormControlLabel
+										key={el + index}
+										control={
+											<Checkbox
+												checked={el.isChecked}
+												onChange={(e) => handleChange(e, el)}
+												name={el.name}
+												value={
+													props.filterOption === "Price"
+														? el.price_start + "-" + el.price_end
+														: el.filter
+												}
+												id={index}
+											/>
+										}
+										label={
+											<Text size="sm" variant="primary" weight="700">
+												{el.name}
+											</Text>
+										}
+									/>
+								</li>
+						  ))}
+				</ul>
+			)}
 		</div>
 	);
 };

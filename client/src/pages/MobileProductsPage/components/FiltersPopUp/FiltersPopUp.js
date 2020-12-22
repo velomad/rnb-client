@@ -57,6 +57,9 @@ const FiltersPopUp = (props) => {
 		StringParam,
 	);
 
+	const [start, setPriceStart] = useQueryParam("price_start", StringParam);
+	const [end, setPriceEnd] = useQueryParam("price_end", StringParam);
+
 	console.log(props.appliedFilters);
 
 	const isElectronic = history.location.pathname.split("/")[1] === "electronic";
@@ -91,10 +94,14 @@ const FiltersPopUp = (props) => {
 	const [genderFilterValue, setGenderFilterValue] = useState("");
 	const [discountFilterValue, setDiscountFilterValue] = React.useState("");
 	const [priceFilterValue, setPriceFilterValue] = React.useState("");
-	const [filterNames, setFilterNames] = React.useState([]);
+	const [priceFilter, setPriceFilter] = React.useState("");
 
 	const handleCurrentGender = (currentGender) => {
 		setGenderFilterValue({ gender: currentGender });
+	};
+
+	const getPriceFilters = (val) => {
+		setPriceFilter(val);
 	};
 
 	const setPrice = (val) => {
@@ -124,11 +131,17 @@ const FiltersPopUp = (props) => {
 	};
 
 	const handleApplyFilter = () => {
-		setNum(discountFilterValue.discount);
-		setFoo(genderFilterValue.gender);
-		setpriceFilterGte(priceFilterValue["productPrice[gte]"]);
-		setpriceFilterLte(priceFilterValue["productPrice[lte]"]);
-		handleClose();
+		if ("sub_category" in qs.parse(history.location.search)) {
+			handleClose();
+			setPriceStart(priceFilter.start);
+			setPriceEnd(priceFilter.end);
+		} else {
+			setNum(discountFilterValue.discount);
+			setFoo(genderFilterValue.gender);
+			setpriceFilterGte(priceFilterValue["productPrice[gte]"]);
+			setpriceFilterLte(priceFilterValue["productPrice[lte]"]);
+			handleClose();
+		}
 	};
 
 	const filters = ["Gender", "Price", "Discount"];
@@ -239,6 +252,7 @@ const FiltersPopUp = (props) => {
 										{props.dataYugeFilters &&
 										props.dataYugeFilters.length !== 0 ? (
 											<CheckboxFilter
+												priceFilter={getPriceFilters}
 												filterOption={filterOption}
 												activeOption={active}
 												filterNames={filterTitles}
