@@ -147,9 +147,15 @@ const ProductCard = ({
 						// onClick={handleWishList}
 						id="wishlist"
 					>
+						<div class="stage">
+							<div class="heart">
+								W
+							</div>
+						</div>
+						{/* 
 						<Text classes="uppercase" size="xs" weight="700">
 							Wishlist
-						</Text>
+						</Text> */}
 					</div>
 				</div>
 
