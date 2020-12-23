@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 import { Dialog, Slide } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ProductPage from "../../../ProductPage/DesktopProductPage";
+import Lottie from "react-lottie";
+import data from "./data.json";
 
 const useStyles = makeStyles((theme) => ({
 	dialogPaper: {
@@ -28,6 +30,7 @@ const ProductCard = ({
 	setCompareProduct,
 }) => {
 	const [productID, setProductID] = React.useState("");
+	const [wishlist, setWishlist] = React.useState(false);
 	const handleClose = () => {
 		setOpenSlider(false);
 	};
@@ -44,6 +47,15 @@ const ProductCard = ({
 
 		// history.push('/desktop-product/'+productId)
 		console.log("Open Slide...");
+	};
+
+	const defaultOptions = {
+		loop: true,
+		autoplay: true,
+		animationData: data,
+		rendererSettings: {
+			preserveAspectRatio: "xMidYMid slice",
+		},
 	};
 
 	// const Transition = React.forwardRef(function Transition(props, ref) {
@@ -78,6 +90,10 @@ const ProductCard = ({
 	};
 	const classes = useStyles();
 
+	const handleWishList = () => {
+		setWishlist(true);
+	};
+
 	return (
 		<React.Fragment>
 			<Dialog
@@ -91,36 +107,67 @@ const ProductCard = ({
 			</Dialog>
 			<div
 				id="card"
-				className={`md:hover:shadow-lg md:rounded-xl transition duration-500 ease-in-out scale-110  w-full h-full p-2 md:p-8 border-b-2 md:border-b-0  ${
+				className={`relative md:hover:shadow-lg md:rounded-xl transition duration-500 ease-in-out scale-110  w-full h-full p-2 md:p-8 border-b-2 md:border-b-0  ${
 					epic % 2 !== 0 && "border-l-2 md:border-l-0"
 				}`}
 			>
-				{/* <div
-					className={`grid grid-cols-2 absolute h-48 ${
-						priceCheck ? "visible" : "invisible"
-					}`}
-				>
-					<PriceCheck />
+				{/* <div className="stage absolute z-20 right-0">
+					<div
+						className="heart"
+						style={
+							wishlist
+								? {
+										transitionDuration: "1s",
+										backgroundPosition: "-2800px 0",
+								  }
+								: null
+						}
+					></div>
 				</div> */}
 
 				<div className=" transition duration-700 ease-in-out transform hover:-translate-y-2">
 					{productImage !== null ? (
-						<LazyLoadImage
-							onClick={() =>
-								handleProduct(
-									productId,
-									productImage,
-									productLink,
-									productLowestPrice,
-									productRating,
-									productTitle,
-								)
-							}
-							effect="blur"
-							src={productImage}
-							key={productId}
-							className="object-contain h-48 w-full"
-						/>
+						<React.Fragment>
+							<LazyLoadImage
+								onClick={() =>
+									handleProduct(
+										productId,
+										productImage,
+										productLink,
+										productLowestPrice,
+										productRating,
+										productTitle,
+									)
+								}
+								effect="blur"
+								src={productImage}
+								key={productId}
+								className="object-contain h-48 w-full"
+							/>
+
+							<div
+								className="absolute bottom-0 w-full invisible md:visible border-2 cursor-pointer text-center hover:border-none rounded-lg p-0.5 z-10 text-gray-400 transition duration-400 ease-in-out bg-gray-800 hover:bg-gray-800 hover:text-white"
+								onClick={handleWishList}
+								id="wishlist"
+							>
+								<div className="flex items-center justify-center space-x-1">
+									<div>
+										<Lottie
+											options={defaultOptions}
+											height={25}
+											width={25}
+											// isStopped={this.state.isStopped}
+											// isPaused={this.state.isPaused}
+										/>
+									</div>
+									<div>
+										<Text classes="uppercase" size="xs" weight="700">
+											Wishlist
+										</Text>
+									</div>
+								</div>
+							</div>
+						</React.Fragment>
 					) : (
 						<div
 							className="object-contain h-48 w-full flex"
@@ -142,21 +189,6 @@ const ProductCard = ({
 							</div>
 						</div>
 					)}
-					<div
-						className="invisible md:visible border-2 cursor-pointer text-center hover:border-none rounded-lg p-0.5 z-10 text-gray-500 transition duration-400 ease-in-out hover:bg-gray-800 hover:text-white"
-						// onClick={handleWishList}
-						id="wishlist"
-					>
-						<div class="stage">
-							<div class="heart">
-								W
-							</div>
-						</div>
-						{/* 
-						<Text classes="uppercase" size="xs" weight="700">
-							Wishlist
-						</Text> */}
-					</div>
 				</div>
 
 				<div>
