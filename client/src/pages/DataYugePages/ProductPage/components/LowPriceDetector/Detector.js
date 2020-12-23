@@ -16,7 +16,7 @@ const Detector = (props) => {
 					}  border-dotted border-4 p-2 `}
 				>
 					{props.index == props.lowIndex && (
-						<span class=" absolute animate-ping right-12 transform -translate-y-6 inline-flex rounded-full h-8 w-12 pb-8 bg-pink-500"></span>
+						<span class=" absolute animate-ping right-14 transform -translate-y-1 inline-flex rounded-sm h-6 w-12 pb-6 bg-pink-500"></span>
 					)}
 					<Text weight="600" variant="primary">
 						&#8377; {props.price}
