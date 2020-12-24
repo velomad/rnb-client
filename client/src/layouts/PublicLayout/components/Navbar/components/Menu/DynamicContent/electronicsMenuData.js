@@ -3088,12 +3088,12 @@ export const electronics = {
 			sub_category: "Processor Fans & Cooling",
 			child_category_name: "Processor Fans & Cooling",
 		},
-		{
-			heading: "Laptops & Peripherals",
-			child_category: "custom-pf-l2-headphones",
-			sub_category: "Headphones",
-			child_category_name: "Headphones",
-		},
+		// {
+		// 	heading: "Laptops & Peripherals",
+		// 	child_category: "custom-pf-l2-headphones",
+		// 	sub_category: "Headphones",
+		// 	child_category_name: "Headphones",
+		// },
 		{
 			heading: "Laptops & Peripherals",
 			child_category: "headsets",

@@ -146,7 +146,7 @@ const ProductCard = ({
 							/>
 
 							<div
-								className="absolute bottom-0 w-full invisible md:visible border-2 cursor-pointer text-center hover:border-none rounded-lg p-0.5 z-10 text-gray-400 transition duration-400 ease-in-out bg-gray-800 hover:bg-gray-800 hover:text-white"
+								className="absolute bottom-0 w-full invisible md:visible shadow-xl cursor-pointer text-center hover:border-none rounded-lg p-0.5 z-10 text-gray-400 transition duration-400 ease-in-out bg-gray-800 hover:bg-gray-800 hover:text-white"
 								onClick={handleWishList}
 								id="wishlist"
 							>

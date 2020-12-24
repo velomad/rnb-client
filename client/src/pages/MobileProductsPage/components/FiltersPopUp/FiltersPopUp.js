@@ -205,7 +205,10 @@ const FiltersPopUp = (props) => {
 							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
 									<li
-										className={`p-3 ${index == active && "bg-white"}`}
+										className={`p-3 ${
+											index == active &&
+											"bg-white border-l-4 border-pink-600 border-opacity-75"
+										}`}
 										onClick={() => handleSelectFilter(el, index)}
 									>
 										<Text

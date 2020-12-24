@@ -5,12 +5,10 @@ import { setAppliedFilters } from "../../../../store/actions";
 import { Text } from "../../../../components";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Radio, RadioGroup, FormControl, FormLabel } from "@material-ui/core";
-import {
-	useQueryParam,
-	NumberParam,
-	StringParam,
-	DelimitedArrayParam,
-} from "use-query-params";
+
+const epic = [];
+const ex = [];
+const brandNames = ["Network Type", "Data Speed"];
 
 const CheckboxFilter = (props) => {
 	const [renderUI, setRenderUI] = useState(false);
@@ -64,48 +62,236 @@ const CheckboxFilter = (props) => {
 			});
 		});
 
-		// 	// props.setAppliedFilters(
-		// 	// 	props.filters[props.filterOption].filter((el) => {
-		// 	// 		return el.isChecked === true;
-		// 	// 	}),
-		// 	// );
-		// 	var testArry = [];
-		// 	props.filters[props.filterOption].map((el) => {
-		// 		if (el.isChecked === true) {
-		// 			for (let i = 0; i < testArry.length; i++) {
-		// 				if (
-		// 					!!testArry[i]
-		// 						? testArry[i].name
-		// 						: "" !== el.name && !!testArry[i]
-		// 						? testArry[i].index
-		// 						: "" !== el.index
-		// 				) {
-		// 					testArry.push(el);
-		// 				}
-		// 			}
-		// 			let Parse = !!eval(sessionStorage.getItem("test"))
-		// 				? eval(sessionStorage.getItem("test"))
-		// 				: [];
-		// 			Parse.map((newEl, index) => {
-		// 				if (testArry.length !== 0) {
-		// 					for (let i = 0; i < testArry.length; i++) {
-		// 						if (
-		// 							testArry[i].name !== newEl.name &&
-		// 							testArry[i].index !== newEl.index
-		// 						) {
-		// 							testArry.push(newEl);
-		// 						}
-		// 					}
-		// 				}
-		// 			});
-		// 		}
-		// 	});
-		// 	sessionStorage.setItem("test", JSON.stringify(testArry));
+		// props.setAppliedFilters(
+		// 	props.filters[props.filterOption].filter((el) => {
+		// 		return el.isChecked === true;
+		// 	}),
+		// );
+
+		const test = [
+			{
+				"Network Type": [
+					{
+						name: "GSM",
+						filter: "200026-200134",
+						isChecked: true,
+						index: "0",
+					},
+					{
+						name: "CDMA",
+						filter: "200026-200135",
+						isChecked: true,
+						index: "1",
+					},
+					{
+						name: "GSM+CDMA",
+						filter: "200026-200196",
+						isChecked: false,
+						index: "2",
+					},
+				],
+			},
+			{
+				"Display Resolution": [
+					{
+						name: "WXGA",
+						filter: "1200381-2442199",
+						isChecked: true,
+						index: "3",
+					},
+					{
+						name: "WXGA2",
+						filter: "1200381-66914308",
+						isChecked: true,
+						index: "4",
+					},
+					{
+						name: "Liquid Retina HD",
+						filter: "1200381-55344619",
+						isChecked: true,
+						index: "5",
+					},
+				],
+			},
+			{
+				Applications: [
+					{
+						name: "Maps",
+						filter: "1200385-1414070",
+						isChecked: true,
+						index: "2",
+					},
+					{
+						name: "Whatsapp",
+						filter: "1200385-1414071",
+						isChecked: true,
+						index: "3",
+					},
+				],
+			},
+			{
+				"Network Type": [
+					{
+						name: "GSM",
+						filter: "200026-200134",
+						isChecked: true,
+						index: "0",
+					},
+					{
+						name: "CDMA",
+						filter: "200026-200135",
+						isChecked: true,
+						index: "1",
+					},
+					{
+						name: "GSM+CDMA",
+						filter: "200026-200196",
+						isChecked: false,
+						index: "2",
+					},
+				],
+			},
+			{
+				"Network Type": [
+					{
+						name: "GSM",
+						filter: "200026-200134",
+						isChecked: true,
+						index: "0",
+					},
+					{
+						name: "CDMA",
+						filter: "200026-200135",
+						isChecked: true,
+						index: "1",
+					},
+				],
+			},
+			{
+				"Display Type": [
+					{
+						name: "Super Retina XDR OLED",
+						filter: "1200377-55307634",
+						isChecked: true,
+						index: "3",
+					},
+					{
+						name: "Fluid AMOLED",
+						filter: "1200377-55605246",
+						isChecked: true,
+						index: "5",
+					},
+				],
+			},
+			{
+				"Data Speed": [
+					{
+						name: "5G",
+						filter: "1200383-48727194",
+						isChecked: true,
+						index: "3",
+					},
+				],
+			},
+			{
+				"Data Speed": [
+					{
+						name: "4G LTE",
+						filter: "1200383-1414060",
+						isChecked: true,
+						index: "2",
+					},
+					{
+						name: "5G",
+						filter: "1200383-48727194",
+						isChecked: true,
+						index: "3",
+					},
+				],
+			},
+			{
+				Type: [
+					{
+						name: "Feature Phone",
+						filter: "200031-200164",
+						isChecked: true,
+						index: "1",
+					},
+				],
+			},
+		];
+
+		var eee;
+		var ansArry = [];
+		var nums = [];
+
+		brandNames.map((el, index) => {
+			test.map((elem, iindex) => {
+				Object.keys(elem).map((keyel) => {
+					if (el === keyel) {
+						eee = test.lastIndexOf(elem);
+						nums.push(eee)
+						ansArry.push({
+							indexNum: eee,
+							name: elem[keyel][0].name,
+							filter: elem[keyel].filters,
+						});
+					}
+				});
+			});
+		});
+
+		console.log(nums);
+		console.log(eee);
+		console.log(ansArry);
+
+		epic.push({
+			[props.filterOption]: props.filters[props.filterOption].filter((el) => {
+				return el.isChecked === true;
+			}),
+		});
+
+		// console.log("====epic-=====>", JSON.stringify(epic));
+
+		var testArry = [];
+		props.filters[props.filterOption].map((el) => {
+			if (el.isChecked === true) {
+				for (let i = 0; i < testArry.length; i++) {
+					if (
+						!!testArry[i]
+							? testArry[i].name
+							: "" !== el.name && !!testArry[i]
+							? testArry[i].index
+							: "" !== el.index
+					) {
+						testArry.push(el);
+					}
+				}
+				let Parse = !!eval(sessionStorage.getItem("test"))
+					? eval(sessionStorage.getItem("test"))
+					: [];
+				Parse.map((newEl, index) => {
+					if (testArry.length !== 0) {
+						for (let i = 0; i < testArry.length; i++) {
+							if (
+								testArry[i].name !== newEl.name &&
+								testArry[i].index !== newEl.index
+							) {
+								testArry.push(newEl);
+							}
+						}
+					}
+				});
+			}
+		});
+		sessionStorage.setItem("test", JSON.stringify(testArry));
 	};
 
-	var filteredData = props.filters[props.filterOption].filter((item) => {
-		return item.name.toLowerCase().includes(brandFilter.toLowerCase());
-	});
+	var filteredData =
+		props.filters[props.filterOption] !== null &&
+		props.filters[props.filterOption].filter((item) => {
+			return item.name.toLowerCase().includes(brandFilter.toLowerCase());
+		});
 
 	const handleBrandFilter = (e) => {
 		setBrandFilter(e.target.value);
@@ -153,21 +339,22 @@ const CheckboxFilter = (props) => {
 						<RadioGroup aria-label="discount" name="discount">
 							{
 								// props.filters.length > 0 &&
-								props.filters[props.filterOption].map((el) => (
-									<div key={el.name} className=" flex space-x-4 items-center">
-										<div>
-											<FormControlLabel
-												value={`${el.name}`}
-												control={<Radio />}
-												checked={Number(el.price_start) === 0}
-												onChange={() =>
-													onPriceChange(el.price_start, el.price_end)
-												}
-												label={<RadioLabel val={el.name} />}
-											/>
+								props.filters[props.filterOption] !== null &&
+									props.filters[props.filterOption].map((el) => (
+										<div key={el.name} className=" flex space-x-4 items-center">
+											<div>
+												<FormControlLabel
+													value={`${el.name}`}
+													control={<Radio />}
+													checked={Number(el.price_start) === 0}
+													onChange={() =>
+														onPriceChange(el.price_start, el.price_end)
+													}
+													label={<RadioLabel val={el.name} />}
+												/>
+											</div>
 										</div>
-									</div>
-								))
+									))
 							}
 						</RadioGroup>
 					</FormControl>
@@ -176,6 +363,8 @@ const CheckboxFilter = (props) => {
 				<ul className="p-4">
 					{renderUI
 						? props.filters &&
+						  props.filters !== null &&
+						  filteredData !== null &&
 						  filteredData.map((el, index) => (
 								<li key={index}>
 									<FormControlLabel

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, Rating, Button } from "../../../components";
-import { Skeleton } from "./components";
+import { Skeleton, LightBox } from "./components";
 
 import {
 	ProductSpecs,
@@ -16,6 +16,9 @@ import {
 } from "../../../store/actions/";
 
 const ProductPage = (props) => {
+	const [isOpen, setIsOpen] = useState(false);
+	const [image, setImage] = useState("");
+
 	const {
 		product_images,
 		product_brand,
@@ -37,6 +40,10 @@ const ProductPage = (props) => {
 			});
 		});
 	}
+	const handleLightBox = (images) => {
+		setIsOpen(true);
+		setImage(images);
+	};
 
 	const prices = [];
 
@@ -61,19 +68,26 @@ const ProductPage = (props) => {
 	};
 
 	React.useEffect(() => {
-        console.log('props.productID',props.productID);
+		console.log("props.productID", props.productID);
 		props.setCompareProduct(props.productID);
 	}, []);
 
 	return (
 		<React.Fragment>
+				{/* <LightBox
+					isOpen={isOpen}
+					onClose={(value) => setIsOpen(value)}
+					image={image}
+				/> */}
 			{props.productDetailLoading === true ? (
 				<Skeleton />
 			) : props.errorCode === 603 ? (
 				"Inactive Product"
 			) : (
 				<div>
-					<ProductImageSlider productImages={product_images} />
+					<div onClick={() => handleLightBox(product_images)} className="mt-2">
+						<ProductImageSlider productImages={product_images} />
+					</div>
 					<div className="space-y-2 p-2 shadow-lg m-4 rounded-md">
 						<div className="flex justify-between items-center">
 							<div>

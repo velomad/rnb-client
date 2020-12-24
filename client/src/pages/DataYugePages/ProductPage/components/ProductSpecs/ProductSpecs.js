@@ -40,6 +40,13 @@ const useStyles = makeStyles((theme) => ({
 		borderTopLeftRadius: 15,
 		borderTopRightRadius: 15,
 	},
+	desktopDialogPaper: {
+		maxHeight: "70vh",
+		marginTop: "30vh",
+		width: "36%",
+		borderTopLeftRadius: 15,
+		borderTopRightRadius: 15,
+	},
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -60,7 +67,12 @@ const ProductSpecs = (props) => {
 				onBackdropClick={() => props.setProductSpecsPopUp(false)}
 				open={props.isOpen}
 				TransitionComponent={Transition}
-				classes={{ paper: classes.dialogPaper }}
+				classes={{
+					paper:
+						window.innerWidth > 769
+							? classes.desktopDialogPaper
+							: classes.dialogPaper,
+				}}
 			>
 				<AppBar className={classes.appBar}>
 					<Toolbar className="flex justify-between">
