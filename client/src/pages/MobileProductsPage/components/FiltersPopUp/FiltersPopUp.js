@@ -25,6 +25,9 @@ import qs from "query-string";
 import { history } from "../../../../utils";
 import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 
+console.log('I am rendered');
+let calculatedFilters = [];
+let tempFilterData = [];
 const useStyles = makeStyles((theme) => ({
 	appBar: {
 		position: "relative",
@@ -157,7 +160,39 @@ const FiltersPopUp = (props) => {
 	const handleSelectFilter = (filter, active) => {
 		setFilterOption(filter);
 		setActive(active);
+		if (tempFilterData.length !== 0) {
+			if (calculatedFilters.length > 0) {
+				calculatedFilters.map((el, index) => {
+					if(tempFilterData.length !== 0){
+						tempFilterData[0].map((innerEL, innerindex) => {
+							Object.keys(el).map((deepinnerEL, deepindex) => {
+								Object.keys(innerEL).map((deepestinnerEL, deepestindex) => {
+									if (deepinnerEL === deepestinnerEL) {
+										calculatedFilters.splice(index, 1);
+										calculatedFilters.push(tempFilterData[0][0]);
+										tempFilterData.length = 0;
+									}else{
+										calculatedFilters.push(tempFilterData[0][0]);
+										tempFilterData.length = 0;
+									}
+								})
+							})
+						})
+					}
+				});
+			} else {
+				calculatedFilters.push(tempFilterData[0][0]);
+				tempFilterData.length = 0;
+			}
+			console.log('Got calculatedFilters Epic Data', calculatedFilters);
+		}
+		tempFilterData.length = 0;
 	};
+
+	const getCalcFilters = (epicVal) => {
+		tempFilterData.length = 0;
+		tempFilterData.push(epicVal);
+	}
 
 	const setDiscount = (value) => {
 		setDiscountFilterValue(value);
@@ -205,10 +240,9 @@ const FiltersPopUp = (props) => {
 							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
 									<li
-										className={`p-3 ${
-											index == active &&
+										className={`p-3 ${index == active &&
 											"bg-white border-l-4 border-pink-600 border-opacity-75"
-										}`}
+											}`}
 										onClick={() => handleSelectFilter(el, index)}
 									>
 										<Text
@@ -249,30 +283,31 @@ const FiltersPopUp = (props) => {
 								) : null}
 							</React.Fragment>
 						) : (
-							<React.Fragment>
-								{"sub_category" in isFilters && (
-									<div>
-										{props.dataYugeFilters &&
-										props.dataYugeFilters.length !== 0 ? (
-											<CheckboxFilter
-												priceFilter={getPriceFilters}
-												filterOption={filterOption}
-												activeOption={active}
-												filterNames={filterTitles}
-												filters={
-													active.toString() && {
-														[filterOption]:
-															props.dataYugeFilters[active].contents,
-													}
-												}
-											/>
-										) : (
-											""
-										)}
-									</div>
-								)}
-							</React.Fragment>
-						)}
+								<React.Fragment>
+									{"sub_category" in isFilters && (
+										<div>
+											{props.dataYugeFilters &&
+												props.dataYugeFilters.length !== 0 ? (
+													<CheckboxFilter
+														calFilters={getCalcFilters}
+														priceFilter={getPriceFilters}
+														filterOption={filterOption}
+														activeOption={active}
+														filterNames={filterTitles}
+														filters={
+															active.toString() && {
+																[filterOption]:
+																	props.dataYugeFilters[active].contents,
+															}
+														}
+													/>
+												) : (
+													""
+												)}
+										</div>
+									)}
+								</React.Fragment>
+							)}
 					</div>
 				</div>
 				{/* <hr style={{ color: "solid black 1px" }} /> */}

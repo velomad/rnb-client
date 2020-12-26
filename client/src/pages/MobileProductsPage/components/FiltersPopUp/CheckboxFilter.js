@@ -6,7 +6,7 @@ import { Text } from "../../../../components";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Radio, RadioGroup, FormControl, FormLabel } from "@material-ui/core";
 
-const epic = [];
+let epic = [];
 const ex = [];
 const brandNames = ["Network Type", "Data Speed"];
 
@@ -32,6 +32,7 @@ const CheckboxFilter = (props) => {
 	};
 
 	const handleChange = (e, newData) => {
+		epic.length = 0;
 		let dummyArr = [];
 		newData.index = e.target.id;
 		dummyArr.push(newData);
@@ -250,8 +251,9 @@ const CheckboxFilter = (props) => {
 				return el.isChecked === true;
 			}),
 		});
+		props.calFilters(epic)
+		console.log("====epic-=====>", epic);
 
-		// console.log("====epic-=====>", JSON.stringify(epic));
 
 		var testArry = [];
 		props.filters[props.filterOption].map((el) => {
