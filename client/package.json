@@ -74,12 +74,8 @@
 		]
 	},
 	"devDependencies": {
-		"@babel/core": "^7.12.10",
-		"@babel/preset-env": "^7.12.11",
-		"@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-		"babel-loader": "^8.2.2",
-		"react-refresh": "^0.9.0",
 		"redux-devtools-extension": "^2.13.8",
-		"workbox-build": "^5.1.4"
+		"workbox-build": "^5.1.4",
+		"react-refresh": "0.9.0"
 	}
 }
