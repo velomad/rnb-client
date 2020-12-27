@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { makeStyles } from "@material-ui/core/styles";
-import { groupBy } from "lodash";
+import { uniqWith, isEqual } from "lodash";
 import {
 	Dialog,
 	AppBar,
@@ -163,7 +163,7 @@ const FiltersPopUp = (props) => {
 		if (tempFilterData.length !== 0) {
 			if (calculatedFilters.length > 0) {
 				calculatedFilters.map((el, index) => {
-					if(tempFilterData.length !== 0){
+					if (tempFilterData.length !== 0) {
 						tempFilterData[0].map((innerEL, innerindex) => {
 							Object.keys(el).map((deepinnerEL, deepindex) => {
 								Object.keys(innerEL).map((deepestinnerEL, deepestindex) => {
@@ -171,7 +171,7 @@ const FiltersPopUp = (props) => {
 										calculatedFilters.splice(index, 1);
 										calculatedFilters.push(tempFilterData[0][0]);
 										tempFilterData.length = 0;
-									}else{
+									} else {
 										calculatedFilters.push(tempFilterData[0][0]);
 										tempFilterData.length = 0;
 									}
@@ -187,7 +187,27 @@ const FiltersPopUp = (props) => {
 			console.log('Got calculatedFilters Epic Data', calculatedFilters);
 		}
 		tempFilterData.length = 0;
+		filterCheckBoxData();
 	};
+	let chunkCheckBoxKeys = [];
+	let finalFilterData = [];
+	const filterCheckBoxData = () => {
+		calculatedFilters.map((el, index) => {
+			chunkCheckBoxKeys.push(Object.keys(el)[0]);
+		});
+		const unique = [...new Set(chunkCheckBoxKeys.map(item => item))];
+		console.log('unique',unique);
+		unique.map((el, index) =>{
+			chunkCheckBoxKeys.map((inEl,inindex) =>{
+				if(el === inEl){
+					var a = chunkCheckBoxKeys.lastIndexOf(el);
+					console.log('calculatedFilters[a]',calculatedFilters[a]);
+					finalFilterData.push(calculatedFilters[a]);
+				}
+			})
+		})
+		console.log('finalFilterData unique...',uniqWith(finalFilterData, isEqual));
+	}
 
 	const getCalcFilters = (epicVal) => {
 		tempFilterData.length = 0;
