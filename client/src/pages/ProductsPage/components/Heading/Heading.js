@@ -1,8 +1,16 @@
 import { Grid } from "@material-ui/core";
 import { Text } from "../../../../components";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
+import { StringParam, useQueryParam } from "use-query-params";
 
 const Heading = ({ category, totalProducts }) => {
+	const sortingVals = ["rating", "discount", "high", "low"];
+	const [sortParam, setSortParam] = useQueryParam("sort");
+
+	const hanleSortSelection = (val) => {
+		setSortParam(val);
+	};
+
 	return (
 		<div className="grid grid-cols-5 gap-6">
 			<div className="flex justify-between">
@@ -57,7 +65,7 @@ const Heading = ({ category, totalProducts }) => {
 							<div class="group inline-block">
 								<button class="outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
 									<span class="pr-1 flex-1">
-										<Text variant="primary" size="sm" weight="700">
+										<Text variant="primary" size="xs" weight="700">
 											SORT BY
 										</Text>
 									</span>
@@ -74,28 +82,19 @@ const Heading = ({ category, totalProducts }) => {
 								</button>
 								<ul
 									class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-  transition duration-150 ease-in-out origin-top min-w-32 z-40"
+  									transition duration-150 ease-in-out origin-top min-w-32 z-40"
 								>
-									<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-										<Text variant="primary" size="sm">
-											Rating
-										</Text>
-									</li>
-									<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-										<Text variant="primary" size="sm">
-											Discount
-										</Text>
-									</li>
-									<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-										<Text variant="primary" size="sm">
-											High to low
-										</Text>
-									</li>
-									<li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-										<Text variant="primary" size="sm">
-											Low to High
-										</Text>
-									</li>
+									{sortingVals.map((el, index) => (
+										<li
+											key={index}
+											onClick={() => hanleSortSelection(el)}
+											className="rounded-sm cursor-pointer px-3 py-1 hover:bg-gray-100"
+										>
+											<Text variant="primary" size="sm" classes="capitalize">
+												{el}
+											</Text>
+										</li>
+									))}
 								</ul>
 							</div>
 						</div>

@@ -11,7 +11,7 @@ import { Dialog, Slide } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ProductPage from "../../../ProductPage/DesktopProductPage";
 import Lottie from "react-lottie";
-import data from "./data.json";
+import data from "../../../../../utils/data.json";
 
 const useStyles = makeStyles((theme) => ({
 	dialogPaper: {

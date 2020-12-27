@@ -231,7 +231,7 @@ const CheckboxFilter = (props) => {
 				Object.keys(elem).map((keyel) => {
 					if (el === keyel) {
 						eee = test.lastIndexOf(elem);
-						nums.push(eee)
+						nums.push(eee);
 						ansArry.push({
 							indexNum: eee,
 							name: elem[keyel][0].name,
@@ -251,9 +251,8 @@ const CheckboxFilter = (props) => {
 				return el.isChecked === true;
 			}),
 		});
-		props.calFilters(epic)
+		props.calFilters(epic);
 		console.log("====epic-=====>", epic);
-
 
 		var testArry = [];
 		props.filters[props.filterOption].map((el) => {

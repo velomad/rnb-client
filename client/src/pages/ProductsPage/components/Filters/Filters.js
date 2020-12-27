@@ -14,6 +14,7 @@ import {
 	FormLabel,
 } from "@material-ui/core";
 import { Button } from "../../../../components";
+import { StringParam, useQueryParam } from "use-query-params";
 
 const Filters = (props) => {
 	const [selectedGender, setSelectedGender] = React.useState("");
@@ -23,16 +24,28 @@ const Filters = (props) => {
 	const end = 20000;
 	const [value, setValue] = React.useState([start, end]);
 
+	const [genderParam, setGenderParam] = useQueryParam("gender");
+	const [discountPercentParam, setDiscountPercentParam] = useQueryParam(
+		"discountPercent[gte]",
+	);
+
+	const [productPriceGte, setProductPriceGteParam] = useQueryParam(
+		"productPrice[gte]",
+	);
+
+	const [productPriceLte, setProductPriceLteParam] = useQueryParam(
+		"productPrice[lte]",
+	);
+
 	const applyPriceFilter = () => {
 		let priceObj = {
-			"productPrice[gte]": value[0],
-			"productPrice[lte]": value[1],
+			priceLess: value[0],
+			priceMore: value[1],
 		};
 
-		const queryparams = qs.stringify(priceObj);
-		const parsedQueryParams = history.location.search;
-
-		history.push(`/products${parsedQueryParams}&${queryparams}`);
+		console.log("priceObj", priceObj);
+		setProductPriceGteParam(priceObj.priceLess);
+		setProductPriceLteParam(priceObj.priceMore);
 	};
 
 	const handleChange = (event, newValue) => {
@@ -59,28 +72,24 @@ const Filters = (props) => {
 		);
 	};
 
+	const getGenderFilter = (e) => {
+		setGenderParam(e.target.value);
+	};
+
 	const getDiscount = (e) => {
-		let discountObj = {};
-		console.log("before genderObj", discountObj);
-		discountObj = { discountPercent: e.target.value };
-		console.log("after genderObj", discountObj);
-		const queryparams = qs.stringify(discountObj);
-		const parsedQueryParams = history.location.search;
-
-		history.push(`/products${parsedQueryParams}&${queryparams}`);
+		setDiscountPercentParam(e.target.value);
 	};
+	// const handleGenderSelection = (currentGender) => {
+	// 	setSelectedGender(currentGender);
+	// 	let genderObj = {};
+	// 	console.log("currentGender", currentGender);
+	// 	genderObj = { gender: currentGender };
+	// 	// console.log("after genderObj", genderObj);
+	// 	const queryparams = qs.stringify(genderObj);
+	// 	const parsedQueryParams = history.location.search;
+	// 	// history.push(`/products${parsedQueryParams}&${queryparams}`);
+	// };
 
-	const handleGenderSelection = (currentGender) => {
-		setSelectedGender(currentGender);
-		let genderObj = {};
-		console.log("before genderObj", genderObj);
-		genderObj = { gender: currentGender };
-		console.log("after genderObj", genderObj);
-		const queryparams = qs.stringify(genderObj);
-		const parsedQueryParams = history.location.search;
-
-		history.push(`/products${parsedQueryParams}&${queryparams}`);
-	};
 	return (
 		<div>
 			<div className="py-4 space-y-4">
@@ -94,14 +103,13 @@ const Filters = (props) => {
 						aria-label="discount"
 						name="discount"
 						value={props.discountFilterValue}
-						onChange={getDiscount}
+						onChange={getGenderFilter}
 					>
 						{genderArry.map((el) => (
 							<div key={el} className=" flex space-x-4 items-center">
 								<div>
 									<FormControlLabel
 										value={`${el}`}
-										s
 										control={<Radio />}
 										label={<GenderRadioLabel val={el} />}
 									/>
@@ -144,7 +152,7 @@ const Filters = (props) => {
 					</div>
 					<div className="mt-4">
 						<Button
-							onClick={() => applyPriceFilter()}
+							handleClick={applyPriceFilter}
 							size="small"
 							variant="primary"
 						>

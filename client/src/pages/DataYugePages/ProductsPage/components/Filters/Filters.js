@@ -83,10 +83,11 @@ const Filters = (props) => {
 						newData["isChecked"] = true;
 					} else if (newel.isChecked == false) {
 						newData["isChecked"] = false;
-					} else { }
-				})
+					} else {
+					}
+				});
 				// dummyArr.push(newData);
-			})
+			});
 		} else {
 			dummyArr.push(newData);
 		}
@@ -94,7 +95,7 @@ const Filters = (props) => {
 		const val = e.target.value;
 
 		props.dataYugeFilters[sideIndex + 1].contents.map((el, outindex) => {
-				dummyArr.map((innerEl) => {
+			dummyArr.map((innerEl) => {
 				if (
 					Number(outindex) === Number(innerEl.index) &&
 					el.name === innerEl.name &&
@@ -213,9 +214,8 @@ const Filters = (props) => {
 			</div>
 
 			<div>
-				{console.log('props.dataYugeFilters <=======>',props.dataYugeFilters)}
-				{
-				"sub_category" in isFilters &&
+				{console.log("props.dataYugeFilters <=======>", props.dataYugeFilters)}
+				{"sub_category" in isFilters &&
 					props.dataYugeFilters &&
 					props.dataYugeFilters.slice(1, 5).map((elem, mainindex) => (
 						<div className="py-6 border-b-2">
@@ -230,67 +230,68 @@ const Filters = (props) => {
 
 							<div className="space-y-0">
 								<ul
-									className={`${elem.contents.length > 6 && "h-96"
-										} overflow-y-scroll`}
+									className={`${
+										elem.contents.length > 6 && "h-96"
+									} overflow-y-scroll`}
 									style={{ scrollbarColor: "deepskyblue" }}
 								>
 									{renderUI
 										? elem.contents &&
-										elem.contents.map((el, index) => (
-											<li key={index}>
-												<FormControlLabel
-													key={el + index}
-													control={
-														<Checkbox
-															size="small"
-															checked={el.isChecked}
-															onChange={(e) => handleChange(e, el, mainindex)}
-															name={<Text variant="primary">{el.name}</Text>}
-															value={
-																props.dataYugeFilters[mainindex + 1].title ===
+										  elem.contents.map((el, index) => (
+												<li key={index}>
+													<FormControlLabel
+														key={el + index}
+														control={
+															<Checkbox
+																size="small"
+																checked={el.isChecked}
+																onChange={(e) => handleChange(e, el, mainindex)}
+																name={<Text variant="primary">{el.name}</Text>}
+																value={
+																	props.dataYugeFilters[mainindex + 1].title ===
 																	"Price"
-																	? el.price_start + "-" + el.price_end
-																	: el.filter
-															}
-															id={index}
-														/>
-													}
-													label={
-														<Text variant="primaryDark" size="xs">
-															{el.name}
-														</Text>
-													}
-												/>
-											</li>
-										))
+																		? el.price_start + "-" + el.price_end
+																		: el.filter
+																}
+																id={index}
+															/>
+														}
+														label={
+															<Text variant="primaryDark" size="xs">
+																{el.name}
+															</Text>
+														}
+													/>
+												</li>
+										  ))
 										: elem.contents &&
-										elem.contents.map((el, index) => (
-											<li key={index}>
-												<FormControlLabel
-													key={el + index}
-													control={
-														<Checkbox
-															size="small"
-															checked={el.isChecked}
-															onChange={(e) => handleChange(e, el, mainindex)}
-															name={<Text variant="primary">{el.name}</Text>}
-															value={
-																props.dataYugeFilters[mainindex + 1].title ===
+										  elem.contents.map((el, index) => (
+												<li key={index}>
+													<FormControlLabel
+														key={el + index}
+														control={
+															<Checkbox
+																size="small"
+																checked={el.isChecked}
+																onChange={(e) => handleChange(e, el, mainindex)}
+																name={<Text variant="primary">{el.name}</Text>}
+																value={
+																	props.dataYugeFilters[mainindex + 1].title ===
 																	"Price"
-																	? el.price_start + "-" + el.price_end
-																	: el.filter
-															}
-															id={index}
-														/>
-													}
-													label={
-														<Text variant="primary" size="xs">
-															{el.name}
-														</Text>
-													}
-												/>
-											</li>
-										))}
+																		? el.price_start + "-" + el.price_end
+																		: el.filter
+																}
+																id={index}
+															/>
+														}
+														label={
+															<Text variant="primary" size="xs">
+																{el.name}
+															</Text>
+														}
+													/>
+												</li>
+										  ))}
 								</ul>
 							</div>
 						</div>

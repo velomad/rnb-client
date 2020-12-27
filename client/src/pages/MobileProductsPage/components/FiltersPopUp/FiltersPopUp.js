@@ -25,7 +25,7 @@ import qs from "query-string";
 import { history } from "../../../../utils";
 import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 
-console.log('I am rendered');
+console.log("I am rendered");
 let calculatedFilters = [];
 let tempFilterData = [];
 const useStyles = makeStyles((theme) => ({
@@ -163,7 +163,7 @@ const FiltersPopUp = (props) => {
 		if (tempFilterData.length !== 0) {
 			if (calculatedFilters.length > 0) {
 				calculatedFilters.map((el, index) => {
-					if(tempFilterData.length !== 0){
+					if (tempFilterData.length !== 0) {
 						tempFilterData[0].map((innerEL, innerindex) => {
 							Object.keys(el).map((deepinnerEL, deepindex) => {
 								Object.keys(innerEL).map((deepestinnerEL, deepestindex) => {
@@ -171,20 +171,20 @@ const FiltersPopUp = (props) => {
 										calculatedFilters.splice(index, 1);
 										calculatedFilters.push(tempFilterData[0][0]);
 										tempFilterData.length = 0;
-									}else{
+									} else {
 										calculatedFilters.push(tempFilterData[0][0]);
 										tempFilterData.length = 0;
 									}
-								})
-							})
-						})
+								});
+							});
+						});
 					}
 				});
 			} else {
 				calculatedFilters.push(tempFilterData[0][0]);
 				tempFilterData.length = 0;
 			}
-			console.log('Got calculatedFilters Epic Data', calculatedFilters);
+			console.log("Got calculatedFilters Epic Data", calculatedFilters);
 		}
 		tempFilterData.length = 0;
 	};
@@ -192,7 +192,7 @@ const FiltersPopUp = (props) => {
 	const getCalcFilters = (epicVal) => {
 		tempFilterData.length = 0;
 		tempFilterData.push(epicVal);
-	}
+	};
 
 	const setDiscount = (value) => {
 		setDiscountFilterValue(value);
@@ -239,22 +239,25 @@ const FiltersPopUp = (props) => {
 						<ul>
 							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
-									<li
-										className={`p-3 ${index == active &&
-											"bg-white border-l-4 border-pink-600 border-opacity-75"
+									{props.dataYugeFilters[index].contents !== null && (
+										<li
+											className={`p-3 ${
+												index == active &&
+												"bg-white border-l-4 border-pink-600 border-opacity-75"
 											}`}
-										onClick={() => handleSelectFilter(el, index)}
-									>
-										<Text
-											size="sm"
-											weight="600"
-											variant={`${index == active ? "pink" : "primary"}`}
+											onClick={() => handleSelectFilter(el, index)}
 										>
-											{el}{" "}
-											{el === "Brand" &&
-												`(${props.dataYugeFilters[index].contents.length})`}
-										</Text>
-									</li>
+											<Text
+												size="sm"
+												weight="600"
+												variant={`${index == active ? "pink" : "primary"}`}
+											>
+												{el}{" "}
+												{el === "Brand" &&
+													`(${props.dataYugeFilters[index].contents.length})`}
+											</Text>
+										</li>
+									)}
 									{/* <hr style={{ color: "solid black 1px" }} /> */}
 								</React.Fragment>
 							))}
@@ -283,31 +286,31 @@ const FiltersPopUp = (props) => {
 								) : null}
 							</React.Fragment>
 						) : (
-								<React.Fragment>
-									{"sub_category" in isFilters && (
-										<div>
-											{props.dataYugeFilters &&
-												props.dataYugeFilters.length !== 0 ? (
-													<CheckboxFilter
-														calFilters={getCalcFilters}
-														priceFilter={getPriceFilters}
-														filterOption={filterOption}
-														activeOption={active}
-														filterNames={filterTitles}
-														filters={
-															active.toString() && {
-																[filterOption]:
-																	props.dataYugeFilters[active].contents,
-															}
-														}
-													/>
-												) : (
-													""
-												)}
-										</div>
-									)}
-								</React.Fragment>
-							)}
+							<React.Fragment>
+								{"sub_category" in isFilters && (
+									<div>
+										{props.dataYugeFilters &&
+										props.dataYugeFilters.length !== 0 ? (
+											<CheckboxFilter
+												calFilters={getCalcFilters}
+												priceFilter={getPriceFilters}
+												filterOption={filterOption}
+												activeOption={active}
+												filterNames={filterTitles}
+												filters={
+													active.toString() && {
+														[filterOption]:
+															props.dataYugeFilters[active].contents,
+													}
+												}
+											/>
+										) : (
+											""
+										)}
+									</div>
+								)}
+							</React.Fragment>
+						)}
 					</div>
 				</div>
 				{/* <hr style={{ color: "solid black 1px" }} /> */}

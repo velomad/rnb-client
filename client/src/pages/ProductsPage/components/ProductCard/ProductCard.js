@@ -3,6 +3,8 @@ import { Grid } from "@material-ui/core";
 import { Rating, Text } from "../../../../components";
 import { history } from "../../../../utils";
 import Wishlist from "@material-ui/icons/FavoriteBorderOutlined";
+import Lottie from "react-lottie";
+import data from "../../../../utils/data.json";
 
 const ProductCard = ({
 	image,
@@ -26,6 +28,14 @@ const ProductCard = ({
 		history.push("/product/" + id);
 	};
 
+	const defaultOptions = {
+		loop: true,
+		autoplay: true,
+		animationData: data,
+		rendererSettings: {
+			preserveAspectRatio: "xMidYMid slice",
+		},
+	};
 	return (
 		<div className="my-3" id="card">
 			<Grid container>
@@ -57,12 +67,25 @@ const ProductCard = ({
 							id="wishlist"
 						>
 							<div
-								className="border-2 hover:border-none rounded-lg p-0.5 z-10 text-gray-500 transition duration-700 ease-in-out hover:bg-gray-800 hover:text-white"
+								className="shadow-xl rounded-lg p-0.5 z-10  text-gray-400 transition duration-700 ease-in-out bg-gray-800 hover:bg-gray-800 hover:text-white"
 								onClick={handleWishList}
 							>
-								<Text classes="uppercase" size="xs" weight="700">
-									Wishlist
-								</Text>
+								<div className="flex items-center justify-center space-x-1">
+									<div>
+										<Lottie
+											options={defaultOptions}
+											height={25}
+											width={25}
+											// isStopped={this.state.isStopped}
+											// isPaused={this.state.isPaused}
+										/>
+									</div>
+									<div>
+										<Text classes="uppercase" size="xs" weight="700">
+											Wishlist
+										</Text>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -92,18 +115,22 @@ const ProductCard = ({
 						>
 							<Grid container spacing={1} className="mt-4">
 								<Grid item>
-									<Text size="sm" weight="600">
-										&#8377; {price}
-									</Text>
+									{price !== null && (
+										<Text size="sm" weight="600">
+											&#8377; {price}
+										</Text>
+									)}
 								</Grid>
 
 								{price !== priceStrike && (
 									<Grid item>
-										<del className="text-gray-600">
-											<Text size="sm" weight="600" variant="primary">
-												&#8377; {priceStrike}
-											</Text>
-										</del>
+										{priceStrike !== null && (
+											<del className="text-gray-600">
+												<Text size="sm" weight="600" variant="primary">
+													&#8377; {priceStrike}
+												</Text>
+											</del>
+										)}
 									</Grid>
 								)}
 							</Grid>
