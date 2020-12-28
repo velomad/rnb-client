@@ -262,7 +262,7 @@ const FiltersPopUp = (props) => {
 						<ul>
 							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
-									{props.dataYugeFilters[index].contents !== null && (
+									{"sub_category" in isFilters && props.dataYugeFilters[index].contents !== null && (
 										<li
 											className={`p-3 ${
 												index == active &&
