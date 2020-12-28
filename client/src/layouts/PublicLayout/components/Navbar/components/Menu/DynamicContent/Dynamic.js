@@ -119,7 +119,7 @@ const DynamicContent = (props) => {
 											<li
 												key={index + "men"}
 												onClick={() => handleCategoryClick(el)}
-												class="my-3 tracking-wide capitalize"
+												class="my-3 cursor-pointer tracking-wide capitalize"
 											>
 												{/* {props.currentBrand == 'myntra'?el.split('-')[1]:props.currentBrand == 'tatacliq' || 'bewakoof' ?el.split('-men')[0].replace('-',' '):el} */}
 												<Text>
@@ -137,7 +137,7 @@ const DynamicContent = (props) => {
 											<li
 												key={index + "women"}
 												onClick={() => handleCategoryClick(el)}
-												class="my-3 tracking-wide capitalize"
+												class="my-3 cursor-pointer tracking-wide capitalize"
 											>
 												{/* {props.currentBrand == "myntra"
 												? el.split("-")[1]

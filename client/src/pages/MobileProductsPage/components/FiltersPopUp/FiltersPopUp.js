@@ -195,19 +195,22 @@ const FiltersPopUp = (props) => {
 		calculatedFilters.map((el, index) => {
 			chunkCheckBoxKeys.push(Object.keys(el)[0]);
 		});
-		const unique = [...new Set(chunkCheckBoxKeys.map(item => item))];
-		console.log('unique',unique);
-		unique.map((el, index) =>{
-			chunkCheckBoxKeys.map((inEl,inindex) =>{
-				if(el === inEl){
+		const unique = [...new Set(chunkCheckBoxKeys.map((item) => item))];
+		console.log("unique", unique);
+		unique.map((el, index) => {
+			chunkCheckBoxKeys.map((inEl, inindex) => {
+				if (el === inEl) {
 					var a = chunkCheckBoxKeys.lastIndexOf(el);
-					console.log('calculatedFilters[a]',calculatedFilters[a]);
+					console.log("calculatedFilters[a]", calculatedFilters[a]);
 					finalFilterData.push(calculatedFilters[a]);
 				}
-			})
-		})
-		console.log('finalFilterData unique...',uniqWith(finalFilterData, isEqual));
-	}
+			});
+		});
+		console.log(
+			"finalFilterData unique...",
+			uniqWith(finalFilterData, isEqual),
+		);
+	};
 
 	const getCalcFilters = (epicVal) => {
 		tempFilterData.length = 0;
