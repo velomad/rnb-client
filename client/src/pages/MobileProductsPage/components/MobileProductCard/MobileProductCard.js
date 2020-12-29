@@ -42,7 +42,7 @@ const MProductCard = ({
 					</div>
 				) : null}
 
-				<div className=" float-right p-1 z-20" onClick={handleWishlist}>
+				<div className="float-right p-1 z-20" onClick={handleWishlist}>
 					{!wish ? (
 						<BO style={{ color: "gray" }} fontSize="small" />
 					) : (

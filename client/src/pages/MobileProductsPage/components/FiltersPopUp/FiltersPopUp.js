@@ -25,7 +25,6 @@ import qs from "query-string";
 import { history } from "../../../../utils";
 import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 
-console.log("I am rendered");
 let calculatedFilters = [];
 let tempFilterData = [];
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +62,10 @@ const FiltersPopUp = (props) => {
 	const [start, setPriceStart] = useQueryParam("price_start", StringParam);
 	const [end, setPriceEnd] = useQueryParam("price_end", StringParam);
 
-	console.log(props.appliedFilters);
+	const [datayugeFilterParams, setDatayugeFilterParams] = useQueryParam(
+		"filter",
+		StringParam,
+	);
 
 	const isElectronic = history.location.pathname.split("/")[1] === "electronic";
 	const isFilters = qs.parse(history.location.search);
@@ -74,6 +76,8 @@ const FiltersPopUp = (props) => {
 	if ("discountPercent" in parsedQueryParams) {
 		selectedDiscount = parsedQueryParams.discountPercent;
 	}
+
+	let filterParamsData = [];
 
 	useEffect(() => {
 		if ("sub_category" in isFilters && props.dataYugeFilters) {
@@ -130,14 +134,32 @@ const FiltersPopUp = (props) => {
 		setFoo(undefined);
 		setpriceFilterGte(undefined);
 		setpriceFilterLte(undefined);
+		setDatayugeFilterParams(undefined);
+		setPriceStart(undefined);
+		setPriceEnd(undefined);
 		window.location.reload();
 	};
 
 	const handleApplyFilter = () => {
 		if ("sub_category" in qs.parse(history.location.search)) {
 			handleClose();
+
+			handleSelectFilter(null, null);
+			let selectedData = uniqWith(finalFilterData, isEqual);
+
+			console.log("selectedData", selectedData);
+
+			selectedData.map((el, index) => {
+				Object.keys(el).map((innerEl, innerindex) => {
+					el[innerEl].map((deepEl, deepindex) => {
+						filterParamsData.push(deepEl.filter);
+					});
+				});
+			});
+
 			setPriceStart(priceFilter.start);
 			setPriceEnd(priceFilter.end);
+			setDatayugeFilterParams(filterParamsData.join("|"));
 		} else {
 			setNum(discountFilterValue.discount);
 			setFoo(genderFilterValue.gender);
@@ -158,8 +180,10 @@ const FiltersPopUp = (props) => {
 	}
 
 	const handleSelectFilter = (filter, active) => {
-		setFilterOption(filter);
-		setActive(active);
+		if (!!filter) {
+			setFilterOption(filter);
+			setActive(active);
+		}
 		if (tempFilterData.length !== 0) {
 			if (calculatedFilters.length > 0) {
 				calculatedFilters.map((el, index) => {
@@ -184,32 +208,28 @@ const FiltersPopUp = (props) => {
 				calculatedFilters.push(tempFilterData[0][0]);
 				tempFilterData.length = 0;
 			}
-			console.log("Got calculatedFilters Epic Data", calculatedFilters);
 		}
 		tempFilterData.length = 0;
 		filterCheckBoxData();
+		calculatedFilters.length = 0;
 	};
+
 	let chunkCheckBoxKeys = [];
 	let finalFilterData = [];
+
 	const filterCheckBoxData = () => {
 		calculatedFilters.map((el, index) => {
 			chunkCheckBoxKeys.push(Object.keys(el)[0]);
 		});
 		const unique = [...new Set(chunkCheckBoxKeys.map((item) => item))];
-		console.log("unique", unique);
 		unique.map((el, index) => {
 			chunkCheckBoxKeys.map((inEl, inindex) => {
 				if (el === inEl) {
 					var a = chunkCheckBoxKeys.lastIndexOf(el);
-					console.log("calculatedFilters[a]", calculatedFilters[a]);
 					finalFilterData.push(calculatedFilters[a]);
 				}
 			});
 		});
-		console.log(
-			"finalFilterData unique...",
-			uniqWith(finalFilterData, isEqual),
-		);
 	};
 
 	const getCalcFilters = (epicVal) => {
@@ -262,7 +282,7 @@ const FiltersPopUp = (props) => {
 						<ul>
 							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
-									{"sub_category" in isFilters ?
+									{"sub_category" in isFilters ? (
 										props.dataYugeFilters[index].contents !== null && (
 											<li
 												className={`p-3 ${
@@ -281,25 +301,26 @@ const FiltersPopUp = (props) => {
 														`(${props.dataYugeFilters[index].contents.length})`}
 												</Text>
 											</li>
-										) : 
+										)
+									) : (
 										<li
-												className={`p-3 ${
-													index == active &&
-													"bg-white border-l-4 border-pink-600 border-opacity-75"
-												}`}
-												onClick={() => handleSelectFilter(el, index)}
+											className={`p-3 ${
+												index == active &&
+												"bg-white border-l-4 border-pink-600 border-opacity-75"
+											}`}
+											onClick={() => handleSelectFilter(el, index)}
+										>
+											<Text
+												size="sm"
+												weight="600"
+												variant={`${index == active ? "pink" : "primary"}`}
 											>
-												<Text
-													size="sm"
-													weight="600"
-													variant={`${index == active ? "pink" : "primary"}`}
-												>
-													{el}{" "}
-													{el === "Brand" &&
-														`(${props.dataYugeFilters[index].contents.length})`}
-												</Text>
-											</li>
-										}
+												{el}{" "}
+												{el === "Brand" &&
+													`(${props.dataYugeFilters[index].contents.length})`}
+											</Text>
+										</li>
+									)}
 									{/* <hr style={{ color: "solid black 1px" }} /> */}
 								</React.Fragment>
 							))}
@@ -380,4 +401,7 @@ const mapStateToProps = ({ uiState, dataYugeProductsState }) => ({
 
 const mapDispatchToProps = { setFilterPopUpAction };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FiltersPopUp);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(React.memo(FiltersPopUp));

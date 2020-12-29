@@ -347,7 +347,7 @@ const CheckboxFilter = (props) => {
 												<FormControlLabel
 													value={`${el.name}`}
 													control={<Radio />}
-													checked={Number(el.price_start) === 0}
+													// checked={Number(el.price_start) === 0}
 													onChange={() =>
 														onPriceChange(el.price_start, el.price_end)
 													}
@@ -423,4 +423,4 @@ const CheckboxFilter = (props) => {
 	);
 };
 
-export default connect(null, { setAppliedFilters })(CheckboxFilter);
+export default connect(null, { setAppliedFilters })(React.memo(CheckboxFilter));
