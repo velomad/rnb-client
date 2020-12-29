@@ -79,16 +79,20 @@ const ProductPage = (props) => {
 							>
 								<Grid item>
 									<Grid container spacing={3}>
-										<Grid item>
-											<Text size="xl" variant="secondary">
-												&#8377; {product.productPrice}
-											</Text>
-										</Grid>
-										<Grid item>
-											<Text size="xl" variant="primary">
-												<del>&#8377; {product.productPriceStrike}</del>
-											</Text>
-										</Grid>
+										{product.productPrice && (
+											<Grid item>
+												<Text size="xl" variant="secondary">
+													&#8377; {product.productPrice}
+												</Text>
+											</Grid>
+										)}
+										{product.productPriceStrike && (
+											<Grid item>
+												<Text size="xl" variant="primary">
+													<del>&#8377; {product.productPriceStrike}</del>
+												</Text>
+											</Grid>
+										)}
 									</Grid>
 								</Grid>
 								<Grid

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import { Rating, Text } from "../../../../components";
 import { history } from "../../../../utils";
-import Wishlist from "@material-ui/icons/FavoriteBorderOutlined";
 import Lottie from "react-lottie";
 import data from "../../../../utils/data.json";
 

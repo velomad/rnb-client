@@ -81,7 +81,7 @@ const SearchSlide = (props) => {
 			<Dialog fullScreen open={props.isActive} TransitionComponent={Transition}>
 				<div
 					className="grid grid-cols-2 p-2 place-items-center"
-					style={{ background: "rgba(0, 0, 0, 0.7)" }}
+					style={{ background: "rgba(0, 0, 0, 0.8)" }}
 				>
 					<div
 						onClick={() => setCategory("clothing")}

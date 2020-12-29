@@ -262,25 +262,44 @@ const FiltersPopUp = (props) => {
 						<ul>
 							{filterTitleMapper.map((el, index) => (
 								<React.Fragment key={index}>
-									{"sub_category" in isFilters && props.dataYugeFilters[index].contents !== null && (
-										<li
-											className={`p-3 ${
-												index == active &&
-												"bg-white border-l-4 border-pink-600 border-opacity-75"
-											}`}
-											onClick={() => handleSelectFilter(el, index)}
-										>
-											<Text
-												size="sm"
-												weight="600"
-												variant={`${index == active ? "pink" : "primary"}`}
+									{"sub_category" in isFilters ?
+										props.dataYugeFilters[index].contents !== null && (
+											<li
+												className={`p-3 ${
+													index == active &&
+													"bg-white border-l-4 border-pink-600 border-opacity-75"
+												}`}
+												onClick={() => handleSelectFilter(el, index)}
 											>
-												{el}{" "}
-												{el === "Brand" &&
-													`(${props.dataYugeFilters[index].contents.length})`}
-											</Text>
-										</li>
-									)}
+												<Text
+													size="sm"
+													weight="600"
+													variant={`${index == active ? "pink" : "primary"}`}
+												>
+													{el}{" "}
+													{el === "Brand" &&
+														`(${props.dataYugeFilters[index].contents.length})`}
+												</Text>
+											</li>
+										) : 
+										<li
+												className={`p-3 ${
+													index == active &&
+													"bg-white border-l-4 border-pink-600 border-opacity-75"
+												}`}
+												onClick={() => handleSelectFilter(el, index)}
+											>
+												<Text
+													size="sm"
+													weight="600"
+													variant={`${index == active ? "pink" : "primary"}`}
+												>
+													{el}{" "}
+													{el === "Brand" &&
+														`(${props.dataYugeFilters[index].contents.length})`}
+												</Text>
+											</li>
+										}
 									{/* <hr style={{ color: "solid black 1px" }} /> */}
 								</React.Fragment>
 							))}

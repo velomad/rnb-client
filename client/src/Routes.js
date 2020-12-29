@@ -3,7 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import { WithLayoutRoute } from "./routers";
 import { QueryParamProvider } from 'use-query-params';
-import { PublicLayout } from "./layouts";
+import { PublicLayout, SecondaryPublicLayout } from "./layouts";
 import Loading from "./components/Loading";
 import { ScrollToTop } from "./utils";
 
@@ -19,6 +19,7 @@ import ProductPage from "./pages/ProductPage";
 import DataYugeProductsPage from "./pages/DataYugePages/ProductsPage";
 import DataYugeProductPage from "./pages/DataYugePages/ProductPage";
 import MobileProductsPage from "./pages/MobileProductsPage";
+import Wishlist from "./pages/Wishlist";
 // import DesktopProductPage from "./pages/DataYugePages/ProductPage/DesktopProductPage";
 
 
@@ -74,6 +75,12 @@ const Routes = () => {
 							path="/electronic/product/:productId"
 							layout={PublicLayout}
 							component={DataYugeProductPage}
+						/>
+						<WithLayoutRoute
+							exact
+							path="/wishlist"
+							layout={SecondaryPublicLayout}
+							component={Wishlist}
 						/>
 						<Route path="*" component={() => "404 NOT FOUND"} />
 					</Switch>

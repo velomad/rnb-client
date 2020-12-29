@@ -12,6 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import ProductPage from "../../../ProductPage/DesktopProductPage";
 import Lottie from "react-lottie";
 import data from "../../../../../utils/data.json";
+import Wishlist from "@material-ui/icons/FavoriteBorderOutlined";
+import WishlistFilled from "@material-ui/icons/Favorite";
+import BO from "@material-ui/icons/BookmarksOutlined";
+import BF from "@material-ui/icons/Bookmarks";
 
 const useStyles = makeStyles((theme) => ({
 	dialogPaper: {
@@ -30,7 +34,7 @@ const ProductCard = ({
 	setCompareProduct,
 }) => {
 	const [productID, setProductID] = React.useState("");
-	const [wishlist, setWishlist] = React.useState(false);
+	const [wish, setWish] = React.useState(false);
 	const handleClose = () => {
 		setOpenSlider(false);
 	};
@@ -44,7 +48,6 @@ const ProductCard = ({
 		} else {
 			history.push(`/electronic/product/${productId}`);
 		}
-
 		// history.push('/desktop-product/'+productId)
 		console.log("Open Slide...");
 	};
@@ -91,7 +94,8 @@ const ProductCard = ({
 	const classes = useStyles();
 
 	const handleWishList = () => {
-		setWishlist(true);
+		setWish(!wish);
+		console.log("askdjoia");
 	};
 
 	return (
@@ -111,19 +115,16 @@ const ProductCard = ({
 					epic % 2 !== 0 && "border-l-2 md:border-l-0"
 				}`}
 			>
-				{/* <div className="stage absolute z-20 right-0">
-					<div
-						className="heart"
-						style={
-							wishlist
-								? {
-										transitionDuration: "1s",
-										backgroundPosition: "-2800px 0",
-								  }
-								: null
-						}
-					></div>
-				</div> */}
+				<div
+					className="md:invisible absolute right-0 p-1 z-10"
+					onClick={handleWishList}
+				>
+					{!wish ? (
+						<BO style={{ color: "gray" }} fontSize="small" />
+					) : (
+						<BF style={{ color: "deeppink" }} fontSize="small" />
+					)}
+				</div>
 
 				<div className=" transition duration-700 ease-in-out transform hover:-translate-y-2">
 					{productImage !== null ? (

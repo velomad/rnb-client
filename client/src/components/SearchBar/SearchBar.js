@@ -173,7 +173,7 @@ export default function Filter() {
 							placeholder="Clothing Search"
 							autoComplete="off"
 							onChange={(event) => handleChange(event.target.value)}
-							class="bg-white h-10 w-full px-32 pr-48 rounded-full text-sm focus:outline-none"
+							class="bg-white h-10 w-full px-32 pr-48 rounded-xl text-sm focus:outline-none"
 						/>
 						<select
 							className="absolute outline-none rounded-full p-2 mt-1 mr-1 left-0 top-0"

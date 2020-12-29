@@ -9,6 +9,9 @@ import { men, women } from "../Menu/DynamicContent/flipkartMenuData";
 import { amazonmen, amazonwomen } from "../Menu/DynamicContent/amazonMenuData";
 import { myntramen, myntrawomen } from "../Menu/DynamicContent/myntraMenuData";
 import { ajiomen, ajiowomen } from "../Menu/DynamicContent/ajioMenuData";
+import Lottie from "react-lottie";
+import data from "../../../../../../utils/data.json";
+import { history } from "../../../../../../utils";
 import {
 	snapdealmen,
 	snapdealwomen,
@@ -69,6 +72,15 @@ const Primary = (props) => {
 	const handleClickAway = () => {
 		console.log("click away navbar...");
 		settoggleSideBar(false);
+	};
+
+	const defaultOptions = {
+		loop: true,
+		autoplay: true,
+		animationData: data,
+		rendererSettings: {
+			preserveAspectRatio: "xMidYMid slice",
+		},
 	};
 
 	return (
@@ -220,9 +232,19 @@ const Primary = (props) => {
 						</div>
 
 						<div
-							className="flex md:hidden mb-4 px-2 md:mx-0 lg:mx-0"
+							className="flex md:hidden mb-4 px-1 md:mx-0 lg:mx-0"
 							onClick={() => showMenu()}
 						>
+							<div className="mt-1" onClick={() => history.push("/wishlist")}>
+								<Lottie
+									options={defaultOptions}
+									height={30}
+									width={30}
+									// isStopped={this.state.isStopped}
+									// isPaused={this.state.isPaused}
+								/>
+							</div>
+
 							<SearchOutlinedIcon
 								onClick={() => props.setSearchSlide(true)}
 								className="text-white mx-2 px-1"

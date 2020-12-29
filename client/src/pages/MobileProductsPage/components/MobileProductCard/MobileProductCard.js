@@ -1,6 +1,12 @@
 import { Rating, Text } from "../../../../components";
 import { history } from "../../../../utils";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Wishlist from "@material-ui/icons/FavoriteBorderOutlined";
+import WishlistFilled from "@material-ui/icons/Favorite";
+import BO from "@material-ui/icons/BookmarksOutlined";
+import BF from "@material-ui/icons/Bookmarks";
+
+import React, { useState } from "react";
 
 const MProductCard = ({
 	image,
@@ -13,14 +19,21 @@ const MProductCard = ({
 	rating,
 	id,
 }) => {
+	const [wish, setWish] = useState(false);
+
 	const handleProductClick = () => {
 		// debugger
 		history.push("/product/" + id);
 	};
 
+	const handleWishlist = () => {
+		setWish(!wish);
+		console.log("epic");
+	};
+
 	return (
 		<div>
-			<div onClick={handleProductClick} className="w-full p-1 h-full">
+			<div className="w-full p-1 h-full">
 				{discount !== null && discount !== "Ne" ? (
 					<div className="absolute p-1 bg-gray-900 z-10">
 						<Text size="xs" variant="white">
@@ -29,7 +42,15 @@ const MProductCard = ({
 					</div>
 				) : null}
 
-				<div className="flex justify-center">
+				<div className=" float-right p-1 z-20" onClick={handleWishlist}>
+					{!wish ? (
+						<BO style={{ color: "gray" }} fontSize="small" />
+					) : (
+						<BF style={{ color: "deeppink" }} fontSize="small" />
+					)}
+				</div>
+
+				<div className="flex justify-center" onClick={handleProductClick}>
 					{image !== null ? (
 						<LazyLoadImage
 							effect="opacity"

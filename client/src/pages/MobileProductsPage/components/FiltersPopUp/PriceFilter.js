@@ -41,7 +41,7 @@ const PriceFilter = (props) => {
 
 				{props.totalProducts !== "" && (
 					<div>
-						<Text variant="primaryDark" size="sm" weight="500">
+						<Text variant="primaryDark" size="sm" weight="700">
 							{props.totalProducts} Products
 						</Text>
 					</div>
