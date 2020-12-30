@@ -1,4 +1,4 @@
-                                                                               // theme.js (you can call it whatever you want)
+// theme.js (you can call it whatever you want)
 
 export const textVariant = {
 	primary: `text-gray-600`,

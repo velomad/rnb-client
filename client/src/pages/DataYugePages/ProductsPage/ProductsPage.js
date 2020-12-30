@@ -94,7 +94,10 @@ const ProductsPage = (props) => {
 										<div className=" h-96 p-16 flex">
 											<div className="m-auto space-y-8">
 												<div>
-													<img src="/static/images/progress.svg" width="350px"/>
+													<img
+														src="/static/images/progress.svg"
+														width="350px"
+													/>
 												</div>
 												<div>
 													<Text

@@ -22,7 +22,9 @@ import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import { history } from "../../../../../../utils";
 import { Text } from "../../../../../../components";
 import { connect } from "react-redux";
+import { AuthenticatedUser, UnAuthenticatedUser } from "./components";
 import { setSidebar } from "../../../../../../store/actions";
+
 const useStyles = makeStyles((theme) => ({
 	list: {
 		width: 270,
@@ -35,13 +37,12 @@ const useStyles = makeStyles((theme) => ({
 		width: "auto",
 	},
 	drawer: {
-		opacity: 0.9,
+		opacity: 0.95,
 	},
 }));
 const Sidebar = (props) => {
 	const classes = useStyles();
 	const [openListItem, setopenListItem] = React.useState("");
-
 
 	const getProducts = (product) => {
 		props.setSidebar(false);
@@ -91,7 +92,7 @@ const Sidebar = (props) => {
 										}
 									/>
 									{openListItem === item ? (
-										<ExpandLess className="text-pink-100" />
+										<ExpandLess className="text-pink-500" />
 									) : (
 										<ExpandMore className="text-gray-600" />
 									)}
@@ -103,7 +104,12 @@ const Sidebar = (props) => {
 								>
 									{electronics[item].map((listItem, index) => {
 										return (
-											<List key={index} component="div" disablePadding>
+											<List
+												key={index}
+												component="div"
+												disablePadding
+												className="bg-gray-900"
+											>
 												{!!listItem.child_category_name ? (
 													<ListItem button className={classes.nested}>
 														<ListItemIcon>
@@ -136,16 +142,15 @@ const Sidebar = (props) => {
 		<div>
 			<React.Fragment>
 				<Drawer
-					className={classes.drawer}
+					// className={classes.drawer}
 					ModalProps={{ onBackdropClick: () => props.setSidebar(false) }}
 					anchor="right"
-					// onBackdropClick={props.setSidebar(false)}
-					// className={classes.drawer}
 					open={props.open}
-					// classes={{
-					// 	paper: classes.drawerPaper,
-					// }}
 				>
+					<div className=" bg-gray-700 p-4 border-t-4 border-pink-600">
+						{1 == 1 ? <UnAuthenticatedUser /> : <AuthenticatedUser />}
+					</div>
+
 					{list("right")}
 				</Drawer>
 			</React.Fragment>
