@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Text } from "../../components";
+import { setStoriesPopUp } from "../../store/actions";
+import { connect } from "react-redux";
 import { WebsiteSlider, ProductSlider, StoriesPopUp } from "./components";
 
-const LandingPage = () => {
-	const [activeStory, setActiveStory] = useState(false);
-
+const LandingPage = (props) => {
 	const loadStory = (val) => {
 		console.log(val);
 	};
@@ -34,10 +34,6 @@ const LandingPage = () => {
 		},
 	];
 
-	const getCloseStory = (val) => {
-		setActiveStory(val);
-	};
-
 	return (
 		<div className="bg-gray-200">
 			<WebsiteSlider />
@@ -53,27 +49,26 @@ const LandingPage = () => {
 						Stories & Updates
 					</Text>
 				</div>
-				<div onClick={() => setActiveStory(true)}>test</div>
+				<div onClick={() => props.setStoriesPopUp(true)}>test</div>
 				<div>
 					<div class="flex flex-row space-x-3 items-center overflow-auto w-full">
-						{stories.map((el, index) => {
+						{stories.map((el, index) => (
 							<div onClick={() => loadStory(index)}>
 								<div class="p-1 border-2 border-white rounded-full">
 									<div class="w-16 h-16 ">
 										<img
-											class="p-1 rounded-full ring-pink-600 ring-2 ring-opacity-50 ring-offset-2 ring-offset-red-500 object-cover"
-											src="/static/images/amazon.png"
+											className="rounded-full"
+											src={el.image}
 											alt=""
 										/>
-										<div>{el.image}</div>
 									</div>
 								</div>
-							</div>;
-						})}
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
-			<StoriesPopUp active={activeStory} closeStory={getCloseStory} />
+			<StoriesPopUp />
 
 			{/* <div className="grid gap-2 grid-cols-2 md:grid-cols-2 py-4 p-1">
 				<div>
@@ -117,4 +112,4 @@ const LandingPage = () => {
 		</div>
 	);
 };
-export default LandingPage;
+export default connect(null, { setStoriesPopUp })(LandingPage);
