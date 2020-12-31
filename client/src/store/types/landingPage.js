@@ -1,0 +1,2 @@
+export const GET_SLIDER_LOAD = "GET_SLIDER_LOAD"
+export const GET_SLIDER_FETCH = "GET_SLIDER_FETCH"

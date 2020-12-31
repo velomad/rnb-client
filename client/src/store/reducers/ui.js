@@ -6,7 +6,7 @@ import {
 	SET_SIDEBAR,
 	PRODUCT_SPECS_POPUP,
 	SET_APPLIED_FILTERS,
-	SET_STORIES_POPUP
+	SET_STORIES_POPUP,
 } from "../types";
 
 const initialState = {
@@ -17,7 +17,8 @@ const initialState = {
 	isSidebar: false,
 	isProductSpecsPopUp: false,
 	appliedFilters: JSON.parse(sessionStorage.getItem("filters")) || [],
-	isStoriesPopUp : false
+	isStoriesPopUp: false,
+	story: "",
 };
 
 const setAppliedFilters = (state, payload) => {
@@ -65,7 +66,8 @@ const ui = (state = initialState, action) => {
 		case SET_STORIES_POPUP:
 			return {
 				...state,
-				isStoriesPopUp: payload,
+				isStoriesPopUp: payload.value,
+				story: payload.story,
 			};
 		case SET_APPLIED_FILTERS:
 			return setAppliedFilters(state, payload);

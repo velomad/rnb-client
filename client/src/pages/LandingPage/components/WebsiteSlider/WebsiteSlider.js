@@ -60,7 +60,7 @@ const MainSlider = () => {
 								{el.circles.map((circle) => (
 									<div className="mt-2">
 										<div>
-											<div className="p-1 border-2 ring-2 ring-pink-500 ring-opacity  rounded-full w-20 h-20">
+											<div className="p-1 border-2 ring-2 ring-pink-500 ring-opacity rounded-full w-20 h-20">
 												<img
 													className="rounded-full w-full h-full object-contain"
 													src={circle.circleImage}

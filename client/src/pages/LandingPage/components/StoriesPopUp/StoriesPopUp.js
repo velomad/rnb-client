@@ -19,9 +19,6 @@ const StoriesPopUp = (props) => {
 				TransitionComponent={Transition}
 			>
 				<div className="absolute right-0">
-					<div className="" onClick={() => props.setStoriesPopUp(false)}>
-						closeeeeee
-					</div>
 					<div>
 						<Stories />
 					</div>

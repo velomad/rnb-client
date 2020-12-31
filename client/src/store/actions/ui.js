@@ -8,7 +8,7 @@ import {
 	COMPARE_PRODUCT_POPUP,
 	PRODUCT_SPECS_POPUP,
 	SET_APPLIED_FILTERS,
-	SET_STORIES_POPUP
+	SET_STORIES_POPUP,
 } from "../types";
 
 export const setFilterPopUpAction = (value) => (dispatch) => {
@@ -39,6 +39,9 @@ export const setAppliedFilters = (value) => (dispatch) => {
 	dispatch({ type: SET_APPLIED_FILTERS, payload: value });
 };
 
-export const setStoriesPopUp = (value) => (dispatch) => {
-	dispatch({ type: SET_STORIES_POPUP, payload: value });
+export const setStoriesPopUp = (value, storyIndex) => (dispatch) => {
+	dispatch({
+		type: SET_STORIES_POPUP,
+		payload: { value: value, story: storyIndex },
+	});
 };

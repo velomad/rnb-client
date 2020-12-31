@@ -4,6 +4,7 @@ import dataSkoreProducts from "./dataSkoreProducts";
 import recentSearches from "./recentSearches";
 import autocomplete from "./autocomplete";
 import dataYugeProducts from "./dataYugeProducts";
+import landingPage from "./landingPage";
 
 export default combineReducers({
 	uiState: ui,
@@ -11,4 +12,5 @@ export default combineReducers({
 	recentSearchesState: recentSearches,
 	autocompleteState: autocomplete,
 	dataYugeProductsState: dataYugeProducts,
+	landingPageState: landingPage,
 });

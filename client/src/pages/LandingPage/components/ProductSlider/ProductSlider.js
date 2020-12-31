@@ -11,16 +11,42 @@ import "swiper/components/pagination/pagination.scss";
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const ProductSlider = () => {
+	const offers = [
+		{
+			id: "1",
+			image:
+				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/aaaaa.jpg",
+			name: "Deal of day",
+		},
+		{
+			id: "2",
+			image:
+				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/offer2.jpg",
+			name: "Fashion",
+		},
+		{
+			id: "3",
+			image:
+				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/offer3.jpg",
+			name: "Coming Soon",
+		},
+		{
+			id: "4",
+			image:
+				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/offer4.jpg",
+			name: "Free Shopping",
+		},
+	];
+
 	return (
 		<div>
 			<Swiper
 				spaceBetween={20}
 				slidesPerView={3}
-				
 				loop={true}
 				autoplay={{
 					delay: 2500,
-					disableOnInteraction:false
+					disableOnInteraction: false,
 				}}
 				breakpoints={{
 					"@0.75": {
@@ -35,67 +61,22 @@ const ProductSlider = () => {
 					},
 				}}
 			>
-				<SwiperSlide>
-					<div
-						className="relative"
-						style={{
-							height: "8rem",
-							width: "100%",
-							borderRadius: 5,
-							background: "rgba(0,0,0,0.6)",
-							backgroundImage: `url(/static/images/amazonicon.png)`,
-							backgroundSize: "contain, cover",
-							backgroundRepeat: "no-repeat",
-						}}
-					>
-						<div className="absolute bottom-0">
-							<Text size="md" variant="white">
-								PRODUCT NAME
-							</Text>
-						</div>
-					</div>
-				</SwiperSlide>
-
-				<SwiperSlide>
-					<div
-						style={{
-							height: "8rem",
-							borderRadius: 5,
-
-							width: "100%",
-							backgroundImage: `url(/static/images/gplaypattern.png)`,
-						}}
-					>
-						2
-					</div>
-				</SwiperSlide>
-
-				<SwiperSlide>
-					<div
-						style={{
-							height: "8rem",
-							borderRadius: 5,
-
-							width: "100%",
-							backgroundImage: `url(/static/images/gplaypattern.png)`,
-						}}
-					>
-						2
-					</div>
-				</SwiperSlide>
-
-				<SwiperSlide>
-					<div
-						style={{
-							borderRadius: 5,
-							height: "8rem",
-							width: "100%",
-							backgroundImage: `url(/static/images/gplaypattern.png)`,
-						}}
-					>
-						2
-					</div>
-				</SwiperSlide>
+				{offers.map((el) => (
+					<SwiperSlide>
+						<div
+							className="relative"
+							style={{
+								height: "8rem",
+								width: "100%",
+								borderRadius: 5,
+								background: "rgba(0,0,0,0.8)",
+								backgroundImage: `url(${el.image})`,
+								backgroundSize: "cover",
+								backgroundRepeat: "no-repeat",
+							}}
+						></div>
+					</SwiperSlide>
+				))}
 			</Swiper>
 		</div>
 	);
