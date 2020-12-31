@@ -25,7 +25,7 @@ const Stories = (props) => {
 			stories={stories}
 			defaultInterval={4000}
 			currentIndex={2}
-			width="100%"
+			width="100vw"
 			height="100vh"
 			// onAllStoriesEnd={}
 		/>

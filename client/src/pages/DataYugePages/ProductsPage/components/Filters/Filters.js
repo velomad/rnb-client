@@ -191,10 +191,10 @@ const Filters = (props) => {
 				</Text>
 			</div>
 
-			<div>
+			{/* <div>
 				<FormControl component="fieldset">
 					<RadioGroup aria-label="discount" name="discount">
-						{props.dataYugeFilters.length > 0 &&
+						{props.dataYugeFilters &&
 							props.dataYugeFilters[0].contents.map((el) => (
 								<div key={el.name} className=" flex space-x-4 items-center">
 									<div>
@@ -211,13 +211,13 @@ const Filters = (props) => {
 							))}
 					</RadioGroup>
 				</FormControl>
-			</div>
+			</div> */}
 
 			<div>
 				{console.log("props.dataYugeFilters <=======>", props.dataYugeFilters)}
 				{"sub_category" in isFilters &&
 					props.dataYugeFilters &&
-					props.dataYugeFilters.slice(1, 5).map((elem, mainindex) => (
+					props.dataYugeFilters.slice(0, 5).map((elem, mainindex) => (
 						<div className="py-6 border-b-2">
 							<div className="flex justify-between">
 								<Text variant="primaryDark" size="sm" weight="700">
