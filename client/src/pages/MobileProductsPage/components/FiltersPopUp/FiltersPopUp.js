@@ -211,7 +211,12 @@ const FiltersPopUp = (props) => {
 		}
 		tempFilterData.length = 0;
 		filterCheckBoxData();
-		calculatedFilters.length = 0;
+		if(!!priceFilter.start || !!priceFilter.end || calculatedFilters.length !== 0){
+			console.log('Price Found...');
+		}else{
+			calculatedFilters.length = 0;
+			console.log('No Price Found...');
+		}
 	};
 
 	let chunkCheckBoxKeys = [];
