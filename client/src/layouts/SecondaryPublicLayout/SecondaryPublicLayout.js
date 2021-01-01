@@ -6,8 +6,8 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 function SecondaryPublicLayout(props) {
 	return (
 		<div>
-			<div className="h-14 w-full p-4 bg-gray-900 flex items-center justify-between">
-				<div onClick={()=> history.goBack()}>
+			<div className="fixed h-14 w-full p-4 bg-gray-900 flex items-center justify-between">
+				<div onClick={() => history.goBack()}>
 					<ArrowBackIcon style={{ color: "white" }} />
 				</div>
 				<div>
@@ -18,7 +18,7 @@ function SecondaryPublicLayout(props) {
 						weight="700"
 						variant="white"
 					>
-						Wishlist
+						{history.location.pathname.slice(1)}
 					</Text>
 				</div>
 			</div>

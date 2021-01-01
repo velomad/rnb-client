@@ -1,96 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Slider, Text } from "../../components";
-import { setStoriesPopUp , getSlider} from "../../store/actions";
+import {
+	setStoriesPopUp,
+	getSlider,
+	getStories,
+	getOffers,
+	getNews,
+} from "../../store/actions";
 import { connect } from "react-redux";
 import { WebsiteSlider, ProductSlider, StoriesPopUp } from "./components";
 
 const LandingPage = (props) => {
-
-
 	useEffect(() => {
-		// props.getSlider()
-	},[])
+		props.getSlider();
+		props.getStories();
+		props.getOffers();
+		props.getNews();
+	}, []);
 
 	const loadStory = (val) => {
 		props.setStoriesPopUp(true, val);
 	};
-
-	const stories = [
-		{
-			image: "http://reachnbuy.unitechitsolution.in/AndroidClass/images/aa.png",
-		},
-		{
-			image: "http://reachnbuy.unitechitsolution.in/AndroidClass/images/ab.jpg",
-		},
-		{
-			image: "http://reachnbuy.unitechitsolution.in/AndroidClass/images/ac.jpg",
-		},
-		{
-			image: "http://reachnbuy.unitechitsolution.in/AndroidClass/images/ad.jpg",
-		},
-		{
-			image: "http://reachnbuy.unitechitsolution.in/AndroidClass/images/ae.jpg",
-		},
-		{
-			image: "http://reachnbuy.unitechitsolution.in/AndroidClass/images/af.jpg",
-		},
-		{
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/c11ad7bd236925f6c1b71d9cc9dc3087.gif",
-		},
-	];
-
-	const news = [
-		{
-			id: "1",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/aabbcf2e28a0e1f64065657be3447ad7.jpg",
-			link:
-				"https://www.myntra.com/sports-shoes/action/action-men-charcoal-grey-self-design-running-shoes/11344366/buy",
-		},
-		{
-			id: "2",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/92343ebd8e3f69a594178f0b48e2dd94.jpg",
-			link:
-				"https://www.myntra.com/sports-shoes/action/action-men-charcoal-grey-self-design-running-shoes/11344366/buy",
-		},
-		{
-			id: "3",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/a11ea876d4e7638352acac6201b35127.jpg",
-			link:
-				"https://www.myntra.com/sports-shoes/action/action-men-charcoal-grey-self-design-running-shoes/11344366/buy",
-		},
-		{
-			id: "4",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/c7f96a5ef697096e91c5f4d5ac257932.png",
-			link:
-				"https://www.myntra.com/sports-shoes/action/action-men-charcoal-grey-self-design-running-shoes/11344366/buy",
-		},
-		{
-			id: "5",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/3261557feb3c1bececdcbe7884d62c09.jpg",
-			link:
-				"https://www.myntra.com/sports-shoes/action/action-men-charcoal-grey-self-design-running-shoes/11344366/buy",
-		},
-		{
-			id: "6",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/839c4465a018e3f2b6eb2d06a4f4f7de.jpg",
-			link:
-				"https://www.myntra.com/sports-shoes/action/action-men-charcoal-grey-self-design-running-shoes/11344366/buy",
-		},
-		{
-			id: "7",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/e2b4a944cea0bb893bd66f3ed87e2fe1.jpg",
-			link:
-				"https://www.myntra.com/sports-shoes/action/action-men-charcoal-grey-self-design-running-shoes/11344366/buy",
-		},
-	];
 
 	let sliderImages = [];
 
@@ -117,7 +47,7 @@ const LandingPage = (props) => {
 				</div>
 				<div>
 					<div class="flex flex-row space-x-3 items-center overflow-auto w-full">
-						{stories.map((el, index) => (
+						{props.stories.map((el, index) => (
 							<div onClick={() => loadStory(index)}>
 								<div class="p-1 border-2 border-pink-600 rounded-full">
 									<div class="w-16 h-16">
@@ -173,7 +103,7 @@ const LandingPage = (props) => {
 					</Text>
 				</div>
 				<div className="py-8">
-					<ProductSlider />
+					<ProductSlider offers={props.offers} />
 				</div>
 			</div>
 
@@ -190,7 +120,7 @@ const LandingPage = (props) => {
 					</Text>
 				</div>
 				<div className={`grid gap-2 grid-cols-2 md:grid-cols-2 py-4 p-1`}>
-					{news.slice(0, 4).map((el, index) => (
+					{props.news.slice(0, 4).map((el, index) => (
 						<div>
 							<img
 								className="rounded-lg object-cover w-full"
@@ -219,7 +149,7 @@ const LandingPage = (props) => {
 				</div>
 
 				<div className={`grid gap-2 grid-cols-1 md:grid-cols-2 py-4`}>
-					{news.slice(4, news.length - 1).map((el, index) => (
+					{props.news.slice(4, props.news.length - 1).map((el, index) => (
 						<div>
 							<img
 								className="rounded-lg object-cover w-full"
@@ -236,6 +166,15 @@ const LandingPage = (props) => {
 
 const mapStateToProps = ({ landingPageState }) => ({
 	sliderList: landingPageState.sliders,
+	stories: landingPageState.stories,
+	offers: landingPageState.offers,
+	news: landingPageState.news,
 });
 
-export default connect(mapStateToProps, { setStoriesPopUp, getSlider })(LandingPage);
+export default connect(mapStateToProps, {
+	setStoriesPopUp,
+	getSlider,
+	getStories,
+	getOffers,
+	getNews,
+})(LandingPage);

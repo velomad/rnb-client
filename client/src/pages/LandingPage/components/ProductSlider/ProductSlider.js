@@ -10,33 +10,7 @@ import "swiper/components/pagination/pagination.scss";
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
-const ProductSlider = () => {
-	const offers = [
-		{
-			id: "1",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/aaaaa.jpg",
-			name: "Deal of day",
-		},
-		{
-			id: "2",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/offer2.jpg",
-			name: "Fashion",
-		},
-		{
-			id: "3",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/offer3.jpg",
-			name: "Coming Soon",
-		},
-		{
-			id: "4",
-			image:
-				"http://reachnbuy.unitechitsolution.in/AndroidClass/images/offer4.jpg",
-			name: "Free Shopping",
-		},
-	];
+const ProductSlider = (props) => {
 
 	return (
 		<div>
@@ -61,7 +35,7 @@ const ProductSlider = () => {
 					},
 				}}
 			>
-				{offers.map((el) => (
+				{props.offers.map((el) => (
 					<SwiperSlide>
 						<div
 							className="relative"
