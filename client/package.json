@@ -52,6 +52,7 @@
 		"workbox-strategies": "^5.1.4",
 		"workbox-streams": "^5.1.4"
 	},
+	"proxy": "https://cors-anywhere.herokuapp.com/",
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",

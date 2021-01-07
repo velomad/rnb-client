@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Slider, Text } from "../../components";
+import { history } from "../../utils";
 import {
 	setStoriesPopUp,
 	getSlider,
@@ -65,9 +66,8 @@ const LandingPage = (props) => {
 				</div>
 			</div>
 			<StoriesPopUp />
-
-			{/* https://a07c92b5-a36f-447a-b131-469f99987059.mysimplestore.com/api/v2/products?page_fallback=true&app=vnext&page=255&per_page=16&q[descend_by_popularity]=true&timestamp=1609412596868 */}
-
+			
+{/* 
 			<div className="px-4">
 				<Text
 					size="sm"
@@ -78,9 +78,11 @@ const LandingPage = (props) => {
 				>
 					Our Partners
 				</Text>
-			</div>
+			</div> */}
 
-			<div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1">
+			{/* <div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1"
+				onClick={() => history.push("/products/kanmani")}
+			>
 				<div>
 					<img
 						className="rounded-lg object-cover w-full"
@@ -88,7 +90,7 @@ const LandingPage = (props) => {
 						src="https://img1.wsimg.com/isteam/ip/a07c92b5-a36f-447a-b131-469f99987059/857416867_122848.jpg/:/rs=w:1950,h:1200"
 					/>
 				</div>
-			</div>
+			</div> */}
 
 			<div className="bg-gray-100">
 				<div className="py-4 px-4">

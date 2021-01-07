@@ -71,12 +71,12 @@ const Sidebar = (props) => {
 			style={
 				openListItem === "close" || openListItem === ""
 					? {
-							backgroundColor: "#222",
-							height: "100%",
-					  }
+						backgroundColor: "#222",
+						height: "100%",
+					}
 					: {
-							backgroundColor: "#222",
-					  }
+						backgroundColor: "#222",
+					}
 			}
 		>
 			<List>
@@ -99,8 +99,8 @@ const Sidebar = (props) => {
 									{openListItem === item ? (
 										<ExpandLess className="text-pink-500" />
 									) : (
-										<ExpandMore className="text-gray-600" />
-									)}
+											<ExpandMore className="text-gray-600" />
+										)}
 								</ListItem>
 								<Collapse
 									in={openListItem === item}
@@ -143,6 +143,11 @@ const Sidebar = (props) => {
 		</div>
 	);
 
+	const handleAuthClick = () => {
+		props.setSidebar(false)
+		history.push("/auth")
+	}
+
 	return (
 		<div>
 			<React.Fragment>
@@ -153,7 +158,7 @@ const Sidebar = (props) => {
 					open={props.open}
 				>
 					<div className=" bg-gray-700 p-4 border-t-4 border-pink-600">
-						{1 == 1 ? <UnAuthenticatedUser /> : <AuthenticatedUser />}
+						{1 == 1 ? <div onClick={handleAuthClick}> <UnAuthenticatedUser /> </div> : <AuthenticatedUser />}
 					</div>
 					<div
 						className="bg-gray-200 text-center p-4"

@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
-
 import { WithLayoutRoute } from "./routers";
 import { QueryParamProvider } from "use-query-params";
 import { PublicLayout, SecondaryPublicLayout } from "./layouts";
@@ -21,6 +20,10 @@ import DataYugeProductPage from "./pages/DataYugePages/ProductPage";
 import MobileProductsPage from "./pages/MobileProductsPage";
 import Wishlist from "./pages/Wishlist";
 import Blogs from "./pages/Blogs";
+import PartnerProductsPage from "./pages/PartnerProductsPage";
+import AuthenticationPage from "./pages/AuthenticationPage";
+import RegisterPage from "./pages/RegisterPage";
+
 import {
 	BrowserView,
 	MobileView,
@@ -95,17 +98,35 @@ const Routes = () => {
 								layout={SecondaryPublicLayout}
 								component={Blogs}
 							/>
+							<WithLayoutRoute
+								exact
+								path="/products/:partnerName"
+								layout={PublicLayout}
+								component={PartnerProductsPage}
+							/>
+							<WithLayoutRoute
+								exact
+								path="/auth"
+								layout={PublicLayout}
+								component={AuthenticationPage}
+							/>
+							<WithLayoutRoute
+								exact
+								path="/register"
+								layout={PublicLayout}
+								component={RegisterPage}
+							/>
 							<Route path="*" component={() => "404 NOT FOUND"} />
 						</Switch>
 					</MobileView>
 					<BrowserView>
-					<div
-					className="text-center mt-20"
-					>
+						<div
+							className="text-center mt-20"
+						>
 
-						<div>Desktop view is currently under build.</div>
-						<div>Though you can access us on your mobile phone</div>
-					</div>
+							<div>Desktop view is currently under build.</div>
+							<div>Though you can access us on your mobile phone</div>
+						</div>
 
 					</BrowserView>
 				</ScrollToTop>

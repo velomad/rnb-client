@@ -230,68 +230,67 @@ const Filters = (props) => {
 
 							<div className="space-y-0">
 								<ul
-									className={`${
-										elem.contents.length > 6 && "h-96"
-									} overflow-y-scroll`}
+									className={`${elem.contents.length > 6 && "h-96"
+										} overflow-y-scroll`}
 									style={{ scrollbarColor: "deepskyblue" }}
 								>
 									{renderUI
 										? elem.contents &&
-										  elem.contents.map((el, index) => (
-												<li key={index}>
-													<FormControlLabel
-														key={el + index}
-														control={
-															<Checkbox
-																size="small"
-																checked={el.isChecked}
-																onChange={(e) => handleChange(e, el, mainindex)}
-																name={<Text variant="primary">{el.name}</Text>}
-																value={
-																	props.dataYugeFilters[mainindex + 1].title ===
+										elem.contents.map((el, index) => (
+											<li key={index}>
+												<FormControlLabel
+													key={el + index}
+													control={
+														<Checkbox
+															size="small"
+															checked={el.isChecked}
+															onChange={(e) => handleChange(e, el, mainindex)}
+															name={<Text variant="primary">{el.name}</Text>}
+															value={
+																props.dataYugeFilters[mainindex + 1].title ===
 																	"Price"
-																		? el.price_start + "-" + el.price_end
-																		: el.filter
-																}
-																id={index}
-															/>
-														}
-														label={
-															<Text variant="primaryDark" size="xs">
-																{el.name}
-															</Text>
-														}
-													/>
-												</li>
-										  ))
+																	? el.price_start + "-" + el.price_end
+																	: el.filter
+															}
+															id={index}
+														/>
+													}
+													label={
+														<Text variant="primaryDark" size="xs">
+															{el.name}
+														</Text>
+													}
+												/>
+											</li>
+										))
 										: elem.contents &&
-										  elem.contents.map((el, index) => (
-												<li key={index}>
-													<FormControlLabel
-														key={el + index}
-														control={
-															<Checkbox
-																size="small"
-																checked={el.isChecked}
-																onChange={(e) => handleChange(e, el, mainindex)}
-																name={<Text variant="primary">{el.name}</Text>}
-																value={
-																	props.dataYugeFilters[mainindex + 1].title ===
+										elem.contents.map((el, index) => (
+											<li key={index}>
+												<FormControlLabel
+													key={el + index}
+													control={
+														<Checkbox
+															size="small"
+															checked={el.isChecked}
+															onChange={(e) => handleChange(e, el, mainindex)}
+															name={<Text variant="primary">{el.name}</Text>}
+															value={
+																props.dataYugeFilters[mainindex + 1].title ===
 																	"Price"
-																		? el.price_start + "-" + el.price_end
-																		: el.filter
-																}
-																id={index}
-															/>
-														}
-														label={
-															<Text variant="primary" size="xs">
-																{el.name}
-															</Text>
-														}
-													/>
-												</li>
-										  ))}
+																	? el.price_start + "-" + el.price_end
+																	: el.filter
+															}
+															id={index}
+														/>
+													}
+													label={
+														<Text variant="primary" size="xs">
+															{el.name}
+														</Text>
+													}
+												/>
+											</li>
+										))}
 								</ul>
 							</div>
 						</div>
