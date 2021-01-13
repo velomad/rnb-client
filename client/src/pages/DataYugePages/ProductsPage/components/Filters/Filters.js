@@ -224,13 +224,13 @@ const Filters = (props) => {
 									{elem.title}
 								</Text>
 								<Text variant="primaryDark" size="xs" weight="700">
-									{elem.title == "Brand" && elem.contents.length}
+									{/* {elem.title == "Brand" &&  elem.contents.length > 0 ? elem.contents.length : null} */}
 								</Text>
 							</div>
 
 							<div className="space-y-0">
 								<ul
-									className={`${elem.contents.length > 6 && "h-96"
+									className={`${elem.contents && elem.contents.length > 6 && "h-96"
 										} overflow-y-scroll`}
 									style={{ scrollbarColor: "deepskyblue" }}
 								>
@@ -275,7 +275,7 @@ const Filters = (props) => {
 															onChange={(e) => handleChange(e, el, mainindex)}
 															name={<Text variant="primary">{el.name}</Text>}
 															value={
-																props.dataYugeFilters[mainindex + 1].title ===
+																props.dataYugeFilters[mainindex + 0].title ===
 																	"Price"
 																	? el.price_start + "-" + el.price_end
 																	: el.filter

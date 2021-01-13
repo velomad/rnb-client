@@ -14,7 +14,7 @@ export const getSlider = () => async (dispatch) => {
 	dispatch({ type: GET_SLIDER_LOAD });
 	try {
 		const response = await Axios.get(
-			`https://cors-anywhere.herokuapp.com/http://reachnbuy.unitechitsolution.in/AndroidClass/get_slider.php`,
+			`https://cors-anywhere.herokuapp.com/https://reachnbuy.unitechitsolution.in/AndroidClass/get_slider.php`,
 		);
 		dispatch({
 			type: GET_SLIDER_FETCH,
