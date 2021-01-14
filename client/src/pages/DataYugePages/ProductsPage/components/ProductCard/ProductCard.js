@@ -115,7 +115,7 @@ const ProductCard = ({
           epic % 2 !== 0 && "border-l-2 md:border-l-0"
         }`}
       >
-        <div
+        {/* <div
           className="md:invisible absolute right-0 p-1 z-10"
           onClick={() =>
             handleWishList(
@@ -133,7 +133,7 @@ const ProductCard = ({
           ) : (
             <BF style={{ color: "deeppink" }} fontSize="small" />
           )}
-        </div>
+        </div> */}
 
         <div className=" transition duration-700 ease-in-out transform hover:-translate-y-2">
           {productImage !== null ? (

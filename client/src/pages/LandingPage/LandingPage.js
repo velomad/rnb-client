@@ -2,38 +2,91 @@ import React, { useState, useEffect } from "react";
 import { Slider, Text } from "../../components";
 import { history } from "../../utils";
 import {
-	setStoriesPopUp,
-	getSlider,
-	getStories,
-	getOffers,
-	getNews,
+  setStoriesPopUp,
+  getSlider,
+  getStories,
+  getOffers,
+  getNews,
 } from "../../store/actions";
 import { connect } from "react-redux";
 import { WebsiteSlider, ProductSlider, StoriesPopUp } from "./components";
 
 const LandingPage = (props) => {
-	useEffect(() => {
-		props.getSlider();
-		props.getStories();
-		props.getOffers();
-		props.getNews();
-	}, []);
+  useEffect(() => {
+    props.getSlider();
+    props.getStories();
+    props.getOffers();
+    props.getNews();
+  }, []);
 
-	const loadStory = (val) => {
-		props.setStoriesPopUp(true, val);
-	};
+  const loadStory = (val) => {
+    props.setStoriesPopUp(true, val);
+  };
 
-	let sliderImages = [];
+  let sliderImages = [];
 
-	props.sliderList.map((el) => {
-		sliderImages.push(el.slider);
-	});
+  props.sliderList.map((el) => {
+    sliderImages.push(el.slider);
+  });
 
-	return (
-		<div className="bg-gray-200">
-			<WebsiteSlider />
+  return (
+    <div className="bg-gray-200">
+      <div>
+        <img src="/static/images/b1.png" />
+      </div>
 
-			<div class="px-4 space-y-4">
+      <WebsiteSlider />
+
+      <div className="grid grid-cols-1">
+        <div>
+          <img src="/static/images/b2.png" />
+        </div>
+        <div>
+          <div className="bg-gray-200 py-10 place-items-center grid grid-cols-3">
+            <div
+              className="h-20 w-20 bg-red-400 rounded-full p-4"
+              onClick={() => history.push("/products?discountPercent[gte]=30")}
+            >
+              <div className="text-center mt-3 text-white font-semibold text-xl">
+                30%
+              </div>
+            </div>
+            <div className="h-20 w-20 bg-red-400 rounded-full p-4">
+              <div
+                className="text-center mt-3 text-white font-semibold text-xl"
+                onClick={() =>
+                  history.push("/products?discountPercent[gte]=50")
+                }
+              >
+                50%
+              </div>
+            </div>
+            <div className="h-20 w-20 bg-red-400 rounded-full p-4">
+              <div
+                className="text-center mt-3 text-white font-semibold text-xl"
+                onClick={() =>
+                  history.push("/products?discountPercent[gte]=70")
+                }
+              >
+                70%
+              </div>
+            </div>
+          </div>
+          <div className="bg-gray-100 py-4">
+            <div className="text-center text-4xl text-gray-600 uppercase capitalize">
+              Offer zone
+            </div>
+            <div className="text-center text-gray-500 text-sm">
+              best deals for you
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="/static/images/b3.png" />
+        </div>
+      </div>
+
+      {/* <div class="px-4 space-y-4">
 				<div>
 					<Text
 						size="sm"
@@ -65,9 +118,9 @@ const LandingPage = (props) => {
 					</div>
 				</div>
 			</div>
-			<StoriesPopUp />
-			
-{/* 
+			<StoriesPopUp /> */}
+
+      {/* 
 			<div className="px-4">
 				<Text
 					size="sm"
@@ -80,7 +133,7 @@ const LandingPage = (props) => {
 				</Text>
 			</div> */}
 
-			{/* <div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1"
+      {/* <div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1"
 				onClick={() => history.push("/products/kanmani")}
 			>
 				<div>
@@ -92,7 +145,7 @@ const LandingPage = (props) => {
 				</div>
 			</div> */}
 
-			<div className="bg-gray-100">
+      {/* <div className="bg-gray-100">
 				<div className="py-4 px-4">
 					<Text
 						variant="primaryDark"
@@ -160,23 +213,23 @@ const LandingPage = (props) => {
 							/>
 						</div>
 					))}
-				</div>
-			</div>
-		</div>
-	);
+				</div> */}
+      {/* </div> */}
+    </div>
+  );
 };
 
 const mapStateToProps = ({ landingPageState }) => ({
-	sliderList: landingPageState.sliders,
-	stories: landingPageState.stories,
-	offers: landingPageState.offers,
-	news: landingPageState.news,
+  sliderList: landingPageState.sliders,
+  stories: landingPageState.stories,
+  offers: landingPageState.offers,
+  news: landingPageState.news,
 });
 
 export default connect(mapStateToProps, {
-	setStoriesPopUp,
-	getSlider,
-	getStories,
-	getOffers,
-	getNews,
+  setStoriesPopUp,
+  getSlider,
+  getStories,
+  getOffers,
+  getNews,
 })(LandingPage);

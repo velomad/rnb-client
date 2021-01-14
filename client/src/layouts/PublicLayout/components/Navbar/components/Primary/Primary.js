@@ -235,7 +235,7 @@ const Primary = (props) => {
 							className="flex md:hidden mb-4 px-1 md:mx-0 lg:mx-0"
 							onClick={() => showMenu()}
 						>
-							<div className="mt-1" onClick={() => history.push("/wishlist")}>
+							{/* <div className="mt-1" onClick={() => history.push("/wishlist")}>
 								<Lottie
 									options={defaultOptions}
 									height={30}
@@ -243,7 +243,7 @@ const Primary = (props) => {
 									// isStopped={this.state.isStopped}
 									// isPaused={this.state.isPaused}
 								/>
-							</div>
+							</div> */}
 
 							<SearchOutlinedIcon
 								onClick={() => props.setSearchSlide(true)}

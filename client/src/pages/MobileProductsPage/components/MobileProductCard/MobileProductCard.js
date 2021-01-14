@@ -41,14 +41,14 @@ const MProductCard = ({
 						</Text>
 					</div>
 				) : null}
-
+{/* 
 				<div className="float-right p-1 z-20" onClick={handleWishlist}>
 					{!wish ? (
 						<BO style={{ color: "gray" }} fontSize="small" />
 					) : (
 						<BF style={{ color: "deeppink" }} fontSize="small" />
 					)}
-				</div>
+				</div> */}
 
 				<div className="flex justify-center" onClick={handleProductClick}>
 					{image !== null ? (
