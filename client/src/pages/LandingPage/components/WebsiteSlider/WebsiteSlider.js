@@ -17,7 +17,7 @@ const MainSlider = () => {
     <div>
       <Swiper
         spaceBetween={20}
-        slidesPerView={2}
+        slidesPerView={1}
         loop={true}
         autoplay={{
           delay: 4000,
