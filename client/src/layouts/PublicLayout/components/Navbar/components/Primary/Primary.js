@@ -252,12 +252,21 @@ const Primary = (props) => {
               />
 
               <button
-			  	type="button"
+                type="button"
                 onClick={() => props.setSidebar(true)}
                 className="flex space-x-2 p-1.5 text-white  focus:outline-none"
                 aria-label="toggle menu"
               >
-                <div>Electronics</div>
+                <div>
+                  <Text
+                    size="xs"
+                    variant="white"
+                    classes="uppercase"
+                    isTitle={true}
+                  >
+                    Electronics
+                  </Text>
+                </div>
                 <div>
                   <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
                     <path
