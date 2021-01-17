@@ -53,7 +53,9 @@ const MobileProductsPage = (props, location) => {
             props.productsLoading || props.products.length > 0 ? (
               <Skeleton />
             ) : (
-              <div className="text-center py-40">Proudcts will be listed soon..</div>
+              <div className="text-center py-40">
+                Proudcts will be listed soon..
+              </div>
             )
           }
           endMessage={<h4>No More Items</h4>}

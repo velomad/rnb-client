@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { BottomNavigation } from "@material-ui/core";
@@ -7,73 +7,79 @@ import ImportExportIcon from "@material-ui/icons/ImportExport";
 import TuneIcon from "@material-ui/icons/Tune";
 import { connect } from "react-redux";
 import {
-	setFilterPopUpAction,
-	setSortPopUpAction,
+  setFilterPopUpAction,
+  setSortPopUpAction,
 } from "../../../../store/actions";
 import { Text } from "../../../../components";
+import { history } from "../../../../utils";
 const useStyles = makeStyles({
-	root: {
-		width: "50%",
-		// backgroundColor: "#666",
-		background: "rgba(230,230,230,230)",
-		zIndex: 100,
-	},
-	stickToBottom: {
-		width: "100%",
-		position: "fixed",
-		bottom: 0,
-	},
-	iconStyle: {
-		color: "#000",
-	},
+  root: {
+    width: "50%",
+    // backgroundColor: "#666",
+    background: "rgba(230,230,230,230)",
+    zIndex: 100,
+  },
+  stickToBottom: {
+    width: "100%",
+    position: "fixed",
+    bottom: 0,
+  },
+  iconStyle: {
+    color: "#000",
+  },
 });
 
 const BottomNav = (props) => {
-	const handleFiltersPopUp = () => {
-		props.setFilterPopUpAction(true);
-	};
+  const handleFiltersPopUp = () => {
+    props.setFilterPopUpAction(true);
+  };
 
-	const handleSortPopUp = () => {
-		props.setSortPopUpAction(true);
-	};
+  const handleSortPopUp = () => {
+    props.setSortPopUpAction(true);
+  };
 
-	const Filter = () => {
-		return (
-			<div className="flex items-center space-x-1">
-				<TuneIcon className={classes.iconStyle} />
-				<div>
-					<Text size="base" variant="black">
-						Filter
-					</Text>
-				</div>
-			</div>
-		);
-	};
+  useEffect(() => {
+    props.setSortPopUpAction(false);
+    props.setFilterPopUpAction(false);
+  }, [history.location.pathname]);
 
-	const Sort = () => {
-		return (
-			<div className="flex items-center space-x-1">
-				<ImportExportIcon className={classes.iconStyle} />
-				<div>
-					<Text size="base" variant="black">
-						Sort
-					</Text>
-				</div>
-			</div>
-		);
-	};
+  const Filter = () => {
+    return (
+      <div className="flex items-center space-x-1">
+        <TuneIcon className={classes.iconStyle} />
+        <div>
+          <Text size="base" variant="black">
+            Filter
+          </Text>
+        </div>
+      </div>
+    );
+  };
 
-	const classes = useStyles();
-	return (
-		<BottomNavigation
-			showLabels
-			className={clsx(classes.root, classes.stickToBottom)}
-		>
-			<BottomNavigationAction onClick={handleSortPopUp} icon={<Sort />} />
+  const Sort = () => {
+    return (
+      <div className="flex items-center space-x-1">
+        <ImportExportIcon className={classes.iconStyle} />
+        <div>
+          <Text size="base" variant="black">
+            Sort
+          </Text>
+        </div>
+      </div>
+    );
+  };
 
-			<BottomNavigationAction onClick={handleFiltersPopUp} icon={<Filter />} />
-		</BottomNavigation>
-	);
+  const classes = useStyles();
+  return (
+    <BottomNavigation
+      showLabels
+      className={clsx(classes.root, classes.stickToBottom)}
+    >
+      <BottomNavigationAction onClick={handleSortPopUp} icon={<Sort />} />
+
+      <BottomNavigationAction onClick={handleFiltersPopUp} icon={<Filter />} />
+    </BottomNavigation>
+  );
 };
 
 const mapDispatchToProps = { setFilterPopUpAction, setSortPopUpAction };

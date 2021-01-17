@@ -26,138 +26,143 @@ import { AuthenticatedUser, UnAuthenticatedUser } from "./components";
 import { setSidebar } from "../../../../../../store/actions";
 
 const useStyles = makeStyles((theme) => ({
-	list: {
-		width: 270,
-		backgroundColor: "#222",
-		[theme.breakpoints.up("md")]: {
-			width: 350,
-		},
-	},
-	fullList: {
-		width: "auto",
-	},
-	drawer: {
-		opacity: 0.95,
-	},
+  list: {
+    width: 270,
+    backgroundColor: "#222",
+    [theme.breakpoints.up("md")]: {
+      width: 350,
+    },
+  },
+  fullList: {
+    width: "auto",
+  },
+  drawer: {
+    opacity: 0.95,
+  },
 }));
 const Sidebar = (props) => {
-	const classes = useStyles();
-	const [openListItem, setopenListItem] = React.useState("");
+  const classes = useStyles();
+  const [openListItem, setopenListItem] = React.useState("");
 
-	const getProducts = (product) => {
-		props.setSidebar(false);
-		history.push("/electronic/products?sub_category=" + product);
-	};
+  const getProducts = (product) => {
+    props.setSidebar(false);
+    history.push("/electronic/products?sub_category=" + product);
+  };
 
-	const handleBlogClick = () => {
-		props.setSidebar(false);
-		history.push("/blogs");
-	};
+  const handleBlogClick = () => {
+    props.setSidebar(false);
+    history.push("/blogs");
+  };
 
-	const handleClick = (val) => {
-		if (openListItem !== val) {
-			setopenListItem(val);
-		} else {
-			setopenListItem("close");
-		}
-	};
+  const handleClick = (val) => {
+    if (openListItem !== val) {
+      setopenListItem(val);
+    } else {
+      setopenListItem("close");
+    }
+  };
 
-	const list = (anchor) => (
-		<div
-			className={clsx(classes.list, {
-				[classes.fullList]: anchor === "top" || anchor === "bottom",
-			})}
-			role="presentation"
-			style={
-				openListItem === "close" || openListItem === ""
-					? {
-						backgroundColor: "#222",
-						height: "100%",
-					}
-					: {
-						backgroundColor: "#222",
-					}
-			}
-		>
-			<List>
-				{Object.keys(electronics)
-					.reverse()
-					.map((item, index) => {
-						return (
-							<React.Fragment>
-								<ListItem key={index} button onClick={() => handleClick(item)}>
-									{/* <ListItemIcon>
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === "top" || anchor === "bottom",
+      })}
+      role="presentation"
+      style={
+        openListItem === "close" || openListItem === ""
+          ? {
+              backgroundColor: "#222",
+              height: "100%",
+            }
+          : {
+              backgroundColor: "#222",
+            }
+      }
+    >
+      <List>
+        {Object.keys(electronics)
+          .reverse()
+          .map((item, index) => {
+            return (
+              <React.Fragment>
+                <ListItem key={index} button onClick={() => handleClick(item)}>
+                  {/* <ListItemIcon>
 										<SvgIcon component={InboxIcon} viewBox="0 0 600 476.6" />
 									</ListItemIcon> */}
-									<ListItemText
-										primary={
-											<Text variant="white" weight="500">
-												{item}
-											</Text>
-										}
-									/>
-									{openListItem === item ? (
-										<ExpandLess className="text-pink-500" />
-									) : (
-											<ExpandMore className="text-gray-600" />
-										)}
-								</ListItem>
-								<Collapse
-									in={openListItem === item}
-									timeout="auto"
-									unmountOnExit
-								>
-									{electronics[item].map((listItem, index) => {
-										return (
-											<List
-												key={index}
-												component="div"
-												disablePadding
-												className="bg-gray-900"
-											>
-												{!!listItem.child_category_name ? (
-													<ListItem button className={classes.nested}>
-														<ListItemIcon>
-															<DoubleArrowIcon className="text-gray-600" />
-														</ListItemIcon>
-														<ListItemText
-															onClick={() =>
-																getProducts(listItem.child_category)
-															}
-															primary={
-																<Text variant="white" weight="500">
-																	{listItem.child_category_name}
-																</Text>
-															}
-														/>
-													</ListItem>
-												) : null}
-											</List>
-										);
-									})}
-								</Collapse>
-							</React.Fragment>
-						);
-					})}
-			</List>
-		</div>
-	);
+                  <ListItemText
+                    primary={
+                      <Text variant="white" weight="500">
+                        {item}
+                      </Text>
+                    }
+                  />
+                  {openListItem === item ? (
+                    <ExpandLess className="text-pink-500" />
+                  ) : (
+                    <ExpandMore className="text-gray-600" />
+                  )}
+                </ListItem>
+                <Collapse
+                  in={openListItem === item}
+                  timeout="auto"
+                  unmountOnExit
+                >
+                  {electronics[item].map((listItem, index) => {
+                    return (
+                      <List
+                        key={index}
+                        component="div"
+                        disablePadding
+                        className="bg-gray-900"
+                      >
+                        {!!listItem.child_category_name ? (
+                          <ListItem button className={classes.nested}>
+                            <ListItemIcon>
+                              <DoubleArrowIcon className="text-gray-600" />
+                            </ListItemIcon>
+                            <ListItemText
+                              onClick={() =>
+                                getProducts(listItem.child_category)
+                              }
+                              primary={
+                                <Text variant="white" weight="500">
+                                  {listItem.child_category_name}
+                                </Text>
+                              }
+                            />
+                          </ListItem>
+                        ) : null}
+                      </List>
+                    );
+                  })}
+                </Collapse>
+              </React.Fragment>
+            );
+          })}
+      </List>
+    </div>
+  );
 
-	const handleAuthClick = () => {
-		props.setSidebar(false)
-		history.push("/auth")
-	}
+  const handleAuthClick = () => {
+    props.setSidebar(false);
+    history.push("/auth");
+  };
 
-	return (
-		<div>
-			<React.Fragment>
-				<Drawer
-					// className={classes.drawer}
-					ModalProps={{ onBackdropClick: () => props.setSidebar(false) }}
-					anchor="right"
-					open={props.open}
-				>
-					{/* <div className=" bg-gray-700 p-4 border-t-4 border-pink-600">
+  return (
+    <div>
+      <React.Fragment>
+        {props.open && (
+          <div className="absolute text-xl text-white px-6 py-2 text-center z-20 bg-red-600">
+            CLOSE
+          </div>
+        )}
+        <Drawer
+          // className={classes.drawer}
+          ModalProps={{ onBackdropClick: () => props.setSidebar(false) }}
+          anchor="right"
+          open={props.open}
+        >
+          {/* <div className=" bg-gray-700 p-4 border-t-4 border-pink-600">
 						{1 == 1 ? <div onClick={handleAuthClick}> <UnAuthenticatedUser /> </div> : <AuthenticatedUser />}
 					</div>
 					<div
@@ -168,15 +173,15 @@ const Sidebar = (props) => {
 							Blogs
 						</Text>
 					</div> */}
-					{list("right")}
-				</Drawer>
-			</React.Fragment>
-		</div>
-	);
+          {list("right")}
+        </Drawer>
+      </React.Fragment>
+    </div>
+  );
 };
 
 const mapStateToProps = ({ uiState }) => ({
-	open: uiState.isSidebar,
+  open: uiState.isSidebar,
 });
 
 export default connect(mapStateToProps, { setSidebar })(Sidebar);
