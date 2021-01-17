@@ -22,6 +22,7 @@ const ProductsPage = (props) => {
 	};
 
 	useEffect(async () => {
+		window.scrollTo(0, 0);
 		if (!props.isBack) {
 			props.setResetProducts();
 			await props.getProducts(page);

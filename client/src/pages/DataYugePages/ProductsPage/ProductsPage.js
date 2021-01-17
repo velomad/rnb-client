@@ -26,6 +26,7 @@ const ProductsPage = (props) => {
 	];
 
 	React.useEffect(async () => {
+		window.scrollTo(0,0)
 		await props.setResetElectronicProducts();
 		currentPage = 1;
 		props.getElectronicProducts(currentPage, props.match.params.category);

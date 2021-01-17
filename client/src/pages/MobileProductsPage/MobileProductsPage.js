@@ -28,6 +28,7 @@ const MobileProductsPage = (props, location) => {
   };
 
   useEffect(async () => {
+    window.scrollTo(0, 0);
     setHasMore(true);
     // console.log(history.location.pathname);
 
