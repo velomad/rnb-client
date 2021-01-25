@@ -32,11 +32,16 @@ const LandingPage = (props) => {
   return (
     <div className="bg-gray-200">
       <div>
+        <img src="/static/images/sale1.jpeg" />
+      </div>
+      <div>
         <img src="/static/images/b1.png" />
       </div>
 
       <WebsiteSlider />
-
+      <div>
+        <img src="/static/images/sale2.jpeg" />
+      </div>
       <div className="grid grid-cols-1">
         <div>
           <img src="/static/images/b2.png" />
