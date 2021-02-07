@@ -7,7 +7,7 @@ import Loading from "./components/Loading";
 import { ScrollToTop } from "./utils";
 
 // const LandingPage = lazy(() => import("./pages/LandingPage"));
-// const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+// const ProductsPage = lazy(() => 	import("./pages/ProductsPage"));
 // const ProductPage = lazy(() => import("./pages/ProductPage"));
 // const DataYugeProductsPage = lazy(() => import("./pages/DataYugePages/ProductsPage"));
 // const MobileProductsPage = lazy(() => import("./pages/MobileProductsPage"));

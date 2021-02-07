@@ -31,17 +31,29 @@ const LandingPage = (props) => {
 
   return (
     <div className="bg-gray-200">
-      <div>
-        <img src="/static/images/sale1.jpeg" />
-      </div>
+      <a href="https://clnk.in/oH8j" target="_blank">
+        <div>
+          <img src="/static/images/mobile2.jpeg" />
+        </div>
+      </a>
+      <a href="https://clnk.in/nSxA" target="_blank">
+        <div>
+          <img src="/static/images/mobile.jpeg" />
+        </div>
+      </a>
+      <a
+        href="https://ad.admitad.com/g/ea3sq3dsml3552d4acafe452830f0f"
+        target="_blank"
+      >
+        <div>
+          <img src="/static/images/laptop.jpeg" />
+        </div>
+      </a>
       <div>
         <img src="/static/images/b1.png" />
       </div>
-
       <WebsiteSlider />
-      <div>
-        <img src="/static/images/sale2.jpeg" />
-      </div>
+
       <div className="grid grid-cols-1">
         <div>
           <img src="/static/images/b2.png" />
