@@ -8,7 +8,7 @@ const Blogs = () => {
 	useEffect(async () => {
 		try {
 			const response = await Axios.get(
-				"https://cors-anywhere.herokuapp.com/http://reachnbuy.unitechitsolution.in/AndroidClass/get_blog.php",
+				"http://reachnbuy.unitechitsolution.in/AndroidClass/get_blog.php",
 			);
 			setBlog(response.data.blog_list);
 		} catch (e) {

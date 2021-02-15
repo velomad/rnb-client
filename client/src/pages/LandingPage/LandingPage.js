@@ -2,108 +2,148 @@ import React, { useState, useEffect } from "react";
 import { Slider, Text } from "../../components";
 import { history } from "../../utils";
 import {
-  setStoriesPopUp,
-  getSlider,
-  getStories,
-  getOffers,
-  getNews,
+	setStoriesPopUp,
+	getSlider,
+	getStories,
+	getOffers,
+	getNews,
 } from "../../store/actions";
 import { connect } from "react-redux";
 import { WebsiteSlider, ProductSlider, StoriesPopUp } from "./components";
 
 const LandingPage = (props) => {
-  useEffect(() => {
-    props.getSlider();
-    props.getStories();
-    props.getOffers();
-    props.getNews();
-  }, []);
+	useEffect(() => {
+		props.getSlider();
+		props.getStories();
+		props.getOffers();
+		props.getNews();
+	}, []);
 
-  const loadStory = (val) => {
-    props.setStoriesPopUp(true, val);
-  };
+	const loadStory = (val) => {
+		props.setStoriesPopUp(true, val);
+	};
 
-  let sliderImages = [];
+	let sliderImages = [];
 
-  props.sliderList.map((el) => {
-    sliderImages.push(el.slider);
-  });
+	props.sliderList.map((el) => {
+		sliderImages.push(el.slider);
+	});
 
-  return (
-    <div className="bg-gray-200">
-      <a href="https://clnk.in/oH8j" target="_blank">
-        <div>
-          <img src="/static/images/mobile2.jpeg" />
-        </div>
-      </a>
-      <a href="https://clnk.in/nSxA" target="_blank">
-        <div>
-          <img src="/static/images/mobile.jpeg" />
-        </div>
-      </a>
-      <a
-        href="https://ad.admitad.com/g/ea3sq3dsml3552d4acafe452830f0f"
-        target="_blank"
-      >
-        <div>
-          <img src="/static/images/laptop.jpeg" />
-        </div>
-      </a>
-      <div>
-        <img src="/static/images/b1.png" />
-      </div>
-      <WebsiteSlider />
+	return (
+		<div className="bg-gray-200">
+			{/* <div>
+				<div>
+					<img src="/static/images/vb1.jpg" />
+				</div>
+				<div className="grid grid-cols-3 gap-5 py-4 place-items-center">
+					<a href="https://kanmanicosmetics.com/shop/ols/products/kanmani-immense-50ml-unisex" target="_blank">
+						<div className="space-y-2">
+							<img src="/static/images/v1.png" className="animate-pulse" />
+							<div className="text-center">
+								<Text>
+									Immense
+					</Text>
+							</div>
+						</div>
+					</a>
+					<a href="https://kanmanicosmetics.com/shop/ols/products/kanmani-essence-50ml-unisex" target="_blank">
+						<div className="space-y-2 ">
+							<img src="/static/images/v2.png" className="animate-pulse" />
+							<div className="text-center">
+								<Text>
+									Essence
+					</Text>
+							</div>
+						</div>
+					</a>
+					<a href="https://kanmanicosmetics.com/shop/ols/products/kanmani-presence-50ml-unisex" target="_blank">
+						<div className="space-y-2">
+							<img src="/static/images/v3.png" className="animate-pulse" />
+							<div className="text-center">
+								<Text>
+									Presence
+					</Text>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div>
+					<img src="/static/images/vb2.jpg" />
+				</div>
+			</div> */}
+			<a href="https://clnk.in/oH8j" target="_blank">
+				<div>
+					<img src="/static/images/mobile2.jpeg" />
+				</div>
+			</a>
+			<a href="https://clnk.in/nSxA" target="_blank">
+				<div>
+					<img src="/static/images/mobile.jpeg" />
+				</div>
+			</a>
+			<a
+				href="https://ad.admitad.com/g/ea3sq3dsml3552d4acafe452830f0f"
+				target="_blank"
+			>
+				<div>
+					<img src="/static/images/laptop.jpeg" />
+				</div>
+			</a>
+			<div>
+				<img src="/static/images/b1.png" />
+			</div>
+			<WebsiteSlider />
 
-      <div className="grid grid-cols-1">
-        <div>
-          <img src="/static/images/b2.png" />
-        </div>
-        <div>
-          <div className="bg-gray-200 py-10 place-items-center grid grid-cols-3">
-            <div
-              className="h-20 w-20 bg-red-400 rounded-full p-4"
-              onClick={() => history.push("/products?discountPercent[gte]=30")}
-            >
-              <div className="text-center mt-3 text-white font-semibold text-xl">
-                30%
+			<div className="grid grid-cols-1">
+				<div>
+					<img src="/static/images/b2.png" />
+				</div>
+				<div>
+					<div className="bg-gray-200 py-10 place-items-center grid grid-cols-3">
+						<div
+							className="h-20 w-20 bg-red-400 rounded-full p-4"
+							onClick={() => history.push("/products?discountPercent[gte]=30")}
+						>
+							<div className="text-center mt-3 text-white font-semibold text-xl">
+								30%
               </div>
-            </div>
-            <div className="h-20 w-20 bg-red-400 rounded-full p-4">
-              <div
-                className="text-center mt-3 text-white font-semibold text-xl"
-                onClick={() =>
-                  history.push("/products?discountPercent[gte]=50")
-                }
-              >
-                50%
+						</div>
+						<div className="h-20 w-20 bg-red-400 rounded-full p-4">
+							<div
+								className="text-center mt-3 text-white font-semibold text-xl"
+								onClick={() =>
+									history.push("/products?discountPercent[gte]=50")
+								}
+							>
+								50%
               </div>
-            </div>
-            <div className="h-20 w-20 bg-red-400 rounded-full p-4">
-              <div
-                className="text-center mt-3 text-white font-semibold text-xl"
-                onClick={() =>
-                  history.push("/products?discountPercent[gte]=70")
-                }
-              >
-                70%
+						</div>
+						<div className="h-20 w-20 bg-red-400 rounded-full p-4">
+							<div
+								className="text-center mt-3 text-white font-semibold text-xl"
+								onClick={() =>
+									history.push("/products?discountPercent[gte]=70")
+								}
+							>
+								70%
               </div>
+						</div>
+					</div>
+					<div className="bg-gray-100 py-4">
+						<div className="text-center text-4xl text-gray-600 uppercase capitalize">
+							Offer zone
             </div>
-          </div>
-          <div className="bg-gray-100 py-4">
-            <div className="text-center text-4xl text-gray-600 uppercase capitalize">
-              Offer zone
+						<div className="text-center text-gray-500 text-sm">
+							best deals for you
             </div>
-            <div className="text-center text-gray-500 text-sm">
-              best deals for you
-            </div>
-          </div>
-        </div>
-        <div>
-          <img src="/static/images/b3.png" />
-        </div>
-      </div>
+					</div>
+				</div>
+				<div>
+					<img src="/static/images/b3.png" />
+				</div>
+			</div>
 
-      {/* <div class="px-4 space-y-4">
+			{/* <div class="px-4 space-y-4">
 				<div>
 					<Text
 						size="sm"
@@ -137,7 +177,7 @@ const LandingPage = (props) => {
 			</div>
 			<StoriesPopUp /> */}
 
-      {/* 
+			{/* 
 			<div className="px-4">
 				<Text
 					size="sm"
@@ -150,7 +190,7 @@ const LandingPage = (props) => {
 				</Text>
 			</div> */}
 
-      {/* <div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1"
+			{/* <div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1"
 				onClick={() => history.push("/products/kanmani")}
 			>
 				<div>
@@ -162,7 +202,7 @@ const LandingPage = (props) => {
 				</div>
 			</div> */}
 
-      {/* <div className="bg-gray-100">
+			{/* <div className="bg-gray-100">
 				<div className="py-4 px-4">
 					<Text
 						variant="primaryDark"
@@ -231,22 +271,22 @@ const LandingPage = (props) => {
 						</div>
 					))}
 				</div> */}
-      {/* </div> */}
-    </div>
-  );
+			{/* </div> */}
+		</div>
+	);
 };
 
 const mapStateToProps = ({ landingPageState }) => ({
-  sliderList: landingPageState.sliders,
-  stories: landingPageState.stories,
-  offers: landingPageState.offers,
-  news: landingPageState.news,
+	sliderList: landingPageState.sliders,
+	stories: landingPageState.stories,
+	offers: landingPageState.offers,
+	news: landingPageState.news,
 });
 
 export default connect(mapStateToProps, {
-  setStoriesPopUp,
-  getSlider,
-  getStories,
-  getOffers,
-  getNews,
+	setStoriesPopUp,
+	getSlider,
+	getStories,
+	getOffers,
+	getNews,
 })(LandingPage);
