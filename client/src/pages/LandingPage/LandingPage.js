@@ -13,10 +13,10 @@ import { WebsiteSlider, ProductSlider, StoriesPopUp } from "./components";
 
 const LandingPage = (props) => {
 	useEffect(() => {
-		props.getSlider();
-		props.getStories();
-		props.getOffers();
-		props.getNews();
+		// props.getSlider();
+		// props.getStories();
+		// props.getOffers();
+		// props.getNews();
 	}, []);
 
 	const loadStory = (val) => {
