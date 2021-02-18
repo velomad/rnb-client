@@ -165,14 +165,14 @@ const Sidebar = (props) => {
           {/* <div className=" bg-gray-700 p-4 border-t-4 border-pink-600">
 						{1 == 1 ? <div onClick={handleAuthClick}> <UnAuthenticatedUser /> </div> : <AuthenticatedUser />}
 					</div> */}
-					<div
+					{/* <div
 						className="bg-gray-200 text-center p-4"
 						onClick={handleBlogClick}
 					>
 						<Text size="lg" classes="capitalize" weight="700">
 							Blogs
 						</Text>
-					</div>
+					</div> */}
           {list("right")}
         </Drawer>
       </React.Fragment>

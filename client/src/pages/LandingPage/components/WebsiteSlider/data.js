@@ -75,7 +75,7 @@ export const data = [
     ],
   },
   {
-    websiteImage: "/static/images/myntraicon.png",
+    websiteImage: "/static/images/myntra.png",
     websiteName: "myntra",
     styles: "text-gray-800 text-lg title-font tracking-widest capitalize ",
 

@@ -1,37 +1,123 @@
 import React, { useState, useEffect } from "react";
 import { Slider, Text } from "../../components";
 import { history } from "../../utils";
+import Axios from "axios";
 import {
-	setStoriesPopUp,
-	getSlider,
-	getStories,
-	getOffers,
-	getNews,
+  setStoriesPopUp,
+  getSlider,
+  getStories,
+  getOffers,
+  getNews,
 } from "../../store/actions";
 import { connect } from "react-redux";
 import { WebsiteSlider, ProductSlider, StoriesPopUp } from "./components";
 
 const LandingPage = (props) => {
-	useEffect(() => {
-		// props.getSlider();
-		// props.getStories();
-		// props.getOffers();
-		// props.getNews();
-	}, []);
+  const [blogs, setBlogs] = useState([]);
 
-	const loadStory = (val) => {
-		props.setStoriesPopUp(true, val);
-	};
+  useEffect(() => {
+    // props.getSlider();
+    props.getStories();
+    getBlogs();
+    // props.getOffers();
+    // props.getNews();
+  }, []);
 
-	let sliderImages = [];
+  const getBlogs = async () => {
+    try {
+      const response = await Axios.get(
+        "http://reachnbuy.unitechitsolution.in/AndroidClass/get_blog.php"
+      );
+      setBlogs(response.data.blog_list);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-	props.sliderList.map((el) => {
-		sliderImages.push(el.slider);
-	});
+  console.log(blogs);
 
-	return (
-		<div className="bg-gray-200">
-			{/* <div>
+  const loadStory = (val) => {
+    props.setStoriesPopUp(true, val);
+  };
+
+  let sliderImages = [];
+
+  props.sliderList.map((el) => {
+    sliderImages.push(el.slider);
+  });
+
+  return (
+    <div className="bg-gray-200">
+      <div>
+        {/* <div className="flex justify-between p-2 bg-gray-800">
+          <div>
+            <Text
+              size="sm"
+              variant="white"
+              weight="700"
+              classes="capitalize"
+              isTitle={true}
+            >
+              Blogs
+            </Text>
+          </div>
+          <div onClick={()=> history.push("/blogs")}>
+            <Text
+              size="sm"
+              variant="white"
+              weight="700"
+              classes="capitalize"
+              isTitle={true}
+            >
+              View All
+            </Text>
+          </div>
+        </div> */}
+
+        {/* <div className="grid grid-cols-2 place-items-center">
+          {blogs.slice(0, 2).map((el, index) => {
+            return (
+              <div key={index} className="p-2">
+                <img src={el.image} className="rounded-lg mx-auto" />
+                <div>
+                  <Text
+                    size="xs"
+                    variant="primaryDark"
+                    weight="700"
+                    classes="capitalize"
+                    isTitle={false}
+                  >
+                    {el.date}
+                  </Text>
+                </div>
+                <div className="pb-1">
+                  <Text
+                    size="sm"
+                    variant="primaryDark"
+                    weight="700"
+                    classes="capitalize"
+                    isTitle={true}
+                  >
+                    {el.title.slice(0, 16) + ".."}
+                  </Text>
+                </div>
+                <div>
+                  <Text
+                    size="xs"
+                    variant="primaryDark"
+                    weight="500"
+                    isTitle={false}
+                  >
+                    {el.description.slice(0, 40) + ".."}
+                  </Text>
+                </div>
+              </div>
+            );
+          })}
+        </div> */}
+      </div>
+
+      {/* <div>
 				<div>
 					<img src="/static/images/vb1.jpg" />
 				</div>
@@ -53,8 +139,8 @@ const LandingPage = (props) => {
 								<Text>
 									Essence
 					</Text>
-							</div>
 						</div>
+					</div>
 					</a>
 					<a href="https://kanmanicosmetics.com/shop/ols/products/kanmani-presence-50ml-unisex" target="_blank">
 						<div className="space-y-2">
@@ -71,113 +157,113 @@ const LandingPage = (props) => {
 					<img src="/static/images/vb2.jpg" />
 				</div>
 			</div> */}
-			<a href="https://clnk.in/oH8j" target="_blank">
-				<div>
-					<img src="/static/images/mobile2.jpeg" />
-				</div>
-			</a>
-			<a href="https://clnk.in/nSxA" target="_blank">
-				<div>
-					<img src="/static/images/mobile.jpeg" />
-				</div>
-			</a>
-			<a
-				href="https://ad.admitad.com/g/ea3sq3dsml3552d4acafe452830f0f"
-				target="_blank"
-			>
-				<div>
-					<img src="/static/images/laptop.jpeg" />
-				</div>
-			</a>
-			<div>
-				<img src="/static/images/b1.png" />
-			</div>
-			<WebsiteSlider />
+      <a href="https://clnk.in/oH8j" target="_blank">
+        <div>
+          <img src="/static/images/mobile2.jpeg" />
+        </div>
+      </a>
+      <a href="https://clnk.in/nSxA" target="_blank">
+        <div>
+          <img src="/static/images/mobile.jpeg" />
+        </div>
+      </a>
+      <a
+        href="https://ad.admitad.com/g/ea3sq3dsml3552d4acafe452830f0f"
+        target="_blank"
+      >
+        <div>
+          <img src="/static/images/laptop.jpeg" />
+        </div>
+      </a>
+      <div>
+        <img src="/static/images/b1.png" />
+      </div>
+      <WebsiteSlider />
 
-			<div className="grid grid-cols-1">
-				<div>
-					<img src="/static/images/b2.png" />
-				</div>
-				<div>
-					<div className="bg-gray-200 py-10 place-items-center grid grid-cols-3">
-						<div
-							className="h-20 w-20 bg-red-400 rounded-full p-4"
-							onClick={() => history.push("/products?discountPercent[gte]=30")}
-						>
-							<div className="text-center mt-3 text-white font-semibold text-xl">
-								30%
+      <div className="grid grid-cols-1">
+        <div>
+          <img src="/static/images/b2.png" />
+        </div>
+        <div>
+          <div className="bg-gray-200 py-10 place-items-center grid grid-cols-3">
+            <div
+              className="h-20 w-20 bg-red-400 rounded-full p-4"
+              onClick={() => history.push("/products?discountPercent[gte]=30")}
+            >
+              <div className="text-center mt-3 text-white font-semibold text-xl">
+                30%
               </div>
-						</div>
-						<div className="h-20 w-20 bg-red-400 rounded-full p-4">
-							<div
-								className="text-center mt-3 text-white font-semibold text-xl"
-								onClick={() =>
-									history.push("/products?discountPercent[gte]=50")
-								}
-							>
-								50%
-              </div>
-						</div>
-						<div className="h-20 w-20 bg-red-400 rounded-full p-4">
-							<div
-								className="text-center mt-3 text-white font-semibold text-xl"
-								onClick={() =>
-									history.push("/products?discountPercent[gte]=70")
-								}
-							>
-								70%
-              </div>
-						</div>
-					</div>
-					<div className="bg-gray-100 py-4">
-						<div className="text-center text-4xl text-gray-600 uppercase capitalize">
-							Offer zone
             </div>
-						<div className="text-center text-gray-500 text-sm">
-							best deals for you
+            <div className="h-20 w-20 bg-red-400 rounded-full p-4">
+              <div
+                className="text-center mt-3 text-white font-semibold text-xl"
+                onClick={() =>
+                  history.push("/products?discountPercent[gte]=50")
+                }
+              >
+                50%
+              </div>
             </div>
-					</div>
-				</div>
-				<div>
-					<img src="/static/images/b3.png" />
-				</div>
-			</div>
+            <div className="h-20 w-20 bg-red-400 rounded-full p-4">
+              <div
+                className="text-center mt-3 text-white font-semibold text-xl"
+                onClick={() =>
+                  history.push("/products?discountPercent[gte]=70")
+                }
+              >
+                70%
+              </div>
+            </div>
+          </div>
+          <div className="bg-gray-100 py-4">
+            <div className="text-center text-4xl text-gray-600 uppercase capitalize">
+              Offer zone
+            </div>
+            <div className="text-center text-gray-500 text-sm">
+              best deals for you
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="/static/images/b3.png" />
+        </div>
+      </div>
 
-			{/* <div class="px-4 space-y-4">
-				<div>
-					<Text
-						size="sm"
-						variant="primaryDark"
-						weight="700"
-						classes="capitalize"
-						isTitle={true}
-						classes="uppercase"
-					>
-						Stories & Updates
-					</Text>
-				</div>
-				<div>
-					<div class="flex flex-row space-x-3 items-center overflow-auto w-full">
-						{props.stories.map((el, index) => (
-							<div onClick={() => loadStory(index)}>
-								<div class="p-1 border-2 border-pink-600 rounded-full">
-									<div class="w-16 h-16">
-										<img
-											className="rounded-full w-full h-full object-cover"
-											width="100%"
-											src={el.image}
-											alt=""
-										/>
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-			<StoriesPopUp /> */}
+      {/* <div class="px-4 space-y-4">
+        <div>
+          <Text
+            size="sm"
+            variant="primaryDark"
+            weight="700"
+            classes="capitalize"
+            isTitle={true}
+            classes="uppercase"
+          >
+            Stories & Updates
+          </Text>
+        </div>
+        <div>
+          <div class="flex flex-row space-x-3 items-center overflow-auto w-full">
+            {props.stories.map((el, index) => (
+              <div onClick={() => loadStory(index)}>
+                <div class="p-1 border-2 border-pink-600 rounded-full">
+                  <div class="w-16 h-16">
+                    <img
+                      className="rounded-full w-full h-full object-cover"
+                      width="100%"
+                      src={el.image}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <StoriesPopUp /> */}
 
-			{/* 
+      {/* 
 			<div className="px-4">
 				<Text
 					size="sm"
@@ -190,7 +276,7 @@ const LandingPage = (props) => {
 				</Text>
 			</div> */}
 
-			{/* <div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1"
+      {/* <div className="grid gap-2 grid-cols-1 md:grid-cols-2 py-4 p-1"
 				onClick={() => history.push("/products/kanmani")}
 			>
 				<div>
@@ -202,7 +288,7 @@ const LandingPage = (props) => {
 				</div>
 			</div> */}
 
-			{/* <div className="bg-gray-100">
+      {/* <div className="bg-gray-100">
 				<div className="py-4 px-4">
 					<Text
 						variant="primaryDark"
@@ -271,22 +357,22 @@ const LandingPage = (props) => {
 						</div>
 					))}
 				</div> */}
-			{/* </div> */}
-		</div>
-	);
+      {/* </div> */}
+    </div>
+  );
 };
 
 const mapStateToProps = ({ landingPageState }) => ({
-	sliderList: landingPageState.sliders,
-	stories: landingPageState.stories,
-	offers: landingPageState.offers,
-	news: landingPageState.news,
+  sliderList: landingPageState.sliders,
+  stories: landingPageState.stories,
+  offers: landingPageState.offers,
+  news: landingPageState.news,
 });
 
 export default connect(mapStateToProps, {
-	setStoriesPopUp,
-	getSlider,
-	getStories,
-	getOffers,
-	getNews,
+  setStoriesPopUp,
+  getSlider,
+  getStories,
+  getOffers,
+  getNews,
 })(LandingPage);
