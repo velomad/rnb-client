@@ -14,12 +14,17 @@ import { WebsiteSlider, ProductSlider, StoriesPopUp } from "./components";
 
 const LandingPage = (props) => {
   const [blogs, setBlogs] = useState([]);
+  const [ajio, setAjio] = useState([]);
+  const [myntra, setMyntra] = useState([]);
+  const [mamaearth, setMamaearth] = useState([]);
+  const [beauty, setBeauty] = useState([]);
 
   useEffect(() => {
     // props.getSlider();
     props.getStories();
     getBlogs();
-    // props.getOffers();
+    getEarnKaroData();
+    props.getOffers();
     // props.getNews();
   }, []);
 
@@ -34,20 +39,55 @@ const LandingPage = (props) => {
     }
   };
 
+  const getEarnKaroData = async () => {
+    const urls = [
+      "https://reachnbuy.com/api/v1/offerzone?offer=best-of-ajio",
+      "https://reachnbuy.com/api/v1/offerzone?offer=best-of-myntra",
+      "https://reachnbuy.com/api/v1/offerzone?offer=best-of-mamaearth",
+      "https://reachnbuy.com/api/v1/offerzone?offer=beauty-and-personal-care",
+    ];
+
+    const arrayWithResults = await Promise.all(
+      urls.map((url) => Axios.get(url))
+    );
+    setAjio(arrayWithResults[0].data.offers);
+    setMyntra(arrayWithResults[1].data.offers);
+    setMamaearth(arrayWithResults[2].data.offers);
+    setBeauty(arrayWithResults[3].data.offers);
+  };
   console.log(blogs);
 
   const loadStory = (val) => {
     props.setStoriesPopUp(true, val);
   };
 
-  let sliderImages = [];
+  console.log(ajio);
 
-  props.sliderList.map((el) => {
-    sliderImages.push(el.slider);
+  let ajioSliderImages = [];
+
+  ajio.map((el) => {
+    ajioSliderImages.push(el.productImage);
   });
 
   return (
     <div className="bg-gray-200">
+      <div className="bg-gray-100 py-2">
+        <div className="p-1">
+          <Text
+            variant="primaryDark"
+            weight="700"
+            isTitle={true}
+            size="sm"
+            classes="uppercase"
+          >
+            Best of Ajio
+          </Text>
+        </div>
+        <div className="py-1">
+          <ProductSlider offers={ajio} />
+        </div>
+      </div>
+
       <div>
         {/* <div className="flex justify-between p-2 bg-gray-800">
           <div>
@@ -162,11 +202,48 @@ const LandingPage = (props) => {
           <img src="/static/images/mobile2.jpeg" />
         </div>
       </a>
+
+      <div className="bg-gray-100 py-2">
+        <div className="p-1">
+          <Text
+            variant="primaryDark"
+            weight="700"
+            isTitle={true}
+            size="sm"
+            classes="uppercase"
+          >
+            Best of Myntra
+          </Text>
+        </div>
+        <div className="py-1">
+          <ProductSlider offers={myntra} />
+        </div>
+      </div>
+
+
       <a href="https://clnk.in/nSxA" target="_blank">
         <div>
           <img src="/static/images/mobile.jpeg" />
         </div>
       </a>
+
+      <div className="bg-gray-100 py-2">
+        <div className="p-1">
+          <Text
+            variant="primaryDark"
+            weight="700"
+            isTitle={true}
+            size="sm"
+            classes="uppercase"
+          >
+            Best of MamaEarth
+          </Text>
+        </div>
+        <div className="py-1">
+          <ProductSlider offers={mamaearth} />
+        </div>
+      </div>
+
       <a
         href="https://ad.admitad.com/g/ea3sq3dsml3552d4acafe452830f0f"
         target="_blank"
@@ -288,25 +365,8 @@ const LandingPage = (props) => {
 				</div>
 			</div> */}
 
-      {/* <div className="bg-gray-100">
-				<div className="py-4 px-4">
-					<Text
-						variant="primaryDark"
-						weight="700"
-						isTitle={true}
-						size="sm"
-						classes="uppercase"
-					>
-						Offers and promotions
-					</Text>
-				</div>
-				<div className="py-8">
-					<ProductSlider offers={props.offers} />
-				</div>
-			</div>
-
-			<div className="bg-gray-100">
-				<div className="px-4 py-2">
+      <div className="bg-gray-100">
+        {/* <div className="px-4 py-2">
 					<Text
 						size="sm"
 						weight="700"
@@ -327,37 +387,37 @@ const LandingPage = (props) => {
 							/>
 						</div>
 					))}
-				</div>
-
-				<div>
-					<Slider
-						productImages={sliderImages}
-						spaceBetween={20}
-						slidesPerView={3}
-						pagination={true}
-						loop={false}
-						autoplay={{
-							delay: 2500,
-							disableOnInteraction: true,
-						}}
-						slidesPerViewMobile={1}
-						spaceBetweenMobile={10}
-						cardHeight={"h-56"}
-					/>
-				</div>
-
-				<div className={`grid gap-2 grid-cols-1 md:grid-cols-2 py-4`}>
-					{props.news.slice(4, props.news.length - 1).map((el, index) => (
-						<div>
-							<img
-								className="rounded-lg object-cover w-full"
-								style={{ height: "12rem" }}
-								src={el.image}
-							/>
-						</div>
-					))}
 				</div> */}
-      {/* </div> */}
+
+        {/* <div>
+          <Slider
+            productImages={ajioSliderImages}
+            spaceBetween={20}
+            slidesPerView={3}
+            pagination={true}
+            loop={false}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: true,
+            }}
+            slidesPerViewMobile={1}
+            spaceBetweenMobile={10}
+            cardHeight={"h-56"}
+          />
+        </div> */}
+
+        <div className={`grid gap-2 grid-cols-1 md:grid-cols-2 py-4`}>
+          {props.news.slice(4, props.news.length - 1).map((el, index) => (
+            <div>
+              <img
+                className="rounded-lg object-cover w-full"
+                style={{ height: "12rem" }}
+                src={el.image}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

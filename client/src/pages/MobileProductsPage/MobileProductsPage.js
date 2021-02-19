@@ -23,6 +23,8 @@ const MobileProductsPage = (props, location) => {
       return;
     }
 
+    console.log(props.products);
+
     CurrentPage += 1;
     props.getProducts(CurrentPage);
   };

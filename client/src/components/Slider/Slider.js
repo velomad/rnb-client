@@ -11,43 +11,44 @@ import "swiper/components/pagination/pagination.scss";
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const ProductSlider = (props) => {
-	return (
-		<div>
-			<Swiper
-				spaceBetween={props.spaceBetween}
-				slidesPerView={props.slidesPerView}
-				pagination={props.pagination}
-				loop={props.loop}
-				autoplay={props.autoplay}
-				breakpoints={{
-					"@0.50": {
-						slidesPerView: props.slidesPerViewMobile,
-						spaceBetween: props.slidesPerViewMobile,
-					},
-				}}
-			>
-				{props.productImages && props.productImages.map((el, index) => {
-					return (
-						<React.Fragment key={index}>
-							<SwiperSlide>
-								<div
-									style={{
-										// height: props.cardHeight,
-										width: "100%",
-									}}
-								>
-									<img
-										src={el}
-										className={`object-contain w-full ${props.cardHeight}`}
-									/>
-								</div>
-							</SwiperSlide>
-						</React.Fragment>
-					);
-				})}
-			</Swiper>
-		</div>
-	);
+  return (
+    <div>
+      <Swiper
+        spaceBetween={props.spaceBetween}
+        slidesPerView={props.slidesPerView}
+        pagination={props.pagination}
+        loop={props.loop}
+        autoplay={props.autoplay}
+        breakpoints={{
+          "@0.50": {
+            slidesPerView: props.slidesPerViewMobile,
+            spaceBetween: props.slidesPerViewMobile,
+          },
+        }}
+      >
+        {props.productImages &&
+          props.productImages.map((el, index) => {
+            return (
+              <React.Fragment key={index}>
+                <SwiperSlide>
+                  <div
+                    style={{
+                      // height: props.cardHeight,
+                      width: "100%",
+                    }}
+                  >
+                    <img
+                      src={el}
+                      className={`object-contain w-full ${props.cardHeight}`}
+                    />
+                  </div>
+                </SwiperSlide>
+              </React.Fragment>
+            );
+          })}
+      </Swiper>
+    </div>
+  );
 };
 
 export default ProductSlider;
