@@ -34,7 +34,7 @@ const ProductPage = (props) => {
     console.log(productLink);
 
     const res = await Axios.post(
-      "http://middleware.ckaro.in/api/convert/ekaro",
+      "https://middleware.ckaro.in/api/convert/ekaro",
       {
         data: {
           type: "createexternalearnlink",

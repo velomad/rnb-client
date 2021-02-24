@@ -71,6 +71,41 @@ const LandingPage = (props) => {
 
   return (
     <div className="bg-gray-200">
+      <div className="grid grid-cols-3 gap-5 py-4 place-items-center">
+        <a
+          href="https://kanmanicosmetics.com/shop/ols/products/kanmani-immense-50ml-unisex"
+          target="_blank"
+        >
+          <div className="space-y-2">
+            <img src="/static/images/v1.png" className="" />
+            <div className="text-center">
+              <Text>Immense</Text>
+            </div>
+          </div>
+        </a>
+        <a
+          href="https://kanmanicosmetics.com/shop/ols/products/kanmani-essence-50ml-unisex"
+          target="_blank"
+        >
+          <div className="space-y-2 ">
+            <img src="/static/images/v2.png" className="" />
+            <div className="text-center">
+              <Text>Essence</Text>
+            </div>
+          </div>
+        </a>
+        <a
+          href="https://kanmanicosmetics.com/shop/ols/products/kanmani-presence-50ml-unisex"
+          target="_blank"
+        >
+          <div className="space-y-2">
+            <img src="/static/images/v3.png" className="" />
+            <div className="text-center">
+              <Text>Presence</Text>
+            </div>
+          </div>
+        </a>
+      </div>
       <div className="bg-gray-100 py-2">
         <div className="p-1">
           <Text
@@ -80,7 +115,7 @@ const LandingPage = (props) => {
             size="sm"
             classes="uppercase"
           >
-            Best of Ajio
+            Best of Ajio Flat (On Sale)
           </Text>
         </div>
         <div className="py-1">
@@ -157,46 +192,15 @@ const LandingPage = (props) => {
         </div> */}
       </div>
 
-      {/* <div>
-				<div>
+      <div>
+        {/* <div>
 					<img src="/static/images/vb1.jpg" />
-				</div>
-				<div className="grid grid-cols-3 gap-5 py-4 place-items-center">
-					<a href="https://kanmanicosmetics.com/shop/ols/products/kanmani-immense-50ml-unisex" target="_blank">
-						<div className="space-y-2">
-							<img src="/static/images/v1.png" className="animate-pulse" />
-							<div className="text-center">
-								<Text>
-									Immense
-					</Text>
-							</div>
-						</div>
-					</a>
-					<a href="https://kanmanicosmetics.com/shop/ols/products/kanmani-essence-50ml-unisex" target="_blank">
-						<div className="space-y-2 ">
-							<img src="/static/images/v2.png" className="animate-pulse" />
-							<div className="text-center">
-								<Text>
-									Essence
-					</Text>
-						</div>
-					</div>
-					</a>
-					<a href="https://kanmanicosmetics.com/shop/ols/products/kanmani-presence-50ml-unisex" target="_blank">
-						<div className="space-y-2">
-							<img src="/static/images/v3.png" className="animate-pulse" />
-							<div className="text-center">
-								<Text>
-									Presence
-					</Text>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div>
+				</div> */}
+
+        {/* <div>
 					<img src="/static/images/vb2.jpg" />
-				</div>
-			</div> */}
+				</div> */}
+      </div>
       <a href="https://clnk.in/oH8j" target="_blank">
         <div>
           <img src="/static/images/mobile2.jpeg" />
@@ -212,14 +216,13 @@ const LandingPage = (props) => {
             size="sm"
             classes="uppercase"
           >
-            Best of Myntra
+            Best of Myntra Flat (On Sale)
           </Text>
         </div>
         <div className="py-1">
           <ProductSlider offers={myntra} />
         </div>
       </div>
-
 
       <a href="https://clnk.in/nSxA" target="_blank">
         <div>
@@ -236,7 +239,7 @@ const LandingPage = (props) => {
             size="sm"
             classes="uppercase"
           >
-            Best of MamaEarth
+            Best of MamaEarth Flat (On Sale)
           </Text>
         </div>
         <div className="py-1">

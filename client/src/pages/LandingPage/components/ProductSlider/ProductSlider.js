@@ -52,7 +52,7 @@ const ProductSlider = (props) => {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
-            <div className="space-y-1 h-auto">
+            <div className="space-y-1 h-40 relative">
               <div>
                 <Text size="xs" weight="700">
                   Brand :{" "}
@@ -86,7 +86,7 @@ const ProductSlider = (props) => {
                 </Text>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex bottom-0 absolute space-x-2">
                 <div>
                   <Button
                     variant="warning"
