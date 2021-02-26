@@ -19,7 +19,7 @@ const ProductSlider = (props) => {
     <div>
       <Swiper
         spaceBetween={15}
-        slidesPerView={2}
+        slidesPerView={props.slides}
         loop={true}
         autoplay={{
           delay: 2500,
@@ -28,7 +28,7 @@ const ProductSlider = (props) => {
         breakpoints={{
           "@0.75": {
             centeredSlides: true,
-            slidesPerView: 2,
+            slidesPerView: 6,
             spaceBetween: 10,
           },
           "@0.50": {

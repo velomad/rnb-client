@@ -38,7 +38,7 @@ const Routes = () => {
 		<Router>
 			<QueryParamProvider ReactRouterRoute={Route}>
 				<ScrollToTop>
-					<MobileView>
+					{/* <MobileView> */}
 						<Switch>
 							<WithLayoutRoute
 								exact
@@ -118,8 +118,8 @@ const Routes = () => {
 							/>
 							<Route path="*" component={() => "404 NOT FOUND"} />
 						</Switch>
-					</MobileView>
-					<BrowserView>
+					{/* </MobileView> */}
+					{/* <BrowserView>
 						<div
 							className="text-center mt-20"
 						>
@@ -128,7 +128,7 @@ const Routes = () => {
 							<div>Though you can access us on your mobile phone</div>
 						</div>
 
-					</BrowserView>
+					</BrowserView> */}
 				</ScrollToTop>
 			</QueryParamProvider>
 		</Router>

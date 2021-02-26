@@ -77,7 +77,7 @@ const LandingPage = (props) => {
           target="_blank"
         >
           <div className="space-y-2">
-            <img src="/static/images/v1.png" className="" />
+            <img src="/static/images/v1.png" className="" width="200" />
             <div className="text-center">
               <Text>Immense</Text>
             </div>
@@ -88,7 +88,7 @@ const LandingPage = (props) => {
           target="_blank"
         >
           <div className="space-y-2 ">
-            <img src="/static/images/v2.png" className="" />
+            <img src="/static/images/v2.png" className="" width="200" />
             <div className="text-center">
               <Text>Essence</Text>
             </div>
@@ -99,7 +99,7 @@ const LandingPage = (props) => {
           target="_blank"
         >
           <div className="space-y-2">
-            <img src="/static/images/v3.png" className="" />
+            <img src="/static/images/v3.png" className="" width="200" />
             <div className="text-center">
               <Text>Presence</Text>
             </div>
@@ -119,7 +119,7 @@ const LandingPage = (props) => {
           </Text>
         </div>
         <div className="py-1">
-          <ProductSlider offers={ajio} />
+          <ProductSlider offers={ajio} slides={6} />
         </div>
       </div>
 
@@ -192,20 +192,20 @@ const LandingPage = (props) => {
         </div> */}
       </div>
 
-      <div>
-        {/* <div>
+      {/* <div>
+        <div className="hidden md:block">
 					<img src="/static/images/vb1.jpg" />
-				</div> */}
+				</div>
 
-        {/* <div>
+        <div className="hidden md:block">
 					<img src="/static/images/vb2.jpg" />
-				</div> */}
+				</div>
       </div>
-      <a href="https://clnk.in/oH8j" target="_blank">
+      <a href="https://clnk.in/oH8j" target="_blank" className="hidden md:block">
         <div>
           <img src="/static/images/mobile2.jpeg" />
         </div>
-      </a>
+      </a> */}
 
       <div className="bg-gray-100 py-2">
         <div className="p-1">
@@ -224,11 +224,12 @@ const LandingPage = (props) => {
         </div>
       </div>
 
-      <a href="https://clnk.in/nSxA" target="_blank">
+      {/* <a href="https://clnk.in/nSxA" target="_blank">
         <div>
           <img src="/static/images/mobile.jpeg" />
         </div>
-      </a>
+      </a> */}
+      <WebsiteSlider />
 
       <div className="bg-gray-100 py-2">
         <div className="p-1">
@@ -251,16 +252,15 @@ const LandingPage = (props) => {
         href="https://ad.admitad.com/g/ea3sq3dsml3552d4acafe452830f0f"
         target="_blank"
       >
-        <div>
+        <div className="sm:block md:hidden">
           <img src="/static/images/laptop.jpeg" />
         </div>
       </a>
-      <div>
+      <div className="sm:block md:hidden">
         <img src="/static/images/b1.png" />
       </div>
-      <WebsiteSlider />
 
-      <div className="grid grid-cols-1">
+      <div className="grid grid-cols-1 sm:block md:hidden">
         <div>
           <img src="/static/images/b2.png" />
         </div>
@@ -306,7 +306,7 @@ const LandingPage = (props) => {
         </div>
         <div>
           <img src="/static/images/b3.png" />
-        </div>
+        </div> 
       </div>
 
       {/* <div class="px-4 space-y-4">
