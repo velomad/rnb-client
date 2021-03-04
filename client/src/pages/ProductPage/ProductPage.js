@@ -33,6 +33,14 @@ const ProductPage = (props) => {
   const handleBuyClick = async (productLink) => {
     console.log(productLink);
 
+    // const data = {};
+
+    const axiosConfig = {
+      headers: {
+        "x-api-key": "h16BYF2WhS6xQ7FYXKuTTLhKSfVPQ6z2MBTvZIyg",
+      },
+    };
+
     const res = await Axios.post(
       "https://middleware.ckaro.in/api/convert/ekaro",
       {
@@ -44,7 +52,8 @@ const ProductPage = (props) => {
             ip_address: "10.0.0.41",
           },
         },
-      }
+      },
+      axiosConfig
     );
     console.log(res.data.data[0].message);
     let earnLink;
